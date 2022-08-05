@@ -1,0 +1,20 @@
+using Microsoft.AspNetCore.Mvc;
+
+namespace CommandService2.Controllers
+{
+    [ApiController]
+    [Route("api/c/[controller]")]
+    public class PlatformsController : ControllerBase
+    {
+        public PlatformsController()
+        {
+
+        }
+
+        [HttpGet]
+        public ActionResult GetTest()
+        {
+            return Ok();
+        }
+    }
+}

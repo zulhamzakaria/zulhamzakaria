@@ -1,0 +1,10 @@
+dotnet new mvc -o COREMVC -f net5.0
+dotnet add package Microsoft.EntityFrameworkCore --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Tools.DotNet
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
+dotnet-ef migrations add AddMAkesAndModelsToDb
+dotnet-ef database update -c VroomDBContext
+dotnet ef database update -c VroomDBContext AddMAkesAndModelsToDb (To Revert - replace migration name to 0 to remove all)
+dotnet ef migrations remove (To Revert)

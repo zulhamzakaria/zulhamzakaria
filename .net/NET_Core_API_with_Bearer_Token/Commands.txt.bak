@@ -1,0 +1,10 @@
+dotnet new webapi -n SecureApi --framework net5.0
+code -r secureapi
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer -v 5.0.10
+secretID : 009fd314-37e7-462e-b548-9ed9bb04b551
+dotnet new console -n secureclient --framework net5.0
+echo > appsettings.json
+dotnet add package Microsoft.Extensions.Configuration
+dotnet add package Microsoft.Extensions.Configuration.Binder
+dotnet add package Microsoft.Extensions.Configuration.Json
+dotnet add package Microsoft.Identity.Client

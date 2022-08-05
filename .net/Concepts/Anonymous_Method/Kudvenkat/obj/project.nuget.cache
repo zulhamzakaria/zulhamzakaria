@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Fxwk8y9RxpICOvJgTr2wb/9+s8q08AnAIrr5L9mu9Zy000vbPYfuSX096DlQx9N+yrgs0ZyuIiewyZXZW1+5/Q==",
+  "success": true,
+  "projectFilePath": "D:\\Learning1\\Concepts\\Anonymous_Method\\kudvenkat\\Kudvenkat.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
+  ],
+  "logs": []
+}

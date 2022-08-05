@@ -1,0 +1,107 @@
+- ASP.Net Core Hosted
+	. shouldnt be used if the app can run locally on client's/user's pc withour accessing the server i.e calculator app
+	. use if the app need to access the server like performing a task on database
+- Blazor WASM
+	. will download all binaries from the server before running
+	. for a very large application, initial loading will be slow
+	. doesnt send any request to the server
+	. employ caching
+	
+- Steps
+	. create new project
+	. choose Blazor WebAssembly Project
+	. choose .net 6.0
+	. Configure for HTTPs: unchecked
+	. create
+	. Solution: DemoBlazorWasm
+		. Project: DemoBlazorWasm
+			- Pages
+				. counter.razor
+					- add 3 variables
+						. private int number1
+						. private int number2
+						. private int result
+					- add 2 new inputs and a button
+	. new project > Blazor WebAssembly 
+		- Project Name: BlazorAspNetCoreHostedDemo
+		- Framework: .net 6.0
+		- uncheck configure for https
+		- check Asp.Net core hosted
+		- create
+	. Solution : BlazorAspNetCoreHostedDemo
+		- Project: BlazorAspNetCoreHostedDemo.Client
+			. WASM Assembly App
+			. APIs consumer
+			. Dependencies 
+				- Projects 
+					. theres a reference for Shared project
+		- Project: BlazorAspNetCoreHostedDemo.Server
+			. for creating APIs
+			. there Controllers folder inside
+			. Dependencies 
+				- Projects 
+					. there are references to both Shared and Client projects
+			. is the main project
+			. must be hosted to the web server
+		- Project: BlazorAspNetCoreHostedDemo.Shared
+			. for sharing classes between Client and Server i.e contains model class for WeatherForecast
+			. can be accessed by both Client and Server
+			. create Models folder
+				- create new Product.cs class
+				- Product.cs 
+					. add some properties
+						- ProductName
+						- ProductCode
+						- ProductPrice
+					. decorate with [Serializable]
+						- "Serialization allows the developer to save the state of an object and recreate it as needed, providing storage of objects as well as data exchange. 
+							Through serialization, a developer can perform actions like sending the object to a remote application by means of a Web Service, 
+							passing an object from one domain to another, 
+							passing an object through a firewall as an XML string, 
+							or maintaining security or user-specific information across applications."
+		- Project: BlazorAspNetCoreHostedDemo.Server
+			. create Services folder
+			. Services
+				- new ProductService.cs class
+				- ProductService.cs
+					. public List<Product> GetProducts()
+					. public void AddProduct(Product product)
+					. public void DeleteProduct(string productCode)
+			. Program.cs
+				- add a dependency
+					. builder.services.AddSingleton<ProductService>();
+			. Controllers
+				- add new API Controller (API Controller Empty) called ProductsController.cs
+				- ProductsController.cs
+					. [HttpGet]
+					  [Route("GetProducts")]
+					  public ActionResult<List<Product>> GetProducts()
+						- GET api/products/getproducts
+					. dependency injection for ProductService
+					. [HttpPost]
+					  [Route("AddProduct")]
+					  public ActionResult AddProduct(Product product)
+					. [HttpDelete]
+					  [Route("DeleteProduct")]
+					  public ActionResult DeleteProduct([FromQuery]string productCode)
+						- [FromQuery] denotes that the code can be gotten from query string
+		- Project: BlazorAspNetCoreHostedDemo.Client
+			. Program.cs
+				- contains injected HttpClient
+				- BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+					. base address to refer to if Server and Client are inside the same application
+					. alternatively, use new Uri("https:...") for different deployment
+			. Pages
+				- Counter.razor
+					. call the Server API in @code section
+						- protected override async Task OnInitializedAsync()
+						 . load data
+						- private async Task DeleteProduct(string productCode)
+						- private async Task AddProduct()
+						- add product variable at the top
+							. private List<Product>? productList;
+					. inject the HttpClient
+					. add table to disply the Product
+					. add fields/form to add Product
+			. _Imports.razor
+				. add the using statement to import namespace here

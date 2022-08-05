@@ -1,0 +1,30 @@
+﻿@model Product
+
+<tr>
+    
+    @* Pass Product.Name to the _CellPartial *@
+    @*<td>@Model.Name</td>*@
+    <partial name="_CellPartial" for="Name" />
+    <td>@Model.Price.ToString("c")</td>
+
+    <td>
+        @* localhost:3000/home/list *@
+        <a asp-controller="home" asp-action="index" asp-route-id="@Model.Id" class="btn btn-sm btn-info text-white">Details</a>
+    </td>
+
+    <td>
+        @*Passed from List.cshtml*@
+        @if(ViewData["fruit"] != null)
+        {
+            string data = ViewData["fruit"] as string;
+            @data;
+            @* Tihs also works *@
+            @*@ViewData["fruit"]*@
+        }
+        else
+        {
+            // Put : after @ for string?
+            @:No ViewData
+        }
+    </td>
+</tr>

@@ -1,0 +1,3 @@
+ii . (to open folder)
+ii commands.txt (to open file)
+dotnet new mvc -o OnlineCourseSite -f net5.0 --auth Individual

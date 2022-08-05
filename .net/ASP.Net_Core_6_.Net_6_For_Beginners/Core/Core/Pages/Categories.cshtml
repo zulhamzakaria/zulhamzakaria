@@ -1,0 +1,17 @@
+﻿@page
+@using Core.Infrastructure
+@model Core.Pages.CategoriesModel
+
+@* Use this instead of constructor inside functions block for dependency injection *@
+@inject DataContext context
+
+<div class="bg-primary text-white text-center p-2 m-2">
+    Categories
+</div>
+
+<ul class="list-group m-2">
+    @foreach(Category category in context.Categories)
+    {
+        <li class="list-group-item">@category.Name</li>
+    }
+</ul>

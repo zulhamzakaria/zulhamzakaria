@@ -1,0 +1,41 @@
+- Razor components
+	. reusable razor files
+	. is a class and can contain logic
+	. does not need routing
+	
+- Steps
+	. new blazor server project => webApplication1
+	. Project: WebApplication1
+		- create Models folder
+		- Models
+			. new class > Contact.cs
+			. Contact.cs
+				- 3 properties
+					. FirstName
+					. LastName
+					. Email
+		- Pages
+			. Index.razor
+				- variable for List<Contact>
+				- protected override void OnInitialized()
+						
+		- Shared
+			. Component
+				- create properties decorated with [Parameter]
+					. [Parameter]
+					  public string FirstName{get;set;}
+					  [Parameter]
+					  public string LastName{get;set;}
+					  [Parameter]
+					  public string Email {get;set;}
+					. add the html to print/display the 3 props
+		
+		- Pages
+			. Index.razor
+				- import Component namespace
+					. @using WebApplication1.Component
+				- add code for the component
+			. counter.razor
+				- import Component namespace
+					. @using WebApplication1.Component
+				- add code for the component

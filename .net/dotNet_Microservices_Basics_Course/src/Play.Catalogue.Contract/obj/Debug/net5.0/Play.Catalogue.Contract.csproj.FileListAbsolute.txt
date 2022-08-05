@@ -1,0 +1,12 @@
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\bin\Debug\net5.0\Play.Catalogue.Contract.deps.json
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\bin\Debug\net5.0\Play.Catalogue.Contract.dll
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\bin\Debug\net5.0\ref\Play.Catalogue.Contract.dll
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\bin\Debug\net5.0\Play.Catalogue.Contract.pdb
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\obj\Debug\net5.0\Play.Catalogue.Contract.csproj.AssemblyReference.cache
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\obj\Debug\net5.0\Play.Catalogue.Contract.GeneratedMSBuildEditorConfig.editorconfig
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\obj\Debug\net5.0\Play.Catalogue.Contract.AssemblyInfoInputs.cache
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\obj\Debug\net5.0\Play.Catalogue.Contract.AssemblyInfo.cs
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\obj\Debug\net5.0\Play.Catalogue.Contract.csproj.CoreCompileInputs.cache
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\obj\Debug\net5.0\Play.Catalogue.Contract.dll
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\obj\Debug\net5.0\ref\Play.Catalogue.Contract.dll
+D:\learning1\dotNet_Microservices_Basics_Course\src\Play.Catalogue.Contract\obj\Debug\net5.0\Play.Catalogue.Contract.pdb

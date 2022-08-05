@@ -1,0 +1,130 @@
+﻿@model Product
+
+@* Inherit layout *@
+@{
+    // Inherited from _ViewStart
+    //Layout = "_Layout";
+    // To inherit from another layout file
+    //Layout = "_Layout2";
+    // No layout
+    //Layout = null;
+
+    ViewBag.Title = "Home";
+}
+
+@section Header{
+<div class="bg-primary text-white">
+    <h1>Header Information</h1>
+</div>
+}
+
+
+@* Inherited from _layout hence the comment *@
+@*<!DOCTYPE html>
+    <html lang="en-gb">
+    <head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    </head>
+    <body>
+    <div class="container">*@
+@* Changed to col-12 since it's inside the row now (inherited from _Layout) *@
+@*<div class="row m-2">*@
+<div class="col-12 m-2">
+    <h2 class="text-white bg-info p-2">Product</h2>
+
+    <table class="table table-striped table-bordered">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>@Model.Price.ToString("c")</td>
+            </tr>
+            <tr>
+                <th>Price *2</th>
+                @*Encase inside () to perform the arithmetic operation*@
+                <td>@((Model.Price * 2).ToString("c"))</td>
+            </tr>
+        </tbody>
+    </table>
+
+    @* ---View Component - Start--- *@
+
+    @* Call ViewComponent using component property *@
+    @* Provide the ViewComponent name without the suffix *@
+    @await Component.InvokeAsync("ProductListing") 
+
+    @* Call ViewComponent using TagHelper*@
+    @* For this to work, enable the custom taghelper inside _viewimport *@
+    @* Set viewbag value for ViewComponent.cs *@
+    @*<vc:product-listing class-name="danger"/> *@
+    <vc:product-listing/> 
+    @*@await Component.InvokeAsync("ProductListing", new{className="danger"})*@
+
+    @* Call ViewComponent based on the named defined by [ViewComponent(Name="JuicyFruit")] *@
+    @* To use this, comment the other tag helper *@
+    @*<vc:juicy-fruit/> *@
+
+
+    @*PageSize view component*@
+    @*<vs:page-size/>*@
+    
+    @* ---View Component - End--- *@
+
+        <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Name</td>
+                <td>@Model.Price.ToString("C2")</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+         @* Not necessary to have asp-controller tag since it's inside Controller own Views folder *@
+        <a asp-action="List" class="btn btn-sm btn-info text-white">Back To List</a>
+    </div>
+
+</div>
+
+@* Changed to col-12 since it's inside the row now (inherited from _Layout) *@
+@*<div class="row m-2">*@
+<div class="col-12 m-2">
+    @if (TempData["value"] != null)
+    {
+        <div class="bg-info text-white p-2">
+            @TempData["value"];
+        </div>
+    }
+</div>
+
+@* Inherited from _layout hence the comment *@
+@*    </div>
+    </body>
+    </html>*@
+
+@* Json Encoding *@
+@section JsonEncoder{
+    <div class="bg-info text=white m-2 p-2">
+        @Json.Serialize(@Model)
+    </div>
+}
+
+@section Footer{
+<div class="bg-success text-white">
+    <h1>
+        Footer Information
+    </h1>
+</div>
+}

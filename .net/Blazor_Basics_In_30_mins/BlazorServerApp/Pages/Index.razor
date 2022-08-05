@@ -1,0 +1,50 @@
+﻿@page "/"
+
+@*<h1>Hello, @userName from variable!</h1>
+<h1>Hello, @GetUserName() from GetUserName() function!</h1>*@
+<h1>Hello, @userName from event!</h1>
+
+<p>sum: @(2+2)</p>
+
+<button @onclick="ChangeName">Click Me To Change Name!</button>
+
+<button @onclick="@(() => { userName = "Piotr"; })">Click Me To Change Name Explicitly!</button>
+
+@if(testNum == 1) { <p>yes, it is @testNum</p>}
+            else { <p>no, it is not 1</p>}
+@foreach(var item in intArray)
+            {
+                <p>@item</p>
+            }
+
+@foreach(var name in names)
+            {
+                <p>Name:@((MarkupString)name)</p>
+            }
+
+@code{ 
+    private int testNum = 1;
+    private string userName = "Kumar";
+    private int[] intArray =  new int[4] { 0,1,2,3};
+    private List<string> names;
+
+    protected override void OnInitialized()
+    {
+        names = new List<string>
+        {
+            "<h1>quinn</h1>",
+            "<b>debra</b>",
+            "heidi"
+        };
+    }
+
+    private string GetUserName()
+    {
+        return userName;
+    }
+
+    private void ChangeName()
+    {
+        userName = "Komar";
+    }
+}

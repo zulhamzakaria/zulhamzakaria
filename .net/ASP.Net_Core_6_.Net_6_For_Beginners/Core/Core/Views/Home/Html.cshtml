@@ -1,0 +1,10 @@
+﻿@model string
+
+<div class="bg-secondary text-white text-center m-2 p-2">
+    @* Encoded HTML *@
+    @Model
+</div>
+<div class="bg-secondary text-white text-center m-2 p-2">
+    @*To use HTML*@
+    @Html.Raw(@Model)
+</div> 

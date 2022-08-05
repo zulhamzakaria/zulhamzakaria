@@ -1,0 +1,66 @@
+﻿@*
+    Page directive must be the first thing in a Razor page
+    Denote that it's a Razor page
+    Razor page takes precedent over the action method of the same name
+    URL Routing is based on file name and location
+    Code for Razor can be either inside .cshtml or .cshtml.cs
+    No intellisense in here
+    Adding more folders will enable complex URL structure
+    Folder name represents the segment inside the URL
+    Values for the request handler methods are obtained from the URL query string
+    That means theres no model binding
+    Example: https://localhost:4000/?id=3 as opposed to https://localhost:4000/products/2
+    @page "{id:long?}" => Razor page accepts id of type long and it's optional'
+    Now https://localhost:4000/2 will return result instead of using querystring as mentioned above
+*@
+@*@page*@
+@* This is for segment variable *@
+@page "{id:long?}"
+@using Core.Infrastructure
+@using Core.Models
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@model IndexModel
+@{
+}
+
+<h1>Razor page</h1>
+
+@* @Model.product.Name gotten from the .cs file *@
+@*<p>From the code behind: @Model.product.Name</p>*@
+
+@* @Model.product.Name gotten from this file *@
+@*<p>From the Razor page: @Model.product.Name</p>*@
+
+@* Use partial file *@
+<partial name="_ProductPartial" model="Model.product" />
+
+<br />
+@* Add code to the razor page *@
+@* Similarr code exists inside the .cs file *@
+@functions {
+    public class IndexModel : PageModel
+    {
+        private readonly DataContext context;
+        public Product product { get; set; }
+
+        public IndexModel(DataContext context)
+        {
+            this.context = context;
+        }
+
+        public async Task<IActionResult> OnGetAsync(long id = 1)
+        {
+            product = await context.Products.FindAsync(id);
+
+            // True for https://localhost:4000/2
+            if (product == null)
+            {
+                //return NotFound();
+                return RedirectToPage("NotFound");
+            }
+
+            return Page();
+
+        }
+    }
+}

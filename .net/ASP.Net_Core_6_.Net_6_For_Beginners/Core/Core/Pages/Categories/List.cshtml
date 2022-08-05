@@ -1,0 +1,42 @@
+﻿@* 
+    The link to this page is localhost:4000/categories/list
+    It follows the file structure
+    Route can be defined
+    @page "/list/categories" => https://localhost:4000/list/categories against the original https://localhost:4000/categories/list
+*@
+@page "/list/categories"
+@using Core.Infrastructure
+@using Core.Models
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@model ListModel
+@{
+}
+
+<h2>Categories</h2>
+
+<ul class="list-group m-2">
+    @foreach(var item in Model.categories)
+    {
+        <li class="list-group-item">
+            @item
+        </li>
+    }
+</ul>
+
+@functions{
+    public class ListModel:PageModel
+    {
+        private readonly DataContext _context;
+        public IEnumerable<string> categories { get; set; }
+
+        public ListModel(DataContext context)
+        {
+            _context = context;
+        }
+
+        public void OnGet()
+        {
+            categories = _context.Categories.Select(c => c.Name);
+        }
+    }
+}

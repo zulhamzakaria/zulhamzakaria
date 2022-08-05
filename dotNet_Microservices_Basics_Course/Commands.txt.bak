@@ -1,0 +1,16 @@
+dotnet new webapi -n Play.Catalog.Service --framework net5.0
+cd .\Play.Catalogue.Service\
+dotnet dev-certs https --trust
+dotnet add package MongoDB.Driver
+docker run -d --rm --name Mongo -p 27017:27017 -v mongodbdata:/data/db mongo
+docker ps
+dotnet new classlib -n Play.Common --framework net5.0
+dotnet pack -o ..\..\..\packages\
+dotnet nuget add source D:\learning1\dotNet_Microservices_Basics_Course\packages -n PlayEconomy
+dotnet add package Play.Common
+docker stop a85
+docker-compose up
+docker-compose up -d
+dotnet add package Microsoft.Extensions.Http.Polly
+dotnet add reference ..\Play.Catalogue.Contract\Play.Catalogue.Contract.csproj
+dotnet add package MassTransit.AspNetCore

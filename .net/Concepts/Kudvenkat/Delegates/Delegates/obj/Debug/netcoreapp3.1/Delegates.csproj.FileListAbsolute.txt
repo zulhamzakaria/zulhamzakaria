@@ -1,0 +1,14 @@
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\bin\Debug\netcoreapp3.1\Delegates.exe
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\bin\Debug\netcoreapp3.1\Delegates.deps.json
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\bin\Debug\netcoreapp3.1\Delegates.runtimeconfig.json
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\bin\Debug\netcoreapp3.1\Delegates.runtimeconfig.dev.json
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\bin\Debug\netcoreapp3.1\Delegates.dll
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\bin\Debug\netcoreapp3.1\Delegates.pdb
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\obj\Debug\netcoreapp3.1\Delegates.csproj.AssemblyReference.cache
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\obj\Debug\netcoreapp3.1\Delegates.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\obj\Debug\netcoreapp3.1\Delegates.AssemblyInfoInputs.cache
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\obj\Debug\netcoreapp3.1\Delegates.AssemblyInfo.cs
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\obj\Debug\netcoreapp3.1\Delegates.csproj.CoreCompileInputs.cache
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\obj\Debug\netcoreapp3.1\Delegates.dll
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\obj\Debug\netcoreapp3.1\Delegates.pdb
+D:\Learning1\Concepts\Kudvenkat\Delegates\Delegates\obj\Debug\netcoreapp3.1\Delegates.genruntimeconfig.cache

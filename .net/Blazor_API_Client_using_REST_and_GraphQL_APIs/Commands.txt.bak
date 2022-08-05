@@ -1,0 +1,3 @@
+dotnet --version
+dotnet new blazorwasm -n BlazorAPIClient -f net5.0
+code -r blazorapiclient

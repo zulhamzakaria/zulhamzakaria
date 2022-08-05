@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+UMLLNO/Z30svKnLIESVVWE23rYmzXAk+vL9af5yAHpk4JOhTXnP/BR6KszB+YqclWzamajQUOsAQJgxgTQyEA==",
+  "success": true,
+  "projectFilePath": "D:\\Learning1\\Complete_Guide_To_ASP.NET_Core_Identity\\WebAppSecurity\\WebAppSecurity.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}

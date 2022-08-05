@@ -1,0 +1,106 @@
+﻿@*This file can be shared by all View files*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @* To include jquery. Jquery added thru Add > Client-side Library *@
+    @* Use TagHelper *@
+    @* **/*.cs -> to include every single js file *@
+    @* Exlude whatever files with .min *@
+    @* asp-append-version is the support for cache busting *@
+    @* Cache busting allows for the newer version to be always available immediately *@
+    @* Use taghelper for fallback in-case CDN isnt working *@
+    @* TagHelper can maintain different versions of cached contents *@
+    @* Environment TagHelper detrmines whether contents should be included based on environments *@
+
+    @*<script asp-src-include="/lib/jquery/**/*.js" asp-src-exclude="**.min.**" asp-append-version="true"></script>*@
+    <script asp-src-include="https://code.jquery.com/jquery-3.6.0.min.js" asp-fallback-src="/lib/jquery/jquery.min.js"></script>
+    <link asp-href-include="~/lib/bootstrap/css/*.min.css" asp-href-exclude="**/*-reboot*,**/*-grid*,**/*-utilities*, **/*.rtl.*"
+          rel="stylesheet" />
+
+
+</head>
+<body>
+    <div class="container">
+
+        @* Caching *@
+        <div class="m-2">
+            <h6 class="bg-primary text-white m-2 p-2">
+                Uncached timestamp: @DateTime.Now.ToLongTimeString()
+            </h6>
+
+            @* Keeps new cache 30 seconds after the last cache *@
+            @*<cache expires-after="@TimeSpan.FromSeconds(30)">*@
+
+            @* For periodic caching - Cache will expire if hasnt been retrieved for 30 seconds *@
+            @*<cache expires-sliding="@TimeSpan.FromSeconds(30)">*@
+
+            @* Each action will receive its own cached content with its own expiration *@
+            @* This means /index and /list will have different cached contents *@
+            <cache expires-sliding="@TimeSpan.FromSeconds(30)" vary-by-route="action">
+                <h6 class="bg-primary text-white m-2 p-2">
+                    Cached timestamp: @DateTime.Now.ToLongTimeString()
+                </h6>
+            </cache>
+        </div>
+
+
+        @* Environment TagHelper *@
+
+        <div class="m-2">
+            <environment names="development">
+                <h6 class="bg-primary text-white m-2 p-2">
+                    Development Environment
+                </h6>
+            </environment>
+        </div>
+
+
+        @* To render section *@
+        @*false is to set the section as not mandatory*@
+        <div class="row">
+            <div class="col-12">
+                @RenderSection("Header", false)
+            </div>
+        </div>
+
+        <div class="row">
+            @*Tis for the View files*@
+            @RenderBody()
+        </div>
+
+        @* Condition to render section *@
+        @* Can only be called from _layout *@
+        @if (IsSectionDefined("AboveFooter"))
+        {
+            <div class="row">
+                <div class="col-12">
+                    @RenderSection("AboveFooter")
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-12">
+                    No AboveFooter Section defined!
+                </div>
+            </div>
+        }
+
+        @* To render section *@
+        @*false is to set the section as not mandatory*@
+        <div class="row">
+            <div class="col-12">
+                @RenderSection("Footer", false)
+            </div>
+        </div>
+
+        @* To render JsonEncoder *@
+        @RenderSection("JsonEncoder", false)
+
+    </div>
+</body>
+</html>

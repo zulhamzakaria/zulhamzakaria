@@ -1,0 +1,9 @@
+﻿@* By default, files that start with an _ will not be returned to the user
+    Use this file to define the namespaces so they can be shared throughout the view files
+*@
+@using Core.Models.ViewModels
+@using Core.Models
+@* Enable the tag helper *@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@* Enable custom taghelper for ViewComponent by importing all *@
+@addTagHelper *,Core

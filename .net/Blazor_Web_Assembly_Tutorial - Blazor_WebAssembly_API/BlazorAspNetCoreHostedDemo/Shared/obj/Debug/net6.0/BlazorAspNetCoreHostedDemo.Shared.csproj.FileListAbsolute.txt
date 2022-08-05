@@ -1,0 +1,12 @@
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\bin\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.deps.json
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\bin\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.dll
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\bin\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.pdb
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.csproj.AssemblyReference.cache
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.AssemblyInfoInputs.cache
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.AssemblyInfo.cs
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.csproj.CoreCompileInputs.cache
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.dll
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\refint\BlazorAspNetCoreHostedDemo.Shared.dll
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\BlazorAspNetCoreHostedDemo.Shared.pdb
+D:\Learning1\.Net\Blazor_Web_Assembly_Tutorial - Blazor_WebAssembly_API\BlazorAspNetCoreHostedDemo\Shared\obj\Debug\net6.0\ref\BlazorAspNetCoreHostedDemo.Shared.dll

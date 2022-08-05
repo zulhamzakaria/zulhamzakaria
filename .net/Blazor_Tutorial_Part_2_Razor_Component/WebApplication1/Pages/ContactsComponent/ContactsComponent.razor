@@ -1,0 +1,13 @@
+﻿
+<p>
+    <b>Name: </b><span>@FirstName @LastName</span><br />
+    <b>Email: </b><i>@Email</i>
+</p>
+@code {
+    [Parameter]
+    public string FirstName { get; set; }
+    [Parameter]
+    public string LastName { get; set; }
+    [Parameter]
+    public string Email { get; set; }
+}

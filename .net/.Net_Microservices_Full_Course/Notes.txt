@@ -1,0 +1,218 @@
+dotnet --version
+dotnet new webapi -n PlatformService -f net5.0
+code -r platformservice
+
+Add packages/dependencies:
+	dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection --version 8.1.1
+	dotnet add package Microsoft.EntityFrameworkCore --version 5.0.8
+	dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.8
+	dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 5.0.8
+	dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.8
+	dotnet add package RabbitMq.Client
+	dotnet add package grpc.aspnetcore
+	
+Add Models folder
+	Platform.cs <- internal user. will be linked with dto which will act as external/interface. DTO = external representaion of models. DTO = a layer of abstraction
+	
+Controller folder
+	PlatformsController.cs
+	
+Add Data folder
+	AppDbContext.cs
+	IPlatformRepo.cs <- repository for dependency injection
+	PlatformRepo.cs <- concrete implementation of IPlatformRepo
+	PrepDb.cs <- data seeder for database
+	
+Modify Startup.cs
+	Startup()
+		public Startup(IConfiguration configuration, IWebHostEnvironment env) => this.env = env;
+		private readonly IWebHostEnvironment env;
+	ConfigureServices()
+		services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("InMemory"));
+		services.AddScoped<IPlatformRepo, PlatformRepo>();
+		services.AddAutoMapper(AppDomain.CurrentDomain.GetAsemblies());
+		services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+		services.AddSingleton<IMessageBusClient, MessageBusClient>();
+		services.AddGrpc();
+	Configure()
+		PrepDb.PrepPopulation(app);
+		PrepDb.PrepPopulation(app, env.IsProduction);
+		endpoints.MapGrpcService<GrpcPlatformService>();
+
+Add DTOs folder
+	PlatformReadDTO.cs
+	PlatformCreateDTO.cs
+	PlatformPublishedDTO.cs <-- dto thats used to publish to RabbitMQ message bus
+	
+Profiles folder
+	PlatformProfiles.cs	<- acting as a mapper between model and DTO. mapper.map<Target>(Source);
+
+SysncDataService folder <- holds the synchronous data services1
+	Http folder
+		ICommandDataClient.cs
+		HttpCommandDataClient.cs
+	Grpc folder
+		GrpcPlatformService.cs
+
+AsyncDataServices folder
+	IMessageBusClient.cs
+	MessageBusClient.cs <-- concrete implementation of IMessageBusClient.cs
+	
+Add appsettings.Production.json --> set to use the setting done in kubernetes deployment files (clusterIp and port)
+	http://commands-clusterip-srv:80/api/c/platforms/
+	
+Postman
+	https://localhost:5001/api/platforms/
+	https://localhost:5001/api/platforms/1
+	
+Docker
+	add Docker file
+	docker build -t zulham/platformservice .
+	docker run -d -p 8000:80 zulham/platformservice
+	docker stop e21
+	docker start e21
+	docker push zulham/platformservice
+
+Kubernetes
+	create a folder called 'Kubernetes' at root level
+	add platforms.depl.yaml - for deployment. spawns nodes and replicas
+	kubectl version
+	kubectl apply -f platforms-depl.yaml
+	kubectl get deployments
+	kubectl get pods
+	add platforms-np-srv.yaml - for node port. node port = open ports on nodes
+	kubectl apply -f platforms-np-srv.yaml
+	kubectl delete service platftormnpservice-srv
+	add commands-depl.yaml
+	kubectl rollout restart deployment platforms-deployment
+	kubectl apply -f commands-depl.yaml
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
+	kubectl get namespace
+	kubectl get pods --namespace=ingress-nginx
+	kubectl get services --namespace=ingress-nginx 
+	add ingress-srv.yaml --> is used to determine how to route to the services
+	modify hosts file (C:\Windows\System32\drivers\etc - add 127.0.0.1 acme.com)
+	kubectl apply -f ingress-srv.yaml
+	kubectl get storageclass
+	add local-pvc.yaml
+	kubectl apply -f local-pvc.yaml
+	kubectl get pvc
+	kubectl create secret generic mssql --from-literal=SA_PASSWORD="pa55w0rd!"
+	add mssql-plat-depl.yaml
+	kubectl apply -f mssql-plat-depl.yaml
+	kubectl get deployment
+	add rabbitmq-depl.yaml
+	kubectl apply -f rabbitmq-dpel.yaml
+	kubectl get pods
+	kubectl get deployment  
+	kubectl rollout restart deployment platforms-deployment <-- restart deployment after adding the rabbitmq
+	kubectl rollout restart deployment commands-deployment <-- restart deployument after adding the rabbitmq
+	kubectl get deployment
+	kubectl scale --replicas=0 deployment commands-deployment <-- stops deployment from running
+	kubectl delete pod pod-name
+	kubectl scale --replicas=0 deployment deployment_name
+	
+	
+RabbitMQ
+	localhost:15672 <-- guest, guest
+	add rabbitmq client to the services <-- dotnet add package RabbitMQ.Client
+	
+appsettings.development.json
+	add rabbitmq settings for host and port <-- localhost; 5672
+	
+appsettings.production.json
+	add rabbitmq settings for host and port <-- use kubernetes rabbitmq service name (rabbitmq-clusterip-service); 5672
+	add grpc settings. use platform service defined in the platform-depl.yaml (of Kubernetes folder) as the url like so "Url": "http://platforms-clusterip-srv:666"
+	
+Protos folder
+	for grpc
+	add platforms.proto <-- acts as a contract between server(platform service) and client(command service)
+	
+PlatformService.csproj
+	<ItemGroup>
+		<Protobuf Include="Protos\platforms.proto" GrpcServices="Server" />
+	</ItemGroup>
+	
+Command Service
+	dotnet new webapi -n CommandService -f net5.0 (at root level)
+	dotnet add package automapper.extensions.microsoft.dependencyinjection --version 8.1.1
+	dotnet add package microsoft.entityframeworkcore --version 5.0.8
+	dotnet add package microsoft.entityframeworkcore.design --version 5.0.8
+	dotnet add package microsoft.entityframeworkcore.inmemory --version 5.0.8
+	dotnet add package rabbitmq.client
+	dotnet add package grpc.tools
+	dotnet add package grpc.net.client
+	
+	Controllers folder
+		PlatformsController.cs
+		CommandsController.cs		
+		
+	Docker
+		Dockerfile
+		docker build -t zulham/commandservice .
+		docker push zulham/commandservice
+		docker run -p 8080:80 zulham/commandservice -n commandservice <-- just to test the dockerfile
+	
+	Models folder
+		Platform.cs 
+		Command.cs
+	
+	Data folder
+		AppDBContext.cs <-- include the relationships between Command and Platform under protected override void OnModelCreating(ModelBuilder modelBuilder) 
+		ICommandRepository.cs <-- for repository pattern
+		CommandRepository.cs <-- concrete implementation of ICommandRepository
+		PrepDb.cs
+		
+	DTOs folder
+		PlatformRadDTO.cs
+		CommandReadDTO.cs
+		CommandCreateDTO.cs
+		PlatformPublishedDTO.cs <-- for rabbitmq, 
+		GenericEventDTO.cs <-- map Id to ExternalId(Models/Platform.cs)
+	
+	Startup.cs
+		ConfigureServices()
+			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+			services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("InMemory"));
+	        services.AddScoped<ICommandRepository, CommandRepository>();
+			services.AddSingleton<IEventProcessor, EventProcessor>();
+			services.AddHostedService<MessageBusSubscriber>();
+			services.AddScoped<IPlatformDataClient, PlatformDataClient>();
+		Configure()
+			PrepDb.PrepPopulation(app);
+
+
+	Profiles folder
+		for automapper
+		ComandsProfile.cs
+		
+	AsyncDataServices folder
+		MessageBusSubscriber.cs <-- runs on background and continuously listening to message bus events. no interface as it may complicate things
+	
+	EventProcessing folder
+		IEventProcessor.cs
+		EventProcessor.cs <-- concrete implementation for IEventProcessor
+		
+	appsettings.development.json
+		add rabbitmq settings for host and port <-- localhost; 5672
+		"GrpcPlatform" : "https://localhost:5001"
+	
+	appsettings.production.json
+		add rabbitmq settings for host and port <-- use kubernetes rabbitmq service name (rabbitmq-clusterip-service); 5672
+		"GrpcPlatform": "http://platforms-clusterip-srv:666" <-- server defined inside the yaml file with grpc port
+		
+	Protos folder
+		platforms.proto
+		
+	SyncDataServices folder
+		Grpc folder
+			IPlatformDataClient.cs
+		
+GRPC <-- Google Remote Procedure Call that runs on Http/2 protocol
+	modify platforms-depl.yaml (Kubernetes folder) by adding another port (name: platformgrpc)
+	dotnet add package grpc.aspnetcore (platform service)
+	dotnet add package grpc.tools (command service)
+	dotnet add package grpc.net.client (command service)
+	dotnet add package google.protobuf (command service)
+	add protofile to platform project (Protos folder)
+	 

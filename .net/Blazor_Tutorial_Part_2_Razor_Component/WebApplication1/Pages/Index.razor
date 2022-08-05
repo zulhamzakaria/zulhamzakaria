@@ -1,0 +1,42 @@
+﻿@page "/"
+@using WebApplication1.Pages.ContactsComponent
+@*<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />*@
+
+@foreach(var contact in contacts)
+            {
+                <ContactsComponent FirstName="@contact.FirstName" LastName="@contact.LastName" Email="@contact.Email"/>
+            }
+
+@code{
+    private List<Contact> contacts;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        contacts = new List<Contact>
+            {
+                new Contact
+                {
+                    FirstName = "Christina",
+                    LastName = "Applegate",
+                    Email = "chrap@music.com"
+                },
+                new Contact
+                {
+                    FirstName = "Christina",
+                    LastName = "Aguilera",
+                    Email = "chrag@music.com"
+                },
+                new Contact
+                {
+                    FirstName = "Monica",
+                    LastName = "Belucci",
+                    Email = "mobel@actress.com"
+                }
+            };
+    }
+}

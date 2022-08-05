@@ -1,0 +1,14 @@
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\bin\Debug\netcoreapp3.1\Kudvenkat.exe
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\bin\Debug\netcoreapp3.1\Kudvenkat.deps.json
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\bin\Debug\netcoreapp3.1\Kudvenkat.runtimeconfig.json
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\bin\Debug\netcoreapp3.1\Kudvenkat.runtimeconfig.dev.json
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\bin\Debug\netcoreapp3.1\Kudvenkat.dll
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\bin\Debug\netcoreapp3.1\Kudvenkat.pdb
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\obj\Debug\netcoreapp3.1\Kudvenkat.csproj.AssemblyReference.cache
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\obj\Debug\netcoreapp3.1\Kudvenkat.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\obj\Debug\netcoreapp3.1\Kudvenkat.AssemblyInfoInputs.cache
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\obj\Debug\netcoreapp3.1\Kudvenkat.AssemblyInfo.cs
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\obj\Debug\netcoreapp3.1\Kudvenkat.csproj.CoreCompileInputs.cache
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\obj\Debug\netcoreapp3.1\Kudvenkat.dll
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\obj\Debug\netcoreapp3.1\Kudvenkat.pdb
+D:\Learning1\Concepts\Anonymous_Method\kudvenkat\obj\Debug\netcoreapp3.1\Kudvenkat.genruntimeconfig.cache

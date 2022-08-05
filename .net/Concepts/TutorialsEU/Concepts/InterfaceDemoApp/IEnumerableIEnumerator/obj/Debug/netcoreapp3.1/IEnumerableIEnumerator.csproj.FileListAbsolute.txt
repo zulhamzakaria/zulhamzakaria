@@ -1,0 +1,14 @@
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\bin\Debug\netcoreapp3.1\IEnumerableIEnumerator.exe
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\bin\Debug\netcoreapp3.1\IEnumerableIEnumerator.deps.json
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\bin\Debug\netcoreapp3.1\IEnumerableIEnumerator.runtimeconfig.json
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\bin\Debug\netcoreapp3.1\IEnumerableIEnumerator.runtimeconfig.dev.json
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\bin\Debug\netcoreapp3.1\IEnumerableIEnumerator.dll
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\bin\Debug\netcoreapp3.1\IEnumerableIEnumerator.pdb
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\obj\Debug\netcoreapp3.1\IEnumerableIEnumerator.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\obj\Debug\netcoreapp3.1\IEnumerableIEnumerator.AssemblyInfoInputs.cache
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\obj\Debug\netcoreapp3.1\IEnumerableIEnumerator.AssemblyInfo.cs
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\obj\Debug\netcoreapp3.1\IEnumerableIEnumerator.csproj.CoreCompileInputs.cache
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\obj\Debug\netcoreapp3.1\IEnumerableIEnumerator.dll
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\obj\Debug\netcoreapp3.1\IEnumerableIEnumerator.pdb
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\obj\Debug\netcoreapp3.1\IEnumerableIEnumerator.genruntimeconfig.cache
+D:\Learning1\Concepts\TutorialsEU\Concepts\InterfaceDemoApp\IEnumerableIEnumerator\obj\Debug\netcoreapp3.1\IEnumerableIEnumerator.csproj.AssemblyReference.cache

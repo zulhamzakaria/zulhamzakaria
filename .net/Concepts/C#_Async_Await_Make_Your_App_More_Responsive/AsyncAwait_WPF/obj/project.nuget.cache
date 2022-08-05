@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "U7hHYtYCN/cPbaNeNlWckDAmRQZhs2PFDc4awwcTjyXB4vPR4e+Vf0yMuDYHlBfG8Q5dvhY+LW4mBwfP8kf8zg==",
+  "success": true,
+  "projectFilePath": "D:\\Learning1\\Concepts\\C#_Async_Await_Make_Your_App_More_Responsive\\AsyncAwait_WPF\\AsyncAwait_WPF.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
+  ],
+  "logs": []
+}

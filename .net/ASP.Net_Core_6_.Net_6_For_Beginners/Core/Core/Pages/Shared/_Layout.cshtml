@@ -1,0 +1,21 @@
+﻿@*This file can be shared by all View files*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+            @*Tis for the View files*@
+            @RenderBody()
+        </div>
+
+    </div>
+</body>
+</html>

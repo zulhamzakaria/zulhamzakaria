@@ -1,0 +1,4 @@
+dotnet add package microsoft.entityframeworkcore.sqlserver -v 3.0.0
+dotnet add package microsoft.entityframeworkcore.tools -v 3.0.0
+Add-Migration InitialCreate
+update-database

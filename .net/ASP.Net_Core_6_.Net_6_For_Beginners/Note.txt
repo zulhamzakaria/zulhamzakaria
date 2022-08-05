@@ -1,0 +1,364 @@
+- contents
+	. learn ASP from scratch
+	. build custom MVC Website
+	. build RESTFUL APIs and CLients
+	. use Entity Framework Core
+	. use Identity
+
+- related
+	. c#
+	. EF
+	. web dev experience
+	. VS 2002
+	. postman
+	. github (cli)
+
+- whats what
+	. middleware/request pipeline
+		- net core delegates the http request/response to middleware
+		- middleware components are arranged in a chain/sequence which is also known as request pipeline
+		- http request > middleware (processing) > response
+		- if no response generated, 404 will be thrown
+	. services
+		- managed by asp.net core
+		- employs dependency injection
+		- no response generated results in 404 error
+	. HttpContext
+		- encapsulates all http related info about a single http request
+		- http request > server(processing) > httpcontext object(request response info, error info if any)
+		- accessed by net core application through IHttpContextAccessor
+	. dependency injection
+		- used to consume services with interface
+		- types:
+			. scoped
+				- new instance for every request
+				- use if application states need to be preserved
+				- will throw an error if scope service is requested out of scope
+			. singleton
+				- same instance for all requests
+				- for global stuffs like logging
+			. transient 
+				- new instance for every object in the HTTP request
+				- for small project with little to no state
+	. Appsetting.json
+		- expand to expose appsettings.development.json
+		- three predefined environments:
+			. development
+			. production
+			. staging
+		- projects may contain more than 1 appsettings
+		- development env is the default
+	. Entity framework
+		- ef core uses context class for the accessing db
+			. class must extend DbContext
+				- public class Datacontext : DbContext
+			. constructor that accepts DbContextOptions<DataOptions> options and extends base(options)
+			. DbSet props to register the model for db
+	. Model Binding
+		- mvc uses request url to find values for action methods
+			
+
+- Steps
+	. Create new project > Web > ASP.Net Core Empty > Name: Core > .Net 6.0 > Configure for HTTPS
+	. Solution 'Core'
+		. Core project
+			- Properties
+			 . launchSettings.json
+				- "iisSettings"
+					. configure HTTP/HTTPS setting
+					. profile for IIS Express
+				- "profiles"
+					. "core"
+						- chosen if the app is run using cli command
+						- will be used mainly during development
+						- change the http port to 3000
+							. http://localhost:3000/
+					. "IIS Express"
+						- config for IIS Express
+			- Terminal
+				. dotnet watch --project {name_of_project}
+					- refreshes the browser
+					- hot reload
+				. dotnet run --project {project_name}
+					- works the same but doesnt refresh the browser
+					- changes might not be reflected (?) so using ctrl+ f5 is the better choice
+			- Program.cs
+				. combines the startup.cs and program.cs found in previous net Core version
+				. CreateBulder()
+					- setting up net core basic features i.e createing services, configuration data and logins
+				. Build()
+					- for setting up middleware components 
+						. var app = builder.Build()
+						. app.MapGet("/",() => "Hello World")
+							- for defining endpoints or routing
+						. app.Run()
+							- listening to http request
+			- Terminal
+				. addsome pacakges
+				. dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+				. added packages will appear inside .csproj page
+			- Program.cs
+				. custom middleware
+				. app.use(async (context, next) =>{
+					if(context.Request.Method == HttpMethods.Get && context.Request.Query["custom'] == "true")
+					{
+						context.Response.ContentType = "text/plain";
+						await context.Response.WriteASync("Custom Middleware\n");
+					}
+					await next();
+					});
+				. await next(); is equivalent to next.Invoke();
+				. when any GET request with the appropriate rquest string comin in, it will go to the first middleware inside the pipeline
+				. next() calls the next middleware
+				. localhost:3000/?custom=true
+					- this will return
+						. Custom Middleware
+						. Hello World!
+					- as expected, the custom middleware will process the request with query string and response with "Custom Middleware"
+			- new class > Middleware.cs
+			- Middleware.cs
+				. class Middleware
+					- dependency injected RequestDelegate
+					- public aync Task Invoke(HttpContext context)
+						. move the custom middleware to process request query string found in program.cs to here
+						. modify the code to check for context.Response.HasStarted and return the context thru next()
+							- await nect(context)
+			- Program.cs
+				- remove custom middleware 
+				- register custom class middleware
+					. app.UseMiddleware<Middleware>()
+				- middleware object can modify the httpresponse object after next() is called
+					. app.Use(async(context,next) => 
+						{
+							wait next();
+							await context.Response.WriteAsync($"\n Status Code: {context.Respopnse.StatusCode}");
+						});
+				- middleware components that has generated response can choose not to call the next()
+					. request will not be passed on
+					. will short circuit the pipeline
+					. app.Use(async(context,next) =>
+						{
+							if(context.Request.Path == "/short")
+							{
+								await context.Response.WriteAsync("request short-circuit");
+							}
+							else
+							{ await next();}
+						});
+					. localhost:3000/short
+						- will call the custom middleware and return "request short-circuit"
+						- middleware for "Hello world" will not be called
+				- .Map() 
+					. is used to create a section in the pipeline for proccessing request for specific URL
+					. create a separate sequence of middleware components
+					. ((IApplicationBuilder)app).Map("/branch", branch => {
+							branch.Use(async (HttpContext context, Func<Task> next) =>
+							{
+								await context.Response.WriteAsync("Branch Middleware");
+							});
+						});
+					. localhost:3000/branch
+						- returns "Branch middleware"
+				- Terminal middleware 
+					. never forwards request to the next middleware
+					. branch.Use()
+					. app.Run()
+				- Class based components
+					. can be written to be used as both as rgular and terminal middleware
+			- Middleware.cs
+				. class Middleware
+					- empty constructor
+					- Invoke()
+						. if(_next != null)
+							{
+								await _next(context);
+							}
+			- Program.cs
+				. ((IApplicationBuilder)app).Map("/branch", branch =>
+					- replace the code with:
+						. branch.Run(new Middleware().Invoke);
+				. localhost:3000/
+					- Hello World
+				. localhost:3000/?custom = true
+					- Class-based middleware
+					  Hello World
+				. localhost:3000/branch
+					- [no response]
+				. locahost:3000/branch/?custom=true
+					- Class-basd Middleware
+			- new class > FruitOptions.cs
+			- FruitOptions
+				. class FruitOptions
+					- add props
+						. string Name; default value = apples
+						. string Color; default color = green
+			- Program.cs
+				. builder.Services.Configure<FruitOptions>(options => {
+					options.Name = "watermelon
+				});
+				. comment
+					- ((IApplicationBuilder)app).Map("/branch", branch => and the whole block
+				. app.MapGet("/fruit",async(HTTPContext context, IIOptions<FruitOptions> FruitOptions =>{
+					FruitOptions option = FruitOptions.Value;
+					await context.Response.WriteAsync($"{options.Name}, {options.Color}");
+				}));
+				. localhost:3000/fruit
+					- returns watermelon, green
+				. Options pattern also works on class middleware
+			- new class > FruitMiddleware.cs
+			- FruitMiddleware.cs
+				. class FruitMiddleware
+					- copy content from Middleware.cs
+					- add FruitOptions for dependency injection
+						. IOptions<FruitOptions> option
+					- remove empty constructor
+					- Invoke()
+						. check is path is /fruit
+					- replace with code gotten from ptogram.cs
+						. await context.Response.WriteAsync($"{options.Name}, {options.Color}");
+			- Program.cs
+				. comment app.MapGet("/fruit",async(HTTPContext context, IIOptions<FruitOptions> FruitOptions =>{ and the whole block
+				. app.UseMiddleware<FruitMiddleware>();
+				. localhost:3000/fruit
+					- returns watermelon, green
+			- new folder > Services
+			- Services
+				. Add > Class... > Interface > Name: IResponseFormatter.cs
+				. IResponseFormatter.cs
+					- public interface IResponseFormatter
+						. Task Format(HttpContext context, string content)
+				. Add > Class... > Class > Name: TextResponseFormatter.cs
+				. TextResponseFormatter.cs
+					- public class TextResponseFormatter : IResponseFormatter
+						. private int _reponseCounter = 0
+						. Format()
+							- await context.Response.WriteAsync(...)
+				. Add > Class... > Class > Name: HtmlResponseFormatter.cs
+					- public class HtmlResponseFormatter.cs
+						. copy the code from TextResponseFormatter.cs
+						. set content type to text/html
+							- context.Response.ContentType = "text/html"
+			- Program.cs
+				. builder.Services.AddSingleton<IResponseFormatter, TextResponseFormatter>();
+				. add app.MapGet() to use the formatter
+			- Add > Class... > Class > Name: CustomMiddleware.cs
+			- CustomMiddleware.cs
+				. class CustomMiddleware
+					- add constructor for dependency injection
+					- Invoke()
+						. copy the code in Program.cs
+			- Program.cs
+				. add app.UseMiddleware<CustomMiddleware>();
+			- Add > Class... > Class > Name: CustomEndpoint.cs
+			- CustomEndpoint.cs
+				. class CustomEndpoint
+					- accessing the text formatter thru httpcontext instead of constructor
+					- add Task Endpoint()
+					- Task EndPoint(HttpContext context)
+						. IResponseFormatter formatter = context.RequestService.GetRequiredService<IResponseFormatter>();
+						. await formatter.Format(context, "Custom EndPoint")
+					- alternatively, set the IResponseFormatter as an argument
+						. Task EndPoint(HttpContext context, IResponseFormatter formatter)
+			- Program.cs
+				. app.MapGet("/endpoint", CustomEndpoint.Endpoint);
+			- appsettings.json
+				. appsettings.development.json
+					- change default value to debug
+						. "default" : "debug"
+			- Program.cs
+				. add app.MapGet("/config", (HttpContext context, IConfiguration config)) to show the log level
+				. localhost:3000/config
+					- it returns string inside app.MapGet(...) 
+					- follows the appsetting.development.json settings
+			- Properties
+				. launchSettings.json
+					- profiles
+						. core
+							- environmentVariables
+								. "AspNetCore_Environment" : "Production"
+				. localhost:3000/config
+					- returns "Information" string
+			- FruitMiddleware
+			- FruitOptions
+			- Appsettings.json
+				. add "Fruit"
+			- Program.cs
+				. get the Fruit config
+					- var seviceConfig = build.Configuration
+					  builder.service.configure<FruitOptions>(seviceConfig.GetSection("Fruit"))
+				. register middleware
+					- app.UseMiddleware<FruitMiddleware>();
+				. current settings environment can also b gotten
+					- string env = IConfiguration["ASPNETCORE_ENVIRONMENT"]
+				. to determine the correct environment
+					- app.Environment.IsDevelopment
+				. middlewaer for static files i.e html, js
+					- app.UseStaticFiles()
+			- to add client side library
+				. right click project > add > client side library
+					. libman.json that contains configuration for the client side library will be created
+			- Program.cs
+				. support for request and response cookies is provided
+					- context.Request.Cookies["name_of_cookies"]
+					- context.Response.Cookies.Append()
+					- context.Response.Cookies.Delete()
+				. setting up sessions
+					- requires configuring services and middleware component 
+					- builder.Services.AddDistributedMemoryCache();
+					- builder.Services.AddSession(options = > ...);
+					- app.UseSession();
+					- to use more complex data, use serialization
+					- context.Session.CommitAsync()
+						. will throw an error if session data cant be stored inside the cache
+				. to detect HTTPS requests
+					- app.MapGet("/https", async context ...)
+						. context.Request.IsHttps
+				. enforce HTTPS
+					- app.UseHttpsRedirection()
+				. HSTS
+					- send HSTS header so browser will send request with HTTPS even if HTTP is used
+					- enable HSTS
+						. builder.Services.AddHSTS(opotions ...);
+					- app.UseHSTS();
+						. use this only in production
+				. access to DB
+					- builder.Services.AddDbContext<Datacontext>(options => ...)
+					- for this, connection string is needed
+				. simple web service
+					- not suitable for production 
+					- create BASEURL
+					- use app.MapGet($"{BASEURL}/{{id}}" ...)
+					- use app.MapPost(...)
+				. controllers
+					- a service and an endpoint is required
+					- builder.Services.AddControllers().
+					- app.MapControllers();
+					- any method that a controller is considered as an action method 
+			- Terminal
+				. dotnet tool install --global dotnet-ef
+				. to verify installation
+					- dotnet ef --version
+				. add package
+					- Microsoft.EntityFrameworkCore.Design
+					- Microsoft.EntityFrameworkCore.SqlServer
+				. to add migration files
+					- dotnet ef migrations add Initial
+					- dotnet ef database update
+				. drop database
+					- dotnet ef database drop --force
+			- create folder for controllers > Controllers
+			- Controllers
+				. new file > ProductsController.cs
+				. ProductsController.cs
+					- extend controllerbase since it's an api
+					- [Route("api/[controller]")]
+					- add codes for get, post
+					- use dependency injection for dependencies
+					- db > dbcontext > models, controller	
+					- if action method declares a dependencies, add [FromServices] attribute
+					- model binding
+						. GetProduct(long id ...)
+							- mvc recognizes the id as a parameter/value injected thru url
+						. SaveProduct([FromBody]Product product)
+						. Update
+						. Delete

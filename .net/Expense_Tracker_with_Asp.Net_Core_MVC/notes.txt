@@ -1,0 +1,23 @@
+SyncFusion
+	- UI Component
+	- available in all frameworks i.e web, desktop
+	- add taghelper for syncfusion inside _viewimports.cshtml
+	- add stylesheet reference to the _layout.cshtml
+		. has to be added above href="~/css/site.css"
+	- add script reference to the _layout.cshtml
+	- add syncfusion script manager to the _layout.cshtml
+	- Free community license
+		. need to register and TnC applies
+.Net 6
+	- entity framework core
+	- entity framework core sql
+	- entity framework core tools
+	- syncfusion ej2 aspnet core
+	- syncfusion licensing
+	- newtownsoft json
+SQL Server
+
+Error
+	- while creating controller
+		. update all NuGet packages 
+		. rebuild solution (Important)

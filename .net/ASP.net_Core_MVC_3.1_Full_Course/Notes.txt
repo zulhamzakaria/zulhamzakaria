@@ -1,0 +1,505 @@
+- New Asp.Net Core Web Application 
+	. project name: CMS Shopping Cart
+	. choose Web Application (Model-View-Controller)
+	. no authentication
+	. configure for https
+	. create
+	. add project to Git
+		- right click solution
+		- Add Solution to Source Control
+	. CMS Shopping Cart
+		- Dependencies <-- for downloaded packages
+		- Properties
+			. launchSettings.json 
+				- change environment, ports here
+		- wwwroot
+			. where static files reside
+		- Controllers
+		- Models
+			. represent data models for database tables
+		- Views
+			. Home
+			. Shared
+		- appsettings.json 
+			. config file
+		- Program.cs
+			. main entry
+			. contains builder
+		. Startup.cs
+			. contains configuration for middleware/routing and services(for dependency injection)
+			. ConfigureServices() 
+				- for services/dependency
+			. Configure()
+				- for middleware. routing
+	. Start Without Debugging 
+		- allows the application not to be restarted everytime
+	. CMS Shopping Cart
+		- Controllers
+			. HomeController
+				- contains Index()
+				- by default, view for Index() is displayed on the web app
+				- the routing is defined under Configure() of Startup.cs
+					. pattern: "{controller=Home}/{action=Index}/{id?}"
+				- default routing in Startup is considered as root
+					. localhost:XXXX will show Home/Index 
+				- Home/Privacy
+					. display Privacy view for Privacy controller
+		- Views
+			. Home
+				- each .cshtml for equivalent method thats defined inside controller file
+				- if no view defined, will display the page based on default configuration i.e Controllers.Index(){return View();} => Index.cshtml
+				- Index.cshtml
+				- Privacy.cshtml
+			. Shared
+				- contains main layout
+				- smaller view files are injected into the main one
+				- _Layout.cshtml
+					. main la file
+					. @renderBody() is where the smaller view is injected
+				- _ViewStart.html
+					. defines which file is the main file 
+					. Layout = "_Layout";
+				- _ValidationScriptsPartial.cshtml
+					. register jscript validations
+				- _ViewImports
+					. contains using statements to import namespaces for view files and tag helper
+					. @using CMSShoppingCart.Models
+	. Tools
+		- Nuget Package Manager
+			. Manage Nuget Packages for Solutions
+				- install Microsoft.EntityFrameworkCore.SqlServer	
+				- install Microsoft.EntityFrameworkCore.Tools
+	. Right click solution
+		- Edit Project file
+			. CMSShoppingCart.csproj
+				- installed packages should be listed inside this file
+	. CMSShoppingCart
+		- create Infrastructure folder
+		- Infrastructure
+			. create CMSShoppingCartContext.cs
+			. CMSShoppingCartContext.cs
+				- extends DbContext
+				- CmsShoppingCartContext: DBContext
+				- CMSShoppingCartContext(DbContextOptions<CMSShoppingCartContext> options):base(options)
+		- Models
+			. create Page.cs
+			. Page
+				- add properties
+		- Infrastructure
+			. CMSShoppingCartContext.cs
+				- add dbset property for Page
+				- public DbSet<Page> Pages {get;set;}
+				- is used to create/access db tables
+		- Startup.cs
+			. register dbcontext service for db under ConfigureServices()
+			. services.AddDbContext<CMSShoppingCartContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CMSShoppingCartContext")));
+		- appsettings.json
+			. add connection string called CMSShoppingCartContext
+	. Package Manager Console
+		- Add-Migration InitialCreate
+		- Migrations folder will be created
+		- Migrations
+			. contains db migration files
+			. can be deleted and regen-ed later
+	. CMSShoppingCart
+		- Models
+			. Page.cs
+				- decorate title, slug, content with [Required]
+				- [Required] denotes that the db columns shouldnt be Null
+	. Package Manager Console
+		- Add-Migration InitialCreate
+		- Update-Database
+	. View menu
+		- SQL Server Objects Explorer
+			. find the created table
+	. CMSShoppingCart
+		- Models
+			. create SeedData.cs
+			. SeedData.cs
+				- insert data to db on initial run if theres no data
+		- create Areas folder
+		- Areas
+			. kinda like mini MVC\
+			. create Admin area
+		- Startup.cs
+			. Configure()
+				- app.UseEndpoints()
+					. add routing for Areas
+		- Areas
+			. Admin
+				- contains Controllers, Data, Models, View folders
+				- delete Data and Models folders as the equivalent project folders will be used instead
+				- Controller
+					. create PagesControllers.cs
+					. PagesControllers.cs
+						- to test, set the Index() type to string and return "test";
+						- decorate the class with [Area("Admin")] attribute
+						- inject db using dependency injection thru constructor
+						- Task<IActionResult> Index()
+							. return View(pagesList);
+							. right click inside Index() and click AddView
+								- ViewName: Index
+								- Template: List
+								- Model class: Page(CMSShoppingCart.Models)
+								- Reference script libraries: checked
+								- Use layout page: checked
+								- Add
+							. for using view file with differing name, return("[pageName]", return_object) i.e return("Apples", pagesList);
+				- Views
+					. Pages
+						- Index.cshtml
+					. Copy and paste project Shared folder along with _ViewImports.cshtml and _ViewStart.cshtml (CMSShoppingCart > Views > Shared)
+					. Shared
+						- _Layout.cshtml
+							. rename @ViewData["Title"] - Admin Area
+							. navbar-brand 
+								- CMSShoppingCart label to Home
+								- target="_blank"
+								- remove asp-area, asp-controller, asp-action
+								- add href="/"
+							. navbar-nav
+								- remove whole Privacy <li> 
+								- Home <li>: asp_action = "Admin" asp-controller="Pages", label is Pages
+							. remove footer
+							. rendersection is for importing js files
+					. Pages
+						- Index.cshtml
+							. @model tells page which model to work with
+							. @{} is the razor code block
+							. rzor code block enables c# code
+							. ways to pass data view to view: ViewData, ViewBag, TempData i.e ViewData["Title"] = "Index"
+							. asp-action tag helper
+								- if theres only action specified, app will automatically looks for Pages/Create
+							. change the column label to only text i.e <th>Title</th>
+							. change the code to @item.Title inside the Model iteration i.e <td>@item.Title</td>
+							. add achor tag-helper for Edit, Details, Delete
+								- asp-route-id = "@item.Id" is to provide id to the controller
+		- Models
+			. Page.cs
+				- [Display(Name = "display_name")] will affect the display name for property label in view page
+		- Areas
+			. Admin
+				- Controllers
+					. PagesController.cs
+						- add Details()
+						- /admin/pages/details/3
+						- public async Task<IActionResult> Details (int id)
+						- right-click and AddView
+							. View Name: Details
+							. Template: Details
+							. Model class: Page
+							. Reference script library: checked
+							. Use a layout page: checked
+							. Add
+				- Views
+					. Pages
+						- Details.cshtml
+							. add anchor tag for Edit
+								- <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+				- Controllers
+					. PagesController.cs
+						- add Create() for GET
+						- this is for displaying the form
+						- /admin/pages/create
+						- public IActionResult Create() => View();
+						- right-click and Add View
+							. View Name: Create
+							. Template: Create
+							. Model Class: Page(CMSShoppingCart.Models)
+							. Reference script libraries: checked
+							. Use a layout page: checked
+							. Add
+				- Views
+					. Pages
+						- Create.cshtml
+							. @section contains reference to partial scripts
+							. the scripts gonna get rendered inside @RenderSection of _Layout.cshtml
+							. asp-validation-summary is used to show errors that get triggered
+								- All shows error on top of form
+								- Model only shows error on controls
+								- None none
+				- Controllers
+					. PagesController.cs
+						- add Create() for POST
+						- this is for form submission
+						- [HttpPost]
+						- if no request attribute defined, it's HttpGet by default
+						- pass data from view to controller method with Model Binding
+						- public async Task<IActionResult> Create(Page page)
+						- check for model validity i.e no errors
+		- Models
+			. Page.cs
+				- remove Slug [Required] tag as it was only for database migration 
+				- add new validation
+					. [Minlength(2,ErrorMessage="Minlength is 2")]
+					. can also be written in one line [Required, Minlength(...)]
+		- Areas
+			. Admin
+				- Controllers
+					. PagesController.cs
+						- Create() with POST
+							. TempData["Success"] = "The page has been created";
+							. TempData is used by partial view
+							. this is for alert
+							. decorate with [ValidateAntiForgeryToken]
+				- Views
+					. Shared
+						- Add View
+							. Create as partial view: checked
+							. View name: _NotificationPartial
+							. Template: Empty without model
+						- _NotificationPartial.cshtml
+							. add code for TempData["Success"]
+							. inject to main layout
+						- _Layout.cshtml
+							. put <partial name="_NotificationPartial"/> above @RenderBody
+				- Controllers
+					. PagesController.cs
+						- Edit() with GET
+						- public async Task<IActionResult> Edit(int id)
+						- right click and Add View
+							. View Name: Edit
+							. Template: Edit
+							. Model Class: Page(CmsShoppingCart.Models)
+							. Reference script libraries: checked
+							. Use as a layout page: checked	
+						- Edit() with POST
+						- can copy the Create() with POST
+							. context.Update(page)
+							. return RedirectToAction("Edit", new {id = page.Id});
+						- Delete() with GET
+						- public async Task<IActionResult> Delete(int id)
+							. context.Pages.Remove(page);
+							. await context.SaveChangesAsync();
+							. add TempData["Error"]
+				- Views
+					. Shared
+						- _NotificationPartial.cshtml
+							. add code for TempData["Error"]
+					. Pages
+						- Index.cshtml
+							. add class="confirmDeletion" to Delete anchor tag
+							. add the javascript for it inside site.js
+		- wwwroot
+			. js
+				- site.js
+					. add confirmDeletion()
+					. add code to set timeout for notification class (notification class is used in _NotificationPartial.cshtml)
+		- Libman
+			. is used to add client-side library
+			. right click project > Add > Client Side Library ...
+				- Provider: cdnjs
+				- Library: ckeditor@4.12.1
+				- Install
+		- wwwroot
+			. lib
+				- ckeditor
+		- libman.json
+			. config file for libman
+		- Areas
+			. Admin
+				- Views
+					. Shared
+						- _Layout.cshtml
+							. add <script src="~/lib/ckeditor/ckeditor.js"></script> above <script src="~/js/site.js" ...>
+					. Pages
+						- Edit.cshtml
+							. add <script> tag inside @section Scripts
+							. <script> CKEDITOR.replace("Content"); </script>
+						- Create.cshtml
+							. add <script> tag inside @section Scripts
+							. <script> CKEDITOR.replace("Content"); </script>
+						- Details.cshtml
+							. remove HTML tag with @Html.Raw(Model.Content);	
+		- Right-click project
+			. Add > Client Side Library
+				- Provider: cdnjs
+				- Library:jqueryui
+				- this is for sorting function
+		- Areas
+			. Admin
+				- Views
+					. Shared
+						- _Layout.cshtml
+							. add <script src="~/lib/jqueryui/jquery-ui.js"/>
+					. Pages
+						- Index.cshtml
+							. <table class="table sorting" id="pages">
+							. <thead>
+								<tr class="home">
+							. @foreach(var item in Model)
+								<tr id="id_@item.Id class="@item.Slug">
+							. add @section
+								- add jscript for sorting
+								- tr with class home is not sortable
+		- wwwroot
+			. css
+				- site.css
+					. add class for table.sorting
+			. Admin
+				- Controllers
+					. PageController.cs
+						- create Reorder() with POST
+						- can just copy Create() with POST
+						- remove [AntiForgery...]
+						- public async Task<IActionResult> Reorder(int[] id)
+					. Right click > Add > Controller > MVC Controller Empty > CategoriesController.cs
+					. CategoriesController.cs
+						- add dependency injection for CmsShoppingCartContext
+						- decorate with [Area("Admin")] on top of the class
+		- Models
+			. Right click > Add > Class > Category.cs
+			. Category.cs
+				- add properties
+					. Id
+					[Required, Minlength(...)]
+					[RegularExpression(@"^[a-zA-Z-]+$", ErrorMessage="Only letter are valid.")]
+					. Name
+					[Required}
+					. Slug
+					. Sorting
+		- Infrastructure
+			. CMSShoppingCartContext.cs
+				- add DbSet<Category>
+		- Package manager console
+			. Add-Migration SecondCreate
+			. Update-Database
+		- Areas
+			. Admin
+				- Controllers
+					. CategoriesController.cs
+						- Index()
+						- public async Task<IActionResult> Index()
+							. return View(await context.Categories.OrderBy(x => x.Sorting).ToListAsync());
+						- GET /admin/categories
+						- right-click > Add View
+							. View Name: Index
+							. Template: List
+							. Model: Category(CmsShoppingCart.Models)
+							. Reference script libraries: checked
+							. Use a layout page: checked
+				- Views
+					. Categories
+						- Index.cshtml
+							. use action links to use anchor tag <a> i.e <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+					. Shared
+						- _Layout.cshtml
+							. create new <li> for Categories under Pages <li>
+		- wwwroot
+			. css
+				- site.css
+					. add class for hover
+		- Areas
+			. Admin
+				- Controllers
+					. CategoriesController.cs
+						- Create() with GET
+						- public IActionResult Create() => View();
+						- GET /admin/categories/create
+						- right click > Add View
+							. View Name: Create
+							. Template: Create
+							. Model class: Categories(CMSShoppingCart.Models)
+							. Reference script libraries: checked
+							. Use a layout page: checked
+				- Views
+					. Categories
+						- Create.cshtml
+		- Models
+			. Category.cs
+				- remove [Required] for Slug property
+		- Areas
+			. Admin
+				- Controllers
+					. CategoriesController.cs
+						- Create() with POST
+						- POST admin/categories/create
+						- Edit() with GET
+						- GET /admin/categories/edit/5
+						- public async Task<IActionResult> Edit(int id)
+						- right click > Add View
+							. View Name: Edit
+							. Template: Edit
+							. Model class: Categories(CMSShoppingCart.Models)
+							. Reference script libraries: checked
+							. Use a layout page: checked
+						- Edit() with POST
+						- [HttpPost]
+						  [ValidateAntiForgeryToken]
+						  public async Task<IActionResult> Edit(int id, Page page){}
+						- Delete() with GET
+						- public async Task<IActionResult> Delete(int id)
+						- GET /admin/categories/delete/5
+				- Views
+					. Categories
+						- Index.cshtml
+							. <table class="table sorting" id="categories"/>
+							. @foreach(var item in Model){
+								<tr id="id_@item.Id">
+							. add @section Scripts{}
+				- Controllers
+					. CategoriesController.cs
+						- [HttpPost]
+						  public async Task<IActionResult> Reorder(int[] id){}
+					. right click > Add > Controller > MVC Controller - Empty > ProductsController.cs
+					. ProductsController.cs
+						- dependency injection for CMSShoppingCartContext
+						- decorate with [Area("Admin")] on top of the class
+		- Models
+			. right-click > Add > Class > Product.cs
+			. Product.cs
+				- add properties
+					. Id
+					  [Required, Minlength(...)]
+					. Name
+					. Slug
+					  [Required, Minlength(...)]
+					. Description
+					  [Column(TypeName = "decimal(18,2)")]
+					. Price
+					. CategoryId
+					. Image
+					  [ForeignKey("CategoryId")]
+					. public virtual Category Category{get;set;}
+		- Infrastructure
+			. CmsShoppingCartContext.cs
+				- add DbSet property for Products
+		- Package Manager Console
+			. Add-Migration ThirdMigration
+			. Update-Database
+		- Areas
+			. Admin
+				- Controllers
+					. ProductsController.cs
+						- Index()
+						- GET /admin/products
+						- right-click > Add View
+							. View Name: Index
+							. Template: List
+							. Model class: Products(CMSShoppingCart.Model)
+							. Reference script libraries: checked
+							. Use a layout page: checked			
+				- Views
+					. Shared
+						- _Layout.cshtml
+							. add new <li> for Products
+				- Controllers
+					. ProductsController.cs
+						- Create() with GET
+						- public IActionResult Create();
+						- add items for dropdownlist
+						- ViewBag.CategoryId = new SelectList(context.Categories.OrderBy(x=>x.Sorting), "Id", "Name");
+						- GET /admin/products/create
+						- right-click > Add View
+							. View Name: Create
+							. Template: Create
+							. Model class: Products(CMSShoppingCart.Model)
+							. Reference script libraries: checked
+							. Use a layout page: checked	
+				-Views
+					. Products
+						- Create.cshtml
+							. <select asp-for="CategoryId" asp-items="@ViewBag.CategoryId" class="form-control">
+								<option values="0">Choose a category</option>
+							  </select>
+							

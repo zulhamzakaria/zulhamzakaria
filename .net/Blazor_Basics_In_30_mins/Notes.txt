@@ -1,0 +1,63 @@
+- Blazor
+	. lets u build interactive web app using c# instead of javascript
+	. composed of reusable web components implemented using c#, css and html
+	. both server and client are written in c#
+	. can run ur client c# code in the browser by manipulating Web Assembly
+	. client logic can be sent to the server by using signalR and then sent back to the client and merged into DOM
+	. no page refresh i.e onclick event
+	. split to two types:
+		- WASM
+		- Server App
+	. apps will be developed in razor pages
+	. routing
+		- @page "/" means current page is the root page
+		- supports multi routing in the same page:
+			. @page "/Test"
+			. @page "/Sample"
+	. @code{} is the c# code block
+	. to use defined variable or function:
+		- <h1>Hello, @userName from variable!</h1>
+		- <h1>Hello, @GetUserName() from GetUserName() function!</h1>
+	. arithmetic explicit expression
+		- <p>sum: @(2+2)</p>
+	. calling method explicitly on event
+		- @onclick="@(() => {userName = "Peter"})"
+	. if condition
+		- @if(...){}else{}
+	. foreach loop
+		- @foreach(var item in intArray){<p>@item</p>}
+	. override OnInitialized()
+		- gets executed when razor page is loaded
+	. markup string
+		- to show html content from a variable
+		
+- Steps
+	. new project > Blazor Server App
+		- Name: BlazorServerApp
+		- Framework: 5.0
+		- uncheck Configure for HTTPS
+		- create
+	. Project: BlazorServerApp
+		- Pages
+			. right click > Add > Razor Page
+				- Razor Page - Empty
+				- make sure the template is Razor View Empty and it's Razor View Page
+				- Test.razor
+					. @page "/Test"
+						- the page is accessible here: http://localhost:28839/test
+					. add @page "/Sample"1
+					    - the page is accessible here: http://localhost:28839/sample
+				- Index.razor
+					. private string GetUserName()
+					. private string userName = "Kumar";
+					. <p>sum: @(2+2)</p>
+					. <button @onclick="ChangeName">Click Me To Change Name!</button>
+					. @if(testNum == 1) { <p>yes, it is @testNum</p>}
+					  else { <p>no, it is not 1</p>}
+					. private int[] intArray =  new int[4] { 0,1,2,3};
+					. @foreach(var item in intArray)
+						{
+							<p>@item</p>
+						}
+					. private List<string> names;
+					. protected override void OnInitialized()
