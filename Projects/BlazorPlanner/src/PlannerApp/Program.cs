@@ -22,7 +22,7 @@ builder.Services.AddMudServices();
 // any requests will go thru the message handler
 builder.Services.AddHttpClient("PlannerApp.Api", client =>
 {
-    client.BaseAddress = new Uri("https://plannerapp-api-17102023.azurewebsites.net");
+    client.BaseAddress = new Uri("https://plannerapp-api.azurewebsites.net");
 }).AddHttpMessageHandler<AuthorizationMessageHandler>();
 builder.Services.AddTransient<AuthorizationMessageHandler>();
 
