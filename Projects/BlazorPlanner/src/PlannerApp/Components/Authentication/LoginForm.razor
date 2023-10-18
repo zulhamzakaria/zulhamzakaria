@@ -1,0 +1,33 @@
+﻿@namespace PlannerApp.Components
+
+<EditForm Model="_model" OnValidSubmit="LoginUserAsync">
+    @* validate the content against the model defined in PlannerApp.Shared/Models *@
+    <DataAnnotationsValidator />
+
+    <MudCard>
+        <MudCardHeader>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">
+                    Welcome!
+                </MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudTextField Label="Email" HelperText="Required" @bind-Value="_model.Email" />
+            <MudTextField InputType="InputType.Password" Label="Password" HelperText="Required" @bind-Value="_model.Password" />
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Outlined" Color="Color.Secondary">
+                Register
+            </MudButton>
+            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-1">
+                Login
+            </MudButton>
+        </MudCardActions>
+    </MudCard>
+
+</EditForm>
+
+@code {
+
+}

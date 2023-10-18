@@ -754,6 +754,16 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "PlannerApp.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/PlannerApp.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PlannerApp.Shared.dll": {}
+        }
       }
     },
     "net6.0/browser-wasm": {
@@ -1529,6 +1539,16 @@
         },
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "PlannerApp.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/PlannerApp.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PlannerApp.Shared.dll": {}
         }
       }
     }
@@ -2904,6 +2924,11 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "PlannerApp.Shared/1.0.0": {
+      "type": "project",
+      "path": "../PlannerApp.Shared/PlannerApp.Shared.csproj",
+      "msbuildProject": "../PlannerApp.Shared/PlannerApp.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2914,6 +2939,7 @@
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.22",
       "Microsoft.Extensions.Http >= 6.0.0",
       "MudBlazor >= 6.11.0",
+      "PlannerApp.Shared >= 1.0.0",
       "System.IdentityModel.Tokens.Jwt >= 6.33.0"
     ]
   },
@@ -2949,7 +2975,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Shared\\PlannerApp.Shared.csproj": {
+              "projectPath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Shared\\PlannerApp.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

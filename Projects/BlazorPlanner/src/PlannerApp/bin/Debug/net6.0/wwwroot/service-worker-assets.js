@@ -905,11 +905,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-GbP0Y9jV37czuyEqq5S+gXJnT1HMEG5yB4wO7TrRVnA=",
+      "hash": "sha256-LWqj7XnLGm3De8E3SyIwRz1zaTIlIKTmS+uyqeYIgFE=",
+      "url": "_framework\/PlannerApp.Shared.dll"
+    },
+    {
+      "hash": "sha256-L6qXMR7w539aIbWqGL0o3Q3+dE+6F05xEMd3iLUQsWE=",
+      "url": "_framework\/PlannerApp.Shared.pdb"
+    },
+    {
+      "hash": "sha256-ZPKq91JjBB54xccwmSEZIFr8hThZlAhRe7prN6J1+q4=",
       "url": "_framework\/PlannerApp.dll"
     },
     {
-      "hash": "sha256-eCJi33QHcKUjHMNM+r9wNsLHpHqoGcqjkdQSzABUF\/o=",
+      "hash": "sha256-yYgE2DV+UMxYXTD+jplp1xTpSu9DiGwhiJb2MvNaJFg=",
       "url": "_framework\/PlannerApp.pdb"
     },
     {
@@ -917,7 +925,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-2Xk8rn9VmoGPhCGhf3UxdcVtgmlsZYCIyb8D36cZFME=",
+      "hash": "sha256-9oZ8PXTjsZY0Om70YQDcuShCjpb2NVASXLnqnWipM6c=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -929,5 +937,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "auCW4ySa"
+  "version": "ZPGI9\/3b"
 };

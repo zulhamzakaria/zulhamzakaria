@@ -866,3 +866,11 @@ D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\oQ3
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\nWyTW5cO.gz
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\wncT5g2l.gz
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\4A6sSmYe.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\PlannerApp.Shared.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\PlannerApp.Shared.pdb
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\PlannerApp.Shared.pdb.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\PlannerApp.Shared.dll.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\PlannerApp.Shared.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\PlannerApp.Shared.pdb
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\OHxdAaR3.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\lSRgwzDX.gz

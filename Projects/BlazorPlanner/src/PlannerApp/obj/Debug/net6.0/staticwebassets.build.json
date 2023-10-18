@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BPbOuQhNuKSyTj95uC4TsGQitT7+WkjDidrQ1FFR6ww=",
+  "Hash": "1mk23xTBp3SLqj+Uo9KmGSaAyQDKKY1gKDdatRlB9x8=",
   "Source": "PlannerApp",
   "BasePath": "/",
   "Mode": "Root",
@@ -899,6 +899,40 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net6.0\\PlannerApp.pdb"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Shared.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/PlannerApp.Shared.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Shared\\bin\\Debug\\net6.0\\PlannerApp.Shared.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Shared.pdb",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/PlannerApp.Shared.pdb",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "symbol",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Shared\\bin\\Debug\\net6.0\\PlannerApp.Shared.pdb"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.AppContext.dll",
@@ -5610,6 +5644,23 @@
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Data.Common.dll"
     },
     {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\lSRgwzDX.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/PlannerApp.Shared.pdb.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Shared.pdb",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Shared.pdb"
+    },
+    {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\LUz64QAp.gz",
       "SourceId": "PlannerApp",
       "SourceType": "Computed",
@@ -5999,6 +6050,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Threading.ThreadPool.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\OHxdAaR3.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/PlannerApp.Shared.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Shared.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Shared.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\oQ3pHKRa.gz",
