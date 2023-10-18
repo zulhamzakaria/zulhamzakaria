@@ -874,3 +874,7 @@ D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\PlannerApp.S
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\PlannerApp.Shared.pdb
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\OHxdAaR3.gz
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\lSRgwzDX.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\FluentValidation.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\FluentValidation.dll.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\FluentValidation.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\sZhySPwN.gz

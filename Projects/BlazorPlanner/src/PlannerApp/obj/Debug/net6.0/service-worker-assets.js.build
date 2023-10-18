@@ -81,6 +81,10 @@
       "url": "_framework\/Blazored.LocalStorage.dll"
     },
     {
+      "hash": "sha256-UMQVSxEukq3CZFOc3qsJH3fHTh+Qvuil+1m+w18P5bg=",
+      "url": "_framework\/FluentValidation.dll"
+    },
+    {
       "hash": "sha256-GByEsdIhFhKc0UShRbk3rBr5FmNT8N8WmL242EWozas=",
       "url": "_framework\/Microsoft.AspNetCore.Authorization.dll"
     },
@@ -905,19 +909,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-ZwDENwNT9SBjQLputxmtdXFsv+u6qnVXmYMx8OshfNI=",
+      "hash": "sha256-hVE+c8NL5bfpLCyaIGcJ3jgXNWHaL\/DB1bg1+F3TEtM=",
       "url": "_framework\/PlannerApp.Shared.dll"
     },
     {
-      "hash": "sha256-C4D+oBwJrN\/dYOdlB76o1edRM2439z3BwDT8E3g42Q0=",
+      "hash": "sha256-TxuMqYN2ufldVsUfW6U9uIWkPaYsdMFWssYp\/\/\/8Fqw=",
       "url": "_framework\/PlannerApp.Shared.pdb"
     },
     {
-      "hash": "sha256-ABGI6m2mIQ+VabcPUEkRIvRpkzma+Yy9x6oZYeU1Olk=",
+      "hash": "sha256-sPdyU8rY7d3GWQSbqsGaJcqUTG2\/aOdCNBHuCVVLot8=",
       "url": "_framework\/PlannerApp.dll"
     },
     {
-      "hash": "sha256-RNNxjbtthG249BxsRRqCR0PuzTYWlVVqjb8z69FRAfw=",
+      "hash": "sha256-rWxGluS4ARqX96BwzU9h9\/zLLbZ3LOVH8S99UKBDtkQ=",
       "url": "_framework\/PlannerApp.pdb"
     },
     {
@@ -925,7 +929,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-uvtiynbDpys+q\/Zd1CbrNS9KTi+qxYWjriOd4M\/wUmU=",
+      "hash": "sha256-ev925CS4ayGacDkQux8ikVz8eTN48wh6KfWak5+lV2E=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -937,5 +941,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "1rVAedmt"
+  "version": "CFnJL10T"
 };

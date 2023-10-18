@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Projects/BlazorPlanner/src/.vs/PlannerApp/DesignTimeBuild/.dtbcache.v2
+/Projects/BlazorPlanner/src/.vs/PlannerApp/FileContentIndex/0e033021-1a3f-4940-9ae6-afcc091b9219.vsidx
+/Projects/BlazorPlanner/src/.vs/PlannerApp/FileContentIndex/22c2a8e8-c69e-47ec-b657-78c3fca70221.vsidx
+/Projects/BlazorPlanner/src/.vs/PlannerApp/FileContentIndex/6d2d0575-57b0-4bd4-8645-f6ccce7ebba6.vsidx
+/Projects/BlazorPlanner/src/.vs/PlannerApp/FileContentIndex/c37da1eb-a909-4881-bae5-a30f052148b0.vsidx
+/Projects/BlazorPlanner/src/.vs/PlannerApp/FileContentIndex/c462f5a0-e142-4239-ae77-b330c00f9f09.vsidx
+/Projects/BlazorPlanner/src/.vs/PlannerApp/FileContentIndex/c930c783-afcb-4b90-bc0f-d19e039deb8b.vsidx
+/Projects/BlazorPlanner/src/.vs/PlannerApp/FileContentIndex/cde98b66-695d-4750-8870-229d868a86cb.vsidx
+/Projects/BlazorPlanner/src/.vs/PlannerApp/FileContentIndex/f8166bcc-f944-43bd-b210-28283e928637.vsidx

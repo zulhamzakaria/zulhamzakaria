@@ -9,3 +9,4 @@ D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Shared\obj\Debug\net6.0\Plann
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Shared\obj\Debug\net6.0\refint\PlannerApp.Shared.dll
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Shared\obj\Debug\net6.0\PlannerApp.Shared.pdb
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Shared\obj\Debug\net6.0\ref\PlannerApp.Shared.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Shared\obj\Debug\net6.0\PlannerApp.Shared.csproj.AssemblyReference.cache

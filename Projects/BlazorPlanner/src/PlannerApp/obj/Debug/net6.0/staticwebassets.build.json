@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1mk23xTBp3SLqj+Uo9KmGSaAyQDKKY1gKDdatRlB9x8=",
+  "Hash": "o6eFFp1Qvh3APfQKU5FPtaYySYe6AwqLCPYPCsmRRVs=",
   "Source": "PlannerApp",
   "BasePath": "/",
   "Mode": "Root",
@@ -151,6 +151,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.23\\runtimes\\browser-wasm\\native\\dotnet.wasm"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\FluentValidation.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/FluentValidation.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\lib\\net6.0\\FluentValidation.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\icudt.dat",
@@ -6543,6 +6560,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\netstandard.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\sZhySPwN.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/FluentValidation.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\FluentValidation.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\FluentValidation.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\t3bVgZXE.gz",

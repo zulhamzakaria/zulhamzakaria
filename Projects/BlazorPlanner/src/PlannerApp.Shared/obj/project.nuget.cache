@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "n5m1Zcoh8WRo0VjiDZmZXMcTbd3E7YkigFZjdvpC5Ms83MMvMJJ/11kQ7Aw6dbAbhSX5Flix/NuDDy/7bnokjg==",
+  "dgSpecHash": "oxx/1kT0Mx/zCiz/moa+HVSvux1LAKOBnbFBZ0/R9ENqP5TcDwZFplI5a+VbOg0ffU2A9pjzHU1WqRMUCyTC4w==",
   "success": true,
   "projectFilePath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Shared\\PlannerApp.Shared.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512"
+  ],
   "logs": []
 }
