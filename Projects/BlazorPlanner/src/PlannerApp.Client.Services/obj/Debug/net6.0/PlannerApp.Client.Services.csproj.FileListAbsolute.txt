@@ -1,0 +1,15 @@
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\bin\Debug\net6.0\PlannerApp.Client.Services.deps.json
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\bin\Debug\net6.0\PlannerApp.Client.Services.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\bin\Debug\net6.0\PlannerApp.Client.Services.pdb
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\bin\Debug\net6.0\PlannerApp.Shared.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\bin\Debug\net6.0\PlannerApp.Shared.pdb
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\PlannerApp.Client.Services.csproj.AssemblyReference.cache
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\PlannerApp.Client.Services.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\PlannerApp.Client.Services.AssemblyInfoInputs.cache
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\PlannerApp.Client.Services.AssemblyInfo.cs
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\PlannerApp.Client.Services.csproj.CoreCompileInputs.cache
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\PlannerApp.Client.Services.csproj.CopyComplete
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\PlannerApp.Client.Services.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\refint\PlannerApp.Client.Services.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\PlannerApp.Client.Services.pdb
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp.Client.Services\obj\Debug\net6.0\ref\PlannerApp.Client.Services.dll
