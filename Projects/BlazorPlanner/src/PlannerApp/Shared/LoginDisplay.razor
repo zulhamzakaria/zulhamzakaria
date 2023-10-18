@@ -1,0 +1,28 @@
+﻿@using System.Security.Claims;
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<AuthorizeView>
+    <Authorized>
+        <MudMenu Icon="@Icons.Material.Filled.Person" Color="Color.Primary" AnchorOrigin="Origin.BottomRight">
+            <MudMenuItem>Welcome @context.User.FindFirst(ClaimTypes.GivenName)!.Value</MudMenuItem>
+            <MudMenuItem OnClick="LogoutAsync">Logout</MudMenuItem>
+        </MudMenu> 
+    </Authorized>
+    <NotAuthorized>
+        <MudIconButton Icon="@Icons.Material.Filled.Login" Color="Color.Secondary" 
+            OnClick='() => NavigationManager.NavigateTo("/authentication/login")'/>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private async Task LogoutAsync()
+    {
+        await LocalStorage.RemoveItemAsync("access_token");
+        await LocalStorage.RemoveItemAsync("expiry_date");
+
+        await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/authentication/login");
+    }
+}
