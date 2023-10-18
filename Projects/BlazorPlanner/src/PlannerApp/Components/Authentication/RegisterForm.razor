@@ -1,5 +1,4 @@
-﻿@page "/authentication/register"
-@namespace PlannerApp.Components
+﻿@namespace PlannerApp.Components
 
 <EditForm Model="_model" OnValidSubmit="RegisterUserAsync">
     @* validate the content against the model defined in PlannerApp.Shared/Models *@
@@ -27,7 +26,7 @@
             }
         </MudCardContent>
         <MudCardActions>
-            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled"Disabled="_isBusy">Register</MudButton>
+            <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary" Variant="Variant.Filled" Disabled="_isBusy">Register</MudButton>
             <MudButton Variant="Variant.Outlined" Color="Color.Secondary"  Class="ml-1" OnClick="RedirectToLogin" Disabled="_isBusy">Login</MudButton>
         </MudCardActions>
     </MudCard>
