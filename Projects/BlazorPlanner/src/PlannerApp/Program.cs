@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using PlannerApp;
+using PlannerApp.Client.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -34,5 +35,8 @@ builder.Services.AddScoped(sp => sp.GetService<IHttpClientFactory>()!.CreateClie
 // authorization
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, JWTAuthenticationStateProvider>();
+
+// register exception handler container
+builder.Services.AddHttpClientServices();
 
 await builder.Build().RunAsync();

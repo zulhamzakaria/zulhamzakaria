@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Blazored.FluentValidation/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "11.4.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.12"
+        },
+        "compile": {
+          "lib/net6.0/Blazored.FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Blazored.FluentValidation.dll": {}
+        }
+      },
       "Blazored.LocalStorage/4.4.0": {
         "type": "package",
         "dependencies": {
@@ -768,6 +781,20 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "PlannerApp.Client.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "PlannerApp.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PlannerApp.Client.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PlannerApp.Client.Services.dll": {}
+        }
+      },
       "PlannerApp.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -783,6 +810,19 @@
       }
     },
     "net6.0/browser-wasm": {
+      "Blazored.FluentValidation/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "11.4.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.12"
+        },
+        "compile": {
+          "lib/net6.0/Blazored.FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Blazored.FluentValidation.dll": {}
+        }
+      },
       "Blazored.LocalStorage/4.4.0": {
         "type": "package",
         "dependencies": {
@@ -1570,6 +1610,20 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "PlannerApp.Client.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "PlannerApp.Shared": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PlannerApp.Client.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PlannerApp.Client.Services.dll": {}
+        }
+      },
       "PlannerApp.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -1586,6 +1640,20 @@
     }
   },
   "libraries": {
+    "Blazored.FluentValidation/2.1.0": {
+      "sha512": "R/s4xBjcRUv1voYeQRo84YZfgYgTkPdxi8ijLEHbPtbo2o4ywaUlOwk8fV68AUH63DtKGgx/oH7LNbZNHBHDcg==",
+      "type": "package",
+      "path": "blazored.fluentvalidation/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.fluentvalidation.2.1.0.nupkg.sha512",
+        "blazored.fluentvalidation.nuspec",
+        "icon.png",
+        "lib/net6.0/Blazored.FluentValidation.dll",
+        "lib/net7.0/Blazored.FluentValidation.dll"
+      ]
+    },
     "Blazored.LocalStorage/4.4.0": {
       "sha512": "zuXZB4/WW3Pr1761peemffdkjt09lbOP1wAkSDTKl7BTbA9V5e8LxS6MNfmyHW+BJzXrNDq90E2Y+AfIfnIbWQ==",
       "type": "package",
@@ -2980,6 +3048,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "PlannerApp.Client.Services/1.0.0": {
+      "type": "project",
+      "path": "../PlannerApp.Client.Services/PlannerApp.Client.Services.csproj",
+      "msbuildProject": "../PlannerApp.Client.Services/PlannerApp.Client.Services.csproj"
+    },
     "PlannerApp.Shared/1.0.0": {
       "type": "project",
       "path": "../PlannerApp.Shared/PlannerApp.Shared.csproj",
@@ -2988,12 +3061,14 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Blazored.FluentValidation >= 2.1.0",
       "Blazored.LocalStorage >= 4.4.0",
       "Microsoft.AspNetCore.Components.Authorization >= 6.0.23",
       "Microsoft.AspNetCore.Components.WebAssembly >= 6.0.22",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 6.0.22",
       "Microsoft.Extensions.Http >= 6.0.0",
       "MudBlazor >= 6.11.0",
+      "PlannerApp.Client.Services >= 1.0.0",
       "PlannerApp.Shared >= 1.0.0",
       "System.IdentityModel.Tokens.Jwt >= 6.33.0"
     ]
@@ -3031,6 +3106,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Client.Services\\PlannerApp.Client.Services.csproj": {
+              "projectPath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Client.Services\\PlannerApp.Client.Services.csproj"
+            },
             "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Shared\\PlannerApp.Shared.csproj": {
               "projectPath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Shared\\PlannerApp.Shared.csproj"
             }
@@ -3047,6 +3125,10 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
+          "Blazored.FluentValidation": {
+            "target": "Package",
+            "version": "[2.1.0, )"
+          },
           "Blazored.LocalStorage": {
             "target": "Package",
             "version": "[4.4.0, )"

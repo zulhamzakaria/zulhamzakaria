@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "dq76VNYU6iCjES3e4gUWfqe5o7CNqVeVHjLgODhmzUsh/a5XDke6QE1qBijKyhcIkEOGKskjnSpI4biWxGoSYQ==",
+  "dgSpecHash": "ka8WCtSq2Qj6qdeM09XVgwc+8gHyUGs6mqyn5gRz5F2JF28luV0upAMl8oYpVdxvhs4fKQaD0MlXUBufZgIKWw==",
   "success": true,
   "projectFilePath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Client.Services\\PlannerApp.Client.Services.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512"
+    "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

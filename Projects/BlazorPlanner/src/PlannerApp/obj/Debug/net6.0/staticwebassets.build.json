@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "o6eFFp1Qvh3APfQKU5FPtaYySYe6AwqLCPYPCsmRRVs=",
+  "Hash": "jLYW5OMaPHHGeMdrNBNnX5TQosF6hNvfOuKvhbRwiC4=",
   "Source": "PlannerApp",
   "BasePath": "/",
   "Mode": "Root",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly\\6.0.22\\build\\net6.0\\blazor.webassembly.js"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Blazored.FluentValidation.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.FluentValidation.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\blazored.fluentvalidation\\2.1.0\\lib\\net6.0\\Blazored.FluentValidation.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Blazored.LocalStorage.dll",
@@ -882,6 +899,40 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.23\\runtimes\\browser-wasm\\lib\\net6.0\\netstandard.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Client.Services.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/PlannerApp.Client.Services.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Client.Services\\bin\\Debug\\net6.0\\PlannerApp.Client.Services.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Client.Services.pdb",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/PlannerApp.Client.Services.pdb",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "symbol",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Client.Services\\bin\\Debug\\net6.0\\PlannerApp.Client.Services.pdb"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.dll",
@@ -4981,6 +5032,23 @@
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\icudt_CJK.dat"
     },
     {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\fvinIUfp.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/PlannerApp.Client.Services.pdb.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Client.Services.pdb",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Client.Services.pdb"
+    },
+    {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\FYgHfgdZ.gz",
       "SourceId": "PlannerApp",
       "SourceType": "Computed",
@@ -5557,6 +5625,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Transactions.Local.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\L5hPtHTG.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/PlannerApp.Client.Services.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Client.Services.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Client.Services.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\l5uEuyW5.gz",
@@ -6271,6 +6356,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Diagnostics.Contracts.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\qXhX9pYc.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Blazored.FluentValidation.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Blazored.FluentValidation.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Blazored.FluentValidation.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\r6Dq6pIL.gz",

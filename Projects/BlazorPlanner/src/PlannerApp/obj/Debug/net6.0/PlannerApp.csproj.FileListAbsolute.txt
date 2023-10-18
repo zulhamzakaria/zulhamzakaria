@@ -878,3 +878,15 @@ D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_fra
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\FluentValidation.dll.gz
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\FluentValidation.dll
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\sZhySPwN.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\PlannerApp.Client.Services.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\PlannerApp.Client.Services.pdb
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\PlannerApp.Client.Services.pdb.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\PlannerApp.Client.Services.dll.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\PlannerApp.Client.Services.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\PlannerApp.Client.Services.pdb
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\L5hPtHTG.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\fvinIUfp.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\Blazored.FluentValidation.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\Blazored.FluentValidation.dll.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\Blazored.FluentValidation.dll
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\qXhX9pYc.gz

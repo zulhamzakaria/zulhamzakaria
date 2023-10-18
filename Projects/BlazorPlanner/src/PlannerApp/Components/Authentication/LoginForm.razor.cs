@@ -45,4 +45,7 @@ public partial class LoginForm : ComponentBase
 
         _isBusy=false;
     }
+
+    private void RedirectToRegister() 
+        => NavigationManager!.NavigateTo("/authentication/register"); 
 }

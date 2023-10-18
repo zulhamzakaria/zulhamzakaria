@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "g5gemabo5mAGMBz9rV7sWuA6kL7fLXzNjdaVXF08aRhM1TPKOiGSF2gvY3fVPYS1sfgBtjFBz+cLMiuMyDdKfA==",
+  "dgSpecHash": "jleCdaNsk6Zt75neSPR+7sSyW/ouu08Ryf9pC5O2V31cO/S2O80WvU85X5JW7lixLXeI6xhLSFQLU/Zzcbhm5Q==",
   "success": true,
   "projectFilePath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\PlannerApp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\zulham\\.nuget\\packages\\blazored.fluentvalidation\\2.1.0\\blazored.fluentvalidation.2.1.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.23\\microsoft.aspnetcore.authorization.6.0.23.nupkg.sha512",
