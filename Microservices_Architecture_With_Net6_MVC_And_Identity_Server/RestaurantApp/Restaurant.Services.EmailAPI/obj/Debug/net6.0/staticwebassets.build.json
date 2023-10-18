@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "sWD18kAqVJcM8eiFLTKoNvCL4GURl0px2SzK7UT6UXM=",
+  "Source": "Restaurant.Services.EmailAPI",
+  "BasePath": "_content/Restaurant.Services.EmailAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

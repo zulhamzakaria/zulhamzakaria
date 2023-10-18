@@ -1,0 +1,243 @@
+- Overview
+	. 
+		+----------+	+-----------------+		+-------------+
+		| .Net API |	| Identity Server |		| Service Bus |
+		+----------+	+-----------------+		+-------------+	
+		+-------------+		+----------------+		+---------+
+		| API Gateway |		| Best Practices |		| EF Core |
+		+-------------+		+----------------+		+---------+
+	. Split into folders: 
+		- Web
+			. Front End
+		- Services
+			. APIs
+	. Own db for each service
+	. Different solution and message bus for each project (Realistically)
+	
+	. Services
+		- Repository
+			. handles the CRUD operation
+			. a layer of abstraction between db and controllers
+			. IProductRepository uses ProductDTO which will then be converted to the Product model
+			. Product model is used by database
+			. ProductDTO and Product model conversion is done using auto-mapper
+			. ProductRepository implements IProductRepository
+			. Web -> IProductRepository -> ProductRepository -> DTO -> Model -> Db
+			. Add to the program.cs for dependency injection
+				- .AddScoped()
+		- Auto-mapper
+			. Converts ProductDTO to Product model vice versa
+			. mappingconfig.cs
+			. automatically maps the properties as long as the names are the same
+			. need to be registered inside program file	
+		- DTOs
+			. ProductDTO
+			. ResponseDTO
+				- works as a generic class for controllers to use
+				- i.e Get() calls ProductRepository.GetProducts and return ProductDTO. ProductDTO will be assigned to ResponseDTO.Result. Return ResponseDTO
+		- Packages
+			. Automapper
+				- to map the entity to DTO
+			. Automapper.Extensions.Microsoft.DependencyInjection
+			. swashbuckle.aspnetcore.swaggerui
+			. Swashbuckle.AspNetCore.Annotations
+				- enables custom attributes with controllers
+			. Microsoft.AspNetCore.Authentication.JwtBearer
+			. Microsoft.EntityFrameworkCore.SqlServer
+			. Microsoft.EntityFrameworkCore.Tools
+				- for db migration
+			. Newtonsoft.Json
+			. Microsoft.EntityFrameworkCore.Design (Shopping Cart Project)
+			. Duende.IdentityServer.AspNetIdentity (Identity Server Project)
+			. Microsoft.EntityFrameworkCore.SqlServer (Identity Server Project)
+			. Microsoft.AspNetCore.Identity.EntityFrameworkCore (Identity Server Project)
+			. Microsoft.AspNetCore.Identity.UI (Identity Server Project)
+			. Microsoft.EntityFrameworkCore.Tools (Identity Server Project)
+			. Microsoft.AspNetCore.Authentication (Web)
+			. Microsoft.AspNetCore.Authentication.OpenIdConnect (Web)
+			. System.IdentityModel.Tokens.Jwt (Web Project)
+			. Microsoft.Azure.ServiceBus (MessageBus Project)
+			. Azure.Messaging.ServiceBus (Email Project)
+			. IdentityModel (APIGateway Project)
+			. Ocelot (APIGateway Project)
+
+		- Web
+			. Services
+				- contains interfaces for API services
+			. ProductDTO
+				- create a new one instead of referencing ProductAPI DTO to remove dependency
+			. HTTP Calls
+				- create header, pass message, retrieve response, convert to ProductDTO
+			. create a model to handle HTTP requests 
+			. create IBaseService and BaseService class for HTTP Request
+				- ProductService:BaseService, IProductService; IProductService:IBaseService
+			. IHttpClientFactory
+				- need to be defined in program.cs with dependency injection container
+			. Bootstrap5
+				- copy both css and bundle and put them into _layout.cshtml
+				
+		- Web(Login) > Duende Server(Token) > Controller > Web
+			
+- Architecture / Design
+	. 			+-----------[Identity Server]
+				|
+				|
+		[MVC Application]-----------[Gateway]-----------[Product]
+									   | | +-------------[Coupon]
+									   | |					|							+-------------[Email]
+									   | |					|							|
+									   | +--------------[Shopping Cart]--------[Service Bus]----------[Payment]
+									   |										   |
+									   +----------------[Order]--------------------+	
+	
+	. [MVC Application] gets the token from [Identity Server] for authentication and authorization
+	. [MVC Application] uses [Gateway] to communicate with the services
+	. Synchronous Communication
+		- [Gateway] to [Product], [Coupon], [Shopping Cart], [Order]
+		- [Coupon] to [Shopping Cart]
+	. Asynchronous communication
+		- [Service Bus] to [Email], [Payment], [Order]
+		- [Shopping Cart] to [Order], [Email], [Payment]
+	. [Shopping Cart] - [Product] relationship
+		- accessing the Product API directly is time consuming/not efficient
+		- keep a copy of Product
+		- make sure that the Product data is always updated
+	. [Shopping Cart] - [Coupon] relationship
+		- [Shopping Cart] -> [Coupon](GetCouponDetails) -> [Shopping Cart](ApplyCoupon)
+	. [Payment] - [Order] relationship
+		- [Order] created -> ServiceBusConsumer publish message -> ServiceBus -> PaymentAPI message consumer -> new message -> ServiceBus 
+	. [Email] is sent out as soon as the [Order] has been made
+		
+- Tools
+	. VS 2022
+	. .Net 6
+	. Azure Subscription
+	. SQL Server
+	
+- Microservices
+	. independently deployable
+		- done by services
+	. independently scalable
+		- done by services
+	. no bulky code
+		- program is broken down to many services 
+	. reduce downtime
+		- asynchronous comm between services
+		- suppose the Order service is down. once it's up and running again, it can pick up and process the messages from the message Q.
+	. smaller codebase
+		- easier to understand / not convoluted
+	. each microservives can be built with different languages
+	. services communicate through http/s
+		- no dependency
+		
+- Identity Server
+	. authentication and authorization
+	. OAuth2
+		- allows for secure authorization in a simple and standard method 
+		- deal with authorization
+		- uses token
+		- strictly for authorization not authentication
+	. OpenID Connect
+		- identity layer on top of the OAuth2 protocol
+		- extends OAuth2
+		- allows for application to receive token identity/access token
+		- superior to OAuth as it enables authorization and authentication
+		- 
+				+----------- Creds ------------> [Identity Provider]
+				|										  |
+			[Client]<---------------- Token --------------+
+			
+		- User > [Client] > [Identity Provider] > Token > [Client]
+		- Token contains user's verifiable identity
+		- Token is use to create claims identity
+	. Identity Server 5 / Duende Identity Server
+		- implements OAuth2 and OpenId
+		- highly optimized
+		- professionally certified by OpenId
+		- command prompt
+			. dotnet new --install Duende.IdentityServer.Templates
+			. dotnet new isui
+				- to create resource folders for IdentityServer
+				- run command targeting the folder
+	. API Scope
+		- identifier for the resource that the client want to acccess
+		- IdentityScope
+			. will have an object of the profile itself i.e firstname, lastname
+		- Resource Scope
+			.
+		- is used by client
+	. Client
+		- uses scope
+		- many clients for a specific server is plausible
+		- request token from the identity server 
+		- cn either be for authenticating user or accessing a resource
+		- clients example: web application, mobile application, desktop application
+	. IdentityResource
+		- named group of claims that can be requested by scoped parameter
+		- got to be protected
+		- data like profile, email
+	. Register ViewModel
+		- for usr registration
+	. Token
+		- need to be passed to the API for authorization
+		- adding new claims to the token requires IProfileService to be implemented
+
+- Communication (SYNC/ASYNC)
+	. Sync
+		- great for small scale since it's pretty straight forward
+		- one request at a time
+		- theres always a response on task completion
+	. Async
+		- client doesnt have to wait for response from the server
+		- allows for tasks to be run in parallel
+			. multiple requests from clients, multiple processing
+
+- Azure Messaging
+	. comm between services
+	. asynchronous
+	. Azure Storage Queues
+		- for storing messages
+	. Azure Service Bus
+		- message broker with message queues and pub/sub topics
+		- 
+	. Queues
+		
+		Sender ---> ([1][2][3][4][5][6]) ---> Receiver
+		
+				  Message Qs with Messages
+				  
+		- stores messages until the receiving app is ready to receive and process the messages
+		- 1 sender, 1 receiver
+		- FIFO
+		- Q can be configured to forward messages to Topic
+	. Topics
+	
+					([1][2][3]) ---> Receiver
+		Sender --->	([4][5][6]) ---> Receiver
+					([7][8][9]) ---> Receiver
+					
+		   Topics with 3 subs with Messages
+		
+		- useful in pub/sub scenario
+		- can have multiple numbers of Subs that latched onto the Topics
+	. Steps
+		- Create Service Bus Resource
+			. Create Namespace
+			. Select Standard pricing tier
+				- No Topics for Basic
+			. Create
+		- Go to Resource
+		- Create Topics
+		- Go inside the created Topics details
+		- Create Subscription
+		- Shared Access Policies
+			. RootManageSharedAccessKey
+				- Copy Primary Connection String
+	. ServiceBusProcessor
+		- automatically gets all the messages and create a process for that
+		
+- API Gateway
+	. Ocelot
+		- Requires two settings which are Routes and GlobalConfiguration
+		- all the actions (Get, Get with id) need to be configured individually
+

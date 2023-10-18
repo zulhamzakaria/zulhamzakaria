@@ -1,0 +1,10 @@
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\bin\Debug\netcoreapp3.1\AdvertAPI.Models.deps.json
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\bin\Debug\netcoreapp3.1\AdvertAPI.Models.dll
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\bin\Debug\netcoreapp3.1\AdvertAPI.Models.pdb
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\obj\Debug\netcoreapp3.1\AdvertAPI.Models.csproj.AssemblyReference.cache
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\obj\Debug\netcoreapp3.1\AdvertAPI.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\obj\Debug\netcoreapp3.1\AdvertAPI.Models.AssemblyInfoInputs.cache
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\obj\Debug\netcoreapp3.1\AdvertAPI.Models.AssemblyInfo.cs
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\obj\Debug\netcoreapp3.1\AdvertAPI.Models.csproj.CoreCompileInputs.cache
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\obj\Debug\netcoreapp3.1\AdvertAPI.Models.dll
+D:\Learning1\Microservices_with_AWS\AdvertAPI.Models\obj\Debug\netcoreapp3.1\AdvertAPI.Models.pdb

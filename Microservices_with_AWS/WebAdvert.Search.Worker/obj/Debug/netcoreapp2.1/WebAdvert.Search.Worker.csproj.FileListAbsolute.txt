@@ -1,0 +1,10 @@
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\bin\Debug\netcoreapp2.1\WebAdvert.Search.Worker.deps.json
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\bin\Debug\netcoreapp2.1\WebAdvert.Search.Worker.dll
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\bin\Debug\netcoreapp2.1\WebAdvert.Search.Worker.pdb
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\obj\Debug\netcoreapp2.1\WebAdvert.Search.Worker.csproj.AssemblyReference.cache
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\obj\Debug\netcoreapp2.1\WebAdvert.Search.Worker.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\obj\Debug\netcoreapp2.1\WebAdvert.Search.Worker.AssemblyInfoInputs.cache
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\obj\Debug\netcoreapp2.1\WebAdvert.Search.Worker.AssemblyInfo.cs
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\obj\Debug\netcoreapp2.1\WebAdvert.Search.Worker.csproj.CoreCompileInputs.cache
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\obj\Debug\netcoreapp2.1\WebAdvert.Search.Worker.dll
+D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\obj\Debug\netcoreapp2.1\WebAdvert.Search.Worker.pdb

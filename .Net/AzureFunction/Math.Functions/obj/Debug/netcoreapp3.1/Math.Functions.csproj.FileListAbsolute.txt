@@ -1,0 +1,9 @@
+D:\Learning1\.Net\AzureFunction\Math.Functions\bin\Debug\netcoreapp3.1\Math.Functions.deps.json
+D:\Learning1\.Net\AzureFunction\Math.Functions\bin\Debug\netcoreapp3.1\Math.Functions.dll
+D:\Learning1\.Net\AzureFunction\Math.Functions\bin\Debug\netcoreapp3.1\Math.Functions.pdb
+D:\Learning1\.Net\AzureFunction\Math.Functions\obj\Debug\netcoreapp3.1\Math.Functions.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\.Net\AzureFunction\Math.Functions\obj\Debug\netcoreapp3.1\Math.Functions.AssemblyInfoInputs.cache
+D:\Learning1\.Net\AzureFunction\Math.Functions\obj\Debug\netcoreapp3.1\Math.Functions.AssemblyInfo.cs
+D:\Learning1\.Net\AzureFunction\Math.Functions\obj\Debug\netcoreapp3.1\Math.Functions.csproj.CoreCompileInputs.cache
+D:\Learning1\.Net\AzureFunction\Math.Functions\obj\Debug\netcoreapp3.1\Math.Functions.dll
+D:\Learning1\.Net\AzureFunction\Math.Functions\obj\Debug\netcoreapp3.1\Math.Functions.pdb

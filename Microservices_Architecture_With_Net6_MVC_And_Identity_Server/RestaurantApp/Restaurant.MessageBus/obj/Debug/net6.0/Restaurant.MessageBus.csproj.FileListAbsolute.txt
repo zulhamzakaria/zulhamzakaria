@@ -1,0 +1,12 @@
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\bin\Debug\net6.0\Restaurant.MessageBus.deps.json
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\bin\Debug\net6.0\Restaurant.MessageBus.dll
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\bin\Debug\net6.0\Restaurant.MessageBus.pdb
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\Restaurant.MessageBus.csproj.AssemblyReference.cache
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\Restaurant.MessageBus.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\Restaurant.MessageBus.AssemblyInfoInputs.cache
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\Restaurant.MessageBus.AssemblyInfo.cs
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\Restaurant.MessageBus.csproj.CoreCompileInputs.cache
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\Restaurant.MessageBus.dll
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\refint\Restaurant.MessageBus.dll
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\Restaurant.MessageBus.pdb
+D:\Learning1\Microservices_Architecture_With_Net6_MVC_And_Identity_Server\RestaurantApp\Restaurant.MessageBus\obj\Debug\net6.0\ref\Restaurant.MessageBus.dll

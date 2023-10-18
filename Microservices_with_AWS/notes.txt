@@ -1,0 +1,840 @@
+- Monolithic Applications
+	. application without/minimum modularity
+		- business logic/gui are inside the same project
+		- modularity is always preferred
+			. increase reusability
+	. no separation between backend and frontend
+	. MVC with Razor pages
+		
+			[GUI]
+			  |								 +-------> Authentication
+			[Server-side application] -------|-------> Payments
+			  |								 +-------> Order Management
+			[Database]
+			
+	. above design doesnt allow for the modules to be used by other system/applications
+	. can turn into big ball of mud
+		- too big to be understood
+	. limited reuse
+	. scaling is a challenge/costly
+		- requires the application to be scaled as a whole instead of parts/modules
+	. CI/CD becomes complex and time-consuming
+	. built with one framework
+		- cant be having different teams with different skills/language to work on the applications
+	. hard to deal with
+		- documentation, code conflicts
+	. changes require full build, deployment and test
+	
+- Microservices
+	. consider there are two services
+	. each service should have a designated team
+		- Dev, Tester, Analyst
+		- own solution
+		- own repository
+	. it's possible for members to change team but the focus should be only on the current team/project
+	. Attributes
+		- Properly scoped
+			. based on boundary
+			. DDD
+			. Verb-based
+				- service broken down by the function i.e Checkout
+			. Noun-based
+				- Authentication
+			. Based on reusability
+				- Login/Authentication
+				- Reporting
+		- API
+			. RESTful
+			. industry standard
+		- Traffic management
+			. scaling on X-axis
+				- computation powers
+				- service cloning
+				- scale out
+			. Circuit-breaker pattern
+				- 
+		- Data offloading
+			. no volatile sessions, viewstates, caches
+			. need to be stored or passed to other entity
+			. centralized caching, database
+		- Monitoring
+			. containers healthcheck
+	. Basic design/ architecture for AWS
+		- Net Core application deployed to EC2
+			. create auto-scaling group for EC2
+			. put a load-balancer
+		- Net Core application deployed as container to ECS with App Mesh for Monitoring
+		- Net Core Lambda service deployed to AWS Lambda
+	. Fundamental design
+		
+							 User Interface 				 Microservices    			Data Store
+							 --------------					 -------------              ----------
+		                                    not cached/new
+		[End User] ----------> Cloudfront -----------------> Load Balancer
+								   |							   |
+		                           | static                        |         +--------> ElastiCache
+								   | content                       v         |
+								   v							  ECS -------+--------> RDS
+								   S3                                        |
+																			 +--------> DynamoDB
+	
+	. how it works
+		- Web App/Mobile app/External API get connected to the Cloudfront
+		- Cloudfront sends the request to the API Gateway if data is not cached
+		- API Gateway checks it's own cache
+		- No cache means redirection to the related microservices
+		
+- Advertising Website
+	. Objectives
+		- to allow users to advertise products/services on the internet.
+		- anonymous browsing is enabled
+		- search by keywords
+	. Scopes
+		- is free so no payment module
+	. Personas
+		- Registered user
+		- Public user
+	. Technologies/Environment
+		- Microservices
+		- .NetCore
+		- C#
+		- AWS
+			. deployment and services whenever possible
+	. Requirements
+		- Registration via emails by users
+			. Email is the username
+			. Min password length = 6 chars
+		- Only registered users can create an advertisement
+		- Advertisement properties
+			. Title
+			. Description
+			. Expiry Date
+			. Price
+			. Image (one)
+		- Unregistered user 
+			. must be able to browse the ads and see the details
+			. able to search for ads
+	. Architecture
+		- Public internet
+			. where the users are
+		- Private infrastructure
+			. two subnets inside a VPC
+				- Public subnet
+					. accessible by the internet
+				- Private subnet
+					. not accessible by the internet 
+						- security
+					. 
+		- how the system works: 
+		
+							  login
+			+->	[user(Mobile)] <---------> [AWS Cognito] 
+			|	   |													  messages
+			|	   +-------------> [API Gateway] +----------> Advert.API ----------> SNS --------> AWS Lambda (SearchWorker)
+			|	   |					|						|											  |
+			|	   | image upload		|						| create ad                                   |
+			|	   |					|						v											  |
+			|	   v					|					 DynamoDB                              	    	  v
+			|	  S3	 				|					 						+------------------> ElasticSearch
+			|	   v					+-------------------> Search.API -----------+
+			+- Cloudfront	
+		
+		- AWS Services
+			. Cognito
+				- auth + sign-up
+			. Lambda
+				- writes ads to the ElasticSearch
+				- scales out automatically
+				- disappear when not in use
+				- can respond to events happening inside AWS 
+					. S3
+					. SNS messages
+			. ElasticSearch
+				- is a managed service
+				- ads search engine
+			. API Gateway
+				- gatekeep APIs
+			. SNS
+				- message/notiication service
+				- for ads creation
+			. DynamoDB
+				- NoSQL database
+				- no licensing
+				- no queries
+				- 
+			. S3
+				- stores uploaded images
+			. Cloudfront
+				- servers images
+				- CDN
+				- caching
+			. EC2
+				- VM
+				- houses .Net Core application
+		- ASP.Net Core MVC Application
+			. accessible by browser
+			. in public subnet
+			. deployed to EC2
+			
+- Authentication and Authorization
+	. centralized repo for user accounts
+	. highly available and reliable
+	. support roles
+		- admins, users
+		- diff access rights
+	. OAuth and OpenIDConnect
+	. federated login
+		- Google, Facebook, Twitter
+	. integrated with .Net Core Identity
+	. token authentication (JWT) and API authentication
+	. .Net Core + AWS Cognito
+	. AWS Cognito
+		- AWS Console
+		- Search for Cognito
+		- Manage User Pools
+			. to store users
+		- Create user pool
+		- Provide Pool name
+		- Review defaults
+		- Create pool
+			. get pool id
+		- Create AppClient
+			. Generate client secret
+			. Enable sign-in API for server-based...
+		- Create AppClient
+			. Get app client id and secret
+	. AWS IAM
+		- credential profile
+			. for development use
+			. needed by AWS SDK
+		- AWS Console
+		- Search for IAM
+		- Users
+		- Create user
+			. set the policy
+		- Add permissions
+		- Attach existing policies
+		- Search for Cognito
+		- Select AmazonCognitoDeveloperAuthentication
+		- Review
+		- Security Credentials tab
+		- Create access key
+		- Download the csv
+	. Create profile to access AWS
+		- Go to root directory
+			. type %userprofile% in file explorer navigation bar
+		- Create folder
+			. .aws.
+		- Create file inside .aws folder
+			. file name: credentials
+			. remove extension
+		- Fill in the access key data
+			. [default]
+			  aws_access_key_id = xxxx
+			  aws_secret_access_key = yyy
+		- Save
+	. Packages
+		- Amazon.AspNetCore.Identity.Cognito
+		- Amazon.Extensions.CognitoAuthentication
+
+	+----------------------------------------------------+
+	| Eventual Consistency and Compensating Transactions |
+	+----------------------------------------------------+
+
+	. Distributed Transactions .
+	----------------------------
+		- a unit of work
+		- done/performed by more than one microsrvices
+		- should be avoided as much as possible
+			. else, implement Eventual Consistency and Compensation
+				- data will be consistent eventually
+				- data stays in pending state until all microservices confirm the transaction
+				- Atomic, Consistent, Isolated & Durable (ACID)
+					. traditional transactions
+					. commit to the entirety of the transaction occurring
+					. have no transaction at all
+				- Basically Available, Soft State , Eventually Consistent (BASE)
+					. distributed transactions
+					. Asp.Net MVC sends data to API
+					. Data sets as Pending
+						- if fails here, subsequent steps wont run
+					. API returns Ok()
+					. Asp.Net MVC then uploads image to S3
+					. If all ok, S3 returns Http 200
+						- if it fails here, tells API to rollback everything	
+					. Asp.Net MVC sends event to API
+					. API sets the data status to Active 
+		- if one microservice fails, other microservice must rollback
+			. if Step 1 fails, Step 2 shouldnt commence
+			. if Step 2 fails, Step 1 must rollback 
+			. if Advert.API fails to insert data into DynamoDB, ASP Net Core MVC shouldnt upload ad to S3
+			. if ASP Net Core MVC couldnt upload ad to S3, rollback stored data inside DynamoDB to avoid data inconsistency
+			
+	| Nuget Packages and Microservices
+	+------------------------------------
+		- resource sharing
+			. ship certain Model as a Nuget package so it becomes usable by other services
+				- Put Model in a ClassLibrary
+				- Compile the said ClassLibrary as a NugetPackage
+				- Put the package into some repository/library
+				
+	| DynamoDB
+	+------------
+		- Search for DynamoDB service
+		- Create table
+			. Name
+			. Primary Key
+			. No Sort Key
+			. Default Setting
+			. Create
+			
+	| Packages
+	+------------
+		- AWSSDK.DynamoDBv2
+		- AutoMapper.Extensions.Microsoft.DependencyInjection
+		- Microsoft.AspNetCore.HealthChecks
+		
+	| Create NuGet Package
+	+------------------------
+		- project folder
+		- cmd
+			. dotnet pack AdvertAPI.Models.csproj
+		- package will be created inside bin/debug
+		- go to Nuget.org
+		- Login
+		- Account > API Key
+			. Check 'Push'
+			. Glob Pattern: *
+		- Create
+		- Get Key
+		- go to bin/debug
+			. nuget package folder
+		- cmd
+			. dotnet nuget push AdvertAPI.Models.1.0.0.nupkg -k [nuget API Key] -s https://api.nuget.org/v3/index.json
+			
+	| HealthCheck
+	+---------------
+		- services.AddHealthChecks();
+        - app.UseHealthChecks("/health");
+		- for AWS Service i.e DynamoDB
+			. add healthcheck inside the class file
+			
+	| IIS
+	+-------
+		- acts as a reverse proxy
+		- hosting the Net Core app
+		- Basic Setting
+			. .Net CLR version : No Managed Code
+			. Pipeline Mode : Classic
+		- directory
+			. inetpub/wwwroot
+		- dependency
+			. .NetCore Runtime & Hosting Bundle
+			. AWS CodeDeploy agent
+			
+	| Create VM Image
+	+-------------------
+		- can be used to launch similar VMs to house the many microservices
+		- kinda like container
+		- Run
+			. Execute EC2 Launch Setting
+				- Admin Password : Random
+				- Shutdown with Sysprep
+		- EC2 Dashboard
+			. Instances
+				- Right-click instance > Image > Create Image
+					- Set ImageName
+					- Set Size
+					- Create
+	
+	| Packaging application for S3
+	+--------------------------------
+		- Go to code directory
+		- cmd
+			. dotnet restore
+			. dotnet publish -o c:/Published/
+		- Go to publised app folder
+			. create AppSpec.yml
+				- version: 0.0
+				  os: window
+				  file:
+					-source: AdvertAPI
+					destination: c:/inetpub/wwwroot
+			. zip the files
+				- AdvertAPI published version + AppSpec.yml
+	
+	| S3
+	+------
+		- to store the published Net Core API and MVC web app package
+		- deployment is done from here
+		- Search for the service
+		- Create Bucket
+			. Name
+			. Create Bucket
+		- Select Bucket
+		- Upload
+			. add the zipped AdvertAPI with AppSpec.yml
+			. Next
+			. Upload
+			
+	| CodeDeploy
+	+--------------
+		- for deployment
+		- Search for the service
+		- Create application
+			. App Name
+			. Compute Platform: Ec2/OnPremises
+			. Create
+		- Create deployment group
+			. Name
+			. Role
+				- IAM > Role > CodeDeployDeployer access
+			. Environment Configuration : Amazon EC2 instances
+			. Create
+		- Applications 
+			. Select AdvertAPI application
+			. Select AdvertAPI Deployment group
+				- Create deployment
+					. Revision Location : S3_object_URL
+						- s3://webadvertcd/AdvertAPI_v1.zip
+					. Revision file type : zip
+					. Create Deployment
+		- Check the deployment in EC2
+					
+			
+	+------------------------------------------+
+	| Resilient Service With HttpClientFactory |
+	+------------------------------------------+	
+	
+	| Http Client Factory
+	+-----------------------
+		- every instance of HttpClient opens a web socket
+		- may lead to socket exhaustion since the sockets wont be closed immediately when disposed
+		- use HttpClientFactory with Singleton configuration instead
+			. .Net Core will handle HttpClient generation
+		- can be configured for Exponentially Back-Off and Circuit Breaker
+	
+	| Circuit breaker
+	+-------------------
+		- break all calls the the non-responsive API for x amount of time
+			. fails new calls
+			. allows API/microservice to process queued requests
+		- by attaching policy to the HttpClient factory
+			. try 5 times
+			. try 2 times, give up, dont try again
+		- use Polly
+			. recommended
+	
+	| Exponentially Backoff
+	+-------------------------
+		- re-try calling non-responsive API after few seconds
+		- the timer increases exponentially
+		- 2 calls; 2^2, 2^3 seconds 
+		- pay attention to the calls frequency, interval
+		- should be aware of Circuit Breaker policy
+			. no more request for API means Exponentially BackOff gonna stop trying
+		- return something though incomplete
+			. allow user to make use of the data to proceed
+		
+	| Packages
+	+------------
+		- Microsoft.Extensions.Http.Polly
+		- Polly.Extensions.Http
+	
+	
+	+------+
+	| CQRS |
+	+------+
+	
+	| DDD
+	+-------
+		- domain : sphere of knowledge/activity
+		- area of business that the application is intended to apply
+			. payment, inventory, invoice
+			. Ad Management Domain
+			. Search Domain
+				- SearchAPI
+				- SearchWorker
+		- Domain layer
+			. business logic/rules of an application
+		- Domain model
+			. model coherent to the domain
+			. should not be inherited from/dependent on other type
+		- understanding business over logic
+		- works in tandem with domain expert
+		- Ubiquitous language
+			. structured around the domain model
+			. used and understood by the techies/business people
+		- Bounded Context
+			. boundary around models that are described by a certain Ubiquitous language
+			. represented by every microservice
+			. tricky/grey area
+			. avoid chatty microservcies
+				- group em together
+	
+	| Layering
+	+------------
+		- Application layer
+			. Web API
+			. network access to the microservices
+			. API contracts
+			. Commands and command handlers
+				- AdvertAPI create ad into database
+				- API calls/query data
+			. Queries
+				- CQRS approach
+		- Domain model layer
+			. entity model
+			. entity classes
+			. domain entities with data + behavior
+			. DDD pattern
+				- domain entity, aggregate
+				- aggregate root, value object
+				- repo contracts/interfaces
+			. has a dependence on infrastructure but doesnt know how it works
+		- Infrastructure layer
+			. data persistence infrastructure
+				- repository implementation
+			. ORM or data access API
+				- ADO.Net, Entity Framework, NoSQL Db API
+			. Any other infra implementation
+				- logging, cryptography, search etc
+			. Http calls to other services
+			
+	| CQRS and Event Sourcing
+	+---------------------------
+		- Command and Query Responsibility Segregation
+		- Query
+			. requesting/receiving data 
+			. doesnt change state of the system/data
+				- GetList()
+		- Command
+			. invokes action/operation in the system
+			. changes system states
+				- Add()
+		- Web app create Ads (Command)
+		- Web app find list of Ads (Query)
+		- Separation of services that handle Command from Query microservices
+		- Must be applied on a Bundled Context
+			. recognize if it's worth doing so
+		- might be an overkill for smaller system
+		- IG, Pinterest
+		
+	| Messaging & Event Sourcing
+	+------------------------------
+		- API Call
+			. reaching out to other microservices
+				- invoke an action 
+				- query data
+			. Caller must know where the target is
+				- MVC App using AdvertAPI Endpoint 
+			. Target must be able to receive the message
+				- Overloaded API can process request
+		- Message
+			. type of notification thats sent out by the microservices within the boundary of the system
+			. triggered when the system states change
+				- Event
+				- creating an Ad will trigger an event called AdvertisementCreated
+			. will be sent to the Subscribers
+				- location of the Subscribers arent important to the Sender
+			. can either be directly sent (Subs must be available) or by using Q
+				- with Q, Subs will Poll the message
+				- Q decouples Subs and Sender
+				- Subs have to periodically check for the messages
+		- AWS SNS (Simple Notification Service)
+			. send/receive messages
+			. Fan-out pattern
+				- SNS sending out message to many Subs concurrently
+			. SNS Dashboard
+			. Create Topic
+				- Topic Name
+				- Create
+			. Get Topic ARN
+				- needed for publishing message to the topic
+		- AWS SQS (Simple Queue Service)
+			. requires polling
+			. persist the message
+		- Advert.API > SNS > Search.Worker (Lambda)
+			. Lambda service only exists when needed
+				- cost-saving
+		- ElasticSearch
+			. Create a new domain
+				- Domain Name
+				- Version
+				- Next
+				- Next
+				- Public Access
+				- Set Domain access policy to : Allow open access to the domain
+				- Next
+				- Confirm
+		- Lambda
+			. make sure to install the supported .Net Core version for Lambda Function
+			. Create Role
+				- IAM
+					. Roles
+						- Create Role
+							. Select Lambda
+								- Cloudwatch policy
+									. CloudWatchLogsFullAccess
+									. Tags
+										- Key
+										- Value
+									. Review
+										- Role name
+									. Create Role
+			. Create Function
+			. Author from scratch
+				- Name
+				- Runtime
+				- Role
+			. Create function
+			. Lambda Designer
+			. Add trigger
+				- select SNS
+			. Fill in the SNS Topic created
+			. Add
+			. Click Lambda searchworker
+			. Function Code
+				- Handler : [.Net_Project_AssemblyName]::[Namespace].[ClassName]::[FunctionName]
+				- Upload : Lambda .zip package
+			. SNS
+				- Topics
+					. Publish to Topic
+						- Message format : Raw
+						- Message : {"Title" : "Test"}
+					. Publish Message
+			. Lambda Monitoring tab
+				- View logs in Cloudwatch
+					. Logs for Lambda should present
+									
+	| Packages
+	+------------
+		- AWSSDK.SimpleNotificationService
+		- Amazon.Lambda.Core
+		- Amazon.Lambda.Serialization.Json
+		- Amazon.Lambda.SNSEvents
+		- Amazon.Lambda.Tools
+		- NEST (Search.Worker)
+		- Microsoft.Extensions.Configuration (Search.Worker)
+		- Microsoft.Extensions.Configuration.Json (Search.Worker)
+		- Microsoft.Extensions.Configuration.Binder (Search.Worker)
+	
+	| Package Application
+	+-------------------------
+		- cmd
+		- dotnet lambda package -c release -o SearchWorker.zip --framework netcoreapp2.1
+			. SearchWorker.zip to be uploaded to the AWS Lambda
+			
+			
+	+---------+
+	| Logging |
+	+---------+
+	
+	| Log
+	+-------
+		- show errors/changes
+		- Infrastructure1
+			. CloudWatch
+			. resource usage
+		- Change/Audit
+			. CloudTrail
+		- Security
+			. CloudTrail
+		- Application
+			. code
+	
+	| Specs
+	+---------
+		- centralized
+		- entries havin common format
+			. identical field/property names
+		- secure
+		- good search/discovery interface
+		- can be analysed
+		
+	| Implementations
+	+-------------------
+		- own logging system
+			. tailored; architecture flexibility
+			. more control on the components 
+			. elk, kibana
+		- third party service
+			. cost
+			. latency in receiving log
+			. dependency
+		- Aws solution
+			. cost-effective
+			. saves time and effort
+			. launches in minutes
+			
+	| Design and Architecture
+	+---------------------------
+		- 
+			  [Primary Stack]					     [Demo Stack]
+											
+					    Cloudwatch <------------ Cloudtrail ---> S3
+						   |    ^
+						   v	+--------+		  VPC
+			Cognito -->	Lambda			 | 		  ---																				
+			   ^		   |             +---------- flow logs
+			   | 		   |             +---------- Instance w/ Cloudwatch Logs agent     
+			   v           v
+			Kibana	-->	ElasticSearch
+						   ^                    [Secondary Stack]
+						   |							IAM Role
+						IAM Role <-------------	Lambda <--------- Demo Stack
+		
+		- VPC
+			. houses EC2 application instances 
+			. send logs to Cloudwatch
+		- Cloudwatch logs will the source of the logging
+			. configure to ship/write log to the ElasticSearch domain
+			. triggers Lambda > Lambda picks up the logs > Lambda puts the logs into ElastiSearch
+			. role used to run Cloudwatch must be able to execute Lambda function too
+		- ElasticSearch
+			. use Kibana to explore the data
+				- for visualization
+				- may use Cognito to control the access to Kibana since it's public by default
+				- created everytime an ElasticSearch is created
+	
+	| Steps
+	+---------
+		- Cognito
+			. Manage User Pools
+				- General settings
+					. Get Pool Id
+					. App Clients Menu
+						- Get App Client Id
+			. Manage Identity Pool
+				- Name
+				- Authentication Providers
+					. UserPoolId
+					. AppClientId
+				- Create Pool
+				- Role summary
+				- Allow
+				- IAM
+					. Roles
+						- AuthenticatedKibana
+							. Get Role ARN
+		- ElasticSearch
+			. Create new domain
+				- Domain Name
+			. Next
+			. Storage
+				- Magnetic
+			. Next
+			. Kibana Authentication
+				- Enable Amazon Cognito
+					. Cognito User Pool
+					. Cognito Identity Pool
+				- Set domain access policy to : Allow open access to the domain
+					. Accept risk
+					. Edit access policy
+						- Replace * with AuthenticatedKibana Role ARN
+			. Next
+			. Review
+			. Confirm
+			. My domains
+				- Created logs domain
+					. Access Kibana thru the Kibana endpoint
+		- Cloudwatch
+			. Cloudwatch Logs
+				- Create log group
+					. Name
+				- Create
+				- Select log group
+				- Action
+					. Stream to Amazon ElasticSearch
+						- Amazon ES Cluster
+						- Lambda IAM Execution Role
+							. Role with Lamba execution
+					. Next
+						- Log Format : JSON
+					. Next
+					. Next
+					. Start streaming
+		- CloudFront
+			. Create Distribution
+				- Web : Get Started
+					. Origin
+						- Origin Domain Name : S3 Bucket name
+						- Create New Identity
+					. Create Distribution
+			. Click created distribution
+				- Domain Name
+					. use it to programmatically access S3 bucket item
+	| Packages
+	+------------
+		- NEST
+		- AWS.Logger.AspNetCore
+		
+		
+	+-------------+
+	| API Gateway |
+	+-------------+
+	
+	| Service Call
+	+----------------
+		- Direct/Client to Service
+			. Client/Users ---[Auth]--------[Load Balancer]---+-> Service A
+															  |
+									                          +-> Service A
+			. Load Balancer is public
+			. good for small application
+			. suitable for server-side app ?
+			. authentication for each service
+		- API Gateway
+			. sits between LoadBalancer and Users/Clients
+			.
+				Client/Users ---[Auth]----[API Gateway]----[Load Balancer]---+-> Service A
+																			 |
+									                                         +-> Service A
+			. everything behind API Gateway is private
+			. authentication can be done on API Gateway
+				- avoid repetition on microservices
+			. needed by larger applications
+			. hid microservices in a private network (subnet)
+			. decouples apps from the internal API
+				- gatekeep
+			. provides Reverse Proxy for APIs and Lambda
+			. provides request aggregation, reducing roundtrips thus improving performance	
+			. features
+				- supports:
+					. API First approach via supporting Mocking
+					. web sockets and Restful API
+					. stages of API deployment
+						- staging allows for different copies with differing settings to exist
+					. parameterisation of APIs in different stages'
+						- query strings
+					. Web ACL and Web Firewall to reduce security risks
+					. authentication via AWS Cognito and/or AWS Lambda
+				- can expose Lambda functions as APIs
+	
+	| Steps
+	+---------
+		- API Gateway
+			. to create reverse proxy
+			. Create API
+				- Settings
+					. API name
+					. Endpoint Type : Regional
+						- AWS will create Cloudfront for Edge Optimized. Longer time needed to provision
+				- Create API
+				- Actions
+					. Create Resource
+						- Configure as proxy resource : checked
+						- Enable API Gateway CORS : ticked
+							. for javascript
+						- Create Resource
+				- ANY
+					. HttpProxy: checked
+					. Endpoint URL : microservice EC2 DNS/{proxy}
+					. Save
+				- Actions
+					. Deploy API
+						- Deployment stage
+							. able to create different stages
+						- Deploy
+				- Invoke URL
+					. invoke_url/api/v1/all

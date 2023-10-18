@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = WebAdvert.Search.Worker
+build_property.ProjectDir = D:\Learning1\Microservices_with_AWS\WebAdvert.Search.Worker\

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "o27I9SPduYcAkmL5Nt7D7d0666LNoLWEQkrMymcF6as=",
+  "Source": "Restaurant.Services.CouponAPI",
+  "BasePath": "_content/Restaurant.Services.CouponAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

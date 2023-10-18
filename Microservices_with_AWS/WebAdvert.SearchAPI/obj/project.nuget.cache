@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "dgSpecHash": "2zc5r//fC7AS/1y/1g1mqb+7toa38dq7mI4T4lsRSjHS0Qy51+zHmWF7Th54OJ01eH/5+yus4cuDqL+sivSAvw==",
+  "success": true,
+  "projectFilePath": "D:\\Learning1\\Microservices_with_AWS\\WebAdvert.SearchAPI\\WebAdvert.SearchAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zulham\\.nuget\\packages\\aws.logger.aspnetcore\\3.3.0\\aws.logger.aspnetcore.3.3.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\aws.logger.core\\3.1.0\\aws.logger.core.3.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\awssdk.cloudwatchlogs\\3.7.0.5\\awssdk.cloudwatchlogs.3.7.0.5.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\awssdk.core\\3.7.0.6\\awssdk.core.3.7.0.6.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\elasticsearch.net\\7.17.4\\elasticsearch.net.7.17.4.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.configuration\\2.1.0\\microsoft.extensions.configuration.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\2.1.0\\microsoft.extensions.configuration.abstractions.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.configuration.binder\\2.1.0\\microsoft.extensions.configuration.binder.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\2.1.0\\microsoft.extensions.dependencyinjection.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.logging\\2.1.0\\microsoft.extensions.logging.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.1.0\\microsoft.extensions.logging.abstractions.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.options\\2.1.0\\microsoft.extensions.options.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.primitives\\2.1.0\\microsoft.extensions.primitives.2.1.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\nest\\7.17.4\\nest.7.17.4.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\system.memory\\4.5.0\\system.memory.4.5.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.0\\system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
+  ],
+  "logs": []
+}
