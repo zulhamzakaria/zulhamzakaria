@@ -44,5 +44,15 @@ public partial class PlansList
         }
         return new PagedList<PlanSummary>();
     }
+
+    private bool _isCardsViewEnabled = true;
+    private void SetCardsView()
+    {
+        _isCardsViewEnabled = true;
+    }
+    private void SetTableView()
+    {
+        _isCardsViewEnabled = false;
+    }
 }
 

@@ -1,5 +1,16 @@
 ﻿@namespace PlannerApp.Components
 
-<div class="mt-4"/>
-@* // wires up the Func inside PlanCardsList with the GetPlansAsync *@
-<PlanCardsList FetchPlans="GetPlansAsync"/>
+<MudIconButton Icon="@Icons.Material.Filled.GridView" Disabled="_isCardsViewEnabled" OnClick="SetCardsView"></MudIconButton>
+<MudIconButton Icon="@Icons.Material.Filled.TableView" Disabled="@(!_isCardsViewEnabled)" OnClick="SetTableView"></MudIconButton>
+
+<div class="mt-4" />
+
+@if (_isCardsViewEnabled)
+{
+    @* // wires up the Func inside PlanCardsList with the GetPlansAsync *@
+    <PlanCardsList FetchPlans="GetPlansAsync" />
+}
+else
+{
+    <PlansTable/>
+}

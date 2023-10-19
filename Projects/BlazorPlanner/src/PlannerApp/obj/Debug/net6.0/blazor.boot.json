@@ -211,7 +211,7 @@
       "System.Private.CoreLib.dll": "sha256-gjd6M5pA\/nOZEI8pvs9SPUAFG1Jppwr9Xl6v7Wab8Fc=",
       "PlannerApp.Client.Services.dll": "sha256-HtAYGANJU+bAlSz\/o9uSguusi1Nib6vRAq8C+Zm8PKc=",
       "PlannerApp.Shared.dll": "sha256-JHa5itkmuD9qelMh\/leNfAL4piz0XaeA3jJTdfly9VI=",
-      "PlannerApp.dll": "sha256-Rji13JcnJRjCG7IlxoqKI7V0CV5XaZa\/9HuzuXVQCXg="
+      "PlannerApp.dll": "sha256-jKPVnBEw7BhSmVxl3TgLAhqAsheHk5408tbHXY6s8Wo="
     },
     "extensions": null,
     "lazyAssembly": null,
@@ -219,7 +219,7 @@
     "pdb": {
       "PlannerApp.Client.Services.pdb": "sha256-hbrFLGIoxOi7\/f9gPG\/UPMJP0nS1QqgWvvyy+UvAv9Q=",
       "PlannerApp.Shared.pdb": "sha256-OFYhL+hrAaOmXyqkcTcm+UVs1vSHzHGkcBnH\/Y46lZM=",
-      "PlannerApp.pdb": "sha256-jI6wNXTWJSJjJrD+uUWTo1s33ccU8zjpyKwGoSK72sk="
+      "PlannerApp.pdb": "sha256-V3EXJPDyeO\/V98xiE4k7PoMv9aVqETLTGZ6n\/BCZ+CA="
     },
     "runtime": {
       "dotnet.6.0.23.m0kch428e8.js": "sha256-YYG9NE7FnTlr1qMbQzBTzUGZOcLX64xP2Z1+An1jT6U=",
