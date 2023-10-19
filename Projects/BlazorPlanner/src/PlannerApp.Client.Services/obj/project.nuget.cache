@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "ka8WCtSq2Qj6qdeM09XVgwc+8gHyUGs6mqyn5gRz5F2JF28luV0upAMl8oYpVdxvhs4fKQaD0MlXUBufZgIKWw==",
+  "dgSpecHash": "5jOHD/PaZQFvLZ0y333sKCMwLUW2CsQi4R3Jo6wWhj3UZf86tOhrtItNlLisQCGbGmfC1qihwWv46OrxKfAypg==",
   "success": true,
   "projectFilePath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Client.Services\\PlannerApp.Client.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
-    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
   ],
   "logs": []
 }

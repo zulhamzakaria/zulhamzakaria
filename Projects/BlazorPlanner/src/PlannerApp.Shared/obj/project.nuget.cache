@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "oxx/1kT0Mx/zCiz/moa+HVSvux1LAKOBnbFBZ0/R9ENqP5TcDwZFplI5a+VbOg0ffU2A9pjzHU1WqRMUCyTC4w==",
+  "dgSpecHash": "R024ByImztqhFMJaPN5vYKrIf+I0qDhCVcECwOUA1MrfA/F3814rUSjEP5RWGXnZsucAwzryqaanyKPm16MQfw==",
   "success": true,
   "projectFilePath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp.Shared\\PlannerApp.Shared.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512"
+    "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
   ],
   "logs": []
 }
