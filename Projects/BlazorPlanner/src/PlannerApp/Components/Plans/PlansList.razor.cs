@@ -10,6 +10,9 @@ public partial class PlansList
     [Inject]
     public IPlansService? PlansService { get; set; }
 
+    [Inject]
+    public NavigationManager? NavigationManager { get; set; }
+
     private bool _isBusy = false;
     private string _errorMessage = string.Empty;
     private int _pageNumber = 1;
@@ -53,6 +56,11 @@ public partial class PlansList
     private void SetTableView()
     {
         _isCardsViewEnabled = false;
+    }
+
+    private void EditPlan(PlanSummary planSummary)
+    {
+        NavigationManager?.NavigateTo($"/plans/form/{planSummary.Id}");
     }
 }
 

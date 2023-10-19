@@ -11,6 +11,10 @@ public partial class PlanCardsList
 
     [Inject]
     public NavigationManager? NavigationManager { get; set; }
+
+    [Parameter]
+    public EventCallback<PlanSummary> OnEditClicked { get; set; }
+
     private bool _isBusy { get; set; }
     [Parameter]
     // This calls the GetPlansAsync(string query = "", int pageNumber = 1, int pageSize = 10)
@@ -31,8 +35,8 @@ public partial class PlanCardsList
         _isBusy = false;
     }
 
-    private void EditPlan(PlanSummary planSummary)
-    {
-        NavigationManager.NavigateTo($"/plans/form/{planSummary.Id}");
-    }
+    //private void EditPlan(PlanSummary planSummary)
+    //{
+    //    NavigationManager?.NavigateTo($"/plans/form/{planSummary.Id}");
+    //}
 }
