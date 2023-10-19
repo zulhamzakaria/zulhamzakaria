@@ -14,6 +14,11 @@
             Label="Load picture"
             for="@context" />
 
+    @if (_isEditMode)
+    {
+        <img src="@_planDetail.CoverUrl" style="width:80%;" class="m-2"/>
+    }
+
     @if (_stream is not null)
     {
         <MudText Typo="Typo.subtitle2">@_fileName</MudText>

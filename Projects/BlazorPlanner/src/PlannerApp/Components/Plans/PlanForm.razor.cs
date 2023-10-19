@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using PlannerApp.Client.Services.Exceptions;
 using PlannerApp.Client.Services.Interfaces;
 using PlannerApp.Shared.Models;
+using System.Linq.Expressions;
 
 namespace PlannerApp.Components;
 
@@ -12,13 +13,24 @@ public partial class PlanForm
     public IPlansService? PlansService { get; set; }
 
     [Inject]
-    public NavigationManager NavigationManager { get; set; }
+    public NavigationManager? NavigationManager { get; set; }
 
+    [Parameter]
+    public string? Id { get; set; }
+
+    private bool _isEditMode => Id is not null;
     private PlanDetail _planDetail = new();
     private bool _isBusy = false;
     private Stream? _stream = null;
     private string _fileName = string.Empty;
     private string _errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(_isEditMode)
+            await FetchPlanByIdAsync();
+    }
+
     private async Task SubmitFormAsync()
     {
         _isBusy = true;
@@ -28,8 +40,13 @@ public partial class PlanForm
             FormFile? formFile = null;
             if (_stream is not null)
                 formFile = new FormFile(_stream, _fileName);
-            var result = await PlansService!.CreateAsync(_planDetail, formFile!);
-            NavigationManager.NavigateTo("/plans");
+
+            if(_isEditMode)
+                await PlansService!.EditAsync(_planDetail, formFile!);
+            else
+                await PlansService!.CreateAsync(_planDetail, formFile!);
+
+            NavigationManager?.NavigateTo("/plans");
         }
         catch(ApiException ex)
         {
@@ -40,6 +57,26 @@ public partial class PlanForm
             _errorMessage = ex.Message;
         }
 
+        _isBusy = false;
+    }
+
+    private async Task FetchPlanByIdAsync()
+    {
+        _isBusy = true;
+        try
+        {
+            var result = await PlansService!.GetByIdAsync(Id);
+            _planDetail = result.Value!;
+
+        }
+        catch(ApiException ex)
+        {
+            _errorMessage = ex.ApiErrorResponse?.Message!;
+        }
+        catch (Exception ex)
+        {
+            _errorMessage = ex.Message;
+        }
         _isBusy = false;
     }
     private async Task OnChooseFileAsync(InputFileChangeEventArgs e)

@@ -47,6 +47,20 @@ public class HttpPlansService : IPlansService
         throw new ApiException(errorResponse!, response.StatusCode);
     }
 
+    public async Task<ApiResponse<PlanDetail>> GetByIdAsync(string id)
+    {
+        var response = await _httpClient.GetAsync($"/api/v2/plans/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            var result = await response.Content.ReadFromJsonAsync<ApiResponse<PlanDetail>>();
+            return result!;
+        }
+
+        var errorResponse = await response.Content.ReadFromJsonAsync<ApiErrorResponse>();
+        throw new ApiException(errorResponse!, response.StatusCode);
+
+    }
+
     public async Task<ApiResponse<PagedList<PlanSummary>>> GetPlansAsync(string? query = null, int pageNo = 1, int pageSize = 10)
     {
         var response = await _httpClient.GetAsync($"/api/v2/plans?query={query}&pageNumber={pageNo}&pageSize={pageSize}");

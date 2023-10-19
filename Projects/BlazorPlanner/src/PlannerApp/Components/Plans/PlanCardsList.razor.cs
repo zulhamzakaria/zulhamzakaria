@@ -8,6 +8,9 @@ public partial class PlanCardsList
     private int _pageNumber = 1;
     private int _pageSize = 10;
     private string _query = String.Empty;
+
+    [Inject]
+    public NavigationManager? NavigationManager { get; set; }
     private bool _isBusy { get; set; }
     [Parameter]
     // This calls the GetPlansAsync(string query = "", int pageNumber = 1, int pageSize = 10)
@@ -26,5 +29,10 @@ public partial class PlanCardsList
         _isBusy = true;
         _planSummaries = await FetchPlans!.Invoke(_query, _pageNumber, _pageSize);
         _isBusy = false;
+    }
+
+    private void EditPlan(PlanSummary planSummary)
+    {
+        NavigationManager.NavigateTo($"/plans/form/{planSummary.Id}");
     }
 }
