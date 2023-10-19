@@ -32,6 +32,16 @@ public class HttpPlansService : IPlansService
 
     }
 
+    public async Task DeleteAsync(string id)
+    {
+        var response = await _httpClient.DeleteAsync($"/api/v2/plans/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorResponse = await response.Content.ReadFromJsonAsync<ApiErrorResponse>();
+            throw new ApiException(errorResponse!, response.StatusCode);
+        }
+    }
+
     public async Task<ApiResponse<PlanDetail>> EditAsync(PlanDetail planDetail, FormFile formFile)
     {
         var form = PreparePlanForm(planDetail, formFile, true);

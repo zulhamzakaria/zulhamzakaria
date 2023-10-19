@@ -9,5 +9,6 @@ public interface IPlansService
     Task<ApiResponse<PlanDetail>> CreateAsync(PlanDetail planDetail, FormFile formFile);
     Task<ApiResponse<PlanDetail>> EditAsync(PlanDetail planDetail, FormFile formFile);
     Task<ApiResponse<PlanDetail>> GetByIdAsync(string id);
+    Task DeleteAsync(string id);
 }
 
