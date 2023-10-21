@@ -32,10 +32,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaWFsb2dzXENvbmZpcm1hdGlvbkRpYWxvZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/Components/Dialogs/PlanDetailsDialog.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaWFsb2dzXFBsYW5EZXRhaWxzRGlhbG9nLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/Components/Layouts/PlannerAppPage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRzXFBsYW5uZXJBcHBQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -111,6 +107,10 @@ build_metadata.AdditionalFiles.CssScope =
 [D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/Components/Dialogs/PlanDetailsDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaWFsb2dzXFBsYW5EZXRhaWxzRGlhbG9nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-94qyu351hx
 
 [D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

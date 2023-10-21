@@ -898,3 +898,4 @@ D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_fra
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\wwwroot\_framework\AKSoftware.Blazor.Utilities.dll.gz
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\bin\Debug\net6.0\AKSoftware.Blazor.Utilities.dll
 D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\build-gz\KLFLKwhB.gz
+D:\Learning1\Projects\BlazorPlanner\src\PlannerApp\obj\Debug\net6.0\scopedcss\Components\Dialogs\PlanDetailsDialog.razor.rz.scp.css
