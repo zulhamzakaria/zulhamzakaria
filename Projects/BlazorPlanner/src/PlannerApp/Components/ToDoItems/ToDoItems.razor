@@ -7,17 +7,27 @@
         @if (_isEditMode)
         {
             <MudTextField Label="Outlined" @bind-Value="_description" Variant="Variant.Outlined" Margin="Margin.Dense"
-                    Class="flex-grow-1 flex-shrink-0 mr-2"/>
-            <MudIconButton Icon="@Icons.Material.Filled.Cancel" Color="Color.Primary" Class="flex-grow-0 flex-shrink-0 mr-1" 
-                    OnClick="() => ToggleEditMode(true)"/>
-            <MudIconButton Icon="@Icons.Material.Filled.Save" Color="Color.Success" Class="flex-grow-0 flex-shrink-0 mr-2"/>
+                          Class="flex-grow-1 flex-shrink-0 mr-2" />
+            <MudIconButton Icon="@Icons.Material.Filled.Cancel" Color="Color.Primary" Class="flex-grow-0 flex-shrink-0 mr-1"
+                           OnClick="() => ToggleEditMode(true)" />
+            <MudIconButton Icon="@Icons.Material.Filled.Save" Color="Color.Success" Class="flex-grow-0 flex-shrink-0 mr-2" />
         }
         else
         {
             <MudText Typo="Typo.body1" Class="flex-grow-1 flex-shrink-1 mr-2 style="cursor:pointer" @onclick="() => ToggleEditMode(false)">
                 @ToDoItem.Description
             </MudText>
-            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Class="flex-grow-0 flex-shrink-0 mr-2" />
+
+            @if (_isBusy)
+            {
+                <MudProgressCircular Color="Color.Primary" Indeterminate="true" Class="flex-grow-0 flex-shrink-0 mr-2"/>
+            }
+            else
+            {
+                <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Class="flex-grow-0 flex-shrink-0 mr-2"
+                               OnClick="RemoveToItemAsync" />
+            }
+
         }
     </div>
 </MudPaper>

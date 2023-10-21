@@ -64,4 +64,8 @@ public partial class PlanDetailsDialog
     {
        _toDoItems.Add(toDoItemDetail);
     }
+    private void OnToDoItemDeletedCallback(ToDoItemDetail toDoItemDetail)
+    {
+       _toDoItems.Remove(toDoItemDetail);
+    }
 }

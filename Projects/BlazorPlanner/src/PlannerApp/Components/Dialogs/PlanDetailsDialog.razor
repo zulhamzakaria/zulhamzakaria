@@ -36,7 +36,7 @@
                     <CreateToDoItemsForm PlanId="@PlanId" OnToDoItemAdded="OnToDoItemAddedCallback" />
                     @foreach(var item in _toDoItems)
                     {
-                        <ToDoItems ToDoItem="item"/>
+                        <ToDoItems ToDoItem="item" OnItemDeleted="OnToDoItemDeletedCallback" />
                     }
                 }
             </MudItem>
