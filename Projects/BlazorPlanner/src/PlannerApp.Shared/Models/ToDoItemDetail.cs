@@ -7,5 +7,5 @@ public class ToDoItemDetail
     //public DateTime EstimationDate { get; set; }
     //public DateTime AchievedDate { get; set; }
     public bool isDone { get; set; }
-    public string? planId { get; set; }
+    public string? PlanId { get; set; }
 }

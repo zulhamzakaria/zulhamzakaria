@@ -68,4 +68,10 @@ public partial class PlanDetailsDialog
     {
        _toDoItems.Remove(toDoItemDetail);
     }
+    private void OnToDoItemEditedCallback(ToDoItemDetail toDoItemDetail)
+    {
+        var editedItem = _toDoItems.SingleOrDefault(i => i.Id == toDoItemDetail.Id);
+        editedItem.Description = toDoItemDetail.Description;
+        editedItem.isDone = toDoItemDetail.isDone;
+    }
 }
