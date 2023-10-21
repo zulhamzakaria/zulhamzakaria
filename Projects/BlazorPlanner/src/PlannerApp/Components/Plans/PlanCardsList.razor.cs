@@ -15,6 +15,8 @@ public partial class PlanCardsList
 
     [Parameter]
     public EventCallback<PlanSummary> OnEditClicked { get; set; }
+    [Parameter]
+    public EventCallback<PlanSummary> OnViewClicked { get; set; }
 
     [Parameter]
     public EventCallback<PlanSummary> OnDeleteClicked { get; set; }

@@ -8,9 +8,9 @@
 @if (_isCardsViewEnabled)
 {
     @* // wires up the Func inside PlanCardsList with the GetPlansAsync *@
-    <PlanCardsList FetchPlans="GetPlansAsync" OnEditClicked="EditPlan" OnDeleteClicked="DeletePlan"/>
+    <PlanCardsList FetchPlans="GetPlansAsync" OnEditClicked="EditPlan" OnDeleteClicked="DeletePlan" OnViewClicked="ViewPlan"/>
 }
 else
 {
-    <PlansTable OnEditClicked="EditPlan" OnDeleteClicked="DeletePlan"/>
+    <PlansTable OnEditClicked="EditPlan" OnDeleteClicked="DeletePlan" OnViewClicked="ViewPlan"/>
 }

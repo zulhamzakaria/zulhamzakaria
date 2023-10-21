@@ -106,5 +106,21 @@ public partial class PlansList
     }
     #endregion region
 
+    #region View
+    private void ViewPlan(PlanSummary planSummary)
+    {
+        // pass parameters to the razor page dialog
+        var parameters = new DialogParameters<ConfirmationDialog>
+        {
+            { "PlanId", planSummary.Id }
+        };
+
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.Medium };
+
+        // for handling the result
+        var dialog = DialogService!.Show<PlanDetailsDialog>("Details", parameters, options);
+    }
+    #endregion
+
 }
 

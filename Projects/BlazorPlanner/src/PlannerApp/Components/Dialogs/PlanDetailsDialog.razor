@@ -1,0 +1,48 @@
+﻿@namespace PlannerApp.Components
+
+<MudDialog>
+    <TitleContent>
+        @if (_isBusy)
+        {
+            <MudText Typo="Typo.h6">
+                <text>Loading...</text>
+            </MudText>
+        }
+        else
+        {
+            <MudText Typo="Typo.h6">
+                @_planDetail?.Title
+            </MudText>
+        }
+    </TitleContent>
+    <DialogContent>
+        <MudGrid>
+            <MudItem sm="12" md="6">
+                @if (_isBusy)
+                {
+                    <MudSkeleton Animation="Animation.Wave" SkeletonType="SkeletonType.Rectangle" Height="40px"
+                                 Style="min-width:250px" />
+                    <MudSkeleton Animation="Animation.Wave" SkeletonType="SkeletonType.Text"
+                                 Style="min-width:250px" />
+                    <MudSkeleton Animation="Animation.Wave" SkeletonType="SkeletonType.Text"
+                                 Style="min-width:250px" />
+                    <MudSkeleton Animation="Animation.Wave" SkeletonType="SkeletonType.Text"
+                                 Style="min-width:250px" />
+                    <MudSkeleton Animation="Animation.Wave" SkeletonType="SkeletonType.Text"
+                                 Style="min-width:250px" />
+                }
+                else
+                {
+
+                }
+            </MudItem>
+            <MudItem sm="12" md="6">
+
+            </MudItem>
+        </MudGrid>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Close">Close</MudButton>
+    </DialogActions>
+</MudDialog>
+
