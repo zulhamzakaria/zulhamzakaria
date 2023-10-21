@@ -211,7 +211,7 @@
       "mscorlib.dll": "sha256-jzikATOUXZ4ADvFQ16S0KGAR1MWeQw31aXXccUFs08w=",
       "netstandard.dll": "sha256-87jtKWKXMg3nXj8D1mLQabI+cTWOPvy5ll3sBYj\/ZhI=",
       "System.Private.CoreLib.dll": "sha256-gjd6M5pA\/nOZEI8pvs9SPUAFG1Jppwr9Xl6v7Wab8Fc=",
-      "PlannerApp.Client.Services.dll": "sha256-6SGDwm9oKvN2KG1sOSTCJdv3H0MgvyCunDcHC7V\/tkw=",
+      "PlannerApp.Client.Services.dll": "sha256-xMxt7nXQKnXas2kFJsDE9TzKxFiPlHcQxIhmO6MTioQ=",
       "PlannerApp.Shared.dll": "sha256-\/JKMLv9S18yFRbZC4Ae2uftPJCjnYx5Onerdid8AeXg=",
       "PlannerApp.dll": "sha256-Zc2StxqILB3f693XKXt4lNwJFtdSmeEDRZyhgZpWmqU="
     },
@@ -219,7 +219,7 @@
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "PlannerApp.Client.Services.pdb": "sha256-dsxOjL8X5BM49YIC+2aFeDvcyNFowVSQlKRTM8WIc4U=",
+      "PlannerApp.Client.Services.pdb": "sha256-3UHebtu704u7OAk+IBCsg9kCx6iL9P3dWXokECmTTik=",
       "PlannerApp.Shared.pdb": "sha256-JmygGwHxaUZm6AdCoB263BoMR6hhUipCGucllLUyKYo=",
       "PlannerApp.pdb": "sha256-xwVBOQgTP\/C+EuQRsd8Z\/\/z72A74Z1pn6rUpEOmRAiU="
     },
