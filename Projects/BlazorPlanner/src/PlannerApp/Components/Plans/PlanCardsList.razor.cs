@@ -15,6 +15,9 @@ public partial class PlanCardsList
     [Parameter]
     public EventCallback<PlanSummary> OnEditClicked { get; set; }
 
+    [Parameter]
+    public EventCallback<PlanSummary> OnDeleteClicked { get; set; }
+
     private bool _isBusy { get; set; }
     [Parameter]
     // This calls the GetPlansAsync(string query = "", int pageNumber = 1, int pageSize = 10)

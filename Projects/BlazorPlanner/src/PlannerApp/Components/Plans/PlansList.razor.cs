@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Authorization.Infrastructure;
+using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using PlannerApp.Client.Services.Exceptions;
 using PlannerApp.Client.Services.Interfaces;
 using PlannerApp.Shared.Models;
@@ -12,6 +14,9 @@ public partial class PlansList
 
     [Inject]
     public NavigationManager? NavigationManager { get; set; }
+
+    [Inject]
+    public IDialogService? DialogService { get; set; }
 
     private bool _isBusy = false;
     private string _errorMessage = string.Empty;
@@ -62,5 +67,28 @@ public partial class PlansList
     {
         NavigationManager?.NavigateTo($"/plans/form/{planSummary.Id}");
     }
+
+    #region Delete
+    private async Task DeletePlanner(PlanSummary planSummary)
+    {
+        // pass parameters to the razor page dialog
+        var parameters = new DialogParameters<ConfirmationDialog>();
+        parameters.Add(x => x.ContentText, $"Do you really want to delete the {planSummary.Title} plan? ");
+        parameters.Add(x => x.ButtonText, "Delete");
+        parameters.Add(x => x.Color, Color.Error);
+
+        var options = new DialogOptions() { CloseButton = true, MaxWidth = MaxWidth.ExtraSmall };
+
+        // for handling the result
+        var dialog = await DialogService!.Show<ConfirmationDialog>("Delete", parameters, options).Result;
+
+        if (!dialog.Canceled)
+        {
+            // delete confirmed
+            await PlansService!.DeleteAsync(planSummary.Id!);
+        }
+    }
+    #endregion region
+
 }
 

@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBdXRoZW50aWNhdGlvblxSZWdpc3RlckZvcm0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/Components/Dialogs/ConfirmationDialog.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEaWFsb2dzXENvbmZpcm1hdGlvbkRpYWxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/Components/Layouts/PlannerAppPage.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRzXFBsYW5uZXJBcHBQYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
