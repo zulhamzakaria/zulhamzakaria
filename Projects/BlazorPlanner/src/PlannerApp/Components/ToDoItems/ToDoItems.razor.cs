@@ -27,6 +27,12 @@ public partial class ToDoItems
     private bool _isEditMode = false;
     private string? _errorMessage = string.Empty;
     private string? _description = string.Empty;
+    private string? _descriptionStyle => $"cursor:pointer;{(!_isChecked ? "":"text-decoration: line-through")}";
+
+    protected override void OnInitialized()
+    {
+        _isChecked = ToDoItem!.isDone;
+    }
     private void ToggleEditMode(bool isCancel)
     {
         if (_isEditMode)
@@ -76,6 +82,28 @@ public partial class ToDoItems
 
             // to notify the parent about the added ToDo item
             await OnItemEdited.InvokeAsync(result.Value);
+        }
+        catch (ApiException ex)
+        {
+            // TO DO
+        }
+        catch (Exception ex)
+        {
+            // TO DO
+        }
+        _isBusy = false;
+    }
+    private async Task ToggleToDoItemAsync(bool value)
+    {
+        try
+        {
+            _isBusy = true;
+            await ToDoItemsService!.ToggleAsync(ToDoItem!.Id!);
+            ToDoItem.isDone = !ToDoItem.isDone;
+            _isChecked = ToDoItem.isDone;
+
+            // to notify the parent about the added ToDo item
+            await OnItemEdited.InvokeAsync(ToDoItem);
         }
         catch (ApiException ex)
         {
