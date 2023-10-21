@@ -6,7 +6,8 @@
 
         @if (_isEditMode)
         {
-            <MudTextField Label="Description" @bind-Value="_description" Variant="Variant.Outlined" Margin="Margin.Dense"/>
+            <MudTextField Label="Outlined" @bind-Value="_description" Variant="Variant.Outlined" Margin="Margin.Dense"
+                    Class="flex-grow-1 flex-shrink-0 mr-2"/>
             <MudIconButton Icon="@Icons.Material.Filled.Cancel" Color="Color.Primary" Class="flex-grow-0 flex-shrink-0 mr-2" />
             <MudIconButton Icon="@Icons.Material.Filled.Save" Color="Color.Success" Class="flex-grow-0 flex-shrink-0 mr-2" 
                 OnClick="() => _isEditMode = false"/>

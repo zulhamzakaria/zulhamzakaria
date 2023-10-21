@@ -57,4 +57,9 @@ public partial class PlanDetailsDialog
         }
         _isBusy = false;
     }
+
+    private void OnToDoItemAddedCallback(ToDoItemDetail toDoItemDetail)
+    {
+        Console.WriteLine(toDoItemDetail.Id);
+    }
 }
