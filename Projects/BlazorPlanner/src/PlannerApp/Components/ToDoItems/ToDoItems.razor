@@ -1,0 +1,23 @@
+﻿@namespace PlannerApp.Components
+
+<MudPaper Elevation="1" Class="mt-2 px-3">
+    <div class="d-flex flex-row align-center">
+        <MudCheckBox @bind-Checked="@_isChecked" Color="Color.Primary" Class="flex-shrink-0 flex-grow-0 mr-2"></MudCheckBox>
+
+        @if (_isEditMode)
+        {
+            <MudTextField Label="Description" @bind-Value="_description" Variant="Variant.Outlined" Margin="Margin.Dense"/>
+            <MudIconButton Icon="@Icons.Material.Filled.Cancel" Color="Color.Primary" Class="flex-grow-0 flex-shrink-0 mr-2" />
+            <MudIconButton Icon="@Icons.Material.Filled.Save" Color="Color.Success" Class="flex-grow-0 flex-shrink-0 mr-2" 
+                OnClick="() => _isEditMode = false"/>
+        }
+        else
+        {
+            <MudText Typo="Typo.body1" Class="flex-grow-1 flex-shrink-1 mr-2 style="cursor:pointer" @onclick="() => _isEditMode=true">
+                Studying Blazor
+            </MudText>
+            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" Class="flex-grow-0 flex-shrink-0 mr-2" />
+        }
+    </div>
+</MudPaper>
+
