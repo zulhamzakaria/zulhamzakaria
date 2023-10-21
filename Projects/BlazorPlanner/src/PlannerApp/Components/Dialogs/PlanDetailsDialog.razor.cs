@@ -20,6 +20,7 @@ public partial class PlanDetailsDialog
     private PlanDetail? _planDetail;
     private bool _isBusy;
     private string? _errorMessage = string.Empty;
+    private List<ToDoItemDetail> _toDoItems = new();
     private void Close()
     {
         MudDialog!.Cancel();
@@ -44,6 +45,7 @@ public partial class PlanDetailsDialog
         {
             var result = await PlansService!.GetByIdAsync(PlanId!);
             _planDetail = result.Value;
+            _toDoItems = _planDetail?.ToDoItems!;
             StateHasChanged();
         }
         catch (ApiException ex)
@@ -60,6 +62,6 @@ public partial class PlanDetailsDialog
 
     private void OnToDoItemAddedCallback(ToDoItemDetail toDoItemDetail)
     {
-        Console.WriteLine(toDoItemDetail.Id);
+       _toDoItems.Add(toDoItemDetail);
     }
 }

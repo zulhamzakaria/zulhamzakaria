@@ -33,12 +33,12 @@
                 }
                 else
                 {
-
+                    <CreateToDoItemsForm PlanId="@PlanId" OnToDoItemAdded="OnToDoItemAddedCallback" />
+                    @foreach(var item in _toDoItems)
+                    {
+                        <ToDoItems ToDoItem="item"/>
+                    }
                 }
-            </MudItem>
-            <MudItem sm="12" md="7">
-                <CreateToDoItemsForm PlanId="@PlanId" OnToDoItemAdded="OnToDoItemAddedCallback"/>
-                <ToDoItems/>
             </MudItem>
         </MudGrid>
     </DialogContent>
