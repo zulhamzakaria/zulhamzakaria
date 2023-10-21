@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization.Infrastructure;
+﻿using AKSoftware.Blazor.Utilities;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using PlannerApp.Client.Services.Exceptions;
@@ -69,7 +70,7 @@ public partial class PlansList
     }
 
     #region Delete
-    private async Task DeletePlanner(PlanSummary planSummary)
+    private async Task DeletePlan(PlanSummary planSummary)
     {
         // pass parameters to the razor page dialog
         var parameters = new DialogParameters<ConfirmationDialog>();
@@ -84,8 +85,23 @@ public partial class PlansList
 
         if (!dialog.Canceled)
         {
+            try
+            {
+                await PlansService!.DeleteAsync(planSummary.Id!);
+
+                // send message for deleted plan
+                MessagingCenter.Send(this, "plan_deleted", planSummary);
+            }
+            catch (ApiException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
             // delete confirmed
-            await PlansService!.DeleteAsync(planSummary.Id!);
         }
     }
     #endregion region

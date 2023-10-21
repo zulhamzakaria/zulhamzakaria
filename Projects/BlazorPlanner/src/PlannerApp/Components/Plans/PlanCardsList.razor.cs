@@ -1,3 +1,4 @@
+using AKSoftware.Blazor.Utilities;
 using Microsoft.AspNetCore.Components;
 using PlannerApp.Shared.Models;
 
@@ -25,6 +26,16 @@ public partial class PlanCardsList
     public Func<string, int, int, Task<PagedList<PlanSummary>>>? FetchPlans { get; set; }
 
     private PagedList<PlanSummary>? _planSummaries = new();
+
+    protected override void OnInitialized()
+    {
+        // subscribe to the plan_deleted messaging queue (PlansList)
+        MessagingCenter.Subscribe<PlansList, PlanSummary>(this, "plan_deleted", async (sender, args) =>
+        {
+            await GetPlansAsync(_pageNumber);
+            StateHasChanged();
+        });
+    }
     protected async override Task OnInitializedAsync()
     {
         await GetPlansAsync();

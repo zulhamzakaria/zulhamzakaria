@@ -192,6 +192,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AKSoftware.Blazor.Utilities": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Blazored.FluentValidation": {
               "target": "Package",
               "version": "[2.1.0, )"

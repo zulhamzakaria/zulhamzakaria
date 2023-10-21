@@ -1,3 +1,4 @@
+using AKSoftware.Blazor.Utilities;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using PlannerApp.Client.Services.Interfaces;
@@ -18,6 +19,16 @@ public partial class PlansTable
 
     private string _searchQuery = string.Empty;
     private MudTable<PlanSummary>? _table;
+
+    protected override void OnInitialized()
+    {
+        // subscribe to the plan_deleted messaging queue (PlansList)
+        MessagingCenter.Subscribe<PlansList, PlanSummary>(this, "plan_deleted", async (sender, args) =>
+        {
+           await  _table.ReloadServerData();
+            StateHasChanged();
+        });
+    }
     private async Task<TableData<PlanSummary>> ServerReloadAsync(TableState state)
     {
         var result = await PlansService!.GetPlansAsync(_searchQuery, state.Page, state.PageSize);

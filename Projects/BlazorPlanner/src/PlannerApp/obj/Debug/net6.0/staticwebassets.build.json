@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VwR3WecCqVYkDK7ir+cCXsL4d6G5Q5Q28FUYDeLTxx4=",
+  "Hash": "pKbBg4gxOFniRjNfWEVYCd6NhqEHDahTNUOGZHDD+eM=",
   "Source": "PlannerApp",
   "BasePath": "/",
   "Mode": "Root",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\mudblazor\\6.11.0\\staticwebassets\\MudBlazor.min.js"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Blazor.Utilities.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/AKSoftware.Blazor.Utilities.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\aksoftware.blazor.utilities\\1.0.0\\lib\\net5.0\\AKSoftware.Blazor.Utilities.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\blazor.boot.json",
@@ -5506,6 +5523,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Microsoft.Extensions.Localization.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\KLFLKwhB.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/AKSoftware.Blazor.Utilities.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Blazor.Utilities.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Blazor.Utilities.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\KNcKiexH.gz",
