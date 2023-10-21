@@ -61,6 +61,7 @@ public partial class ToDoItems
     }
     private async Task EditToDoItemAsync()
     {
+        _errorMessage = string.Empty;
         try
         {
             if (string.IsNullOrWhiteSpace(_description))
