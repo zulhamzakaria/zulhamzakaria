@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using PlannerApp.Client.Services.Exceptions;
 using PlannerApp.Client.Services.Interfaces;
+using PlannerApp.Shared;
 using PlannerApp.Shared.Models;
 using System.Linq.Expressions;
 
@@ -17,6 +18,9 @@ public partial class PlanForm
 
     [Parameter]
     public string? Id { get; set; }
+
+    [CascadingParameter]
+    public Error Error { get; set; }    
 
     private bool _isEditMode => Id is not null;
     private PlanDetail _planDetail = new();
@@ -54,7 +58,7 @@ public partial class PlanForm
         }
         catch (Exception ex)
         {
-            _errorMessage = ex.Message;
+            Error.HandleError(ex);
         }
 
         _isBusy = false;
