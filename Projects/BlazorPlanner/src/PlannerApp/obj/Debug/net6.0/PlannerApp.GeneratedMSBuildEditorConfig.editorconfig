@@ -100,6 +100,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEVycm9yLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/Shared/LanguageSwitcher.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExhbmd1YWdlU3dpdGNoZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Learning1/Projects/BlazorPlanner/src/PlannerApp/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

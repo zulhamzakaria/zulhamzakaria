@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pKbBg4gxOFniRjNfWEVYCd6NhqEHDahTNUOGZHDD+eM=",
+  "Hash": "tMDR5GUpzEANQFmpKVKmswVdBekYQFpXdC33LLdkUF0=",
   "Source": "PlannerApp",
   "BasePath": "/",
   "Mode": "Root",
@@ -66,6 +66,40 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\aksoftware.blazor.utilities\\1.0.0\\lib\\net5.0\\AKSoftware.Blazor.Utilities.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Localization.MultiLanguages.Blazor.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/AKSoftware.Localization.MultiLanguages.Blazor.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\aksoftware.localization.multilanguages.blazor\\1.5.0\\lib\\net5.0\\AKSoftware.Localization.MultiLanguages.Blazor.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Localization.MultiLanguages.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/AKSoftware.Localization.MultiLanguages.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\aksoftware.localization.multilanguages\\5.8.0\\lib\\netstandard2.0\\AKSoftware.Localization.MultiLanguages.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\blazor.boot.json",
@@ -933,6 +967,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.23\\runtimes\\browser-wasm\\lib\\net6.0\\netstandard.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Newtonsoft.Json.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\newtonsoft.json\\13.0.1\\lib\\netstandard2.0\\Newtonsoft.Json.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\PlannerApp.Client.Services.dll",
@@ -3774,6 +3825,23 @@
       "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.23\\runtimes\\browser-wasm\\lib\\net6.0\\WindowsBase.dll"
     },
     {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\YamlDotNet.dll",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/YamlDotNet.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\zulham\\.nuget\\packages\\yamldotnet\\9.1.0\\lib\\netstandard2.1\\YamlDotNet.dll"
+    },
+    {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\+akOo8WN.gz",
       "SourceId": "PlannerApp",
       "SourceType": "Computed",
@@ -4061,6 +4129,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Data.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\39bSUbDh.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/YamlDotNet.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\YamlDotNet.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\YamlDotNet.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\3nKvJaj0.gz",
@@ -4420,6 +4505,23 @@
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Numerics.dll"
     },
     {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\av4nPLOR.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/AKSoftware.Localization.MultiLanguages.Blazor.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Localization.MultiLanguages.Blazor.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Localization.MultiLanguages.Blazor.dll"
+    },
+    {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\BAGZTmyP.gz",
       "SourceId": "PlannerApp",
       "SourceType": "Computed",
@@ -4605,6 +4707,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Xml.ReaderWriter.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\cO6km0t8.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/AKSoftware.Localization.MultiLanguages.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Localization.MultiLanguages.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\AKSoftware.Localization.MultiLanguages.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\CQ5gAU7T.gz",
@@ -5370,6 +5489,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Text.RegularExpressions.dll"
+    },
+    {
+      "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\IN3W0T9b.gz",
+      "SourceId": "PlannerApp",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Newtonsoft.Json.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Newtonsoft.Json.dll"
     },
     {
       "Identity": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\obj\\Debug\\net6.0\\build-gz\\ivZ2pbgp.gz",

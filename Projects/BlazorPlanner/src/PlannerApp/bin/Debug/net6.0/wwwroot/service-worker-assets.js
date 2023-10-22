@@ -81,6 +81,14 @@
       "url": "_framework\/AKSoftware.Blazor.Utilities.dll"
     },
     {
+      "hash": "sha256-RaOkPrp1Fifafc3rcevYHCFyTCf2m28scUudZ0sc3jo=",
+      "url": "_framework\/AKSoftware.Localization.MultiLanguages.dll"
+    },
+    {
+      "hash": "sha256-\/WDBKehtuaAe5JPJSVJJ0c6UkY51urHP2Vl7g6cT7SM=",
+      "url": "_framework\/AKSoftware.Localization.MultiLanguages.Blazor.dll"
+    },
+    {
       "hash": "sha256-9ph4qOuJJI3IP3WrFld2nQ\/yLkrpmLjFJgQI+BUTHJ4=",
       "url": "_framework\/Blazored.FluentValidation.dll"
     },
@@ -221,12 +229,20 @@
       "url": "_framework\/MudBlazor.dll"
     },
     {
+      "hash": "sha256-cs8pHUurDt0IqbB8YXPh560au3q3J\/1wRL9jBddRVmE=",
+      "url": "_framework\/Newtonsoft.Json.dll"
+    },
+    {
       "hash": "sha256-uJqVY8AsmiTyUIvbmoIn5Lw5eq6pk4hgLCEkDNPk6ys=",
       "url": "_framework\/System.IdentityModel.Tokens.Jwt.dll"
     },
     {
       "hash": "sha256-6+E55JXedimdw1c1bDtVg4K7XuWjVWVTifH8QpfzXSY=",
       "url": "_framework\/System.IO.Pipelines.dll"
+    },
+    {
+      "hash": "sha256-MvGMnc4qzUEOxW398+0+g2zSN\/QHoNehqtrSmvpJsTs=",
+      "url": "_framework\/YamlDotNet.dll"
     },
     {
       "hash": "sha256-u5aF\/IGf40ulg6wsWB8\/Gj+C5NvuZNaAHhWoQq03H7w=",
@@ -937,11 +953,11 @@
       "url": "_framework\/PlannerApp.Shared.pdb"
     },
     {
-      "hash": "sha256-OnKjQ8n9GNAmHmjCZQ3MqswUfWALA08h9Cr60xLh1wY=",
+      "hash": "sha256-YmL2l\/IUVS2AI7tHd51\/osaDnb8SuybQfHKDbVrAfWc=",
       "url": "_framework\/PlannerApp.dll"
     },
     {
-      "hash": "sha256-5SPXoqdh2wmFMyFlkSvHSqc8iM5S4NtmB1SJ5ukWbvw=",
+      "hash": "sha256-j2nTZYPNiDDAWHEJiUWgH0dY9Loe\/7yObPhOxsEDcHY=",
       "url": "_framework\/PlannerApp.pdb"
     },
     {
@@ -949,7 +965,7 @@
       "url": "_framework\/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-r24TVkAELrYwEI6jOzfuqudsSHuiAqoad9RjBeChBjc=",
+      "hash": "sha256-8BIUmXqcKfDsLss1wcusouzgkCTUe6r\/MRFVBL1RhYg=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -961,5 +977,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "M0uzrveK"
+  "version": "aTCvETXV"
 };

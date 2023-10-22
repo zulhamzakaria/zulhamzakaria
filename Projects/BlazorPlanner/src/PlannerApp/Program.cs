@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using PlannerApp;
 using PlannerApp.Client.Services;
+using AKSoftware.Localization.MultiLanguages;
+using System.Reflection;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -36,7 +38,11 @@ builder.Services.AddScoped(sp => sp.GetService<IHttpClientFactory>()!.CreateClie
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, JWTAuthenticationStateProvider>();
 
-// register exception handler container
+// register services container
 builder.Services.AddHttpClientServices();
+
+// register Localization container
+// singleton lifetime
+builder.Services.AddLanguageContainer(Assembly.GetExecutingAssembly());
 
 await builder.Build().RunAsync();

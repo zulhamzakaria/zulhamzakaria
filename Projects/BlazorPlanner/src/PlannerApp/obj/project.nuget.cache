@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "UEsNU/WZn1o25eLhb1eB7lJ1y+eJ5z1SX4xIZxVzvqgqXpmCPlTGhbNyH9VU1CYjPik7Q1pwvx2bH/FUquHwUw==",
+  "dgSpecHash": "dTdQ2OhH+SIlPqYpGlRIDoZtDQ7oVWGg8nGvPmXzEd6s544LeIx2yOMVciabSG0RAMYaUyyNdLEgEubUwERMdw==",
   "success": true,
   "projectFilePath": "D:\\Learning1\\Projects\\BlazorPlanner\\src\\PlannerApp\\PlannerApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zulham\\.nuget\\packages\\aksoftware.blazor.utilities\\1.0.0\\aksoftware.blazor.utilities.1.0.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\aksoftware.localization.multilanguages\\5.8.0\\aksoftware.localization.multilanguages.5.8.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\aksoftware.localization.multilanguages.blazor\\1.5.0\\aksoftware.localization.multilanguages.blazor.1.5.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\blazored.fluentvalidation\\2.1.0\\blazored.fluentvalidation.2.1.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\blazored.localstorage\\4.4.0\\blazored.localstorage.4.4.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
@@ -18,7 +20,7 @@
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.aspnetcore.components.webassembly.devserver\\6.0.22\\microsoft.aspnetcore.components.webassembly.devserver.6.0.22.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.aspnetcore.metadata\\6.0.23\\microsoft.aspnetcore.metadata.6.0.23.nupkg.sha512",
-    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.configuration.binder\\6.0.0\\microsoft.extensions.configuration.binder.6.0.0.nupkg.sha512",
@@ -45,8 +47,10 @@
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\mudblazor\\6.11.0\\mudblazor.6.11.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\runtime.any.system.runtime\\4.3.0\\runtime.any.system.runtime.4.3.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\runtime.any.system.text.encoding\\4.3.0\\runtime.any.system.text.encoding.4.3.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.33.0\\system.identitymodel.tokens.jwt.6.33.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
@@ -57,6 +61,7 @@
     "C:\\Users\\zulham\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\yamldotnet\\9.1.0\\yamldotnet.9.1.0.nupkg.sha512",
     "C:\\Users\\zulham\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.23\\microsoft.netcore.app.runtime.mono.browser-wasm.6.0.23.nupkg.sha512"
   ],
   "logs": []

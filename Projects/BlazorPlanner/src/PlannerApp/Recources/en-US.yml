@@ -1,0 +1,28 @@
+﻿GeneralError: Something went wrong. Please try again later
+
+NavMenu:
+ Home: Home
+ Plans: Plans
+ AddPlan: Add Plan
+ About: About
+
+WelcomeTo: Welcome to
+Email: Email
+Required: Required
+Password: Password
+Login: Login
+Register: Register
+FirstName: First Name
+LastName: Last Name
+Cancel: Cancel
+PlanDetails: Plan Details
+Title: Title
+Description: Description
+LoadPicture: Load Picture
+Save: Save
+FileSizeLimitError: The file must be equal or less than 2MB
+InvalidImageFile: Please choose a valid image file
+Cover: Cover
+Actions: Actions
+NewItemDescription: New Item Description
+NewItemPlaceHolder: Add new item...

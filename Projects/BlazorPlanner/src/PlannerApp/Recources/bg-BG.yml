@@ -1,0 +1,26 @@
+GeneralError: Нещо се обърка. Моля, опитайте отново по-късно
+NavMenu:
+  Home: Дом
+  Plans: Планове
+  AddPlan: Добавяне на план
+  About: За
+WelcomeTo: Добре дошли в
+Email: Имейл
+Required: Изисква
+Password: Парола
+Login: Вход
+Register: Регистрирайте се
+FirstName: Собствено име
+LastName: Презиме
+Cancel: Отмени
+PlanDetails: Подробни данни за плана
+Title: Заглавие
+Description: Описание
+LoadPicture: Зареждане на картина
+Save: Спасявам
+FileSizeLimitError: Файлът трябва да е равен или по-малък от 2MB
+InvalidImageFile: Моля, изберете валиден файл с изображение
+Cover: Капак
+Actions: Действия
+NewItemDescription: Ново описание на артикул
+NewItemPlaceHolder: Добавяне на нов елемент...

@@ -196,6 +196,10 @@
               "target": "Package",
               "version": "[1.0.0, )"
             },
+            "AKSoftware.Localization.MultiLanguages.Blazor": {
+              "target": "Package",
+              "version": "[1.5.0, )"
+            },
             "Blazored.FluentValidation": {
               "target": "Package",
               "version": "[2.1.0, )"
