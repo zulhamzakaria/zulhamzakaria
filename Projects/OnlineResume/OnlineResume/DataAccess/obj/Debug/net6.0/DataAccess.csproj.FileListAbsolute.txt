@@ -1,0 +1,17 @@
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\bin\Debug\net6.0\DataAccess.deps.json
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\bin\Debug\net6.0\DataAccess.dll
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\bin\Debug\net6.0\DataAccess.pdb
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfoInputs.cache
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\DataAccess.AssemblyInfo.cs
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CoreCompileInputs.cache
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\DataAccess.dll
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\refint\DataAccess.dll
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\DataAccess.pdb
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\ref\DataAccess.dll
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\bin\Debug\net6.0\Domain.dll
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\bin\Debug\net6.0\Domain.pdb
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\DataAccess.csproj.AssemblyReference.cache
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\obj\Debug\net6.0\DataAccess.csproj.CopyComplete
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\bin\Debug\net6.0\Application.dll
+D:\Learning1\Projects\OnlineResume\OnlineResume\DataAccess\bin\Debug\net6.0\Application.pdb

@@ -1,0 +1,9 @@
+﻿@MinimalAPI_HostAddress = https://localhost:7287
+
+GET {{MinimalAPI_HostAddress}}/api/details
+
+###
+
+GET {{MinimalAPI_HostAddress}}/api/details
+
+###

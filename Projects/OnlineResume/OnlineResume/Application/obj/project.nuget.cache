@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "x7t04cuPUoMYBAC0nuj20bSE6qeV74s105l3j5Em9aGq5UpOYyJ/J2JqmjSeggBl3flnj3I3dttvJDm9sYnj7w==",
+  "success": true,
+  "projectFilePath": "D:\\Learning1\\Projects\\OnlineResume\\OnlineResume\\Application\\Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zulham\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\zulham\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
