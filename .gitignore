@@ -1,0 +1,11 @@
+# Ignore all local appsettings.json files in any project
+**/appsettings.Development.json
+
+# Ignore VS files
+.vs/
+*.user
+*.suo
+
+# Ignore build outputs globally
+bin/
+obj/
