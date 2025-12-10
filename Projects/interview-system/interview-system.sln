@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36804.6 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewSystem.API", "InterviewSystem.API\InterviewSystem.API.csproj", "{60096A7D-8B58-4F16-B45F-55E71C8FCB9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60096A7D-8B58-4F16-B45F-55E71C8FCB9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60096A7D-8B58-4F16-B45F-55E71C8FCB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60096A7D-8B58-4F16-B45F-55E71C8FCB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60096A7D-8B58-4F16-B45F-55E71C8FCB9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A072DC92-0C0E-4334-A7A1-D67012CA7930}
+	EndGlobalSection
+EndGlobal
