@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InterviewSystem.Domain\InterviewSystem.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
