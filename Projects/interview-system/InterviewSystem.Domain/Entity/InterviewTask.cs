@@ -9,36 +9,37 @@ public class InterviewTask : EntityBase
     public Guid CandidateId { get; private set; }
     public InterviewTaskStatus InterviewTaskStatus { get; private set; }
     public DateTimeOffset AssignedAt { get; private set; }
-    public DateTimeOffset CompletedAt { get; private set; }
+    public DateTimeOffset? CompletedAt { get; private set; }
     public CandidateEvaluation? Evaluation { get; set; }
-    public bool Rejected { get; set; }
-    public string? Reason { get; set; }
+    public bool Rejected { get; set; } = false;
+    public string? TaskRejectionReason { get; set; }
 
     public InterviewTask()
     {
-       //EF needs this  
+        //EF needs this  
     }
 
     public InterviewTask(Guid id, Guid interviewRoundId, Guid candidateId,
-        InterviewTaskStatus status, DateTimeOffset assignedAt, DateTimeOffset completedAt,
-        bool recommendedPass, bool rejected, string reason
+        DateTimeOffset assignedAt, bool rejected, string reason
         )
     {
         Id = id;
         InterviewRoundId = interviewRoundId;
         CandidateId = candidateId;
-        InterviewTaskStatus = status;
         AssignedAt = assignedAt;
-        CompletedAt = completedAt;
         Rejected = rejected;
-        Reason = reason;
+        TaskRejectionReason = reason;
     }
 
     public void MarkCompleted(bool recommendedPass, string? notes)
     {
+        //TODO: Result<T>
+        if (InterviewTaskStatus is InterviewTaskStatus.Completed)
+            return;
+
         InterviewTaskStatus = InterviewTaskStatus.Completed;
         Evaluation = recommendedPass ? CandidateEvaluation.Pass(notes)
-            :CandidateEvaluation.Fail(notes!);
+            : CandidateEvaluation.Fail(notes!);
         CompletedAt = DateTimeOffset.UtcNow;
         SetUpdated();
     }
