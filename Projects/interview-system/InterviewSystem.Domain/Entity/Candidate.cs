@@ -23,4 +23,28 @@ public class Candidate: EntityBase
         PhoneNumber = phoneNumber;
         AppliedPosition = appliedPosition;
     }
+
+    
+
+    public void UpdateEmail(string email)
+    {
+        //TODO: use Result<T>
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            throw new Exception("where email");
+        }
+        Email = email;
+        SetUpdated();
+    }
+
+    public void UpdatePhoneNumber(string phoneNumber)
+    {
+        //TODO: use Result<T>
+        if (string.IsNullOrWhiteSpace(phoneNumber))
+        {
+            throw new Exception("where email");
+        }
+        PhoneNumber = phoneNumber;
+        SetUpdated();
+    }
 }
