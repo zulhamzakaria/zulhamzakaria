@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Domain.Entity;
 
-public class Employee
+public class Employee : EntityBase
 {
     public Guid Id { get; private set; }
     public string? Name { get; private set; }
@@ -11,6 +11,7 @@ public class Employee
     public EmployeeDepartment EmployeeDepartment { get; private set; }
     public EmployeePosition EmployeePosition { get; private set; }
     public EmployeeStatus EmployeeStatus { get; private set; }
+
 
     public Employee(){} //required by EF Core
 
