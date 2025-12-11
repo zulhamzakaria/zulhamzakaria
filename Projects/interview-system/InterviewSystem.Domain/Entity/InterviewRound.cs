@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Domain.Entity;
 
-public class InterviewRound
+public class InterviewRound : EntityBase
 {
     public Guid Id { get; private set; }
     public EmployeeDepartment Department { get; private set; }
