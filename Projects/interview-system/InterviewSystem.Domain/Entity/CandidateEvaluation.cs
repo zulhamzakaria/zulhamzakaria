@@ -11,7 +11,7 @@ public class CandidateEvaluation
     }
 
     public static CandidateEvaluation Pass(string? note = null) => new(true, note);
-    public static CandidateEvaluation Fail(string? note)
+    public static CandidateEvaluation Fail(string note)
     {
         if (string.IsNullOrWhiteSpace(note))
         {

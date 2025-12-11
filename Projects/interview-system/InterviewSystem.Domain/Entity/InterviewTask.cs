@@ -34,11 +34,11 @@ public class InterviewTask : EntityBase
         Reason = reason;
     }
 
-    public void MarkCompleted(bool recommendedPass)
+    public void MarkCompleted(bool recommendedPass, string? notes)
     {
         InterviewTaskStatus = InterviewTaskStatus.Completed;
-        Evaluation = recommendedPass ? CandidateEvaluation.Pass()
-            :CandidateEvaluation.Fail();
+        Evaluation = recommendedPass ? CandidateEvaluation.Pass(notes)
+            :CandidateEvaluation.Fail(notes!);
         CompletedAt = DateTimeOffset.UtcNow;
         SetUpdated();
     }
