@@ -35,7 +35,7 @@ public class InterviewTask : EntityBase
     {
         //TODO: Result<T>
         if (InterviewTaskStatus is InterviewTaskStatus.Completed)
-            return;
+            throw new Exception("invalid move");
 
         InterviewTaskStatus = InterviewTaskStatus.Completed;
         Evaluation = recommendedPass ? CandidateEvaluation.Pass(notes)
