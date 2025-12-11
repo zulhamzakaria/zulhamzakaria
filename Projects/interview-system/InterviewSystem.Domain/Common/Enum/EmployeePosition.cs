@@ -4,6 +4,7 @@ public enum EmployeePosition
 {
     Clerk,
     HiringManager,
+    SeniorEngineer,
     TechLead,
     HOD,
     Manager
