@@ -8,6 +8,6 @@ public class InterviewProcess : EntityBase
     public Guid CandidateId { get; private set; }
     public EmployeeDepartment Department { get; private set; }
     public int CurrentSequence { get; private set; }
-    public interview
+    public 
 
 }
