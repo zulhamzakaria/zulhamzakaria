@@ -2,7 +2,7 @@
 
 public enum InterviewProcessStatus
 {
-    TechnicalInterview,
-    AcceptanceInterview,
+    InProcess,
+    Failed,
     Completed
 }
