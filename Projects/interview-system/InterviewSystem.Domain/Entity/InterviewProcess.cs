@@ -9,8 +9,8 @@ public class InterviewProcess : EntityBase
     public EmployeeDepartment Department { get; private set; }
     public int CurrentSequence { get; private set; } //not to be confused with InterviewRound sequence
     public InterviewProcessStatus InterviewProcessStatus { get; private set; }
-    public Guid InterviewerId { get; private set; }
-    public string InterviewerName { get; private set; } = string.Empty;
+    public Guid? CurrentInterviewerId { get; private set; }
+    public string? CurrentInterviewerName { get; private set; } = string.Empty;
 
     private InterviewProcess()
     {
@@ -24,8 +24,8 @@ public class InterviewProcess : EntityBase
         Department = department;
         CurrentSequence = currentSequence;
         InterviewProcessStatus = status;
-        InterviewerId = interviewerId;
-        InterviewerName = interviewerName;
+        CurrentInterviewerId = interviewerId;
+        CurrentInterviewerName = interviewerName;
     }
 
     public void Advance()
