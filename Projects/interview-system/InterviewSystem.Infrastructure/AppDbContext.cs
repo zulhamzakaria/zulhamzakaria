@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<Candidate> Candidates => Set<Candidate>();
     public DbSet<InterviewRound> InterviewRounds => Set<InterviewRound>();
     public DbSet<InterviewTask> InterviewTasks => Set<InterviewTask>();
+    public DbSet<InterviewProcess> InterviewProcesses => Set<InterviewProcess>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
