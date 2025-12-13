@@ -5,21 +5,22 @@ namespace InterviewSystem.Infrastructure;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions options) : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     { }
 
     public DbSet<Employee> Employees => Set<Employee>();
-    public DbSet<Candidate> Candidate => Set<Candidate>();
+    public DbSet<Candidate> Candidates => Set<Candidate>();
     public DbSet<InterviewRound> InterviewRounds => Set<InterviewRound>();
     public DbSet<InterviewTask> InterviewTasks => Set<InterviewTask>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         ConfigureInterviewRound(modelBuilder);
         ConfigureInterviewTask(modelBuilder);
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-        base.OnModelCreating(modelBuilder);
     }
 
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
@@ -36,7 +37,9 @@ public class AppDbContext : DbContext
             builder.HasKey(x => x.Id);
             builder.OwnsOne(x => x.Evaluation, eval =>
             {
-                eval.Property(ev => ev.Passed).IsRequired();
+                eval.Property(ev => ev.Passed)
+                .IsRequired()
+                .HasColumnName("EvaluationPassed");
                 eval.Property(ev => ev.Note);
             });
         });
@@ -67,6 +70,9 @@ public class AppDbContext : DbContext
 
                 item.Property(i => i.Sequence).IsRequired();
                 item.Property(i => i.Position).IsRequired();
+
+                item.HasIndex("InterviewRoundId", nameof(InterviewRoundItem.Sequence))
+                .IsUnique();
 
                 item.ToTable("InterviewRoundItems");
 
