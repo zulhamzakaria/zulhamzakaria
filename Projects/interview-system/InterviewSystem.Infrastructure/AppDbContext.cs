@@ -41,7 +41,8 @@ public class AppDbContext : DbContext
                 eval.Property(ev => ev.Passed)
                 .IsRequired()
                 .HasColumnName("EvaluationPassed");
-                eval.Property(ev => ev.Note);
+                eval.Property(ev => ev.Note)
+                .HasColumnName("EvaluationNote");
             });
         });
 
