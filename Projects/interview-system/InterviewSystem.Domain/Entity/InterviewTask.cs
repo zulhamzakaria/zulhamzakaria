@@ -6,9 +6,9 @@ public class InterviewTask : EntityBase
 {
     public Guid Id { get; private set; }
     public Guid InterviewRoundId { get; private set; }
-    public InterviewRound? InterviewRound { get; private set; }
+    //public InterviewRound? InterviewRound { get; private set; }
     public Guid CandidateId { get; private set; }
-    public Candidate? Candidate { get; private set; }
+    //public Candidate? Candidate { get; private set; }
     public InterviewTaskStatus InterviewTaskStatus { get; private set; }
     public DateTimeOffset AssignedAt { get; private set; }
     public DateTimeOffset? CompletedAt { get; private set; }
