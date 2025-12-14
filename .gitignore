@@ -9,3 +9,4 @@
 # Ignore build outputs globally
 bin/
 obj/
+/Projects/interview-system/InterviewSystem.API/appsettings.Production.json
