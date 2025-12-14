@@ -43,3 +43,6 @@ Thumbs.db
 # Keep core VSA slices and domain intact
 !Domain/
 !Features/
+
+# ASP.NET Core configuration (secrets)
+appsettings.Production.json
