@@ -1,4 +1,6 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
+using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
 namespace InterviewSystem.Domain.Entity;
 
@@ -26,6 +28,18 @@ public class InterviewProcess : EntityBase
         InterviewProcessStatus = status;
         CurrentInterviewerId = interviewerId;
         CurrentInterviewerName = interviewerName;
+    }
+
+    public static Result<InterviewProcess> Create(Guid candidateId, EmployeeDepartment employeeDepartment,
+        int currentSequence, InterviewProcessStatus interviewProcessStatus, 
+        Guid currentInterviewerId, string currentInterviewerName)
+    {
+        List<Error> errors = new ();
+
+        if(candidateId == Guid.Empty)
+        {
+
+        }
     }
 
     public void Advance()
