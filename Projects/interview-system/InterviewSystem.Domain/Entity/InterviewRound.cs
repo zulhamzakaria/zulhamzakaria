@@ -1,6 +1,7 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
+using System.Runtime.CompilerServices;
 
 namespace InterviewSystem.Domain.Entity;
 
@@ -46,7 +47,14 @@ public class InterviewRound : EntityBase
         }
 
 
+        var round = new InterviewRound()
+        {
+            Id = Guid.NewGuid(),
+            Department = employeeDepartment,
+            NumberOfRounds = 10
+        };
 
+        return Result<InterviewRound>.Success(round);   
     }
 
 }
