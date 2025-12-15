@@ -1,4 +1,4 @@
-﻿namespace InterviewSystem.Domain.Common.Enum;
+﻿namespace InterviewSystem.Domain.Common.Enums;
 
 public enum InterviewProcessStatus
 {
