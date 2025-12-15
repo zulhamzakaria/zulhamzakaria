@@ -1,4 +1,6 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
+using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
 namespace InterviewSystem.Domain.Entity;
 
@@ -22,6 +24,29 @@ public class InterviewRound : EntityBase
         Department = department;
         _items = items.OrderBy(i => i.Sequence).ToList();
         NumberOfRounds = items.Count;
+    }
+
+    public static Result<InterviewRound> Create(EmployeeDepartment employeeDepartment, List<Employee> employees)
+    {
+
+        List<Error> errors = new();
+
+        if (Enum.IsDefined(employeeDepartment) is false)
+        {
+            errors.Add(GenericErrors.InvalidEnumValue(employeeDepartment));
+        }
+        if (employees is null || employees.Any() is false)
+        {
+            errors.Add(GenericErrors.Required(nameof(employees)));
+        }
+
+        if (errors.Any())
+        {
+            return Result<InterviewRound>.Failure(errors);
+        }
+
+
+
     }
 
 }
