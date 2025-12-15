@@ -1,4 +1,6 @@
-﻿namespace InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common.ErrorHandling.Errors;
+
+namespace InterviewSystem.Domain.Common.ErrorHandling;
 
 public class Result<T>
 {
@@ -19,11 +21,19 @@ public class Result<T>
     public static Result<T> Success(T value)
         => new Result<T>(true, value, string.Empty, null);
 
-    public static Result<T> Failure(string errorMessage, string errorCode)
-    {
-        if (string.IsNullOrWhiteSpace(errorCode))
-            throw new ArgumentNullException("Error code must be provided!");
+    //public static Result<T> Failure(string errorMessage, string errorCode)
+    //{
+    //    if (string.IsNullOrWhiteSpace(errorCode))
+    //        throw new ArgumentNullException("Error code must be provided!");
 
-        return new Result<T>(false, default, errorMessage, errorCode);
+    //    return new Result<T>(false, default, errorMessage, errorCode);
+    //}
+
+    public static Result<T> Failure(Error error)
+    {
+        if (string.IsNullOrWhiteSpace(error.Code))
+            throw new ArgumentNullException("Error code must be provided!");
+        return new Result<T>(false, default, error.Message, error.Code);
     }
+
 }
