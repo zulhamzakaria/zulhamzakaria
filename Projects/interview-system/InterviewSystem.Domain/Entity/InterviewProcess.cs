@@ -19,16 +19,16 @@ public class InterviewProcess : EntityBase
         //EF Core needs this        
     }
 
-    private InterviewProcess(Guid candidateId, EmployeeDepartment department, int currentSequence
-        , InterviewProcessStatus status, Guid interviewerId, string interviewerName)
-    {
-        CandidateId = candidateId;
-        Department = department;
-        CurrentSequence = currentSequence;
-        InterviewProcessStatus = status;
-        CurrentInterviewerId = interviewerId;
-        CurrentInterviewerName = interviewerName;
-    }
+    //private InterviewProcess(Guid candidateId, EmployeeDepartment department, int currentSequence
+    //    , InterviewProcessStatus status, Guid interviewerId, string interviewerName)
+    //{
+    //    CandidateId = candidateId;
+    //    Department = department;
+    //    CurrentSequence = currentSequence;
+    //    InterviewProcessStatus = status;
+    //    CurrentInterviewerId = interviewerId;
+    //    CurrentInterviewerName = interviewerName;
+    //}
 
     public static Result<InterviewProcess> Create(Guid candidateId, EmployeeDepartment employeeDepartment,
         int currentSequence, InterviewProcessStatus interviewProcessStatus,
