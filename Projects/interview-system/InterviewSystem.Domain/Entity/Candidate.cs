@@ -1,4 +1,6 @@
 ﻿using InterviewSystem.Domain.Common.Enum;
+using InterviewSystem.Domain.Common.ErrorHandling;
+using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
 namespace InterviewSystem.Domain.Entity;
 
@@ -24,7 +26,13 @@ public class Candidate: EntityBase
         AppliedPosition = appliedPosition;
     }
 
-    
+    public static Result<Candidate> Create(string name, string email, string phoneNumber, AppliedPosition appliedPosition)
+    {
+        if(string.IsNullOrWhiteSpace(name))
+        {
+            return Result<Candidate>.Failure(GenericErrors.Required(name));
+        }
+    }
 
     public void UpdateEmail(string email)
     {
