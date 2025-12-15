@@ -6,6 +6,10 @@ namespace InterviewSystem.Domain.Entity;
 
 public class Employee : EntityBase
 {
+    private const int MinLength = 1;
+    private const int MaxNameLength = 100;
+    private const int MaxEmailLength = 100;
+
     public Guid Id { get; private set; }
     public string? Name { get; private set; }
     public string? Email { get; private set; }
@@ -15,26 +19,47 @@ public class Employee : EntityBase
     public EmployeeStatus EmployeeStatus { get; private set; }
 
 
-    public Employee(){} //required by EF Core
+    public Employee() { } //required by EF Core
 
-    public Employee(Guid id, string name, string email,
-        EmployeeType type, EmployeeDepartment department, 
-        EmployeePosition position, EmployeeStatus status)
-    {
-        Id = id;
-        Name = name;
-        Email = email;
-        EmployeeType = type;
-        EmployeeDepartment = department;
-        EmployeePosition = position;
-        EmployeeStatus = status;
-    }
+    //public Employee(Guid id, string name, string email,
+    //    EmployeeType type, EmployeeDepartment department, 
+    //    EmployeePosition position, EmployeeStatus status)
+    //{
+    //    Id = id;
+    //    Name = name;
+    //    Email = email;
+    //    EmployeeType = type;
+    //    EmployeeDepartment = department;
+    //    EmployeePosition = position;
+    //    EmployeeStatus = status;
+    //}
 
     public static Result<Employee> Create(string name, string email, EmployeeType type,
         EmployeeDepartment department, EmployeePosition position, EmployeeStatus status)
     {
+
+        List<Error> errors = new();
+
         if (string.IsNullOrWhiteSpace(name))
-            return Result<Employee>.Failure(GenericErrors.Required(nameof(name)));
+            errors.Add(GenericErrors.Required(nameof(name)));
+        if (string.IsNullOrWhiteSpace(email))
+            errors.Add(GenericErrors.Required(nameof(email)));
+        if (name.Length > MaxNameLength)
+            errors.Add(GenericErrors.InvalidLength(nameof(name), MinLength, MaxNameLength));
+        if (email.Length > MaxEmailLength)
+            errors.Add(GenericErrors.InvalidLength(nameof(name), MinLength, MaxEmailLength));
+
+        if (Enum.IsDefined<EmployeeType>(type) is false)
+            errors.Add(GenericErrors.InvalidEnumValue(type));
+        if (Enum.IsDefined<EmployeeDepartment>(department) is false)
+            errors.Add(GenericErrors.InvalidEnumValue(type));
+        if (Enum.IsDefined<EmployeePosition>(position) is false)
+            errors.Add(GenericErrors.InvalidEnumValue(type));
+        if (Enum.IsDefined<EmployeeStatus>(status) is false)
+            errors.Add(GenericErrors.InvalidEnumValue(type));
+
+        if (errors.Any())
+            return Result<Employee>.Failure(errors);
 
         var employee = new Employee()
         {

@@ -6,10 +6,10 @@ namespace InterviewSystem.Domain.Entity;
 
 public class Candidate : EntityBase
 {
-    const int MinLength = 1;
-    const int MaxNameLength = 100;
-    const int MaxEmailLength = 100;
-    const int MaxPhoneNumberLength = 20;
+    private const int MinLength = 1;
+    private const int MaxNameLength = 100;
+    private const int MaxEmailLength = 100;
+    private const int MaxPhoneNumberLength = 20;
 
     public Guid Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
