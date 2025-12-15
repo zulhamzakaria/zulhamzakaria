@@ -1,4 +1,4 @@
-﻿using InterviewSystem.Domain.Common.Enum;
+﻿using InterviewSystem.Domain.Common.Enums;
 
 namespace InterviewSystem.Domain.Entity;
 

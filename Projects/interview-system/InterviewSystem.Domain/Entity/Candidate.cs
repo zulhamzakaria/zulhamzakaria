@@ -1,4 +1,4 @@
-﻿using InterviewSystem.Domain.Common.Enum;
+﻿using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
