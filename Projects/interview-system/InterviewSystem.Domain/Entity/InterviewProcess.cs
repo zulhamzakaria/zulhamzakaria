@@ -20,7 +20,7 @@ public class InterviewProcess : EntityBase
     }
 
     private InterviewProcess(Guid candidateId, EmployeeDepartment department, int currentSequence
-        ,InterviewProcessStatus status, Guid interviewerId, string interviewerName)
+        , InterviewProcessStatus status, Guid interviewerId, string interviewerName)
     {
         CandidateId = candidateId;
         Department = department;
@@ -31,25 +31,59 @@ public class InterviewProcess : EntityBase
     }
 
     public static Result<InterviewProcess> Create(Guid candidateId, EmployeeDepartment employeeDepartment,
-        int currentSequence, InterviewProcessStatus interviewProcessStatus, 
+        int currentSequence, InterviewProcessStatus interviewProcessStatus,
         Guid currentInterviewerId, string currentInterviewerName)
     {
-        List<Error> errors = new ();
+        List<Error> errors = new();
 
-        if(candidateId == Guid.Empty)
+        if (candidateId == Guid.Empty)
         {
             errors.Add(GenericErrors.Required(nameof(candidateId)));
         }
-        if(Enum.IsDefined(employeeDepartment) is false)
+        if (Enum.IsDefined(employeeDepartment) is false)
         {
             errors.Add(GenericErrors.InvalidEnumValue(employeeDepartment));
         }
-       
+        if (currentSequence <= 0)
+        {
+            errors.Add(GenericErrors.InvalidIntValue(nameof(currentSequence)));
+        }
+        if (Enum.IsDefined(interviewProcessStatus) is false)
+        {
+            errors.Add(GenericErrors.InvalidEnumValue(interviewProcessStatus));
+        }
+        if (currentInterviewerId == Guid.Empty)
+        {
+            errors.Add(GenericErrors.Required(nameof(currentInterviewerId)));
+        }
+        if (string.IsNullOrWhiteSpace(currentInterviewerName))
+        {
+            errors.Add(GenericErrors.Required(nameof(currentInterviewerName)));
+        }
+
+        if (errors.Any())
+        {
+            return Result<InterviewProcess>.Failure(errors);
+        }
+
+        var process = new InterviewProcess()
+        {
+            Id = Guid.NewGuid(),
+            CandidateId = candidateId,
+            Department = employeeDepartment,
+            CurrentSequence = currentSequence,
+            InterviewProcessStatus = interviewProcessStatus,
+            CurrentInterviewerId = currentInterviewerId,
+            CurrentInterviewerName = currentInterviewerName
+        };
+
+        return Result<InterviewProcess>.Success(process);
+
     }
 
     public void Advance()
     {
-        CurrentSequence ++;
+        CurrentSequence++;
     }
 
     public void MarkFailed()
