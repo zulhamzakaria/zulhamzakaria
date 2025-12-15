@@ -30,8 +30,21 @@ public class Candidate: EntityBase
     {
         if(string.IsNullOrWhiteSpace(name))
         {
-            return Result<Candidate>.Failure(GenericErrors.Required(name));
+            return Result<Candidate>.Failure(GenericErrors.Required(nameof(name)));
         }
+        if(string.IsNullOrWhiteSpace(email))
+        {
+            return Result<Candidate>.Failure(GenericErrors.Required(nameof(email)));
+        }
+        if(string.IsNullOrWhiteSpace(phoneNumber))
+        {
+            return Result<Candidate>.Failure(GenericErrors.Required(nameof(phoneNumber)));
+        }
+        if(Enum.IsDefined(typeof(AppliedPosition), appliedPosition) is false)
+        {
+
+        }
+
     }
 
     public void UpdateEmail(string email)
