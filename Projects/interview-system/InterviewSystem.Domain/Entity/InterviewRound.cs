@@ -9,23 +9,23 @@ public class InterviewRound : EntityBase
 {
     public Guid Id { get; private set; }
     public EmployeeDepartment Department { get; private set; }
-    public int NumberOfRounds { get; private set; } //get number of InterviewRoundItems
 
     private readonly List<InterviewRoundItem> _items = new();
     public IReadOnlyList<InterviewRoundItem> Items => _items.AsReadOnly();
+
+    public int NumberOfRounds => _items.Count(); //get number of InterviewRoundItems
 
     private InterviewRound()
     {
         //EF Core needs this
     }
 
-    private InterviewRound(Guid id, EmployeeDepartment department, List<InterviewRoundItem> items)
-    {
-        Id = id;
-        Department = department;
-        _items = items.OrderBy(i => i.Sequence).ToList();
-        NumberOfRounds = items.Count;
-    }
+    //private InterviewRound(Guid id, EmployeeDepartment department, List<InterviewRoundItem> items)
+    //{
+    //    Id = id;
+    //    Department = department;
+    //    _items = items.OrderBy(i => i.Sequence).ToList();
+    //}
 
     public static Result<InterviewRound> Create(EmployeeDepartment employeeDepartment, List<Employee> employees)
     {
@@ -46,14 +46,23 @@ public class InterviewRound : EntityBase
             return Result<InterviewRound>.Failure(errors);
         }
 
-
         var round = new InterviewRound()
         {
             Id = Guid.NewGuid(),
             Department = employeeDepartment,
-            NumberOfRounds = 10
         };
 
+        int sequence = 0;
+        foreach (var emp in employees!)
+        {
+            var item = InterviewRoundItem.Create(sequence + 1, emp.EmployeePosition);
+            if (item.IsFailure)
+            {
+                return Result<InterviewRound>.Failure(item.Errors);
+            }
+            round._items.Add(item.Value!);
+            sequence++;
+        }
         return Result<InterviewRound>.Success(round);   
     }
 
