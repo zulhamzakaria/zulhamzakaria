@@ -38,8 +38,13 @@ public class InterviewProcess : EntityBase
 
         if(candidateId == Guid.Empty)
         {
-
+            errors.Add(GenericErrors.Required(nameof(candidateId)));
         }
+        if(Enum.IsDefined(employeeDepartment) is false)
+        {
+            errors.Add(GenericErrors.InvalidEnumValue(employeeDepartment));
+        }
+       
     }
 
     public void Advance()

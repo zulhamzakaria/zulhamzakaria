@@ -8,6 +8,6 @@ public static class GenericErrors
         => new($"UNDEFINED_{typeof(TEnum).Name.ToUpper()}_VALUE", $"The value provided for {typeof(TEnum).Name} is invalid");
     public static Error InvalidLength(string fieldName, int min, int max)
         => new($"{fieldName.ToUpper()}_LENGTH_INVALID", $"{fieldName} length must be between {min} and {max} characters");
-    public static Error Required(Guid fieldName)
-        => new($"{fieldName.ToString().ToUpper()}", $"{fieldName} is required");
+    public static Error InvalidValue(string fieldName)
+        => new($"{fieldName.ToUpper()}_VALUE_INVALID", $"{fieldName} cannot be lesser than 0");
 }
