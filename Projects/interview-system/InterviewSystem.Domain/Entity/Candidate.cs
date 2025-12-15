@@ -4,7 +4,7 @@ using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
 namespace InterviewSystem.Domain.Entity;
 
-public class Candidate: EntityBase
+public class Candidate : EntityBase
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
@@ -28,22 +28,27 @@ public class Candidate: EntityBase
 
     public static Result<Candidate> Create(string name, string email, string phoneNumber, AppliedPosition appliedPosition)
     {
-        if(string.IsNullOrWhiteSpace(name))
-        {
+        if (string.IsNullOrWhiteSpace(name))
             return Result<Candidate>.Failure(GenericErrors.Required(nameof(name)));
-        }
-        if(string.IsNullOrWhiteSpace(email))
-        {
-            return Result<Candidate>.Failure(GenericErrors.Required(nameof(email)));
-        }
-        if(string.IsNullOrWhiteSpace(phoneNumber))
-        {
-            return Result<Candidate>.Failure(GenericErrors.Required(nameof(phoneNumber)));
-        }
-        if(Enum.IsDefined(typeof(AppliedPosition), appliedPosition) is false)
-        {
 
-        }
+        if (string.IsNullOrWhiteSpace(email))
+            return Result<Candidate>.Failure(GenericErrors.Required(nameof(email)));
+
+        if (string.IsNullOrWhiteSpace(phoneNumber))
+            return Result<Candidate>.Failure(GenericErrors.Required(nameof(phoneNumber)));
+
+        if (Enum.IsDefined(typeof(AppliedPosition), appliedPosition) is false)
+            return Result<Candidate>.Failure(GenericErrors.InvalidEnumValue(appliedPosition));
+
+        var candidate = new Candidate(
+            Guid.NewGuid(),
+            name,
+            email,
+            phoneNumber,
+            appliedPosition
+            );
+
+        return Result<Candidate>.Success(candidate);
 
     }
 
