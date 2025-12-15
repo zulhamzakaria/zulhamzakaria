@@ -12,7 +12,6 @@ public class InterviewRound : EntityBase
 
     private readonly List<InterviewRoundItem> _items = new();
     public IReadOnlyList<InterviewRoundItem> Items => _items.AsReadOnly();
-
     public int NumberOfRounds => _items.Count(); //get number of InterviewRoundItems
 
     private InterviewRound()
