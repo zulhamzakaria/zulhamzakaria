@@ -1,9 +1,13 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
+using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
 namespace InterviewSystem.Domain.Entity;
 
 public class InterviewTask : EntityBase
 {
+    private const int RejectionReasonMinLength = 1;
+    private const int RejectionReasonMaxLength = 500;
     public Guid Id { get; private set; }
     public Guid InterviewRoundId { get; private set; }
     //public InterviewRound? InterviewRound { get; private set; }
@@ -16,21 +20,50 @@ public class InterviewTask : EntityBase
     public bool Rejected { get; set; } = false;
     public string? TaskRejectionReason { get; set; }
 
-    public InterviewTask()
+    private InterviewTask()
     {
         //EF needs this  
     }
 
-    public InterviewTask(Guid id, Guid interviewRoundId, Guid candidateId,
-        DateTimeOffset assignedAt, bool rejected, string reason
-        )
+    //private InterviewTask(Guid id, Guid interviewRoundId, Guid candidateId,
+    //    DateTimeOffset assignedAt, bool rejected, string reason
+    //    )
+    //{
+    //    Id = id;
+    //    InterviewRoundId = interviewRoundId;
+    //    CandidateId = candidateId;
+    //    AssignedAt = assignedAt;
+    //    Rejected = rejected;
+    //    TaskRejectionReason = reason;
+    //}
+
+    public static Result<InterviewTask> Create(Guid interviewRoundId, Guid candidateId,
+        bool rejected, string? rejectionReason)
     {
-        Id = id;
-        InterviewRoundId = interviewRoundId;
-        CandidateId = candidateId;
-        AssignedAt = assignedAt;
-        Rejected = rejected;
-        TaskRejectionReason = reason;
+        List<Error> errors = new();
+
+        if (interviewRoundId == Guid.Empty)
+            errors.Add(GenericErrors.Required(nameof(interviewRoundId)));
+        if (candidateId == Guid.Empty)
+            errors.Add(GenericErrors.Required(nameof(candidateId)));
+        if(rejected == true && string.IsNullOrWhiteSpace(rejectionReason))
+            errors.Add(GenericErrors.Required(nameof(rejectionReason)));
+        if (string.IsNullOrWhiteSpace(rejectionReason) is false && rejectionReason.Length > RejectionReasonMaxLength)
+            errors.Add(GenericErrors.InvalidLength(nameof(rejectionReason), RejectionReasonMinLength, RejectionReasonMaxLength));
+
+        if(errors.Any())
+            return Result<InterviewTask>.Failure(errors);
+
+        InterviewTask task = new()
+        {
+            Id = Guid.NewGuid(),
+            InterviewRoundId = interviewRoundId,
+            CandidateId = candidateId,
+            AssignedAt = DateTimeOffset.Now,
+            Rejected = rejected,
+            TaskRejectionReason = rejectionReason ?? ""
+        };
+        return Result<InterviewTask>.Success(task);
     }
 
     public void MarkCompleted(bool recommendedPass, string? notes)
