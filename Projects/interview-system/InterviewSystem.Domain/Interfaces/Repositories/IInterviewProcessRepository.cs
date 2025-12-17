@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Domain.Interfaces.Repositories;
 
-public interface IInterviewProcess
+public interface IInterviewProcessRepository
 {
     Task<IReadOnlyCollection<InterviewProcess>> GetAllAsync();
     Task<InterviewProcess?> GetByIdAsync(Guid id);

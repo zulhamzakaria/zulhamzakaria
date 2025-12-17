@@ -1,6 +1,6 @@
 ﻿namespace InterviewSystem.Domain.Interfaces.Repositories;
 
-public interface IUnitOfWork
+public interface IUnitOfWorkRepository
 {
     Task SaveChangesAsync();
 }
