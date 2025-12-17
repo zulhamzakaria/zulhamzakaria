@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InterviewSystem.Application.DTOs.InterviewTask;
 
-public record EmployeeTaskCreateDTO(
+public record InterviewTaskCreateDTO(
     [Required] Guid InterviewRoundId,
     [Required] Guid CandidateId,
     [Required] InterviewTaskStatus InterviewTaskStatus
