@@ -11,4 +11,11 @@
     <ProjectReference Include="..\InterviewSystem.Infrastructure\InterviewSystem.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\Employee\" />
+    <Folder Include="DTOs\InterviewProcess\" />
+    <Folder Include="DTOs\InterviewRound\" />
+    <Folder Include="DTOs\InterviewTask\" />
+  </ItemGroup>
+
 </Project>
