@@ -1,4 +1,5 @@
 ﻿using InterviewSystem.Domain.Common.ErrorHandling;
+using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.Employees.CreateEmployee;
@@ -15,6 +16,12 @@ public sealed class CreateEmployeeHandler
 
     public async Task<Result<Guid>> HandleAsync(CreateEmployeeCommand command)
     {
-        var employeeResult = 
+        var employeeResult = Employee.Create(
+            command.Name,
+            command.Email,
+            command.EmployeeType,
+            command.EmployeeDepartment,
+            command.EmployeePosition
+            );
     }
 }
