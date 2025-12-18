@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace InterviewSystem.Application.Employees.CreateEmployee;
 
-namespace InterviewSystem.Application.Employees.CreateEmployee
+public sealed class CreateEmployeeHandler
 {
-    internal class CreateEmployeeHandler
-    {
-    }
 }
