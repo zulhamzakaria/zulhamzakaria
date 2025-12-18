@@ -11,4 +11,12 @@
     <ProjectReference Include="..\InterviewSystem.Infrastructure\InterviewSystem.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Employees\CreateEmployee\" />
+    <Folder Include="Employees\DeactivateEmployee\" />
+    <Folder Include="Employees\GetEmployeeDetails\" />
+    <Folder Include="Employees\GetEmployeeByDepartment\" />
+    <Folder Include="Employees\UpdateEmployee\" />
+  </ItemGroup>
+
 </Project>
