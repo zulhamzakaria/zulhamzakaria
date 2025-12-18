@@ -1,6 +1,4 @@
-﻿namespace InterviewSystem.Application.Employees.GetEmployeeDetails
-{
-    internal class GetEmployeeDetailsQuery
-    {
-    }
-}
+﻿namespace InterviewSystem.Application.Employees.GetEmployeeDetails;
+
+public sealed record GetEmployeeDetailsQuery(Guid EmployeeId);
+
