@@ -23,5 +23,16 @@ public sealed class CreateEmployeeHandler
             command.EmployeeDepartment,
             command.EmployeePosition
             );
+
+        if (employeeResult.IsFailure)
+            return Result<Guid>.Failure(employeeResult.Errors);
+
+        var newEmployee = employeeResult.Value;
+
+        await _employeeRepository.AddAsync(newEmployee!);
+        await _uow.SaveChangesAsync();
+
+        return Result<Guid>.Success(newEmployee!.Id);
+
     }
 }
