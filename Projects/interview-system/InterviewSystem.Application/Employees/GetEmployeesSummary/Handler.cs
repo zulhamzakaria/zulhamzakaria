@@ -18,10 +18,6 @@ public sealed class Handler
     {
         var employees = await _employeeRepository.GetAllAsync();
 
-        if (employees.Any() is false)
-            return Result<IReadOnlyCollection<EmployeeSummaryDTO>>
-                .Failure(GenericErrors.NotFound(nameof(Employee)));
-
         var dtos = employees.Select(MapToDto).ToList();
         
         return Result<IReadOnlyCollection<EmployeeSummaryDTO>>.Success(dtos); 
