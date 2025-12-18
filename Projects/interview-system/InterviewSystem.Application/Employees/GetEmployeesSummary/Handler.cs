@@ -18,9 +18,15 @@ public sealed class Handler
     {
         var employees = await _employeeRepository.GetAllAsync();
 
-        var dtos = employees.Select(MapToDto).ToList();
+        var filteredEmployees = employees
+            .Where(e => query.EmployeeStatus == null || e.EmployeeStatus == query.EmployeeStatus)
+            .Where(e => query.EmployeeType == null || e.EmployeeType == query.EmployeeType)
+            .Where(e => query.EmployeePosition == null || e.EmployeePosition == query.EmployeePosition)
+            .Where(e => query.EmployeeDepartment == null || e.EmployeeDepartment == query.EmployeeDepartment)
+            .Select(MapToDto)
+            .ToList();
         
-        return Result<IReadOnlyCollection<EmployeeSummaryDTO>>.Success(dtos); 
+        return Result<IReadOnlyCollection<EmployeeSummaryDTO>>.Success(filteredEmployees); 
 
     }
 
