@@ -12,6 +12,8 @@ public static class GenericErrors
         => new($"{fieldName.ToUpper()}_VALUE_INVALID", $"{Humanize(fieldName)} must be bigger than 0");
     public static Error NotFound(string fieldName, Guid id)
         => new($"{fieldName.ToUpper()}_NOT_FOUND", $"No {fieldName} found for id: {id}");
+    public static Error NotFound(string fieldName)
+        => new($"{fieldName.ToUpper()}_NOT_FOUND", $"No records found for {fieldName}");
 
     private static string Humanize(string input)
     {
