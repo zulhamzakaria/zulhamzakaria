@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InterviewSystem.Application.Employees.CreateEmployee
 {
-    internal class CreareEmployeeDTO
+    internal class CreateEmployeeDTO
     {
     }
 }
