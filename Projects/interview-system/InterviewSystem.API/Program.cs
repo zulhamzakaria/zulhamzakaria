@@ -1,5 +1,6 @@
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
+using InterviewSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 //Repo DI Containers
+builder.Services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
 builder.Services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
 
 var app = builder.Build();
