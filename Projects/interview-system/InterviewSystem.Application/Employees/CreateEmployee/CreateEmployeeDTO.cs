@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InterviewSystem.Domain.Common.Enums;
 
-namespace InterviewSystem.Application.Employees.CreateEmployee
-{
-    internal class CreateEmployeeDTO
-    {
-    }
-}
+namespace InterviewSystem.Application.Employees.CreateEmployee;
+
+public sealed record CreateEmployeeRequestDto(
+    string Name,
+    string Email,
+    EmployeeType EmployeeType,
+    EmployeeDepartment EmployeeDepartment,
+    EmployeePosition EmployeePosition
+);
