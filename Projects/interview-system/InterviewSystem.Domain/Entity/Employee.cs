@@ -35,7 +35,7 @@ public class Employee : EntityBase
     //}
 
     public static Result<Employee> Create(string name, string email, EmployeeType type,
-        EmployeeDepartment department, EmployeePosition position, EmployeeStatus status)
+        EmployeeDepartment department, EmployeePosition position)
     {
 
         List<Error> errors = new();
@@ -55,8 +55,6 @@ public class Employee : EntityBase
             errors.Add(GenericErrors.InvalidEnumValue(type));
         if (Enum.IsDefined<EmployeePosition>(position) is false)
             errors.Add(GenericErrors.InvalidEnumValue(type));
-        if (Enum.IsDefined<EmployeeStatus>(status) is false)
-            errors.Add(GenericErrors.InvalidEnumValue(type));
 
         if (errors.Any())
             return Result<Employee>.Failure(errors);
@@ -69,7 +67,7 @@ public class Employee : EntityBase
             EmployeeType = type,
             EmployeeDepartment = department,
             EmployeePosition = position,
-            EmployeeStatus = status
+            EmployeeStatus = EmployeeStatus.Active
         };
 
         return Result<Employee>.Success(employee);
