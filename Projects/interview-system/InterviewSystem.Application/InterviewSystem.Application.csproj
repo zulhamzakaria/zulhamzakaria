@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Employees\DeactivateEmployee\" />
-    <Folder Include="Employees\GetEmployeeDetails\" />
     <Folder Include="Employees\GetEmployeeByDepartment\" />
     <Folder Include="Employees\UpdateEmployee\" />
   </ItemGroup>
