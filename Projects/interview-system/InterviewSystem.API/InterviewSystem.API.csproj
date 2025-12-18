@@ -20,4 +20,8 @@
     <ProjectReference Include="..\InterviewSystem.Infrastructure\InterviewSystem.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

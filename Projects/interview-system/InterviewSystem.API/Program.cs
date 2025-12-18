@@ -1,3 +1,4 @@
+using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +14,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+//Repo DI Containers
+builder.Services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
 
 var app = builder.Build();
 
