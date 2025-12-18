@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Employees\CreateEmployee\" />
     <Folder Include="Employees\DeactivateEmployee\" />
     <Folder Include="Employees\GetEmployeeDetails\" />
     <Folder Include="Employees\GetEmployeeByDepartment\" />
