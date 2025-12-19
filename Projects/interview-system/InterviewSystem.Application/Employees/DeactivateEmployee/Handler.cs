@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common;
+using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Interfaces.Repositories;
 
@@ -15,13 +16,15 @@ public sealed class Handler
         _uow = uow;
     }
 
-    public async Task<Result<Guid>> Handle(DeactivateEmployeeCommand command)
+    public async Task<Result<Unit>> Handle(DeactivateEmployeeCommand command)
     {
         var employee = await _employeeRepository.GetByIdAsync(command.employeeId);
         if (employee is null)
-            return Result<Guid>.Failure(GenericErrors.NotFound(nameof(command.employeeId)));
+            return Result<Unit>.Failure(GenericErrors.NotFound(nameof(command.employeeId)));
 
-        employee.
+        employee.Deactivate();
+        await _uow.SaveChangesAsync();
+        return Result<Unit>.Success(Unit.Value);
     }
 
 }
