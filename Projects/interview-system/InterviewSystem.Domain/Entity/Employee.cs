@@ -72,4 +72,13 @@ public class Employee : EntityBase
 
         return Result<Employee>.Success(employee);
     }
+
+    public Result<Employee> Deactivate()
+    {
+        if (EmployeeStatus == EmployeeStatus.Inactive)
+            return Result<Employee>.Failure(EmployeeErrors.InvalidEmployeeStatus());
+
+        EmployeeStatus = EmployeeStatus.Inactive;
+        return Result<this>
+    }
 }
