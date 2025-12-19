@@ -10,10 +10,4 @@
     <ProjectReference Include="..\InterviewSystem.Domain\InterviewSystem.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Employees\DeactivateEmployee\" />
-    <Folder Include="Employees\GetEmployeeByDepartment\" />
-    <Folder Include="Employees\UpdateEmployee\" />
-  </ItemGroup>
-
 </Project>
