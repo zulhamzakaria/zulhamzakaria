@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.Enums;
+﻿using InterviewSystem.Domain.Common;
+using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
@@ -73,12 +74,12 @@ public class Employee : EntityBase
         return Result<Employee>.Success(employee);
     }
 
-    public Result<Employee> Deactivate()
+    public Result<Unit> Deactivate()
     {
         if (EmployeeStatus == EmployeeStatus.Inactive)
-            return Result<Employee>.Failure(EmployeeErrors.InvalidEmployeeStatus());
+            return Result<Unit>.Failure(EmployeeErrors.InvalidEmployeeStatus());
 
         EmployeeStatus = EmployeeStatus.Inactive;
-        return Result<Employee>.Success(this);
+        return Result<Unit>.Success(Unit.Value);
     }
 }
