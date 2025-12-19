@@ -13,7 +13,7 @@ public sealed class Handler
         _employeeRepository = employeeRepository;
     }
 
-    public async Task<Result<EmployeeDetailsDTO>> Handle(GetEmployeeDetailsQuery query)
+    public async Task<Result<EmployeeDetailsDTO>> HandleAsync(GetEmployeeDetailsQuery query)
     {
         if (query.EmployeeId == Guid.Empty)
             return Result<EmployeeDetailsDTO>.Failure(GenericErrors.Required(nameof(query.EmployeeId)));

@@ -14,7 +14,7 @@ public sealed class Handler
         _employeeRepository = employeeRepository;
     }
 
-    public async Task<Result<IReadOnlyCollection<EmployeeSummaryDTO>>> Handle(GetEmployeesSummaryQuery query)
+    public async Task<Result<IReadOnlyCollection<EmployeeSummaryDTO>>> HandleAsync(GetEmployeesSummaryQuery query)
     {
         var employees = await _employeeRepository.GetAllAsync();
 

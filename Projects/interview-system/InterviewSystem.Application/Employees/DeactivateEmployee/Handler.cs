@@ -16,7 +16,7 @@ public sealed class Handler
         _uow = uow;
     }
 
-    public async Task<Result<Unit>> Handle(DeactivateEmployeeCommand command)
+    public async Task<Result<Unit>> HandleAsync(DeactivateEmployeeCommand command)
     {
         var employee = await _employeeRepository.GetByIdAsync(command.employeeId);
         if (employee is null)
