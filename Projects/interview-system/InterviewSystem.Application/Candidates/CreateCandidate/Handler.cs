@@ -17,7 +17,11 @@ public sealed class Handler
 
     public async Task<Result<Guid>> HandleAsync(Command command)
     {
-        var result = Candidate.Create(command.Name, command.Email, command.PhoneNumber, command.AppliedPosition);
+        var result = Candidate.Create(command.Name, 
+            command.Email, 
+            command.PhoneNumber, 
+            command.AppliedPosition);
+
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
         var newCandidate = result.Value;
