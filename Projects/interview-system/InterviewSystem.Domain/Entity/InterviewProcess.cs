@@ -8,6 +8,7 @@ public class InterviewProcess : EntityBase
 {
     public Guid Id { get; private set; }
     public Guid CandidateId { get; private set; }
+    public string CandidateName { get; private set; }
     public EmployeeDepartment Department { get; private set; }
     public int CurrentSequence { get; private set; } //not to be confused with InterviewRound sequence
     public InterviewProcessStatus InterviewProcessStatus { get; private set; }
@@ -30,7 +31,7 @@ public class InterviewProcess : EntityBase
     //    CurrentInterviewerName = interviewerName;
     //}
 
-    public static Result<InterviewProcess> Create(Guid candidateId, EmployeeDepartment employeeDepartment,
+    public static Result<InterviewProcess> Create(Guid candidateId, string candidateName, EmployeeDepartment employeeDepartment,
         int currentSequence, InterviewProcessStatus interviewProcessStatus,
         Guid currentInterviewerId, string currentInterviewerName)
     {
@@ -39,6 +40,10 @@ public class InterviewProcess : EntityBase
         if (candidateId == Guid.Empty)
         {
             errors.Add(GenericErrors.Required(nameof(candidateId)));
+        }
+        if (string.IsNullOrWhiteSpace(candidateName))
+        {
+            errors.Add(GenericErrors.Required(nameof(candidateName)));
         }
         if (Enum.IsDefined(employeeDepartment) is false)
         {
@@ -70,6 +75,7 @@ public class InterviewProcess : EntityBase
         {
             Id = Guid.NewGuid(),
             CandidateId = candidateId,
+            CandidateName = candidateName,
             Department = employeeDepartment,
             CurrentSequence = currentSequence,
             InterviewProcessStatus = interviewProcessStatus,
