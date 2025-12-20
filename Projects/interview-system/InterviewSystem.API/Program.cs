@@ -18,7 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 //Repo DI Containers
 builder.Services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
-builder.Services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 
 var app = builder.Build();
 
