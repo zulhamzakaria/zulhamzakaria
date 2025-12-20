@@ -8,12 +8,10 @@ namespace InterviewSystem.Application.Candidates.GetCandidateDetails;
 public sealed class Handler
 {
     private readonly ICandidateRepository _candidateRepository;
-    private readonly IUnitOfWorkRepository _uow;
 
-    public Handler(ICandidateRepository candidateRepository, IUnitOfWorkRepository uow)
+    public Handler(ICandidateRepository candidateRepository)
     {
         _candidateRepository = candidateRepository;
-        _uow = uow;
     }
 
     public async Task<Result<DTO>> HandlerAsync(Query query)
