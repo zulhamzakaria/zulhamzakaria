@@ -10,4 +10,16 @@
     <ProjectReference Include="..\InterviewSystem.Domain\InterviewSystem.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="InterviewProcesses\CreateInterviewProcess\" />
+    <Folder Include="InterviewProcesses\GetInterviewProcessDetails\" />
+    <Folder Include="InterviewProcesses\GetInterviewProcessesSummary\" />
+    <Folder Include="InterviewRounds\CreateInterviewRound\" />
+    <Folder Include="InterviewRounds\GetInterviewRoundDetails\" />
+    <Folder Include="InterviewRounds\GetInterviewRoundsSummary\" />
+    <Folder Include="InterviewTasks\CreateInterviewTask\" />
+    <Folder Include="InterviewTasks\GetInterviewTaskDetails\" />
+    <Folder Include="InterviewTasks\GetInterviewTasksSummary\" />
+  </ItemGroup>
+
 </Project>
