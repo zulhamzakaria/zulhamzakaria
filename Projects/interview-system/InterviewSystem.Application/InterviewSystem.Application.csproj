@@ -10,8 +10,4 @@
     <ProjectReference Include="..\InterviewSystem.Domain\InterviewSystem.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Candidates\GetCandidatesSummary\" />
-  </ItemGroup>
-
 </Project>
