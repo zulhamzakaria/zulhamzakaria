@@ -21,7 +21,7 @@ public sealed class Handler
         var employee = await _employeeRepository.GetByIdAsync(query.EmployeeId);
 
         if (employee is null)
-            return Result<EmployeeDetailsDTO>.Failure(GenericErrors.NotFound(nameof(Employee), query.EmployeeId));
+            return Result<EmployeeDetailsDTO>.Failure(GenericErrors.NoRecordFound(nameof(Employee), query.EmployeeId));
 
         var dto = MapToDTO(employee);
 

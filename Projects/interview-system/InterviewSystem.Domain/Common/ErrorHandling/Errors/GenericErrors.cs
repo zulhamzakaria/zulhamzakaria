@@ -10,9 +10,9 @@ public static class GenericErrors
         => new($"{fieldName.ToUpper()}_LENGTH_INVALID", $"{Humanize(fieldName)} length must be between {min} and {max} characters");
     public static Error InvalidIntValue(string fieldName)
         => new($"{fieldName.ToUpper()}_VALUE_INVALID", $"{Humanize(fieldName)} must be bigger than 0");
-    public static Error NotFound(string fieldName, Guid id)
+    public static Error NoRecordFound(string fieldName, Guid id)
         => new($"{fieldName.ToUpper()}_NOT_FOUND", $"No {fieldName} found for id: {id}");
-    public static Error NotFound(string fieldName)
+    public static Error NoRecordsFound(string fieldName)
         => new($"{fieldName.ToUpper()}_NOT_FOUND", $"No records found for {fieldName}");
 
     private static string Humanize(string input)

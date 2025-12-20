@@ -1,6 +1,7 @@
 ﻿using InterviewSystem.Domain.Common;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
+using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.Employees.DeactivateEmployee;
@@ -20,7 +21,7 @@ public sealed class Handler
     {
         var employee = await _employeeRepository.GetByIdAsync(command.employeeId);
         if (employee is null)
-            return Result<Unit>.Failure(GenericErrors.NotFound(nameof(command.employeeId)));
+            return Result<Unit>.Failure(GenericErrors.NoRecordFound(nameof(Employee), command.employeeId));
 
         employee.Deactivate();
         await _uow.SaveChangesAsync();
