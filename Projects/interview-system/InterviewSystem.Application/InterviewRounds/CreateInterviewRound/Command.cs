@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InterviewSystem.Domain.Common.Enums;
 
-namespace InterviewSystem.Application.InterviewRounds.CreateInterviewRound
-{
-    internal class Command
-    {
-    }
-}
+namespace InterviewSystem.Application.InterviewRounds.CreateInterviewRound;
+
+public sealed record Command(EmployeeDepartment EmployeeDepartment);
