@@ -8,7 +8,7 @@ public class InterviewProcess : EntityBase
 {
     public Guid Id { get; private set; }
     public Guid CandidateId { get; private set; }
-    public string CandidateName { get; private set; }
+    public string CandidateName { get; private set; } = string.Empty;
     public EmployeeDepartment Department { get; private set; }
     public int CurrentSequence { get; private set; } //not to be confused with InterviewRound sequence
     public InterviewProcessStatus InterviewProcessStatus { get; private set; }
