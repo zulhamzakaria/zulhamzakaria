@@ -3,7 +3,9 @@
 namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessesSummary;
 
 public sealed record DTO(Guid Id,
+    Guid CandidateId,
     string CandidateName,
-    string CurrentSequence,
+    int CurrentSequence,
     InterviewProcessStatus InterviewProcessStatus,
-    string CurrentInterviewerName);
+    Guid? CurrentInterviewId,
+    string? CurrentInterviewerName);
