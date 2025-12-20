@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InterviewSystem.Domain.Common.Enums;
+using System.ComponentModel.DataAnnotations;
 
-namespace InterviewSystem.Application.InterviewProcesses.CreateInterviewProcess
-{
-    internal class Command
-    {
-    }
-}
+namespace InterviewSystem.Application.InterviewProcesses.CreateInterviewProcess;
+
+public sealed record Command(
+    [Required] Guid CandidateId,
+    [Required] EmployeeDepartment EmployeeDepartment,
+    [Required] int CurrentSequence,
+    [Required] InterviewProcessStatus InterviewProcessStatus,
+    Guid? CurrentInterviewId, //inserted by system?
+    string? CurrentInterviewName); //inserted by system?
