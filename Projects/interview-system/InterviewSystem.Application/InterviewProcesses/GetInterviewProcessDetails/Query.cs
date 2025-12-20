@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InterviewSystem.Domain.Common.Enums;
 
-namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessDetails
-{
-    internal class Query
-    {
-    }
-}
+namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessDetails;
+
+public sealed record Query(Guid Id);
