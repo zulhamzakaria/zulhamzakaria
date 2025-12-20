@@ -8,5 +8,5 @@ public sealed record Command(
     [Required] EmployeeDepartment EmployeeDepartment,
     [Required] int CurrentSequence,
     [Required] InterviewProcessStatus InterviewProcessStatus,
-    Guid? CurrentInterviewId, //inserted by system?
-    string? CurrentInterviewName); //inserted by system?
+    Guid CurrentInterviewId, //inserted by system?
+    string CurrentInterviewName); //inserted by system?
