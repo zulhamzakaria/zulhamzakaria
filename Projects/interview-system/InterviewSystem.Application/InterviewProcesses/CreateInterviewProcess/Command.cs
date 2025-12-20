@@ -5,6 +5,7 @@ namespace InterviewSystem.Application.InterviewProcesses.CreateInterviewProcess;
 
 public sealed record Command(
     [Required] Guid CandidateId,
+    [Required] string CandidateName,
     [Required] EmployeeDepartment EmployeeDepartment,
     [Required] int CurrentSequence,
     [Required] InterviewProcessStatus InterviewProcessStatus,

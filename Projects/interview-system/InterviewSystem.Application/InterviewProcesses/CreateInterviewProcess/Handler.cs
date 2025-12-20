@@ -18,6 +18,7 @@ public sealed class Handler
     public async Task<Result<Guid>> HandleAsync(Command command)
     {
         var result = InterviewProcess.Create(command.CandidateId,
+            command.CandidateName,
             command.EmployeeDepartment,
             command.CurrentSequence,
             command.InterviewProcessStatus,
