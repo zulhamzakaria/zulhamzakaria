@@ -25,7 +25,7 @@ public class InterviewRound : EntityBase
     //    _items = items.OrderBy(i => i.Sequence).ToList();
     //}
 
-    public static Result<InterviewRound> Create(EmployeeDepartment employeeDepartment, List<Employee> employees)
+    public static Result<InterviewRound> Create(EmployeeDepartment employeeDepartment, List<EmployeePosition> positions)
     {
 
         List<Error> errors = new();
@@ -34,9 +34,9 @@ public class InterviewRound : EntityBase
         {
             errors.Add(GenericErrors.InvalidEnumValue(employeeDepartment));
         }
-        if (employees is null || employees.Any() is false)
+        if (positions is null || positions.Any() is false)
         {
-            errors.Add(GenericErrors.Required(nameof(employees)));
+            errors.Add(GenericErrors.Required(nameof(positions)));
         }
 
         if (errors.Any())
@@ -51,9 +51,9 @@ public class InterviewRound : EntityBase
         };
 
         int sequence = 0;
-        foreach (var emp in employees!)
+        foreach (var post in positions!)
         {
-            var item = InterviewRoundItem.Create(sequence + 1, emp.EmployeePosition);
+            var item = InterviewRoundItem.Create(sequence + 1, post);
             if (item.IsFailure)
             {
                 return Result<InterviewRound>.Failure(item.Errors);
