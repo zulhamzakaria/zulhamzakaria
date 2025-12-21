@@ -8,6 +8,7 @@ public class InterviewRound : EntityBase
 {
     public Guid Id { get; private set; }
     public EmployeeDepartment Department { get; private set; }
+    public AppliedPosition AppliedPosition { get; private set; }
 
     private readonly List<InterviewRoundItem> _items = new();
     public IReadOnlyList<InterviewRoundItem> Items => _items.AsReadOnly();
@@ -25,7 +26,8 @@ public class InterviewRound : EntityBase
     //    _items = items.OrderBy(i => i.Sequence).ToList();
     //}
 
-    public static Result<InterviewRound> Create(EmployeeDepartment employeeDepartment, List<EmployeePosition> positions)
+    public static Result<InterviewRound> Create(EmployeeDepartment employeeDepartment,
+        AppliedPosition appliedPosition, List<EmployeePosition> positions)
     {
 
         List<Error> errors = new();
@@ -33,6 +35,10 @@ public class InterviewRound : EntityBase
         if (Enum.IsDefined(employeeDepartment) is false)
         {
             errors.Add(GenericErrors.InvalidEnumValue(employeeDepartment));
+        }
+        if (Enum.IsDefined(appliedPosition) is false)
+        {
+            errors.Add(GenericErrors.InvalidEnumValue(appliedPosition));
         }
         if (positions is null || positions.Any() is false)
         {
@@ -47,6 +53,7 @@ public class InterviewRound : EntityBase
         var round = new InterviewRound()
         {
             Id = Guid.NewGuid(),
+            AppliedPosition = appliedPosition,
             Department = employeeDepartment,
         };
 
@@ -61,7 +68,7 @@ public class InterviewRound : EntityBase
             round._items.Add(item.Value!);
             sequence++;
         }
-        return Result<InterviewRound>.Success(round);   
+        return Result<InterviewRound>.Success(round);
     }
 
 }
