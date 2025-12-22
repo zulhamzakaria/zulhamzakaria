@@ -6,5 +6,5 @@ namespace InterviewSystem.Application.InterviewRounds.CreateInterviewRound;
 public sealed record Command(
     [Required] EmployeeDepartment EmployeeDepartment,
     [Required] AppliedPosition AppliedPosition,
-    [Required] IReadOnlyList<EmployeePosition> EmployeePositions
+    [Required] List<EmployeePosition> EmployeePositions
     );
