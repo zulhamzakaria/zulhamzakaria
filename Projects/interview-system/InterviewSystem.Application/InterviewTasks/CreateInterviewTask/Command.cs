@@ -7,7 +7,4 @@ public sealed record Command(
     [Required] Guid InterviewRoundId,
     [Required] Guid CandidateId,
     [Required] InterviewTaskStatus InterviewTaskStatus,
-    [Required] DateTimeOffset AssignedAt,
-    bool Rejected,
-    string? TaskRejectionReason
-    );
+    [Required] DateTimeOffset AssignedAt);

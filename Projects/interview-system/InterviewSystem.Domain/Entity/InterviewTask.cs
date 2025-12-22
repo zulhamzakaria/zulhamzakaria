@@ -37,8 +37,7 @@ public class InterviewTask : EntityBase
     //    TaskRejectionReason = reason;
     //}
 
-    public static Result<InterviewTask> Create(Guid interviewRoundId, Guid candidateId,
-        bool rejected, string? rejectionReason)
+    public static Result<InterviewTask> Create(Guid interviewRoundId, Guid candidateId)
     {
         List<Error> errors = new();
 
@@ -46,10 +45,10 @@ public class InterviewTask : EntityBase
             errors.Add(GenericErrors.Required(nameof(interviewRoundId)));
         if (candidateId == Guid.Empty)
             errors.Add(GenericErrors.Required(nameof(candidateId)));
-        if(rejected == true && string.IsNullOrWhiteSpace(rejectionReason))
-            errors.Add(GenericErrors.Required(nameof(rejectionReason)));
-        if (string.IsNullOrWhiteSpace(rejectionReason) is false && rejectionReason.Length > RejectionReasonMaxLength)
-            errors.Add(GenericErrors.InvalidLength(nameof(rejectionReason), RejectionReasonMinLength, RejectionReasonMaxLength));
+        //if(rejected == true && string.IsNullOrWhiteSpace(rejectionReason))
+        //    errors.Add(GenericErrors.Required(nameof(rejectionReason)));
+        //if (string.IsNullOrWhiteSpace(rejectionReason) is false && rejectionReason.Length > RejectionReasonMaxLength)
+        //    errors.Add(GenericErrors.InvalidLength(nameof(rejectionReason), RejectionReasonMinLength, RejectionReasonMaxLength));
 
         if(errors.Any())
             return Result<InterviewTask>.Failure(errors);
@@ -61,8 +60,8 @@ public class InterviewTask : EntityBase
             CandidateId = candidateId,
             InterviewTaskStatus = InterviewTaskStatus.Pending,
             AssignedAt = DateTimeOffset.Now,
-            Rejected = rejected,
-            TaskRejectionReason = rejectionReason ?? ""
+            Rejected = false,
+            TaskRejectionReason = null
         };
         return Result<InterviewTask>.Success(task);
     }
