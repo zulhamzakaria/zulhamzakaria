@@ -9,5 +9,6 @@ public sealed record DTO(
     AppliedPosition AppliedPosition,
     InterviewTaskStatus InterviewTaskStatus,
     DateTimeOffset AssignedAt,
-    bool Rejected
+    bool Rejected,
+    string? TaskRejectionReason
     );
