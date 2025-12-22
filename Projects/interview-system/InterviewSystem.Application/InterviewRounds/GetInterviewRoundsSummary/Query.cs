@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InterviewSystem.Domain.Common.Enums;
 
-namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundsSummary
-{
-    internal class Query
-    {
-    }
-}
+namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundsSummary;
+
+public sealed record Query(
+    EmployeeDepartment? EmployeeDepartment,
+    AppliedPosition? AppliedPosition
+    );
