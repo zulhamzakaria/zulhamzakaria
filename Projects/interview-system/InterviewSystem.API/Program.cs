@@ -20,8 +20,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
-builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessRepository>();
+builder.Services.AddScoped<IInterviewTaskRepository, InterviewTaskRepository>();
 builder.Services.AddScoped<IInterviewRoundRepository, InterviewRoundRepository>();
+builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessRepository>();
 
 var app = builder.Build();
 
