@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Entity;
 
-namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails
-{
-    internal class DTO
-    {
-    }
-}
+namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails;
+
+public sealed record DTO(
+    Guid Id,
+    EmployeeDepartment EmployeeDepartment,
+    int NumberOfRounds,
+    AppliedPosition AppliedPosition,
+    IReadOnlyList<InterviewRoundItem> InterviewRoundItems
+    );

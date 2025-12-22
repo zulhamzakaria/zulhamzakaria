@@ -1,12 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails;
 
-namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails
-{
-    internal class Query
-    {
-    }
-}
+public sealed record Query(Guid Id);
