@@ -59,6 +59,7 @@ public class InterviewTask : EntityBase
             Id = Guid.NewGuid(),
             InterviewRoundId = interviewRoundId,
             CandidateId = candidateId,
+            InterviewTaskStatus = InterviewTaskStatus.Pending,
             AssignedAt = DateTimeOffset.Now,
             Rejected = rejected,
             TaskRejectionReason = rejectionReason ?? ""
