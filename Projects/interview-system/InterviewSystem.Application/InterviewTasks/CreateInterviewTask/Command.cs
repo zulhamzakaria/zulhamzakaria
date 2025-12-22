@@ -6,5 +6,6 @@ namespace InterviewSystem.Application.InterviewTasks.CreateInterviewTask;
 public sealed record Command(
     [Required] Guid InterviewRoundId,
     [Required] Guid CandidateId,
+    [Required] string CandidateName,
     [Required] InterviewTaskStatus InterviewTaskStatus,
     [Required] DateTimeOffset AssignedAt);

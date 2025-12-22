@@ -19,7 +19,8 @@ public sealed class Handler
     {
         var result =  InterviewTask.Create(
             command.InterviewRoundId, 
-            command.CandidateId);
+            command.CandidateId,
+            command.CandidateName);
 
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
