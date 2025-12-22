@@ -19,14 +19,12 @@ public sealed class Handler
     {
         var result =  InterviewTask.Create(
             command.InterviewRoundId, 
-            command.CandidateId, 
-            command.Rejected, 
-            command.TaskRejectionReason);
+            command.CandidateId);
 
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
 
-        var newTask = result.Value;
+        var newTask = result.Value!;
 
         await _interviewTaskRepository.AddAsync(newTask);
         await _uow.SaveChangesAsync();
