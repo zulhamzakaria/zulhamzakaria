@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
 
-namespace InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails
-{
-    internal class DTO
-    {
-    }
-}
+public sealed record DTO(
+    Guid Id,
+
+    );
