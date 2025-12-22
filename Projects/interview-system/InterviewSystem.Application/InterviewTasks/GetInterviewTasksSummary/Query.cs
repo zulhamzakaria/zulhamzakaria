@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InterviewSystem.Domain.Common.Enums;
 
-namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary
-{
-    internal class Query
-    {
-    }
-}
+namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
+
+public sealed record Query(
+        EmployeeDepartment? EmployeeDepartment,
+        AppliedPosition? AppliedPosition,
+        InterviewTaskStatus? InterviewTaskStatus,
+        bool? Rejected,
+        string? TaskRejectionReason
+        );
