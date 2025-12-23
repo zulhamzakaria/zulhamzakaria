@@ -3,7 +3,7 @@ using InterviewSystem.Domain.Entity;
 
 namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails;
 
-public sealed record DTO(
+public sealed record GetInterviewRoundDetailsDTO(
     Guid Id,
     EmployeeDepartment EmployeeDepartment,
     int NumberOfRounds,

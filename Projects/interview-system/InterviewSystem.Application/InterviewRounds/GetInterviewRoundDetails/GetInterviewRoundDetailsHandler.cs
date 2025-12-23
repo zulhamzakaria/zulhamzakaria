@@ -5,29 +5,29 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails;
 
-public sealed class Handler
+public sealed class GetInterviewRoundDetailsHandler
 {
     private readonly IInterviewRoundRepository _interviewRoundRepository;
 
-    public Handler(IInterviewRoundRepository interviewRoundRepository)
+    public GetInterviewRoundDetailsHandler(IInterviewRoundRepository interviewRoundRepository)
     {
         _interviewRoundRepository = interviewRoundRepository;
     }
 
-    public async Task<Result<DTO>> HandleAsync(Query query)
+    public async Task<Result<GetInterviewRoundDetailsDTO>> HandleAsync(GetInterviewRoundDetailsQuery query)
     {
         var result = await _interviewRoundRepository.GetByIdAsync(query.Id);
 
         if (result is null)
-            return Result<DTO>.Failure(GenericErrors.NoRecordFound(nameof(InterviewRound), query.Id));
+            return Result<GetInterviewRoundDetailsDTO>.Failure(GenericErrors.NoRecordFound(nameof(InterviewRound), query.Id));
 
         var returnResult = MapToDTO(result);
 
-        return Result<DTO>.Success(returnResult);
+        return Result<GetInterviewRoundDetailsDTO>.Success(returnResult);
     }
 
-    private DTO MapToDTO(InterviewRound round) =>
-        new DTO(
+    private GetInterviewRoundDetailsDTO MapToDTO(InterviewRound round) =>
+        new GetInterviewRoundDetailsDTO(
             round.Id,
             round.Department,
             round.NumberOfRounds,

@@ -1,3 +1,3 @@
 ﻿namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails;
 
-public sealed record Query(Guid Id);
+public sealed record GetInterviewRoundDetailsQuery(Guid Id);

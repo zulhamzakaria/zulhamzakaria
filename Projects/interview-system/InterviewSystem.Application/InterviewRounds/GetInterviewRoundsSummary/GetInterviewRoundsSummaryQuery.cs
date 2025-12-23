@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundsSummary;
 
-public sealed record Query(
+public sealed record GetInterviewRoundsSummaryQuery(
     EmployeeDepartment? EmployeeDepartment,
     AppliedPosition? AppliedPosition
     );
