@@ -5,6 +5,7 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
 using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
 using InterviewSystem.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,7 +34,8 @@ builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessReposito
 builder.Services.AddScoped<CreateCandidateHandler>();
 
 //mediatr
-//builder.Services.AddMediatR(typeof(CreateCandidateCommand).Assembly);
+builder.Services.AddMediatR(cfg => 
+    cfg.RegisterServicesFromAssembly(typeof(CreateCandidateCommand).Assembly));
 
 var app = builder.Build();
 
