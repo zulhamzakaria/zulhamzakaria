@@ -1,5 +1,6 @@
-using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
+using InterviewSystem.API.Middlewares;
 using InterviewSystem.Application.Candidates.CreateCandidate;
+using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
 using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
@@ -34,11 +35,13 @@ builder.Services.AddScoped<CreateCandidateHandler>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
