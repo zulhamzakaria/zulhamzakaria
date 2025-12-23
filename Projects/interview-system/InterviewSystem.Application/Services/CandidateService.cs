@@ -4,13 +4,13 @@ namespace InterviewSystem.Application.Services;
 
 public class CandidateService
 {
-    private readonly Handler _handler;
-    public CandidateService(Handler handler)
+    private readonly CreateCandidateHandler _handler;
+    public CandidateService(CreateCandidateHandler handler)
     {
         _handler = handler;
     }
 
-    public void Test(Command cmd)
+    public void Test(CreateCandidateCommand cmd)
     {
         var result = _handler.HandleAsync(cmd);
     }

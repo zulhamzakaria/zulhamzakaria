@@ -4,18 +4,18 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.Candidates.CreateCandidate;
 
-public sealed class Handler
+public sealed class CreateCandidateHandler
 {
     private readonly ICandidateRepository _candidateRepository;
     private readonly IUnitOfWorkRepository _uow;
 
-    public Handler(ICandidateRepository candidateRepository, IUnitOfWorkRepository uow)
+    public CreateCandidateHandler(ICandidateRepository candidateRepository, IUnitOfWorkRepository uow)
     {
         _candidateRepository = candidateRepository;
         _uow = uow;
     }
 
-    public async Task<Result<Guid>> HandleAsync(Command command)
+    public async Task<Result<Guid>> HandleAsync(CreateCandidateCommand command)
     {
         var result = Candidate.Create(command.Name, 
             command.Email, 

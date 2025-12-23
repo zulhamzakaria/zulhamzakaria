@@ -1,4 +1,5 @@
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
+using InterviewSystem.Application.Candidates.CreateCandidate;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
 using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
@@ -26,6 +27,9 @@ builder.Services.AddScoped<IInterviewTaskRepository, InterviewTaskRepository>();
 builder.Services.AddScoped<IInterviewTaskQueryRepository, InterviewTaskQueryRepository>();
 builder.Services.AddScoped<IInterviewRoundRepository, InterviewRoundRepository>();
 builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessRepository>();
+
+//Actions DI Containers
+builder.Services.AddScoped<CreateCandidateHandler>();
 
 var app = builder.Build();
 
