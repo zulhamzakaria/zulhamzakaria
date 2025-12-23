@@ -5,29 +5,29 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.Candidates.GetCandidateDetails;
 
-public sealed class Handler
+public sealed class GetCandidateDetailsHandler
 {
     private readonly ICandidateRepository _candidateRepository;
 
-    public Handler(ICandidateRepository candidateRepository)
+    public GetCandidateDetailsHandler(ICandidateRepository candidateRepository)
     {
         _candidateRepository = candidateRepository;
     }
 
-    public async Task<Result<DTO>> HandlerAsync(Query query)
+    public async Task<Result<GetCandidateDetailsDTO>> HandlerAsync(GetCandidateDetailsQuery query)
     {
         var result = await _candidateRepository.GetByIdAsync(query.Id);
 
         if (result is null)
-            return Result<DTO>.Failure(GenericErrors.NoRecordFound(nameof(Candidate), query.Id));
+            return Result<GetCandidateDetailsDTO>.Failure(GenericErrors.NoRecordFound(nameof(Candidate), query.Id));
 
         var returnResult = MapToDto(result);
 
-        return Result<DTO>.Success(returnResult);
+        return Result<GetCandidateDetailsDTO>.Success(returnResult);
     }
 
-    private DTO MapToDto(Candidate candidate) =>
-        new DTO(candidate.Id,
+    private GetCandidateDetailsDTO MapToDto(Candidate candidate) =>
+        new GetCandidateDetailsDTO(candidate.Id,
             candidate.Name,
             candidate.Email,
             candidate.PhoneNumber,

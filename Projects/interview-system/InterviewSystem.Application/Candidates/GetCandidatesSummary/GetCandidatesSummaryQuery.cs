@@ -2,4 +2,4 @@
 
 namespace InterviewSystem.Application.Candidates.GetCandidatesSummary;
 
-public sealed record Query(AppliedPosition? AppliedPosition);
+public sealed record GetCandidatesSummaryQuery(AppliedPosition? AppliedPosition);

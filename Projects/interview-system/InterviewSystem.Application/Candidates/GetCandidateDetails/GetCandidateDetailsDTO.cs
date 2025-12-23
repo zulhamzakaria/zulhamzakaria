@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Application.Candidates.GetCandidateDetails;
 
-public sealed record DTO(Guid Id,
+public sealed record GetCandidateDetailsDTO(Guid Id,
     string Name,
     string Email,
     string PhoneNumber,

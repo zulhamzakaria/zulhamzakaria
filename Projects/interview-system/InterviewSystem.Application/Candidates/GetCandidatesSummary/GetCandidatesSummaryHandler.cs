@@ -5,16 +5,16 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.Candidates.GetCandidatesSummary;
 
-public sealed class Handler
+public sealed class GetCandidatesSummaryHandler
 {
     private readonly ICandidateRepository _candidateRepository;
 
-    public Handler(ICandidateRepository candidateRepository)
+    public GetCandidatesSummaryHandler(ICandidateRepository candidateRepository)
     {
         _candidateRepository = candidateRepository;
     }
 
-    public async Task<Result<IReadOnlyCollection<DTO>>> HandleAsync(Query query)
+    public async Task<Result<IReadOnlyCollection<GetCandidatesSummary>>> HandleAsync(GetCandidatesSummaryQuery query)
     {
         var candidates = await _candidateRepository.GetAllAsync();
 
@@ -24,13 +24,13 @@ public sealed class Handler
             .ToList();
 
         if (filteredCandidates.Any() is false)
-            return Result<IReadOnlyCollection<DTO>>.Failure(GenericErrors.NoRecordsFound(nameof(Candidate)));
+            return Result<IReadOnlyCollection<GetCandidatesSummary>>.Failure(GenericErrors.NoRecordsFound(nameof(Candidate)));
 
-        return Result<IReadOnlyCollection<DTO>>.Success(filteredCandidates);
+        return Result<IReadOnlyCollection<GetCandidatesSummary>>.Success(filteredCandidates);
     }
 
-    private DTO MapToDTO(Candidate candidate) =>
-        new DTO(candidate.Id,
+    private GetCandidatesSummary MapToDTO(Candidate candidate) =>
+        new GetCandidatesSummary(candidate.Id,
             candidate.Name,
             candidate.Email,
             candidate.PhoneNumber,
