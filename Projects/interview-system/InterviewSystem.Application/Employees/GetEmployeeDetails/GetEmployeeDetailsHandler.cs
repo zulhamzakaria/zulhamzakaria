@@ -5,10 +5,10 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.Employees.GetEmployeeDetails;
 
-public sealed class Handler
+public sealed class GetEmployeeDetailsHandler
 {
     private readonly IEmployeeRepository _employeeRepository;
-    public Handler(IEmployeeRepository employeeRepository)
+    public GetEmployeeDetailsHandler(IEmployeeRepository employeeRepository)
     {
         _employeeRepository = employeeRepository;
     }

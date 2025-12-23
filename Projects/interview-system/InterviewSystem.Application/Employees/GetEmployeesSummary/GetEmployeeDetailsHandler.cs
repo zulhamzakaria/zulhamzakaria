@@ -5,16 +5,16 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.Employees.GetEmployeesSummary;
 
-public sealed class Handler
+public sealed class GetEmployeeDetailsHandler
 {
     private readonly IEmployeeRepository _employeeRepository;
 
-    public Handler(IEmployeeRepository employeeRepository)
+    public GetEmployeeDetailsHandler(IEmployeeRepository employeeRepository)
     {
         _employeeRepository = employeeRepository;
     }
 
-    public async Task<Result<IReadOnlyCollection<EmployeeSummaryDTO>>> HandleAsync(GetEmployeesSummaryQuery query)
+    public async Task<Result<IReadOnlyCollection<GetEmployeeSummaryDTO>>> HandleAsync(GetEmployeesSummaryQuery query)
     {
         var employees = await _employeeRepository.GetAllAsync();
 
@@ -26,13 +26,13 @@ public sealed class Handler
             .Select(MapToDto)
             .ToList();
         
-        return Result<IReadOnlyCollection<EmployeeSummaryDTO>>.Success(filteredEmployees); 
+        return Result<IReadOnlyCollection<GetEmployeeSummaryDTO>>.Success(filteredEmployees); 
 
     }
 
-    private EmployeeSummaryDTO MapToDto(Employee employee)
+    private GetEmployeeSummaryDTO MapToDto(Employee employee)
     {
-        return new EmployeeSummaryDTO(
+        return new GetEmployeeSummaryDTO(
             employee.Id,
             employee.Name!,
             employee.EmployeeDepartment,

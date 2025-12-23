@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Application.Employees.GetEmployeesSummary;
 
-public sealed record EmployeeSummaryDTO(
+public sealed record GetEmployeeSummaryDTO(
     Guid Id,
     string Name,
     EmployeeDepartment EmployeeDepartment,

@@ -6,12 +6,12 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.Employees.DeactivateEmployee;
 
-public sealed class Handler
+public sealed class DeactivateEmployeeHandler
 {
     private readonly IEmployeeRepository _employeeRepository;
     private readonly IUnitOfWorkRepository _uow;
 
-    public Handler(IEmployeeRepository employeeRepository, IUnitOfWorkRepository uow)
+    public DeactivateEmployeeHandler(IEmployeeRepository employeeRepository, IUnitOfWorkRepository uow)
     {
         _employeeRepository = employeeRepository;
         _uow = uow;
