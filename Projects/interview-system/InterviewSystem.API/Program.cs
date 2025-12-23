@@ -1,5 +1,7 @@
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
+using InterviewSystem.Infrastructure.CustomQueries.GetInterviewTasksSummary;
+using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
 using InterviewSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +23,7 @@ builder.Services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 builder.Services.AddScoped<IInterviewTaskRepository, InterviewTaskRepository>();
+builder.Services.AddScoped<IInterviewTaskQueryRepository, InterviewTaskQueryRepository>();
 builder.Services.AddScoped<IInterviewRoundRepository, InterviewRoundRepository>();
 builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessRepository>();
 
