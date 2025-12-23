@@ -6,16 +6,16 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessesSummary;
 
-public sealed class Handler
+public sealed class GetInterviewProcessesSummaryHandler
 {
     private readonly IInterviewProcessRepository _interviewProcessRepository;
 
-    public Handler(IInterviewProcessRepository interviewProcessRepository)
+    public GetInterviewProcessesSummaryHandler(IInterviewProcessRepository interviewProcessRepository)
     {
         _interviewProcessRepository = interviewProcessRepository;
     }
 
-    public async Task<Result<IReadOnlyCollection<DTO>>> HandleAsync(Query query)
+    public async Task<Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>> HandleAsync(GetInterviewProcessesSummaryQuery query)
     {
         var results = (await _interviewProcessRepository.GetAllAsync())
                 .Where(ip => query.EmployeeDepartment == null || ip.Department == query.EmployeeDepartment)
@@ -25,14 +25,14 @@ public sealed class Handler
                 .ToList();
 
         if (results.Any() is false)
-            return Result<IReadOnlyCollection<DTO>>.Failure(GenericErrors.NoRecordsFound(nameof(InterviewProcess)));
+            return Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>.Failure(GenericErrors.NoRecordsFound(nameof(InterviewProcess)));
 
-        return Result<IReadOnlyCollection<DTO>>.Success(results);
+        return Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>.Success(results);
 
     }
 
-    private DTO MapToDTO(InterviewProcess process) =>
-       new DTO(
+    private GetInterviewProcessesSummaryDTO MapToDTO(InterviewProcess process) =>
+       new GetInterviewProcessesSummaryDTO(
            process.Id,
            process.CandidateId,
            process.CandidateName,

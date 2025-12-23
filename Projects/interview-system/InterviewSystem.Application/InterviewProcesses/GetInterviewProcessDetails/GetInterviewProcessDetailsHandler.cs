@@ -5,30 +5,30 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessDetails;
 
-public sealed class Handler
+public sealed class GetInterviewProcessDetailsHandler
 { 
     private readonly IInterviewProcessRepository _interviewProcessRepository;
 
-    public Handler(IInterviewProcessRepository interviewProcessRepository)
+    public GetInterviewProcessDetailsHandler(IInterviewProcessRepository interviewProcessRepository)
     {
         _interviewProcessRepository = interviewProcessRepository;
     }
 
-    public async Task<Result<DTO>> HandleAsync(Query query)
+    public async Task<Result<GetInterviewProcessDetailsDTO>> HandleAsync(GetInterviewProcessDetailsQuery query)
     {
         var result = await _interviewProcessRepository.GetByIdAsync(query.Id);
 
         if(result is null)
-            return Result<DTO>.Failure(GenericErrors.NoRecordFound(nameof(InterviewProcess), query.Id));
+            return Result<GetInterviewProcessDetailsDTO>.Failure(GenericErrors.NoRecordFound(nameof(InterviewProcess), query.Id));
 
         var returnResult = MapToDTO(result);
 
-        return Result<DTO>.Success(returnResult);
+        return Result<GetInterviewProcessDetailsDTO>.Success(returnResult);
 
     }
 
-    private DTO MapToDTO(InterviewProcess process) =>
-        new DTO(process.Id,
+    private GetInterviewProcessDetailsDTO MapToDTO(InterviewProcess process) =>
+        new GetInterviewProcessDetailsDTO(process.Id,
             process.CandidateId,
             process.Department,
             process.CurrentSequence,

@@ -2,4 +2,4 @@
 
 namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessDetails;
 
-public sealed record Query(Guid Id);
+public sealed record GetInterviewProcessDetailsQuery(Guid Id);

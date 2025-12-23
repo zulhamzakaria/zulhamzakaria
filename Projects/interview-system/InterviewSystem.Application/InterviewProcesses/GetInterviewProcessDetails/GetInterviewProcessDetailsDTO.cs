@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessDetails;
 
-public sealed record DTO(Guid Id,
+public sealed record GetInterviewProcessDetailsDTO(Guid Id,
     Guid CandidateId,
     EmployeeDepartment EmployeeDepartment,
     int CurrentSequence,

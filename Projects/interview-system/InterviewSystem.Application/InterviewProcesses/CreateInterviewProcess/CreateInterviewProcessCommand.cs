@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InterviewSystem.Application.InterviewProcesses.CreateInterviewProcess;
 
-public sealed record Command(
+public sealed record CreateInterviewProcessCommand(
     [Required] Guid CandidateId,
     [Required] string CandidateName,
     [Required] EmployeeDepartment EmployeeDepartment,

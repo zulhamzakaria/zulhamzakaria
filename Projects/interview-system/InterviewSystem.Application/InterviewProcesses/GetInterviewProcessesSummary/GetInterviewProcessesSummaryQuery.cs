@@ -2,6 +2,6 @@
 
 namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessesSummary;
 
-public sealed record Query(EmployeeDepartment? EmployeeDepartment,
+public sealed record GetInterviewProcessesSummaryQuery(EmployeeDepartment? EmployeeDepartment,
     InterviewProcessStatus? InterviewProcessStatus,
     Guid? InterviewerId);
