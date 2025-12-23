@@ -1,10 +1,11 @@
 ﻿using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
+using MediatR;
 
 namespace InterviewSystem.Application.Candidates.CreateCandidate;
 
-public sealed class CreateCandidateHandler
+public sealed class CreateCandidateHandler : IRequestHandler<CreateCandidateCommand, Result<Guid>>
 {
     private readonly ICandidateRepository _candidateRepository;
     private readonly IUnitOfWorkRepository _uow;
@@ -15,12 +16,12 @@ public sealed class CreateCandidateHandler
         _uow = uow;
     }
 
-    public async Task<Result<Guid>> HandleAsync(CreateCandidateCommand command)
+    public async Task<Result<Guid>> Handle(CreateCandidateCommand request, CancellationToken cancellationToken)
     {
-        var result = Candidate.Create(command.Name, 
-            command.Email, 
-            command.PhoneNumber, 
-            command.AppliedPosition);
+        var result = Candidate.Create(request.Name, 
+            request.Email,
+            request.PhoneNumber,
+            request.AppliedPosition);
 
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);

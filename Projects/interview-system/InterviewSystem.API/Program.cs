@@ -32,6 +32,9 @@ builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessReposito
 //Actions DI Containers
 builder.Services.AddScoped<CreateCandidateHandler>();
 
+//mediatr
+//builder.Services.AddMediatR(typeof(CreateCandidateCommand).Assembly);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
