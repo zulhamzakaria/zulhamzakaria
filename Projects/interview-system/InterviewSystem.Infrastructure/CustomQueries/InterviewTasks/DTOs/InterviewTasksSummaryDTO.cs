@@ -3,7 +3,7 @@
 namespace InterviewSystem.Infrastructure.CustomQueries.InterviewTasks.DTOs;
 
 public sealed record InterviewTasksSummaryDTO(
-    Guid Id,
+    Guid InterviewTaskId,
     string CandidateName,
     EmployeeDepartment EmployeeDepartment,
     AppliedPosition AppliedPosition,
