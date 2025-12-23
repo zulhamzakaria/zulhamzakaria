@@ -5,14 +5,21 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
 using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
 using InterviewSystem.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter()
+        );
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -34,7 +41,7 @@ builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessReposito
 builder.Services.AddScoped<CreateCandidateHandler>();
 
 //mediatr
-builder.Services.AddMediatR(cfg => 
+builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(CreateCandidateCommand).Assembly));
 
 var app = builder.Build();
