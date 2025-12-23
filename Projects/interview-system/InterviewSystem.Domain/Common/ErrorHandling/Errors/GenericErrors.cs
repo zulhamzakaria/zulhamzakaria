@@ -1,19 +1,21 @@
-﻿namespace InterviewSystem.Domain.Common.ErrorHandling.Errors;
+﻿using InterviewSystem.Domain.Common.Enums;
+
+namespace InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
 public static class GenericErrors
 {
     public static Error Required(string fieldName)
-        => new($"{fieldName.ToUpper()}_REQUIRED", $"{Humanize(fieldName)} is required");
+        => new(ErrorType.Validation, $"{fieldName.ToUpper()}_REQUIRED", $"{Humanize(fieldName)} is required");
     public static Error InvalidEnumValue<TEnum>(TEnum value) where TEnum : struct, Enum
-        => new($"UNDEFINED_{typeof(TEnum).Name.ToUpper()}_VALUE", $"The value provided for {typeof(TEnum).Name} is invalid");
+        => new(ErrorType.Validation, $"UNDEFINED_{typeof(TEnum).Name.ToUpper()}_VALUE", $"The value provided for {typeof(TEnum).Name} is invalid");
     public static Error InvalidLength(string fieldName, int min, int max)
-        => new($"{fieldName.ToUpper()}_LENGTH_INVALID", $"{Humanize(fieldName)} length must be between {min} and {max} characters");
+        => new(ErrorType.Validation, $"{fieldName.ToUpper()}_LENGTH_INVALID", $"{Humanize(fieldName)} length must be between {min} and {max} characters");
     public static Error InvalidIntValue(string fieldName)
-        => new($"{fieldName.ToUpper()}_VALUE_INVALID", $"{Humanize(fieldName)} must be bigger than 0");
+        => new(ErrorType.Validation, $"{fieldName.ToUpper()}_VALUE_INVALID", $"{Humanize(fieldName)} must be bigger than 0");
     public static Error NoRecordFound(string fieldName, Guid id)
-        => new($"{fieldName.ToUpper()}_NOT_FOUND", $"No {fieldName} found for id: {id}");
+        => new(ErrorType.NotFound, $"{fieldName.ToUpper()}_NOT_FOUND", $"No {fieldName} found for id: {id}");
     public static Error NoRecordsFound(string fieldName)
-        => new($"{fieldName.ToUpper()}_NOT_FOUND", $"No records found for {fieldName}");
+        => new(ErrorType.NotFound, $"{fieldName.ToUpper()}_NOT_FOUND", $"No records found for {fieldName}");
 
     private static string Humanize(string input)
     {
