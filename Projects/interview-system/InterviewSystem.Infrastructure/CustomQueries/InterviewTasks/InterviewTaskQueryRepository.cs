@@ -1,6 +1,5 @@
-﻿using InterviewSystem.Domain.Entity;
-using InterviewSystem.Infrastructure.CustomQueries.GetInterviewTasksSummary;
-using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks.DTOs;
+﻿using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
+using InterviewSystem.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;

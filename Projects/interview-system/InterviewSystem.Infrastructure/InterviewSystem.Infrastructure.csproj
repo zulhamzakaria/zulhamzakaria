@@ -20,10 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\InterviewSystem.Application\InterviewSystem.Application.csproj" />
     <ProjectReference Include="..\InterviewSystem.Domain\InterviewSystem.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CustomQueries\InterviewTasks\DTOs\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

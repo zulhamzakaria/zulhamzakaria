@@ -1,7 +1,6 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
 
-namespace InterviewSystem.Infrastructure.CustomQueries.InterviewTasks.DTOs;
-
+namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 public sealed record InterviewTasksSummaryDTO(
     Guid InterviewTaskId,
     string CandidateName,

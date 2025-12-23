@@ -1,6 +1,6 @@
+using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
-using InterviewSystem.Infrastructure.CustomQueries.GetInterviewTasksSummary;
 using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
 using InterviewSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
