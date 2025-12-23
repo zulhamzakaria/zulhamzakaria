@@ -2,5 +2,5 @@
 
 public interface IInterviewTaskQueryRepository
 {
-    Task<IReadOnlyCollection<InterviewTasksSummaryDTO>> GetSummaryAsync();
+    Task<IReadOnlyCollection<GetInterviewTasksSummaryDTO>> GetSummaryAsync();
 }

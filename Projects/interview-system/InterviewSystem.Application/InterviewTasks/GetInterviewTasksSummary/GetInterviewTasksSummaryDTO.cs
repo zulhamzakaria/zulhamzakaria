@@ -1,9 +1,8 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
 
 namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
-
-public sealed record DTO(
-    Guid Id,
+public sealed record GetInterviewTasksSummaryDTO(
+    Guid InterviewTaskId,
     string CandidateName,
     EmployeeDepartment EmployeeDepartment,
     AppliedPosition AppliedPosition,

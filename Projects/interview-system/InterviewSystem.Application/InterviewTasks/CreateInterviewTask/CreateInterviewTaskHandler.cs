@@ -4,18 +4,18 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.InterviewTasks.CreateInterviewTask;
 
-public sealed class Handler
+public sealed class CreateInterviewTaskHandler
 {
     private readonly IUnitOfWorkRepository _uow;
     private readonly IInterviewTaskRepository _interviewTaskRepository;
 
-    public Handler(IInterviewTaskRepository interviewTaskRepository, IUnitOfWorkRepository uow)
+    public CreateInterviewTaskHandler(IInterviewTaskRepository interviewTaskRepository, IUnitOfWorkRepository uow)
     {
         _interviewTaskRepository = interviewTaskRepository;
         _uow = uow;
     }
 
-    public async Task<Result<Guid>> HandleAsync(Command command)
+    public async Task<Result<Guid>> HandleAsync(CreateInterviewTaskCommand command)
     {
         var result =  InterviewTask.Create(
             command.InterviewRoundId, 

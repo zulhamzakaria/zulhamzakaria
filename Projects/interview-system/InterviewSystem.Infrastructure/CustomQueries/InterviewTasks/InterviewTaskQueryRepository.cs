@@ -15,13 +15,13 @@ public sealed class InterviewTaskQueryRepository : IInterviewTaskQueryRepository
     private IQueryable<InterviewTask> Query() =>
         _dbContext.Set<InterviewTask>().AsNoTracking();
 
-    public async Task<IReadOnlyCollection<InterviewTasksSummaryDTO>> GetSummaryAsync()
+    public async Task<IReadOnlyCollection<GetInterviewTasksSummaryDTO>> GetSummaryAsync()
     {
         return await (
             from task in Query()
             join round in _dbContext.Set<InterviewRound>()
             on task.InterviewRoundId equals round.Id
-            select new InterviewTasksSummaryDTO(
+            select new GetInterviewTasksSummaryDTO(
                 task.Id,
                 task.CandidateName,
                 round.Department,

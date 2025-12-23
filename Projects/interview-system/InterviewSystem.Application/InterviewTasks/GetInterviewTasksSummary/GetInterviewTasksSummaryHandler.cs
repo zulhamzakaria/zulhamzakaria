@@ -5,19 +5,19 @@ using InterviewSystem.Domain.Interfaces.Repositories;
 
 namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 
-public sealed class Handler
+public sealed class GetInterviewTasksSummaryHandler
 {
     private readonly IInterviewTaskRepository _interviewTaskRepository;
     private readonly IInterviewTaskQueryRepository _interviewTaskQueryRepository;
 
-    public Handler(IInterviewTaskRepository interviewTaskRepository,
+    public GetInterviewTasksSummaryHandler(IInterviewTaskRepository interviewTaskRepository,
         IInterviewTaskQueryRepository interviewTaskQueryRepository)
     {
         _interviewTaskRepository = interviewTaskRepository;
         _interviewTaskQueryRepository = interviewTaskQueryRepository;
     }
 
-    public async Task<Result<IReadOnlyCollection<InterviewTasksSummaryDTO>>> HandleAsync(Query query)
+    public async Task<Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>> HandleAsync(GetInterviewTasksSummaryQuery query)
     {
         var results = (await _interviewTaskQueryRepository.GetSummaryAsync())
             .Where(cq => query.EmployeeDepartment == null || cq.EmployeeDepartment == query.EmployeeDepartment)
@@ -26,9 +26,9 @@ public sealed class Handler
             .ToList();
 
         if (results.Any() is false)
-            return Result<IReadOnlyCollection<InterviewTasksSummaryDTO>>
+            return Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>
                 .Failure(GenericErrors.NoRecordsFound(nameof(InterviewTask)));
 
-        return Result<IReadOnlyCollection<InterviewTasksSummaryDTO>>.Success(results);
+        return Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>.Success(results);
     }
 }

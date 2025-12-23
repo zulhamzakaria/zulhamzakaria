@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 
-public sealed record Query(
+public sealed record GetInterviewTasksSummaryQuery(
         EmployeeDepartment? EmployeeDepartment,
         AppliedPosition? AppliedPosition,
         InterviewTaskStatus? InterviewTaskStatus,
