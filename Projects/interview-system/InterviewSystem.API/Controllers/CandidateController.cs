@@ -1,6 +1,7 @@
 ﻿using InterviewSystem.API.ErrorHandling;
 using InterviewSystem.Application.Candidates.CreateCandidate;
 using InterviewSystem.Application.Candidates.GetCandidateDetails;
+using InterviewSystem.Application.Candidates.GetCandidatesSummary;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,14 @@ namespace InterviewSystem.API.Controllers
         public async Task<IActionResult> GetCandidateById(Guid id)
         {
             var query = new GetCandidateDetailsQuery(id);
+            var result = await _mediator.Send(query);
+            return result.ToActionResult();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCandidates([FromQuery] GetCandidatesSummaryQuery queries)
+        {
+            var query = new GetCandidatesSummaryQuery(queries.AppliedPosition);
             var result = await _mediator.Send(query);
             return result.ToActionResult();
         }
