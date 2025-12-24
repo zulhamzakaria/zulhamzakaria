@@ -17,6 +17,8 @@ public class InterviewTask : EntityBase
     public Guid InterviewProcessId { get; private set; }
     public int RoundSequence { get; private set; }
     public InterviewTaskStatus InterviewTaskStatus { get; private set; }
+    public Guid AssigneeId { get; private set; }
+    public string? AssigneeName { get; private set; }
     public DateTimeOffset AssignedAt { get; private set; }
     public DateTimeOffset? CompletedAt { get; private set; }
     public CandidateEvaluation? Evaluation { get; set; }
@@ -40,12 +42,13 @@ public class InterviewTask : EntityBase
     //    TaskRejectionReason = reason;
     //}
 
-    public static Result<InterviewTask> Create(Guid interviewRoundId, Guid candidateId, string candidateName)
+    public static Result<InterviewTask> Create(Guid interviewProcessId, Guid candidateId, string candidateName,
+        Guid assigneeId, string assigneeName )
     {
         List<Error> errors = new();
 
-        if (interviewRoundId == Guid.Empty)
-            errors.Add(GenericErrors.Required(nameof(interviewRoundId)));
+        if (interviewProcessId == Guid.Empty)
+            errors.Add(GenericErrors.Required(nameof(interviewProcessId)));
         if (candidateId == Guid.Empty)
             errors.Add(GenericErrors.Required(nameof(candidateId)));
         //if(rejected == true && string.IsNullOrWhiteSpace(rejectionReason))
@@ -59,10 +62,12 @@ public class InterviewTask : EntityBase
         InterviewTask task = new()
         {
             Id = Guid.NewGuid(),
-            InterviewRoundId = interviewRoundId,
+            InterviewProcessId = interviewProcessId,
             CandidateId = candidateId,
             CandidateName = candidateName,
-            InterviewTaskStatus = InterviewTaskStatus.Pending,
+            AssigneeId = assigneeId,
+            AssigneeName = assigneeName,
+            InterviewTaskStatus = InterviewTaskStatus.Assigned,
             AssignedAt = DateTimeOffset.Now,
             Rejected = false,
             TaskRejectionReason = null
