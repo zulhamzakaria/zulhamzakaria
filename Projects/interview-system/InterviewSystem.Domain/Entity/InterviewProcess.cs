@@ -10,7 +10,7 @@ public class InterviewProcess : EntityBase
     public Guid CandidateId { get; private set; }
     public string CandidateName { get; private set; } = string.Empty;
     public EmployeeDepartment Department { get; private set; }
-    public int CurrentSequence { get; private set; } //not to be confused with InterviewRound sequence
+    public int CurrentRoundSequence { get; private set; }
     public InterviewProcessStatus InterviewProcessStatus { get; private set; }
     public Guid? CurrentInterviewerId { get; private set; }
     public string? CurrentInterviewerName { get; private set; } = string.Empty;
