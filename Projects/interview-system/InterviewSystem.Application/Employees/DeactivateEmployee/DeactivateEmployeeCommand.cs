@@ -1,3 +1,7 @@
-﻿namespace InterviewSystem.Application.Employees.DeactivateEmployee;
+﻿using InterviewSystem.Domain.Common.ErrorHandling;
+using MediatR;
+using Unit = InterviewSystem.Domain.Common.Unit;
 
-public sealed record DeactivateEmployeeCommand(Guid employeeId);
+namespace InterviewSystem.Application.Employees.DeactivateEmployee;
+
+public sealed record DeactivateEmployeeCommand(Guid employeeId) : IRequest<Result<Unit>>;
