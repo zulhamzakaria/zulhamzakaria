@@ -21,6 +21,11 @@ public class InterviewTaskRepository : IInterviewTaskRepository
         return await _context.InterviewTasks.ToListAsync();
     }
 
+    public async Task<IReadOnlyCollection<InterviewTask>> GetAllByEmployeeId(Guid employeeId)
+    {
+       throw new NotImplementedException();
+    }
+
     public async Task<InterviewTask?> GetByIdAsync(Guid id)
     {
         return await _context.InterviewTasks.FindAsync(id);
