@@ -14,7 +14,7 @@ public sealed class GetCandidatesSummaryHandler
         _candidateRepository = candidateRepository;
     }
 
-    public async Task<Result<IReadOnlyCollection<GetCandidatesSummary>>> HandleAsync(GetCandidatesSummaryQuery query)
+    public async Task<Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>> HandleAsync(GetCandidatesSummaryQuery query)
     {
         var candidates = await _candidateRepository.GetAllAsync();
 
@@ -24,13 +24,13 @@ public sealed class GetCandidatesSummaryHandler
             .ToList();
 
         if (filteredCandidates.Any() is false)
-            return Result<IReadOnlyCollection<GetCandidatesSummary>>.Failure(GenericErrors.NoRecordsFound(nameof(Candidate)));
+            return Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>.Failure(GenericErrors.NoRecordsFound(nameof(Candidate)));
 
-        return Result<IReadOnlyCollection<GetCandidatesSummary>>.Success(filteredCandidates);
+        return Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>.Success(filteredCandidates);
     }
 
-    private GetCandidatesSummary MapToDTO(Candidate candidate) =>
-        new GetCandidatesSummary(candidate.Id,
+    private GetCandidatesSummaryDTO MapToDTO(Candidate candidate) =>
+        new GetCandidatesSummaryDTO(candidate.Id,
             candidate.Name,
             candidate.Email,
             candidate.PhoneNumber,
