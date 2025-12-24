@@ -1,3 +1,4 @@
+using InterviewSystem.API.Extensions;
 using InterviewSystem.API.Middlewares;
 using InterviewSystem.Application.Candidates.CreateCandidate;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
@@ -41,8 +42,9 @@ builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessReposito
 builder.Services.AddScoped<CreateCandidateHandler>();
 
 //mediatr
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssembly(typeof(CreateCandidateCommand).Assembly));
+builder.Services.AddApplicationServices();
+//builder.Services.AddMediatR(cfg =>
+//    cfg.RegisterServicesFromAssembly(typeof(CreateCandidateCommand).Assembly));
 
 var app = builder.Build();
 
