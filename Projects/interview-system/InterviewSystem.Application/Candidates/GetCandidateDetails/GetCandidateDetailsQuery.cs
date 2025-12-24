@@ -1,3 +1,6 @@
-﻿namespace InterviewSystem.Application.Candidates.GetCandidateDetails;
+﻿using InterviewSystem.Domain.Common.ErrorHandling;
+using MediatR;
 
-public sealed record GetCandidateDetailsQuery(Guid Id);
+namespace InterviewSystem.Application.Candidates.GetCandidateDetails;
+
+public sealed record GetCandidateDetailsQuery(Guid Id) : IRequest<Result<GetCandidateDetailsDTO>>;
