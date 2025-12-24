@@ -1,6 +1,5 @@
 using InterviewSystem.API.Extensions;
 using InterviewSystem.API.Middlewares;
-using InterviewSystem.Application.Candidates.CreateCandidate;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
@@ -38,13 +37,8 @@ builder.Services.AddScoped<IInterviewTaskQueryRepository, InterviewTaskQueryRepo
 builder.Services.AddScoped<IInterviewRoundRepository, InterviewRoundRepository>();
 builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessRepository>();
 
-//Actions DI Containers
-builder.Services.AddScoped<CreateCandidateHandler>();
-
 //mediatr
 builder.Services.AddApplicationServices();
-//builder.Services.AddMediatR(cfg =>
-//    cfg.RegisterServicesFromAssembly(typeof(CreateCandidateCommand).Assembly));
 
 var app = builder.Build();
 
