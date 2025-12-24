@@ -9,11 +9,13 @@ public class InterviewTask : EntityBase
     private const int RejectionReasonMinLength = 1;
     private const int RejectionReasonMaxLength = 500;
     public Guid Id { get; private set; }
-    public Guid InterviewRoundId { get; private set; }
+    //public Guid InterviewRoundId { get; private set; }
     //public InterviewRound? InterviewRound { get; private set; }
     public Guid CandidateId { get; private set; }
     public string CandidateName { get; private set; }
     //public Candidate? Candidate { get; private set; }
+    public Guid InterviewProcessId { get; private set; }
+    public int RoundSequence { get; private set; }
     public InterviewTaskStatus InterviewTaskStatus { get; private set; }
     public DateTimeOffset AssignedAt { get; private set; }
     public DateTimeOffset? CompletedAt { get; private set; }
@@ -51,7 +53,7 @@ public class InterviewTask : EntityBase
         //if (string.IsNullOrWhiteSpace(rejectionReason) is false && rejectionReason.Length > RejectionReasonMaxLength)
         //    errors.Add(GenericErrors.InvalidLength(nameof(rejectionReason), RejectionReasonMinLength, RejectionReasonMaxLength));
 
-        if(errors.Any())
+        if (errors.Any())
             return Result<InterviewTask>.Failure(errors);
 
         InterviewTask task = new()
