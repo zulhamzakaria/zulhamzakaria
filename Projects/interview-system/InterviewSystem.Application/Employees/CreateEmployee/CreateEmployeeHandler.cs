@@ -1,10 +1,12 @@
-﻿using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Application.Candidates.CreateCandidate;
+using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
+using MediatR;
 
 namespace InterviewSystem.Application.Employees.CreateEmployee;
 
-public sealed class CreateEmployeeHandler
+public sealed class CreateEmployeeHandler : IRequestHandler<CreateEmployeeCommand, Result<Guid>>
 {
     private readonly IUnitOfWorkRepository _uow;
     private readonly IEmployeeRepository _employeeRepository;
@@ -14,14 +16,14 @@ public sealed class CreateEmployeeHandler
         _employeeRepository = employeeRepository;
     }
 
-    public async Task<Result<Guid>> HandleAsync(CreateEmployeeCommand command)
+    public async Task<Result<Guid>> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
         var employeeResult = Employee.Create(
-            command.Name,
-            command.Email,
-            command.EmployeeType,
-            command.EmployeeDepartment,
-            command.EmployeePosition
+            request.Name,
+            request.Email,
+            request.EmployeeType,
+            request.EmployeeDepartment,
+            request.EmployeePosition
             );
 
         if (employeeResult.IsFailure)
@@ -33,6 +35,5 @@ public sealed class CreateEmployeeHandler
         await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(newEmployee!.Id);
-
     }
 }

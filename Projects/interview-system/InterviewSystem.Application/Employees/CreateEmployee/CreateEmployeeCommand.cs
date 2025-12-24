@@ -1,4 +1,6 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
+using MediatR;
 
 namespace InterviewSystem.Application.Employees.CreateEmployee;
 
@@ -8,4 +10,4 @@ public sealed record CreateEmployeeCommand(
     EmployeeType EmployeeType,
     EmployeeDepartment EmployeeDepartment,
     EmployeePosition EmployeePosition
-);
+    ) : IRequest<Result<Guid>>;
