@@ -1,5 +1,6 @@
 ﻿using InterviewSystem.API.ErrorHandling;
 using InterviewSystem.Application.Candidates.CreateCandidate;
+using InterviewSystem.Application.Candidates.GetCandidateDetails;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,14 @@ namespace InterviewSystem.API.Controllers
         public async Task<IActionResult> CreateCandidate([FromBody] CreateCandidateCommand command)
         {
             var result = await _mediator.Send(command);
+            return result.ToActionResult();
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetCandidateById(Guid id)
+        {
+            var query = new GetCandidateDetailsQuery(id);
+            var result = await _mediator.Send(query);
             return result.ToActionResult();
         }
     }
