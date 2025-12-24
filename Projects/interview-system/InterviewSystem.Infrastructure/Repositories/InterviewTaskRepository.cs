@@ -23,7 +23,9 @@ public class InterviewTaskRepository : IInterviewTaskRepository
 
     public async Task<IReadOnlyCollection<InterviewTask>> GetAllByEmployeeId(Guid employeeId)
     {
-       throw new NotImplementedException();
+        return await _context.InterviewTasks
+             .Where(it => it.AssigneeId == employeeId)
+             .ToListAsync();
     }
 
     public async Task<InterviewTask?> GetByIdAsync(Guid id)
