@@ -15,6 +15,7 @@ public static class ResultExtensions
         {
             ErrorType.Validation => new BadRequestObjectResult(result.Errors),
             ErrorType.BusinessRule => new ConflictObjectResult(result.Errors),
+            ErrorType.NotFound => new NotFoundObjectResult(result.Errors),
             _ => new ObjectResult(result.Errors) { StatusCode = StatusCodes.Status500InternalServerError }
         };
 
