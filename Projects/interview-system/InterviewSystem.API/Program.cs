@@ -1,4 +1,6 @@
 using InterviewSystem.API.Middlewares;
+using InterviewSystem.Application;
+using InterviewSystem.Application.Candidates.CreateCandidate;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
@@ -6,7 +8,6 @@ using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
 using InterviewSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using InterviewSystem.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +39,8 @@ builder.Services.AddScoped<IInterviewRoundRepository, InterviewRoundRepository>(
 builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessRepository>();
 
 //mediatr
-builder.Services.RegisterApplicationServices();
+var mediatrKey = builder.Configuration["MediatR:LicenseKey"];
+builder.Services.RegisterApplicationServices(mediatrKey!);
 
 var app = builder.Build();
 
