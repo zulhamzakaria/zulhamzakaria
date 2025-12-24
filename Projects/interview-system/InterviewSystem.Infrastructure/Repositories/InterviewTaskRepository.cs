@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Entity;
+﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,10 +22,14 @@ public class InterviewTaskRepository : IInterviewTaskRepository
         return await _context.InterviewTasks.ToListAsync();
     }
 
+    private static readonly HashSet<InterviewTaskStatus> ActiveStatuses =
+        [InterviewTaskStatus.Assigned,InterviewTaskStatus.Accepted];
     public async Task<IReadOnlyCollection<InterviewTask>> GetAllByEmployeeId(Guid employeeId)
     {
+
         return await _context.InterviewTasks
              .Where(it => it.AssigneeId == employeeId)
+             .Where(it => ActiveStatuses.Contains(it.InterviewTaskStatus))
              .ToListAsync();
     }
 
