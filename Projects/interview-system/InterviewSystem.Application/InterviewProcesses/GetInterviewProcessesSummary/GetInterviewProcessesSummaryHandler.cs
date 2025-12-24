@@ -36,7 +36,7 @@ public sealed class GetInterviewProcessesSummaryHandler
            process.Id,
            process.CandidateId,
            process.CandidateName,
-           process.CurrentSequence,
+           process.CurrentRoundSequence,
            process.InterviewProcessStatus,
            process.CurrentInterviewerId ,
            process.CurrentInterviewerName

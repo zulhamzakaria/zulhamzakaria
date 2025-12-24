@@ -52,6 +52,11 @@ public class AppDbContext : DbContext
             .HasForeignKey(x => x.CandidateId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<InterviewTask>()
+            .HasOne<InterviewRound>()
+            .WithMany()
+            .HasForeignKey(x => x.InterviewRoundId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 
     private void ConfigureInterviewRound(ModelBuilder modelBuilder)

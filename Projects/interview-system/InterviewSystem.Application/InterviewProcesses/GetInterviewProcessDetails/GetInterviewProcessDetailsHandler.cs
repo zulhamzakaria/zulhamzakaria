@@ -31,7 +31,7 @@ public sealed class GetInterviewProcessDetailsHandler
         new GetInterviewProcessDetailsDTO(process.Id,
             process.CandidateId,
             process.Department,
-            process.CurrentSequence,
+            process.CurrentRoundSequence,
             process.InterviewProcessStatus,
             process.CurrentInterviewerId,
             process.CurrentInterviewerName);

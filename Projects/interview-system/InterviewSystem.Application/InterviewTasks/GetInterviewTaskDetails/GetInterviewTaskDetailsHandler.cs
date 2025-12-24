@@ -30,7 +30,7 @@ public sealed class GetInterviewTaskDetailsHandler
     private GetInterviewTaskDetailsDTO MapToDTO(InterviewTask task) =>
         new GetInterviewTaskDetailsDTO(
             task.Id,
-            task.InterviewRoundId,
+            task.InterviewProcessId,
             task.CandidateId,
             task.CandidateName,
             task.InterviewTaskStatus,

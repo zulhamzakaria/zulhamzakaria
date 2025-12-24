@@ -77,7 +77,7 @@ public class InterviewProcess : EntityBase
             CandidateId = candidateId,
             CandidateName = candidateName,
             Department = employeeDepartment,
-            CurrentSequence = currentSequence,
+            CurrentRoundSequence = currentSequence,
             InterviewProcessStatus = interviewProcessStatus,
             CurrentInterviewerId = currentInterviewerId,
             CurrentInterviewerName = currentInterviewerName
@@ -89,7 +89,7 @@ public class InterviewProcess : EntityBase
 
     public void Advance()
     {
-        CurrentSequence++;
+        CurrentRoundSequence++;
     }
 
     public void MarkFailed()

@@ -9,7 +9,7 @@ public class InterviewTask : EntityBase
     private const int RejectionReasonMinLength = 1;
     private const int RejectionReasonMaxLength = 500;
     public Guid Id { get; private set; }
-    //public Guid InterviewRoundId { get; private set; }
+    public Guid InterviewRoundId { get; private set; }
     //public InterviewRound? InterviewRound { get; private set; }
     public Guid CandidateId { get; private set; }
     public string CandidateName { get; private set; }
@@ -42,7 +42,7 @@ public class InterviewTask : EntityBase
     //    TaskRejectionReason = reason;
     //}
 
-    public static Result<InterviewTask> Create(Guid interviewProcessId, Guid candidateId, string candidateName,
+    public static Result<InterviewTask> Create(Guid interviewRoundId, Guid interviewProcessId, Guid candidateId, string candidateName,
         Guid assigneeId, string assigneeName )
     {
         List<Error> errors = new();

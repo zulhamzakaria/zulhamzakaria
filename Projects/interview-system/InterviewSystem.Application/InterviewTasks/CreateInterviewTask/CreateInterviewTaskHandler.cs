@@ -19,8 +19,11 @@ public sealed class CreateInterviewTaskHandler
     {
         var result =  InterviewTask.Create(
             command.InterviewRoundId, 
+            command.InterviewProcessId,
             command.CandidateId,
-            command.CandidateName);
+            command.CandidateName,
+            command.AssigneeId,
+            command.AssigneeName);
 
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
