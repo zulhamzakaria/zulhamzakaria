@@ -1,5 +1,8 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
+using MediatR;
 
 namespace InterviewSystem.Application.Candidates.GetCandidatesSummary;
 
-public sealed record GetCandidatesSummaryQuery(AppliedPosition? AppliedPosition);
+public sealed record GetCandidatesSummaryQuery(AppliedPosition? AppliedPosition) 
+    : IRequest<Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>>;
