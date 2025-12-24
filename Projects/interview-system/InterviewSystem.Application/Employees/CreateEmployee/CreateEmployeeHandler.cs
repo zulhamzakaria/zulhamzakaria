@@ -1,5 +1,4 @@
-﻿using InterviewSystem.Application.Candidates.CreateCandidate;
-using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
