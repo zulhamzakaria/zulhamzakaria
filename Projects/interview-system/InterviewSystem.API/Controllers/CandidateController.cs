@@ -34,9 +34,8 @@ namespace InterviewSystem.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCandidates([FromQuery] GetCandidatesSummaryQuery queries)
+        public async Task<IActionResult> GetCandidates([FromQuery] GetCandidatesSummaryQuery query)
         {
-            var query = new GetCandidatesSummaryQuery(queries.AppliedPosition);
             var result = await _mediator.Send(query);
             return result.ToActionResult();
         }
