@@ -20,7 +20,6 @@ public sealed class CreateEmployeeHandler : IRequestHandler<CreateEmployeeComman
         var employeeResult = Employee.Create(
             request.Name,
             request.Email,
-            request.EmployeeType,
             request.EmployeeDepartment,
             request.EmployeePosition
             );

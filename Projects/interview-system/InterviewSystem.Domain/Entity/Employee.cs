@@ -19,6 +19,8 @@ public class Employee : EntityBase
     public EmployeePosition EmployeePosition { get; private set; }
     public EmployeeStatus EmployeeStatus { get; private set; }
 
+    public bool CanInterview => EmployeePosition != EmployeePosition.Clerk;
+    public bool CanCoordinate => EmployeePosition == EmployeePosition.Clerk;
 
     public Employee() { } //required by EF Core
 
@@ -35,7 +37,7 @@ public class Employee : EntityBase
     //    EmployeeStatus = status;
     //}
 
-    public static Result<Employee> Create(string name, string email, EmployeeType type,
+    public static Result<Employee> Create(string name, string email,
         EmployeeDepartment department, EmployeePosition position)
     {
 
@@ -50,12 +52,10 @@ public class Employee : EntityBase
         if (email.Length > MaxEmailLength)
             errors.Add(GenericErrors.InvalidLength(nameof(name), MinLength, MaxEmailLength));
 
-        if (Enum.IsDefined<EmployeeType>(type) is false)
-            errors.Add(GenericErrors.InvalidEnumValue(type));
         if (Enum.IsDefined<EmployeeDepartment>(department) is false)
-            errors.Add(GenericErrors.InvalidEnumValue(type));
+            errors.Add(GenericErrors.InvalidEnumValue(department));
         if (Enum.IsDefined<EmployeePosition>(position) is false)
-            errors.Add(GenericErrors.InvalidEnumValue(type));
+            errors.Add(GenericErrors.InvalidEnumValue(position));
 
         if (errors.Any())
             return Result<Employee>.Failure(errors);
@@ -65,7 +65,6 @@ public class Employee : EntityBase
             Id = Guid.NewGuid(),
             Name = name,
             Email = email,
-            EmployeeType = type,
             EmployeeDepartment = department,
             EmployeePosition = position,
             EmployeeStatus = EmployeeStatus.Active
