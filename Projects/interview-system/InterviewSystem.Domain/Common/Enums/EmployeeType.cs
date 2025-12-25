@@ -2,6 +2,6 @@
 
 public enum EmployeeType
 {
-    Hirer,
+    Coordinator,
     Interviewer
 }
