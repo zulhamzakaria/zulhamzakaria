@@ -8,9 +8,9 @@ public static class EmployeeErrors
         => new(ErrorType.BusinessRule, "EMPLOYEE_STATUS_INVALID", 
             "Cannot Deactivate an Inactive Employee");
 
-    public static Error InvalidEmployeeForDepartment(EmployeeType employeeType, EmployeeDepartment employeeDepartment)
+    public static Error InvalidEmployeeForDepartment( EmployeeDepartment employeeDepartment, EmployeePosition employeePosition)
         => new(ErrorType.BusinessRule, "EMPLOYEE_DEPARTMENT_MISMATCH", 
-            $"{employeeType.ToString()} cannot be registered under {employeeDepartment.ToString()}");
+            $"{employeePosition.ToString()} cannot be registered under {employeeDepartment.ToString()}");
 
     public static Error InvalidEmployeeAction()
         => new(ErrorType.BusinessRule, "EMPLOYEE_ACTION_INVALID", 
