@@ -4,7 +4,6 @@ using InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
 
 namespace InterviewSystem.API.Controllers;
 
