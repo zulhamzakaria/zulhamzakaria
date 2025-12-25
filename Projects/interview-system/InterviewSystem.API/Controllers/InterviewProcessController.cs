@@ -18,7 +18,8 @@ namespace InterviewSystem.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetInterviewProcesses([FromQuery] GetInterviewProcessesSummaryQuery query)
+        public async Task<IActionResult> GetInterviewProcesses
+            ([FromQuery] GetInterviewProcessesSummaryQuery query)
         {
             var result = await _mediator.Send(query);
             return result.ToActionResult();
@@ -33,7 +34,8 @@ namespace InterviewSystem.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateInterviewProcess([FromBody] CreateInterviewProcessCommand command)
+        public async Task<IActionResult> CreateInterviewProcess
+            ([FromBody] CreateInterviewProcessCommand command)
         {
             var result = await _mediator.Send(command);
             return result.ToActionResult();
