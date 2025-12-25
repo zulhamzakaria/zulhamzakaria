@@ -1,10 +1,11 @@
 ﻿using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
+using MediatR;
 
 namespace InterviewSystem.Application.InterviewRounds.CreateInterviewRound;
 
-public sealed class CreateInterviewRoundHandler
+public sealed class CreateInterviewRoundHandler : IRequestHandler<CreateInterviewRoundCommand, Result<Guid>>
 {
     private readonly IInterviewRoundRepository _interviewRoundRepository;
     private readonly IUnitOfWorkRepository _uow;
@@ -14,12 +15,12 @@ public sealed class CreateInterviewRoundHandler
         _uow = uow;
     }
 
-    public async Task<Result<Guid>> HandleAsync(CreateInterviewRoundCommand command)
+    public async Task<Result<Guid>> Handle(CreateInterviewRoundCommand request, CancellationToken cancellationToken)
     {
         var result = InterviewRound.Create(
-            command.EmployeeDepartment,
-            command.AppliedPosition,
-            command.EmployeePositions);
+            request.EmployeeDepartment,
+            request.AppliedPosition,
+            request.EmployeePositions);
 
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
@@ -31,4 +32,5 @@ public sealed class CreateInterviewRoundHandler
 
         return Result<Guid>.Success(newInterviewRound.Id);
     }
+
 }
