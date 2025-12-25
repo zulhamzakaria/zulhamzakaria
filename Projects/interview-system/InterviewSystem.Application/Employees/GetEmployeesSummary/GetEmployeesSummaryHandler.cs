@@ -23,7 +23,6 @@ public sealed class GetEmployeesSummaryHandler :
 
         var filteredEmployees = employees
             .Where(e => request.EmployeeStatus == null || e.EmployeeStatus == request.EmployeeStatus)
-            .Where(e => request.EmployeeType == null || e.EmployeeType == request.EmployeeType)
             .Where(e => request.EmployeePosition == null || e.EmployeePosition == request.EmployeePosition)
             .Where(e => request.EmployeeDepartment == null || e.EmployeeDepartment == request.EmployeeDepartment)
             .Select(MapToDto)

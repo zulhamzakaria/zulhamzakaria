@@ -6,7 +6,6 @@ public sealed record EmployeeDetailsDTO(
     Guid Id,
     string Name,
     string Email,
-    EmployeeType EmployeeType,
     EmployeeDepartment EmployeeDepartment,
     EmployeePosition EmployeePosition,
     EmployeeStatus EmployeeStatus

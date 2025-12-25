@@ -35,7 +35,6 @@ public sealed class GetEmployeeDetailsHandler : IRequestHandler<GetEmployeeDetai
             employee.Id,
             employee.Name!,
             employee.Email!,
-            employee.EmployeeType,
             employee.EmployeeDepartment,
             employee.EmployeePosition,
             employee.EmployeeStatus

@@ -14,7 +14,7 @@ public class Employee : EntityBase
     public Guid Id { get; private set; }
     public string? Name { get; private set; }
     public string? Email { get; private set; }
-    public EmployeeType EmployeeType { get; private set; }
+
     public EmployeeDepartment EmployeeDepartment { get; private set; }
     public EmployeePosition EmployeePosition { get; private set; }
     public EmployeeStatus EmployeeStatus { get; private set; }
