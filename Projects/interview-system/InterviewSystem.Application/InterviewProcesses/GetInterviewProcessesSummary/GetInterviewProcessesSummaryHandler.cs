@@ -2,11 +2,12 @@
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
-using System.Reflection.Metadata.Ecma335;
+using MediatR;
 
 namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessesSummary;
 
-public sealed class GetInterviewProcessesSummaryHandler
+public sealed class GetInterviewProcessesSummaryHandler :
+     IRequestHandler<GetInterviewProcessesSummaryQuery, Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>>
 {
     private readonly IInterviewProcessRepository _interviewProcessRepository;
 
@@ -15,12 +16,13 @@ public sealed class GetInterviewProcessesSummaryHandler
         _interviewProcessRepository = interviewProcessRepository;
     }
 
-    public async Task<Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>> HandleAsync(GetInterviewProcessesSummaryQuery query)
+    public async Task<Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>> Handle
+        (GetInterviewProcessesSummaryQuery request, CancellationToken cancellationToken)
     {
         var results = (await _interviewProcessRepository.GetAllAsync())
-                .Where(ip => query.EmployeeDepartment == null || ip.Department == query.EmployeeDepartment)
-                .Where(ip => query.InterviewProcessStatus == null || ip.InterviewProcessStatus == query.InterviewProcessStatus)
-                .Where(ip => query.InterviewerId == null || ip.CurrentInterviewerId == query.InterviewerId)
+                .Where(ip => request.EmployeeDepartment == null || ip.Department == request.EmployeeDepartment)
+                .Where(ip => request.InterviewProcessStatus == null || ip.InterviewProcessStatus == request.InterviewProcessStatus)
+                .Where(ip => request.InterviewerId == null || ip.CurrentInterviewerId == request.InterviewerId)
                 .Select(MapToDTO)
                 .ToList();
 
@@ -28,7 +30,6 @@ public sealed class GetInterviewProcessesSummaryHandler
             return Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>.Failure(GenericErrors.NoRecordsFound(nameof(InterviewProcess)));
 
         return Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>.Success(results);
-
     }
 
     private GetInterviewProcessesSummaryDTO MapToDTO(InterviewProcess process) =>
@@ -38,7 +39,7 @@ public sealed class GetInterviewProcessesSummaryHandler
            process.CandidateName,
            process.CurrentRoundSequence,
            process.InterviewProcessStatus,
-           process.CurrentInterviewerId ,
+           process.CurrentInterviewerId,
            process.CurrentInterviewerName
-           ); 
+           );
 }
