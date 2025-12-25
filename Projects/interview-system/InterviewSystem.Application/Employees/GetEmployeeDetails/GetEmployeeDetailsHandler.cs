@@ -2,10 +2,11 @@
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
+using MediatR;
 
 namespace InterviewSystem.Application.Employees.GetEmployeeDetails;
 
-public sealed class GetEmployeeDetailsHandler
+public sealed class GetEmployeeDetailsHandler : IRequestHandler<GetEmployeeDetailsQuery, Result<EmployeeDetailsDTO>>
 {
     private readonly IEmployeeRepository _employeeRepository;
     public GetEmployeeDetailsHandler(IEmployeeRepository employeeRepository)
@@ -13,20 +14,19 @@ public sealed class GetEmployeeDetailsHandler
         _employeeRepository = employeeRepository;
     }
 
-    public async Task<Result<EmployeeDetailsDTO>> HandleAsync(GetEmployeeDetailsQuery query)
+    public async Task<Result<EmployeeDetailsDTO>> Handle(GetEmployeeDetailsQuery request, CancellationToken cancellationToken)
     {
-        if (query.EmployeeId == Guid.Empty)
-            return Result<EmployeeDetailsDTO>.Failure(GenericErrors.Required(nameof(query.EmployeeId)));
+        if (request.EmployeeId == Guid.Empty)
+            return Result<EmployeeDetailsDTO>.Failure(GenericErrors.Required(nameof(request.EmployeeId)));
 
-        var employee = await _employeeRepository.GetByIdAsync(query.EmployeeId);
+        var employee = await _employeeRepository.GetByIdAsync(request.EmployeeId);
 
         if (employee is null)
-            return Result<EmployeeDetailsDTO>.Failure(GenericErrors.NoRecordFound(nameof(Employee), query.EmployeeId));
+            return Result<EmployeeDetailsDTO>.Failure(GenericErrors.NoRecordFound(nameof(Employee), request.EmployeeId));
 
         var dto = MapToDTO(employee);
 
         return Result<EmployeeDetailsDTO>.Success(dto);
-        
     }
 
     private EmployeeDetailsDTO MapToDTO(Employee employee)

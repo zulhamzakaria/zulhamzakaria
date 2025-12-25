@@ -1,4 +1,7 @@
-﻿namespace InterviewSystem.Application.Employees.GetEmployeeDetails;
+﻿using InterviewSystem.Domain.Common.ErrorHandling;
+using MediatR;
 
-public sealed record GetEmployeeDetailsQuery(Guid EmployeeId);
+namespace InterviewSystem.Application.Employees.GetEmployeeDetails;
+
+public sealed record GetEmployeeDetailsQuery(Guid EmployeeId): IRequest<Result<EmployeeDetailsDTO>>;
 
