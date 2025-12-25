@@ -26,7 +26,7 @@ public class InterviewRoundController : ControllerBase
         return result.ToActionResult();
     }
 
-    [HttpGet("{id:guid")]
+    [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetInterviewRound(Guid id)
     {
         var query = new GetInterviewProcessDetailsQuery(id);
