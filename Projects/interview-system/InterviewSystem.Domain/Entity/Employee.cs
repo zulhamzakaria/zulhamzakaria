@@ -57,8 +57,16 @@ public class Employee : EntityBase
         if (Enum.IsDefined<EmployeePosition>(position) is false)
             errors.Add(GenericErrors.InvalidEnumValue(position));
 
-        if(EmployeeRules.IsPositionValidForDepartment(department, position) is false)
+
+        var result = EmployeeRules.IsPositionValidForDepartment(department, position);
+        if (result.IsFailure)
+        {
+            errors.Add(EmployeeErrors.InvalidDepartment(department));
+        }
+        else if (result.Value is false)
+        {
             errors.Add(EmployeeErrors.InvalidEmployeeForDepartment(department, position));
+        }
 
         if (errors.Any())
             return Result<Employee>.Failure(errors);
