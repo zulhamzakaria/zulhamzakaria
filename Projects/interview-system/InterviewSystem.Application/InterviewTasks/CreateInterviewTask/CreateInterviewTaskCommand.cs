@@ -1,4 +1,6 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
+using MediatR;
 using System.ComponentModel.DataAnnotations;
 
 namespace InterviewSystem.Application.InterviewTasks.CreateInterviewTask;
@@ -11,4 +13,4 @@ public sealed record CreateInterviewTaskCommand(
     [Required] Guid AssigneeId,
     [Required] string AssigneeName,
     [Required] InterviewTaskStatus InterviewTaskStatus,
-    [Required] DateTimeOffset AssignedAt);
+    [Required] DateTimeOffset AssignedAt) : IRequest<Result<Guid>>;

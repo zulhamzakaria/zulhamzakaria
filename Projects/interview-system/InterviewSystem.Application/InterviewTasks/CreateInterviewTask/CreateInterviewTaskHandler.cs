@@ -1,10 +1,11 @@
 ﻿using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
+using MediatR;
 
 namespace InterviewSystem.Application.InterviewTasks.CreateInterviewTask;
 
-public sealed class CreateInterviewTaskHandler
+public sealed class CreateInterviewTaskHandler : IRequestHandler<CreateInterviewTaskCommand, Result<Guid>>
 {
     private readonly IUnitOfWorkRepository _uow;
     private readonly IInterviewTaskRepository _interviewTaskRepository;
@@ -15,15 +16,15 @@ public sealed class CreateInterviewTaskHandler
         _uow = uow;
     }
 
-    public async Task<Result<Guid>> HandleAsync(CreateInterviewTaskCommand command)
+    public async Task<Result<Guid>> Handle(CreateInterviewTaskCommand request, CancellationToken cancellationToken)
     {
-        var result =  InterviewTask.Create(
-            command.InterviewRoundId, 
-            command.InterviewProcessId,
-            command.CandidateId,
-            command.CandidateName,
-            command.AssigneeId,
-            command.AssigneeName);
+        var result = InterviewTask.Create(
+           request.InterviewRoundId,
+           request.InterviewProcessId,
+           request.CandidateId,
+           request.CandidateName,
+           request.AssigneeId,
+           request.AssigneeName);
 
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
@@ -34,6 +35,6 @@ public sealed class CreateInterviewTaskHandler
         await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(newTask.Id);
-
     }
+
 }
