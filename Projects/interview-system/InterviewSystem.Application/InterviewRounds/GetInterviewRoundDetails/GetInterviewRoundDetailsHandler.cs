@@ -2,10 +2,12 @@
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
+using MediatR;
 
 namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails;
 
-public sealed class GetInterviewRoundDetailsHandler
+public sealed class GetInterviewRoundDetailsHandler : 
+    IRequestHandler<GetInterviewRoundDetailsQuery, Result<GetInterviewRoundDetailsDTO>>
 {
     private readonly IInterviewRoundRepository _interviewRoundRepository;
 
@@ -14,12 +16,12 @@ public sealed class GetInterviewRoundDetailsHandler
         _interviewRoundRepository = interviewRoundRepository;
     }
 
-    public async Task<Result<GetInterviewRoundDetailsDTO>> HandleAsync(GetInterviewRoundDetailsQuery query)
+    public async Task<Result<GetInterviewRoundDetailsDTO>> Handle(GetInterviewRoundDetailsQuery request, CancellationToken cancellationToken)
     {
-        var result = await _interviewRoundRepository.GetByIdAsync(query.Id);
+        var result = await _interviewRoundRepository.GetByIdAsync(request.Id);
 
         if (result is null)
-            return Result<GetInterviewRoundDetailsDTO>.Failure(GenericErrors.NoRecordFound(nameof(InterviewRound), query.Id));
+            return Result<GetInterviewRoundDetailsDTO>.Failure(GenericErrors.NoRecordFound(nameof(InterviewRound), request.Id));
 
         var returnResult = MapToDTO(result);
 

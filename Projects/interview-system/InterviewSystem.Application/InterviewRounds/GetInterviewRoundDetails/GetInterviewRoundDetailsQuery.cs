@@ -1,3 +1,7 @@
-﻿namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails;
+﻿using InterviewSystem.Domain.Common.ErrorHandling;
+using MediatR;
 
-public sealed record GetInterviewRoundDetailsQuery(Guid Id);
+namespace InterviewSystem.Application.InterviewRounds.GetInterviewRoundDetails;
+
+public sealed record GetInterviewRoundDetailsQuery(Guid Id)
+    :IRequest<Result<GetInterviewRoundDetailsDTO>>;
