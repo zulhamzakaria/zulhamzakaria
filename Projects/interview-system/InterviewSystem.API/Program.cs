@@ -34,7 +34,7 @@ builder.Services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 builder.Services.AddScoped<IInterviewTaskRepository, InterviewTaskRepository>();
-builder.Services.AddScoped<IInterviewTaskQueryRepository, InterviewTaskQueryRepository>();
+builder.Services.AddScoped<IInterviewTasksSummaryQueryRepository, InterviewTasksSummaryQueryRepository>();
 builder.Services.AddScoped<IInterviewRoundRepository, InterviewRoundRepository>();
 builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessRepository>();
 

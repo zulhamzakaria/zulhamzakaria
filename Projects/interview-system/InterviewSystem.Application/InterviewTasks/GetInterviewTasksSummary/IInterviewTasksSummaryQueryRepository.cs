@@ -1,6 +1,6 @@
 ﻿namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 
-public interface IInterviewTaskQueryRepository
+public interface IInterviewTasksSummaryQueryRepository
 {
     Task<IReadOnlyCollection<GetInterviewTasksSummaryDTO>> GetSummaryAsync();
 }

@@ -1,29 +1,28 @@
 ﻿using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
-using InterviewSystem.Domain.Interfaces.Repositories;
+using MediatR;
 
 namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 
-public sealed class GetInterviewTasksSummaryHandler
+public sealed class GetInterviewTasksSummaryHandler :
+    IRequestHandler<GetInterviewTasksSummaryQuery, Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>>
 {
-    private readonly IInterviewTaskRepository _interviewTaskRepository;
-    private readonly IInterviewTaskQueryRepository _interviewTaskQueryRepository;
+    private readonly IInterviewTasksSummaryQueryRepository _interviewTaskQueryRepository;
 
-    public GetInterviewTasksSummaryHandler(IInterviewTaskRepository interviewTaskRepository,
-        IInterviewTaskQueryRepository interviewTaskQueryRepository)
+    public GetInterviewTasksSummaryHandler(IInterviewTasksSummaryQueryRepository interviewTaskQueryRepository)
     {
-        _interviewTaskRepository = interviewTaskRepository;
         _interviewTaskQueryRepository = interviewTaskQueryRepository;
     }
 
-    public async Task<Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>> HandleAsync(GetInterviewTasksSummaryQuery query)
+    public async Task<Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>> Handle
+        (GetInterviewTasksSummaryQuery request, CancellationToken cancellationToken)
     {
         var results = (await _interviewTaskQueryRepository.GetSummaryAsync())
-            .Where(cq => query.EmployeeDepartment == null || cq.EmployeeDepartment == query.EmployeeDepartment)
-            .Where(cq => query.AppliedPosition == null || cq.AppliedPosition == query.AppliedPosition)
-            .Where(cq => query.InterviewTaskStatus == null || cq.InterviewTaskStatus == query.InterviewTaskStatus)
-            .ToList();
+             .Where(cq => request.EmployeeDepartment == null || cq.EmployeeDepartment == request.EmployeeDepartment)
+             .Where(cq => request.AppliedPosition == null || cq.AppliedPosition == request.AppliedPosition)
+             .Where(cq => request.InterviewTaskStatus == null || cq.InterviewTaskStatus == request.InterviewTaskStatus)
+             .ToList();
 
         if (results.Any() is false)
             return Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>

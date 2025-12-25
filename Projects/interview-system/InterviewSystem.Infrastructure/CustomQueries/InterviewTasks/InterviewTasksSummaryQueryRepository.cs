@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
 
-public sealed class InterviewTaskQueryRepository : IInterviewTaskQueryRepository
+public sealed class InterviewTasksSummaryQueryRepository : IInterviewTasksSummaryQueryRepository
 {
     private readonly AppDbContext _dbContext;
-    public InterviewTaskQueryRepository(AppDbContext dbContext)
+    public InterviewTasksSummaryQueryRepository(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
