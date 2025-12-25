@@ -33,11 +33,11 @@ public class InterviewTaskController : ControllerBase
         return result.ToActionResult();
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateInterviewTask
-        ([FromBody] CreateInterviewTaskCommand command)
-    {
-        var result = await _mediator.Send(command);
-        return result.ToActionResult();
-    }
+    //[HttpPost]
+    //public async Task<IActionResult> CreateInterviewTask
+    //    ([FromBody] CreateInterviewTaskCommand command)
+    //{
+    //    var result = await _mediator.Send(command);
+    //    return result.ToActionResult();
+    //}
 }

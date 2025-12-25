@@ -33,13 +33,13 @@ namespace InterviewSystem.API.Controllers
             return result.ToActionResult();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateInterviewProcess
-            ([FromBody] CreateInterviewProcessCommand command)
-        {
-            var result = await _mediator.Send(command);
-            return result.ToActionResult();
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> CreateInterviewProcess
+        //    ([FromBody] CreateInterviewProcessCommand command)
+        //{
+        //    var result = await _mediator.Send(command);
+        //    return result.ToActionResult();
+        //}
 
     }
 }

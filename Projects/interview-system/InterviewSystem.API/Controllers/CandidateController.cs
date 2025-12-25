@@ -18,12 +18,12 @@ namespace InterviewSystem.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateCandidate([FromBody] CreateCandidateCommand command)
-        {
-            var result = await _mediator.Send(command);
-            return result.ToActionResult();
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> CreateCandidate([FromBody] CreateCandidateCommand command)
+        //{
+        //    var result = await _mediator.Send(command);
+        //    return result.ToActionResult();
+        //}
 
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetCandidateById(Guid id)
