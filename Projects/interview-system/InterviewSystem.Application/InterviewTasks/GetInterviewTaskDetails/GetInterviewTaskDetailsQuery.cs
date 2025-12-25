@@ -1,3 +1,6 @@
-﻿namespace InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
+﻿using InterviewSystem.Domain.Common.ErrorHandling;
+using MediatR;
 
-public sealed record GetInterviewTaskDetailsQuery(Guid Id);
+namespace InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
+
+public sealed record GetInterviewTaskDetailsQuery(Guid Id) : IRequest<Result<GetInterviewTaskDetailsDTO>>;
