@@ -7,9 +7,9 @@ public abstract class EntityBase
 
     protected EntityBase()
     {
-        CreatedAt = DateTimeOffset.Now;
-        UpdatedAt = DateTimeOffset.Now;
+        CreatedAt = DateTimeOffset.UtcNow;
+        UpdatedAt = DateTimeOffset.UtcNow;
     }
 
-    protected void SetUpdated() => UpdatedAt = DateTimeOffset.Now;
+    protected void SetUpdated() => UpdatedAt = DateTimeOffset.UtcNow;
 }
