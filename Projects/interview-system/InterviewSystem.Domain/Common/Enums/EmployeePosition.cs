@@ -6,6 +6,6 @@ public enum EmployeePosition
     HiringManager,
     SeniorEngineer,
     TechLead,
-    HOD,
-    Manager
+    Manager,
+    HOD
 }

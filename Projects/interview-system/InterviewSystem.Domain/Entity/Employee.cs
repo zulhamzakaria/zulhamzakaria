@@ -18,6 +18,7 @@ public class Employee : EntityBase
     public EmployeeDepartment EmployeeDepartment { get; private set; }
     public EmployeePosition EmployeePosition { get; private set; }
     public EmployeeStatus EmployeeStatus { get; private set; }
+    public int EmployeeLevel { get; private set; }
 
     public bool CanInterview => EmployeePosition != EmployeePosition.Clerk;
     public bool CanCoordinate => EmployeePosition == EmployeePosition.Clerk;
