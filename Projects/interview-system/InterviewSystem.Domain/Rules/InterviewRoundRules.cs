@@ -1,4 +1,4 @@
-﻿namespace InterviewSystem.Domain.Entity;
+﻿namespace InterviewSystem.Domain.Rules;
 
 public static class InterviewRoundRules
 {

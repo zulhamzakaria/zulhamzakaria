@@ -2,7 +2,7 @@
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
-namespace InterviewSystem.Domain.Entity;
+namespace InterviewSystem.Domain.Rules;
 
 public static class EmployeeRules
 {

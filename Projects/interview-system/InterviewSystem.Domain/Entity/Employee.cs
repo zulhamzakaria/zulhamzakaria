@@ -2,6 +2,7 @@
 using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
+using InterviewSystem.Domain.Rules;
 
 namespace InterviewSystem.Domain.Entity;
 
