@@ -7,6 +7,6 @@ public enum AppliedPosition
     JuniorEngineer,
     SeniorEngineer,
     TechnicalLead,
-    AssistantManager,
-    Manager
+    //AssistantManager,
+    //Manager
 }
