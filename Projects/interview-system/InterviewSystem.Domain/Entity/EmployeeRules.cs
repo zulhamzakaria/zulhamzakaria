@@ -20,10 +20,12 @@ public static class EmployeeRules
         return Result<bool>.Success(positions.Contains(position));
     }
 
-    public static readonly HashSet<EmployeePosition> CanCoordinate = new() { EmployeePosition.Clerk };
-    public static readonly HashSet<EmployeePosition> CanInterview = new() { EmployeePosition.HiringManager, 
-        EmployeePosition.SeniorEngineer,
-        EmployeePosition.TechLead, 
-        EmployeePosition.Manager, 
-        EmployeePosition.HOD};
+    public static readonly HashSet<EmployeePosition> CanCoordinate = 
+        new() { EmployeePosition.Clerk };
+    public static readonly HashSet<EmployeePosition> CanInterview = 
+        new() { EmployeePosition.HiringManager, 
+                EmployeePosition.SeniorEngineer,
+                EmployeePosition.TechLead, 
+                EmployeePosition.Manager, 
+                EmployeePosition.HOD};
 }
