@@ -9,10 +9,20 @@ public static class EmployeeRules
     private static readonly Dictionary<EmployeeDepartment, HashSet<EmployeePosition>> AllowedPositions =
         new()
         {
-            [EmployeeDepartment.HR] = new() { EmployeePosition.Clerk, EmployeePosition.HiringManager },
-            [EmployeeDepartment.Engineering] = new() { EmployeePosition.SeniorEngineer, EmployeePosition.TechLead },
+            [EmployeeDepartment.HR] = 
+            new() { EmployeePosition.Clerk, 
+                    EmployeePosition.HiringManager, 
+                    EmployeePosition.Manager,
+                    EmployeePosition.HOD},
+
+            [EmployeeDepartment.Engineering] = 
+            new() { EmployeePosition.SeniorEngineer, 
+                    EmployeePosition.TechLead,
+                    EmployeePosition.Manager,
+                    EmployeePosition.HOD},
         };
-    public static Result<bool> IsPositionValidForDepartment(EmployeeDepartment department, EmployeePosition position)
+    public static Result<bool> IsPositionValidForDepartment
+        (EmployeeDepartment department, EmployeePosition position)
     {
         if (AllowedPositions.TryGetValue(department, out var positions) is false)
             return Result<bool>.Failure(EmployeeErrors.InvalidDepartment(department));
