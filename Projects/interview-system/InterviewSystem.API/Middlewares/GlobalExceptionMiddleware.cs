@@ -39,8 +39,8 @@ public sealed class GlobalExceptionMiddleware
             await context.Response.WriteAsJsonAsync(new
             {
                 Code = code,
-                Message = ex.InnerException?.Message ?? ex.Message
-                //Message = message
+                //Message = ex.InnerException?.Message ?? ex.Message
+                Message = message
             });
 
         }
