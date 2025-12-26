@@ -21,6 +21,7 @@ public class InterviewTask : EntityBase
     public string? AssigneeName { get; private set; }
     public DateTimeOffset AssignedAt { get; private set; }
     public DateTimeOffset? CompletedAt { get; private set; }
+    public DateTimeOffset? InterviewDate { get; set; }
     public CandidateEvaluation? Evaluation { get; set; }
     public bool Rejected { get; set; } = false;
     public string? TaskRejectionReason { get; set; }
