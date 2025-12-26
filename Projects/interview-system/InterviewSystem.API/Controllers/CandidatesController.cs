@@ -9,11 +9,11 @@ namespace InterviewSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CandidateController : ControllerBase
+    public class CandidatesController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public CandidateController(IMediator mediator)
+        public CandidatesController(IMediator mediator)
         {
             _mediator = mediator;
         }
