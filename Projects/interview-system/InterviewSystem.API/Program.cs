@@ -1,6 +1,5 @@
 using InterviewSystem.API.Middlewares;
 using InterviewSystem.Application;
-using InterviewSystem.Application.Candidates.CreateCandidate;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
