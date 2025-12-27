@@ -1,4 +1,5 @@
 ﻿using InterviewSystem.Domain.Common.ErrorHandling;
+using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
@@ -9,17 +10,23 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
 {
     private readonly IUnitOfWorkRepository _uow;
     private readonly IInterviewProcessRepository _interviewProcessRepository;
+    private readonly ICandidateRepository _candidateRepository;
 
-    public CreateInterviewProcessHandler(IInterviewProcessRepository interviewProcessRepository, IUnitOfWorkRepository uow)
+    public CreateInterviewProcessHandler(IInterviewProcessRepository interviewProcessRepository, IUnitOfWorkRepository uow, ICandidateRepository candidateRepository)
     {
         _interviewProcessRepository = interviewProcessRepository;
+        _candidateRepository = candidateRepository;
         _uow = uow;
     }
 
     public async Task<Result<Guid>> Handle(CreateInterviewProcessCommand request, CancellationToken cancellationToken)
     {
+        var candidate = await _candidateRepository.GetByIdAsync(request.CandidateId);
+        if(candidate is null)
+            return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(Candidate), request.CandidateId));
+
         var result = InterviewProcess.Create(request.CandidateId,
-           request.CandidateName,
+           candidate.Name,
            request.EmployeeDepartment,
            request.CurrentSequence,
            request.InterviewProcessStatus,
