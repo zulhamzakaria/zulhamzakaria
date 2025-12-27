@@ -104,16 +104,21 @@ public class InterviewProcess : EntityBase
     public Result<Unit> MarkCompleted()
     {
         if (InterviewProcessStatus == InterviewProcessStatus.Completed)
-            return Result<Unit>.Failure(InterviewProcessErrors.CannotAdvance());
+            return Result<Unit>.Failure(InterviewProcessErrors.InvalidStatusChange());
 
         InterviewProcessStatus = InterviewProcessStatus.Completed;
 
         return Result<Unit>.Success(Unit.Value);
     }
 
-    public void MarkFailed()
+    public Result<Unit> MarkFailed()
     {
+        if (InterviewProcessStatus == InterviewProcessStatus.Completed)
+            return Result<Unit>.Failure(InterviewProcessErrors.InvalidStatusChange());
+
         InterviewProcessStatus = InterviewProcessStatus.Failed;
+
+        return Result<Unit>.Success(Unit.Value);
     }
 
 
