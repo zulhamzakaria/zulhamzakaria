@@ -1,6 +1,7 @@
 ﻿using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
+using InterviewSystem.Domain.Helpers;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
 
@@ -25,13 +26,14 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         if(candidate is null)
             return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(Candidate), request.CandidateId));
 
-        var result = InterviewProcess.Create(request.CandidateId,
-           candidate.Name,
-           request.EmployeeDepartment,
-           request.CurrentSequence,
-           request.InterviewProcessStatus,
-           request.CurrentInterviewId,
-           request.CurrentInterviewName);
+        var department = AppliedPositionDepartmentMap.GetDepartment(candidate.AppliedPosition);
+        if (department.IsFailure)
+            return Result<Guid>.Failure(department.Errors);
+
+
+        var result = InterviewProcess.Create(request.CandidateId, 
+            candidate.Name,
+            department.Value);
 
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);

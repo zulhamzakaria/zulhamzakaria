@@ -32,9 +32,8 @@ public class InterviewProcess : EntityBase
     //    CurrentInterviewerName = interviewerName;
     //}
 
-    public static Result<InterviewProcess> Create(Guid candidateId, string candidateName, EmployeeDepartment employeeDepartment,
-        int currentSequence, InterviewProcessStatus interviewProcessStatus,
-        Guid currentInterviewerId, string currentInterviewerName)
+    public static Result<InterviewProcess> Create(Guid candidateId, 
+        string candidateName, EmployeeDepartment employeeDepartment)
     {
         List<Error> errors = new();
 
@@ -50,22 +49,6 @@ public class InterviewProcess : EntityBase
         {
             errors.Add(GenericErrors.InvalidEnumValue(employeeDepartment));
         }
-        if (currentSequence <= 0)
-        {
-            errors.Add(GenericErrors.InvalidIntValue(nameof(currentSequence)));
-        }
-        if (Enum.IsDefined(interviewProcessStatus) is false)
-        {
-            errors.Add(GenericErrors.InvalidEnumValue(interviewProcessStatus));
-        }
-        if (currentInterviewerId == Guid.Empty)
-        {
-            errors.Add(GenericErrors.Required(nameof(currentInterviewerId)));
-        }
-        if (string.IsNullOrWhiteSpace(currentInterviewerName))
-        {
-            errors.Add(GenericErrors.Required(nameof(currentInterviewerName)));
-        }
 
         if (errors.Any())
         {
@@ -78,10 +61,10 @@ public class InterviewProcess : EntityBase
             CandidateId = candidateId,
             CandidateName = candidateName,
             Department = employeeDepartment,
-            CurrentRoundSequence = currentSequence,
-            InterviewProcessStatus = interviewProcessStatus,
-            CurrentInterviewerId = currentInterviewerId,
-            CurrentInterviewerName = currentInterviewerName
+            CurrentRoundSequence = 1,
+            InterviewProcessStatus = InterviewProcessStatus.InProcess,
+            CurrentInterviewerId = null,
+            CurrentInterviewerName = null
         };
 
         return Result<InterviewProcess>.Success(process);
