@@ -104,5 +104,26 @@ public class InterviewProcess : EntityBase
         return Result<Unit>.Success(Unit.Value);
     }
 
+    public Result<Unit> UpdateCurrentInterviewer(Guid interviewerId,
+        string interviewerName)
+    {
+        List<Error> errors = new();
 
+        if (interviewerId == Guid.Empty)
+        {
+            errors.Add(GenericErrors.Required(nameof(interviewerId)));
+        }
+        if (string.IsNullOrWhiteSpace(interviewerName))
+        {
+            errors.Add(GenericErrors.Required(nameof(interviewerName)));
+        }
+
+        if (errors.Any())
+            return Result<Unit>.Failure(errors);
+
+        CurrentInterviewerId = interviewerId;
+        CurrentInterviewerName = interviewerName;
+
+        return Result<Unit>.Success(Unit.Value);
+    }
 }

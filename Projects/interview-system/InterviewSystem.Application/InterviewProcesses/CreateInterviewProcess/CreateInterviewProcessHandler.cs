@@ -64,6 +64,10 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
 
         //InterviewTask
         var employeePosition = roundPolicy.Steps.FirstOrDefault();
+
+        if (employeePosition is null)
+            return Result<Guid>.Failure();
+
         var employees = await _employeeRepository.GetEmployeesByPositionAsync
             (employeePosition.AllowedPositions.FirstOrDefault());
 
@@ -84,6 +88,9 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         var newProcess = result.Value;
         var newInterviewRound = interviewRound.Value;
         var newTask = initialTask.Value!;
+
+        newProcess.UpdateCurrentInterviewer(employees.FirstOrDefault()!.Id,
+            employees.FirstOrDefault()!.Name ?? string.Empty);
 
         await _interviewProcessRepository.AddAsync(newProcess);
         await _interviewRoundRepository.AddAsync(newInterviewRound);
