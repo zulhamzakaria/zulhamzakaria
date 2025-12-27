@@ -87,9 +87,19 @@ public class InterviewProcess : EntityBase
 
     }
 
-    public void Advance()
+    public void Advance(int nextSequence)
     {
-        CurrentRoundSequence++;
+        if(InterviewProcessStatus == InterviewProcessStatus.Completed)
+        {
+            //Result<T>?
+        }
+    }
+
+    public void MarkCompleted()
+    {
+        if (InterviewProcessStatus == InterviewProcessStatus.Completed)
+            return; //Result<T>
+        InterviewProcessStatus = InterviewProcessStatus.Completed;
     }
 
     public void MarkFailed()
@@ -97,8 +107,5 @@ public class InterviewProcess : EntityBase
         InterviewProcessStatus = InterviewProcessStatus.Failed;
     }
 
-    public void MarkCompleted()
-    {
-        InterviewProcessStatus = InterviewProcessStatus.Completed;
-    }
+
 }
