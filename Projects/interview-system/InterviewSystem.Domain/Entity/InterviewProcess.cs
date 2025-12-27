@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.Enums;
+﻿using InterviewSystem.Domain.Common;
+using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
@@ -87,19 +88,27 @@ public class InterviewProcess : EntityBase
 
     }
 
-    public void Advance(int nextSequence)
-    {
-        if(InterviewProcessStatus == InterviewProcessStatus.Completed)
-        {
-            //Result<T>?
-        }
-    }
-
-    public void MarkCompleted()
+    public Result<Unit> Advance(int nextSequence)
     {
         if (InterviewProcessStatus == InterviewProcessStatus.Completed)
-            return; //Result<T>
+            return Result<Unit>.Failure(InterviewProcessErrors.CannotAdvance());
+        
+        if (CurrentRoundSequence < nextSequence)
+            return Result<Unit>.Failure(InterviewProcessErrors.InvalidSequence());
+        
+        CurrentRoundSequence = nextSequence;
+
+        return Result<Unit>.Success(Unit.Value);
+    }
+
+    public Result<Unit> MarkCompleted()
+    {
+        if (InterviewProcessStatus == InterviewProcessStatus.Completed)
+            return Result<Unit>.Failure(InterviewProcessErrors.CannotAdvance());
+
         InterviewProcessStatus = InterviewProcessStatus.Completed;
+
+        return Result<Unit>.Success(Unit.Value);
     }
 
     public void MarkFailed()
