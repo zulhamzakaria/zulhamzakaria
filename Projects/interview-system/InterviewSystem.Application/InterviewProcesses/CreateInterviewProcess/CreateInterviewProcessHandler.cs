@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Helpers;
@@ -66,7 +67,7 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         var employeePosition = roundPolicy.Steps.FirstOrDefault();
 
         if (employeePosition is null)
-            return Result<Guid>.Failure();
+            return Result<Guid>.Failure(InterviewRoundErrors.UndefinedPolicy(EmployeePosition.HiringManager));
 
         var employees = await _employeeRepository.GetEmployeesByPositionAsync
             (employeePosition.AllowedPositions.FirstOrDefault());
