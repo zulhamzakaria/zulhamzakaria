@@ -1,6 +1,7 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
+using InterviewSystem.Domain.Policies;
 
 namespace InterviewSystem.Domain.Entity;
 
@@ -27,7 +28,7 @@ public class InterviewRound : EntityBase
     //}
 
     public static Result<InterviewRound> Create(EmployeeDepartment employeeDepartment,
-        AppliedPosition appliedPosition, List<EmployeePosition> positions)
+        AppliedPosition appliedPosition, IReadOnlyList<InterviewStepPolicy> steps)
     {
 
         List<Error> errors = new();
@@ -40,15 +41,10 @@ public class InterviewRound : EntityBase
         {
             errors.Add(GenericErrors.InvalidEnumValue(appliedPosition));
         }
-        if (positions is null || positions.Any() is false)
-        {
-            errors.Add(GenericErrors.Required(nameof(positions)));
-        }
-
-        if (errors.Any())
-        {
-            return Result<InterviewRound>.Failure(errors);
-        }
+        //if (positions is null || positions.Any() is false)
+        //{
+        //    errors.Add(GenericErrors.Required(nameof(positions)));
+        //}
 
         var round = new InterviewRound()
         {
@@ -57,17 +53,30 @@ public class InterviewRound : EntityBase
             Department = employeeDepartment,
         };
 
-        int sequence = 0;
-        foreach (var post in positions!)
+        //Create RoundItem
+        foreach(var step in steps)
         {
-            var item = InterviewRoundItem.Create(sequence + 1, post);
-            if (item.IsFailure)
+            var roundItem = InterviewRoundItem.Create(
+                step.Sequence,
+                step.AllowedPositions.FirstOrDefault(),
+                step.IsMandatory,
+                step.CanCompleteProcess,
+                step.AllowMultiple);
+
+            if (roundItem.IsFailure)
             {
-                return Result<InterviewRound>.Failure(item.Errors);
+                errors.AddRange(roundItem.Errors);
+                continue;
             }
-            round._items.Add(item.Value!);
-            sequence++;
+
+            round._items.Add(roundItem.Value!);
         }
+
+        if (errors.Any())
+        {
+            return Result<InterviewRound>.Failure(errors);
+        }
+
         return Result<InterviewRound>.Success(round);
     }
 

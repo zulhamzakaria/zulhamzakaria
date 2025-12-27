@@ -71,7 +71,7 @@ public class AppDbContext : DbContext
                 item.HasKey("Id");
 
                 item.Property(i => i.Sequence).IsRequired();
-                item.Property(i => i.Position).IsRequired();
+                item.Property(i => i.AllowedPosition).IsRequired();
 
                 item.HasIndex("InterviewRoundId", nameof(InterviewRoundItem.Sequence))
                 .IsUnique();

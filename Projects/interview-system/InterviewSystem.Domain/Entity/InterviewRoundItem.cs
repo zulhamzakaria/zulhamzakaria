@@ -1,26 +1,25 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
+using InterviewSystem.Domain.Policies;
 
 namespace InterviewSystem.Domain.Entity;
 
 public class InterviewRoundItem
 {
     public int Sequence { get; private set; }
-    public EmployeePosition Position { get; private set; }
+    public EmployeePosition AllowedPosition { get; private set; }
+    public bool IsMandatory { get; private set; } 
+    public bool CanCompleteProcess { get; private set; } 
+    public bool AllowMultiple { get; private set; } 
 
     private InterviewRoundItem()
     {
         //EF Core needs this
     }
 
-    //private InterviewRoundItem(int sequence, EmployeePosition employee)
-    //{
-    //    Sequence = sequence;
-    //    Position = employee;
-    //}
-
-   public static Result<InterviewRoundItem> Create(int sequence, EmployeePosition position)
+   public static Result<InterviewRoundItem> Create(int sequence, EmployeePosition position,
+       bool isMandatory, bool canCompleteProcess, bool allowMultiple)
     {
         List<Error> errors = new();
 
@@ -41,7 +40,7 @@ public class InterviewRoundItem
         InterviewRoundItem item = new()
         {
             Sequence = sequence,
-            Position = position
+            AllowedPosition = position
         };
 
         return Result<InterviewRoundItem>.Success(item);

@@ -8,8 +8,8 @@ internal static class EngineeringInterviewRoundPolicy
     {
         AppliedDepartment = EmployeeDepartment.Engineering,
         AppliedPosition = AppliedPosition.JuniorEngineer,
-        Steps =
-        [
+        Steps = new List<InterviewStepPolicy>
+        {
             new InterviewStepPolicy
             {
                 Sequence = 1,
@@ -37,14 +37,14 @@ internal static class EngineeringInterviewRoundPolicy
                 CanCompleteProcess = true,
                 AllowMultiple = false
             }
-        ]
+        }
     };
     public static InterviewRoundPolicy SeniorEngineerPolicy = new()
     {
         AppliedDepartment = EmployeeDepartment.Engineering,
         AppliedPosition = AppliedPosition.SeniorEngineer,
-        Steps =
-        [
+        Steps = new List<InterviewStepPolicy>
+        {
             new InterviewStepPolicy
             {
                 Sequence = 1,
@@ -72,14 +72,14 @@ internal static class EngineeringInterviewRoundPolicy
                 CanCompleteProcess = true,
                 AllowMultiple = false
             }
-        ]
+        }
     };
     public static InterviewRoundPolicy TechnicalLead = new()
     {
         AppliedDepartment = EmployeeDepartment.Engineering,
         AppliedPosition = AppliedPosition.TechnicalLead,
-        Steps =
-        [
+        Steps = new List<InterviewStepPolicy>
+        {
             new InterviewStepPolicy
             {
                 Sequence = 1,
@@ -107,7 +107,7 @@ internal static class EngineeringInterviewRoundPolicy
                 CanCompleteProcess = true,
                 AllowMultiple = false
             }
-        ]
+        }
     };
 }
 

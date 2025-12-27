@@ -17,20 +17,21 @@ public sealed class CreateInterviewRoundHandler : IRequestHandler<CreateIntervie
 
     public async Task<Result<Guid>> Handle(CreateInterviewRoundCommand request, CancellationToken cancellationToken)
     {
-        var result = InterviewRound.Create(
-            request.EmployeeDepartment,
-            request.AppliedPosition,
-            request.EmployeePositions);
+        throw new NotImplementedException();
+        //var result = InterviewRound.Create(
+        //    request.EmployeeDepartment,
+        //    request.AppliedPosition,
+        //    request.EmployeePositions);
 
-        if (result.IsFailure)
-            return Result<Guid>.Failure(result.Errors);
+        //if (result.IsFailure)
+        //    return Result<Guid>.Failure(result.Errors);
 
-        var newInterviewRound = result.Value!;
+        //var newInterviewRound = result.Value!;
 
-        await _interviewRoundRepository.AddAsync(newInterviewRound);
-        await _uow.SaveChangesAsync();
+        //await _interviewRoundRepository.AddAsync(newInterviewRound);
+        //await _uow.SaveChangesAsync();
 
-        return Result<Guid>.Success(newInterviewRound.Id);
+        //return Result<Guid>.Success(newInterviewRound.Id);
     }
 
 }

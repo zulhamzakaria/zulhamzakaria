@@ -21,16 +21,6 @@ public class Candidate : EntityBase
     {
         //EF Core needs this
     }
-
-    //private Candidate(Guid id, string name, string email, string phoneNumber, AppliedPosition appliedPosition)
-    //{
-    //    Id = id;
-    //    Name = name;
-    //    Email = email;
-    //    PhoneNumber = phoneNumber;
-    //    AppliedPosition = appliedPosition;
-    //}
-
     public static Result<Candidate> Create(string name, string email, string phoneNumber, AppliedPosition appliedPosition)
     {
 

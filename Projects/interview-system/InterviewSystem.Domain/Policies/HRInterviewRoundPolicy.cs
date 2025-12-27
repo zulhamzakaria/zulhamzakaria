@@ -8,7 +8,7 @@ internal static class HRInterviewRoundPolicy
     {
         AppliedDepartment = EmployeeDepartment.HR,
         AppliedPosition = AppliedPosition.Clerk,
-        Steps = new[]
+        Steps = new List<InterviewStepPolicy>
         {
             new InterviewStepPolicy()
             {
@@ -34,7 +34,7 @@ internal static class HRInterviewRoundPolicy
     {
         AppliedDepartment = EmployeeDepartment.HR,
         AppliedPosition = AppliedPosition.TeaLady,
-        Steps = new[]
+        Steps = new List<InterviewStepPolicy>
         {
             new InterviewStepPolicy()
             {

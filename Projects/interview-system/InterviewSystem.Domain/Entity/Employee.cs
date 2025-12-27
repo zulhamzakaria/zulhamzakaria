@@ -25,20 +25,6 @@ public class Employee : EntityBase
     public bool CanCoordinate => EmployeePosition == EmployeePosition.Clerk;
 
     public Employee() { } //required by EF Core
-
-    //public Employee(Guid id, string name, string email,
-    //    EmployeeType type, EmployeeDepartment department, 
-    //    EmployeePosition position, EmployeeStatus status)
-    //{
-    //    Id = id;
-    //    Name = name;
-    //    Email = email;
-    //    EmployeeType = type;
-    //    EmployeeDepartment = department;
-    //    EmployeePosition = position;
-    //    EmployeeStatus = status;
-    //}
-
     public static Result<Employee> Create(string name, string email,
         EmployeeDepartment department, EmployeePosition position)
     {
