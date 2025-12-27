@@ -28,7 +28,8 @@ public class EmployeeRepository: IEmployeeRepository
         return await _context.Employees.FindAsync(id);
     }
 
-    public async Task<IReadOnlyCollection<Employee>> GetEmployeesByTypeAsync(EmployeePosition position)
+    public async Task<IReadOnlyCollection<Employee>> GetEmployeesByPositionAsync
+        (EmployeePosition position)
     {
         return await _context.Employees
             .Where(e => e.EmployeePosition == position)

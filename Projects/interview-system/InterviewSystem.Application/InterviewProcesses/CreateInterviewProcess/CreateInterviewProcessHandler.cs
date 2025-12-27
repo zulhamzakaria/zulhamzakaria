@@ -12,14 +12,19 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
 {
     private readonly IUnitOfWorkRepository _uow;
     private readonly IInterviewProcessRepository _interviewProcessRepository;
+    private readonly IInterviewRoundRepository _interviewRoundRepository;
+    private readonly IInterviewTaskRepository _interviewTaskRepository;
     private readonly ICandidateRepository _candidateRepository;
     private readonly IEmployeeRepository _employeeRepository;
 
-    public CreateInterviewProcessHandler(IInterviewProcessRepository interviewProcessRepository, 
-        IUnitOfWorkRepository uow, ICandidateRepository candidateRepository, 
-        IEmployeeRepository employeeRepository)
+    public CreateInterviewProcessHandler(IInterviewProcessRepository interviewProcessRepository,
+        IUnitOfWorkRepository uow, ICandidateRepository candidateRepository,
+        IEmployeeRepository employeeRepository, IInterviewRoundRepository interviewRoundRepository, 
+        IInterviewTaskRepository interviewTaskRepository)
     {
         _interviewProcessRepository = interviewProcessRepository;
+        _interviewRoundRepository = interviewRoundRepository;
+        _interviewTaskRepository = interviewTaskRepository;
         _candidateRepository = candidateRepository;
         _employeeRepository = employeeRepository;
         _uow = uow;
@@ -54,23 +59,36 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
             candidate.AppliedPosition,
             roundPolicy.Steps);
 
-        if (result.IsFailure)
+        if (interviewRound.IsFailure)
             return Result<Guid>.Failure(interviewRound.Errors);
 
         //InterviewTask
-        var employeeType = roundPolicy.Steps.First();
+        var employeePosition = roundPolicy.Steps.FirstOrDefault();
+        var employees = await _employeeRepository.GetEmployeesByPositionAsync
+            (employeePosition.AllowedPositions.FirstOrDefault());
 
+        if (employees.Any() is false)
+            return Result<Guid>.Failure(GenericErrors.NoRecordsFound(nameof(employeePosition)));
 
         var initialTask = InterviewTask.Create(
-            interviewRound.Value!.Id, 
-            result.Value!.Id, 
-            request.CandidateId, candidate.Name,
-            request.CandidateId, candidate.Name); //Empl name
+            interviewRound.Value!.Id,
+            result.Value!.Id,
+            request.CandidateId,
+            candidate.Name,
+            employees.FirstOrDefault()!.Id,
+            employees.FirstOrDefault()!.Name ?? string.Empty);
+
+        if (initialTask.IsFailure)
+            return Result<Guid>.Failure(initialTask.Errors);
 
         var newProcess = result.Value;
         var newInterviewRound = interviewRound.Value;
+        var newTask = initialTask.Value!;
 
-        await _interviewProcessRepository.AddAsync(newProcess!);
+        await _interviewProcessRepository.AddAsync(newProcess);
+        await _interviewRoundRepository.AddAsync(newInterviewRound);
+        await _interviewTaskRepository.AddAsync(newTask);
+
         await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(newProcess!.Id);
