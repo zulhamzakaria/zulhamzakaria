@@ -3,6 +3,7 @@ using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Helpers;
 using InterviewSystem.Domain.Interfaces.Repositories;
+using InterviewSystem.Domain.Policies;
 using MediatR;
 
 namespace InterviewSystem.Application.InterviewProcesses.CreateInterviewProcess;
@@ -37,6 +38,9 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
 
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
+
+        //interviewround policy
+        var policy = InterviewRoundPolicyRegistry.GetPolicy(candidate.AppliedPosition);
 
         var newProcess = result.Value;
 
