@@ -13,11 +13,15 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
     private readonly IUnitOfWorkRepository _uow;
     private readonly IInterviewProcessRepository _interviewProcessRepository;
     private readonly ICandidateRepository _candidateRepository;
+    private readonly IEmployeeRepository _employeeRepository;
 
-    public CreateInterviewProcessHandler(IInterviewProcessRepository interviewProcessRepository, IUnitOfWorkRepository uow, ICandidateRepository candidateRepository)
+    public CreateInterviewProcessHandler(IInterviewProcessRepository interviewProcessRepository, 
+        IUnitOfWorkRepository uow, ICandidateRepository candidateRepository, 
+        IEmployeeRepository employeeRepository)
     {
         _interviewProcessRepository = interviewProcessRepository;
         _candidateRepository = candidateRepository;
+        _employeeRepository = employeeRepository;
         _uow = uow;
     }
 
@@ -39,7 +43,7 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
 
-        //interviewround policy
+        //InterviewRound
         var policy = InterviewRoundPolicyRegistry.GetPolicy(candidate.AppliedPosition);
         if (policy.IsFailure)
             return Result<Guid>.Failure(policy.Errors);
@@ -50,7 +54,21 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
             candidate.AppliedPosition,
             roundPolicy.Steps);
 
+        if (result.IsFailure)
+            return Result<Guid>.Failure(interviewRound.Errors);
+
+        //InterviewTask
+        var employeeType = roundPolicy.Steps.First();
+
+
+        var initialTask = InterviewTask.Create(
+            interviewRound.Value!.Id, 
+            result.Value!.Id, 
+            request.CandidateId, candidate.Name,
+            request.CandidateId, candidate.Name); //Empl name
+
         var newProcess = result.Value;
+        var newInterviewRound = interviewRound.Value;
 
         await _interviewProcessRepository.AddAsync(newProcess!);
         await _uow.SaveChangesAsync();
