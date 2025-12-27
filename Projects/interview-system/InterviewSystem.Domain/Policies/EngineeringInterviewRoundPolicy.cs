@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Domain.Policies;
 
-public static class EngineeringInterviewRoundPolicy
+internal static class EngineeringInterviewRoundPolicy
 {
     public static InterviewRoundPolicy JuniorEngineerPolicy = new()
     {

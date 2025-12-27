@@ -2,7 +2,7 @@
 
 namespace InterviewSystem.Domain.Policies;
 
-public static class HRInterviewRoundPolicy
+internal static class HRInterviewRoundPolicy
 {
     public static InterviewRoundPolicy ClerkPolicy = new()
     {

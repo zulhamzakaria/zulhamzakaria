@@ -2,6 +2,7 @@
 using InterviewSystem.Application.Candidates.CreateCandidate;
 using InterviewSystem.Application.Candidates.GetCandidateDetails;
 using InterviewSystem.Application.Candidates.GetCandidatesSummary;
+using InterviewSystem.Application.InterviewProcesses.CreateInterviewProcess;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,14 @@ namespace InterviewSystem.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCandidate([FromBody] CreateCandidateCommand command)
         {
+            var result = await _mediator.Send(command);
+            return result.ToActionResult();
+        }
+
+        [HttpPost("{candidateId:guid}/submit-application")]
+        public async Task<IActionResult> SubmitApplication(Guid candidateId)
+        {
+            var command = new CreateInterviewProcessCommand(candidateId);
             var result = await _mediator.Send(command);
             return result.ToActionResult();
         }
