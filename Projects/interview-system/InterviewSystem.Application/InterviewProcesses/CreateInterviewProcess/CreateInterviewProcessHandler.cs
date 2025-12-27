@@ -1,5 +1,4 @@
-﻿using InterviewSystem.Domain.Common.Enums;
-using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Helpers;
@@ -67,7 +66,7 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         var employeePosition = roundPolicy.Steps.FirstOrDefault();
 
         if (employeePosition is null)
-            return Result<Guid>.Failure(InterviewRoundErrors.UndefinedPolicy(EmployeePosition.HiringManager));
+            return Result<Guid>.Failure(InterviewRoundErrors.UndefinedInitiator());
 
         var employees = await _employeeRepository.GetEmployeesByPositionAsync
             (employeePosition.AllowedPositions.FirstOrDefault());
@@ -75,13 +74,19 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         if (employees.Any() is false)
             return Result<Guid>.Failure(GenericErrors.NoRecordsFound(nameof(employeePosition)));
 
+        var currentInterviewer = new
+        {
+            Id = employees.FirstOrDefault()!.Id,
+            Name = employees.FirstOrDefault()!.Name ?? string.Empty
+        };
+
         var initialTask = InterviewTask.Create(
             interviewRound.Value!.Id,
             result.Value!.Id,
             request.CandidateId,
             candidate.Name,
-            employees.FirstOrDefault()!.Id,
-            employees.FirstOrDefault()!.Name ?? string.Empty);
+            currentInterviewer.Id,
+            currentInterviewer.Name);
 
         if (initialTask.IsFailure)
             return Result<Guid>.Failure(initialTask.Errors);
@@ -90,8 +95,7 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         var newInterviewRound = interviewRound.Value;
         var newTask = initialTask.Value!;
 
-        newProcess.UpdateCurrentInterviewer(employees.FirstOrDefault()!.Id,
-            employees.FirstOrDefault()!.Name ?? string.Empty);
+        newProcess.UpdateCurrentInterviewer(currentInterviewer.Id, currentInterviewer.Name);
 
         await _interviewProcessRepository.AddAsync(newProcess);
         await _interviewRoundRepository.AddAsync(newInterviewRound);
