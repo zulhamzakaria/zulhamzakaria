@@ -43,7 +43,8 @@ public class InterviewTask : EntityBase
     //    TaskRejectionReason = reason;
     //}
 
-    public static Result<InterviewTask> Create(Guid interviewRoundId, Guid interviewProcessId, Guid candidateId, string candidateName,
+    public static Result<InterviewTask> Create(Guid interviewRoundId, Guid interviewProcessId, int roundSequence,
+        Guid candidateId, string candidateName,
         Guid assigneeId, string assigneeName )
     {
         List<Error> errors = new();
@@ -69,6 +70,7 @@ public class InterviewTask : EntityBase
             InterviewProcessId = interviewProcessId,
             CandidateId = candidateId,
             CandidateName = candidateName,
+            RoundSequence = roundSequence,
             AssigneeId = assigneeId,
             AssigneeName = assigneeName,
             InterviewTaskStatus = InterviewTaskStatus.Assigned,
