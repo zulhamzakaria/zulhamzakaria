@@ -21,6 +21,7 @@ public sealed class CreateInterviewTaskHandler : IRequestHandler<CreateInterview
         var result = InterviewTask.Create(
            request.InterviewRoundId,
            request.InterviewProcessId,
+           roundSequence: 1,
            request.CandidateId,
            request.CandidateName,
            request.AssigneeId,
