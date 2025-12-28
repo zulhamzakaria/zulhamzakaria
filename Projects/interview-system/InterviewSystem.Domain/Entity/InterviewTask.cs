@@ -50,6 +50,8 @@ public class InterviewTask : EntityBase
 
         if (interviewProcessId == Guid.Empty)
             errors.Add(GenericErrors.Required(nameof(interviewProcessId)));
+         if (interviewRoundId == Guid.Empty)
+            errors.Add(GenericErrors.Required(nameof(interviewRoundId)));
         if (candidateId == Guid.Empty)
             errors.Add(GenericErrors.Required(nameof(candidateId)));
         //if(rejected == true && string.IsNullOrWhiteSpace(rejectionReason))
@@ -63,6 +65,7 @@ public class InterviewTask : EntityBase
         InterviewTask task = new()
         {
             Id = Guid.NewGuid(),
+            InterviewRoundId = interviewRoundId,
             InterviewProcessId = interviewProcessId,
             CandidateId = candidateId,
             CandidateName = candidateName,
