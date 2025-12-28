@@ -1,7 +1,6 @@
 ﻿using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
-using InterviewSystem.Domain.Policies;
 
 namespace InterviewSystem.Domain.Entity;
 
@@ -40,7 +39,10 @@ public class InterviewRoundItem
         InterviewRoundItem item = new()
         {
             Sequence = sequence,
-            AllowedPosition = position
+            AllowedPosition = position,
+            IsMandatory = isMandatory,
+            CanCompleteProcess = canCompleteProcess,
+            AllowMultiple = allowMultiple
         };
 
         return Result<InterviewRoundItem>.Success(item);
