@@ -8,6 +8,5 @@ public sealed record GetInterviewTasksSummaryQuery(
         EmployeeDepartment? EmployeeDepartment,
         AppliedPosition? AppliedPosition,
         InterviewTaskStatus? InterviewTaskStatus,
-        bool? Rejected,
-        string? TaskRejectionReason
+        bool? Rejected
         ) : IRequest<Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>>;
