@@ -41,8 +41,8 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
             return Result<Guid>.Failure(department.Errors);
 
         var process = await _interviewProcessRepository.GetByCandidateIdAsync(request.CandidateId);
-        if(process is not null)
-            return Result<Guid>.Failure(depa)
+        if (process is not null)
+            return Result<Guid>.Failure(InterviewProcessErrors.ProcessExists(request.CandidateId));
 
         var result = InterviewProcess.Create(request.CandidateId,
             candidate.Name,
@@ -104,7 +104,7 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         await _interviewRoundRepository.AddAsync(newInterviewRound);
         await _interviewTaskRepository.AddAsync(newTask);
 
-        await _uow.SaveChangesAsync();
+        //await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(newProcess!.Id);
     }
