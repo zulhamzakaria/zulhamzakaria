@@ -69,7 +69,7 @@ public class InterviewTask : EntityBase
             AssigneeId = assigneeId,
             AssigneeName = assigneeName,
             InterviewTaskStatus = InterviewTaskStatus.Assigned,
-            AssignedAt = DateTimeOffset.Now,
+            AssignedAt = DateTimeOffset.UtcNow,
             Rejected = false,
             TaskRejectionReason = null
         };
