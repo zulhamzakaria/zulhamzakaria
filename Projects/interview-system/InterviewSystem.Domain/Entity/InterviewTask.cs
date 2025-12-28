@@ -97,12 +97,18 @@ public class InterviewTask : EntityBase
 
     public Result<Unit> Scheduling(DateTimeOffset interviewDate)
     {
+        var errors = new List<Error>();
+
         var result = ValidateDate(interviewDate);
+
         if (result.IsFailure)
-            return Result<Unit>.Failure(result.Errors);
+            errors.AddRange(result.Errors);
 
         if (InterviewDate is not null)
-            return Result<Unit>.Failure(InterviewTaskErrors.InterviewDateExists());
+            errors.Add(InterviewTaskErrors.InterviewDateExists());
+
+        if (errors.Any())
+            return Result<Unit>.Failure(errors);
 
         InterviewDate = interviewDate;
 
