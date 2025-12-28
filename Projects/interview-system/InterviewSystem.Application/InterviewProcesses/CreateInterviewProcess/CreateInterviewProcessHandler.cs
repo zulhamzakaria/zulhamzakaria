@@ -104,7 +104,7 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         await _interviewRoundRepository.AddAsync(newInterviewRound);
         await _interviewTaskRepository.AddAsync(newTask);
 
-        //await _uow.SaveChangesAsync();
+        await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(newProcess!.Id);
     }
