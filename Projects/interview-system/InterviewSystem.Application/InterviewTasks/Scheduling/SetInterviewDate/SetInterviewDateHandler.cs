@@ -1,4 +1,6 @@
 ﻿using InterviewSystem.Domain.Common.ErrorHandling;
+using InterviewSystem.Domain.Common.ErrorHandling.Errors;
+using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
 
@@ -13,8 +15,24 @@ public sealed class SetInterviewDateHandler : IRequestHandler<SetInterviewDateCo
         _uow = uow;
         _interviewTaskRepository = interviewTaskRepository;
     }
-    public Task<Result<DateTimeOffset>> Handle(SetInterviewDateCommand request, CancellationToken cancellationToken)
+    public async Task<Result<DateTimeOffset>> Handle(SetInterviewDateCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var isOwner = await _interviewTaskRepository.IsAssigneeOwner(request.TaskId, request.AssigneeId);
+        if (isOwner is false)
+            return Result<DateTimeOffset>
+                .Failure(InterviewTaskErrors.InvalidAction(request.AssigneeId,request.TaskId));
+
+        var task = await _interviewTaskRepository.GetByIdAsync(request.TaskId);
+        if(task is null)
+            return Result<DateTimeOffset>
+                .Failure(GenericErrors.NoRecordFound(nameof(InterviewTask), request.TaskId));
+
+        var result = task.Scheduling(request.InterviewDate);
+        if (result.IsFailure)
+            return Result<DateTimeOffset>.Failure(result.Errors);
+
+        await _uow.SaveChangesAsync();
+
+        return Result<DateTimeOffset>.Success(request.InterviewDate);
     }
 }
