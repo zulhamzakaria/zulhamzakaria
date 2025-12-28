@@ -22,6 +22,12 @@ public class InterviewProcessRepository : IInterviewProcessRepository
         return await _context.InterviewProcesses.ToListAsync(); 
     }
 
+    public async Task<InterviewProcess?> GetByCandidateIdAsync(Guid candidateId)
+    {
+        return await _context.InterviewProcesses
+            .SingleOrDefaultAsync(ip => ip.CandidateId == candidateId);
+    }
+
     public async Task<InterviewProcess?> GetByIdAsync(Guid id)
     {
         return await _context.InterviewProcesses.FindAsync(id);
