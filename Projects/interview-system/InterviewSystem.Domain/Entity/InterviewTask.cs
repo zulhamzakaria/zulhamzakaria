@@ -95,11 +95,49 @@ public class InterviewTask : EntityBase
         SetUpdated();
     }
 
-    private Result<Unit> ValidateDate(DateTimeOffset interviewDate)
+    public Result<Unit> Scheduling(DateTimeOffset interviewDate)
+    {
+        var result = ValidateDate(interviewDate);
+        if (result.IsFailure)
+            return Result<Unit>.Failure(result.Errors);
+
+        if (InterviewDate is not null)
+            return Result<Unit>.Failure(InterviewTaskErrors.InterviewDateExists());
+
+        InterviewDate = interviewDate;
+
+        return Result<Unit>.Success(new Unit());
+    }
+
+    public Result<Unit> Rescheduling(DateTimeOffset interviewDate)
+    {
+        var result = ValidateDate(interviewDate);
+
+        if (result.IsFailure)
+            return Result<Unit>.Failure(result.Errors);
+
+        InterviewDate = interviewDate;
+
+        return Result<Unit>.Success(new Unit());
+    }
+
+    private Result<DateTimeOffset> ValidateDate(DateTimeOffset interviewDate)
     {
         var errors = new List<Error>();
 
-        if(interviewDate < DateTimeOffset.UtcNow)
+        if (interviewDate < DateTimeOffset.UtcNow)
+            errors.Add(InterviewTaskErrors.BackdatedInterviewDate());
+        if(interviewDate > DateTimeOffset.UtcNow.AddYears(1))
+            errors.Add(InterviewTaskErrors.InterviewDateTooFar());
+        if (interviewDate.Hour < 9 || interviewDate.Hour > 17)
+            errors.Add(InterviewTaskErrors.InvalidScheduling());
+        if (interviewDate.DayOfWeek == DayOfWeek.Saturday 
+            || interviewDate.DayOfWeek == DayOfWeek.Sunday)
+            errors.Add(InterviewTaskErrors.InvalidScheduling());
 
+        if(errors.Any())
+            return Result<DateTimeOffset>.Failure(errors);
+
+        return Result<DateTimeOffset>.Success(interviewDate);
     }
 }
