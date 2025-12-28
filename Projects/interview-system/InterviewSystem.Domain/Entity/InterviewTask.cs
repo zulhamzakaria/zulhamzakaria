@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.Enums;
+﻿using InterviewSystem.Domain.Common;
+using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 
@@ -92,5 +93,13 @@ public class InterviewTask : EntityBase
             : CandidateEvaluation.Fail(notes!);
         CompletedAt = DateTimeOffset.UtcNow;
         SetUpdated();
+    }
+
+    private Result<Unit> ValidateDate(DateTimeOffset interviewDate)
+    {
+        var errors = new List<Error>();
+
+        if(interviewDate < DateTimeOffset.UtcNow)
+
     }
 }
