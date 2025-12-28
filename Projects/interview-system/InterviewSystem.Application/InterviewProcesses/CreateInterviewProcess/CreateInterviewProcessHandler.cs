@@ -40,6 +40,9 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         if (department.IsFailure)
             return Result<Guid>.Failure(department.Errors);
 
+        var process = await _interviewProcessRepository.GetByCandidateIdAsync(request.CandidateId);
+        if(process is not null)
+            return Result<Guid>.Failure(depa)
 
         var result = InterviewProcess.Create(request.CandidateId,
             candidate.Name,

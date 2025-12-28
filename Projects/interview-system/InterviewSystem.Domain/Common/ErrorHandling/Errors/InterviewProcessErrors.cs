@@ -13,7 +13,11 @@ public static class InterviewProcessErrors
     public static Error InvalidSequence()
         => new(ErrorType.BusinessRule, "PROCESS_SEQUENCE_INVALID", 
             "Next sequence cannot be lower than the current sequence");
-    public static Error UndefinedDepartment(AppliedPosition appliedPosition)
-            => new(ErrorType.Validation, "DEPARTMENT_NOT_DEFINED", 
-                $"No Department defined for this AppliedPosition:{appliedPosition.ToString()}");
+    public static Error UndefinedDepartment(AppliedPosition appliedPosition) 
+        => new(ErrorType.Validation, "DEPARTMENT_NOT_DEFINED", 
+            $"No Department defined for this AppliedPosition:{appliedPosition.ToString()}");
+
+    public static Error ProcessExists(Guid candidateId)
+        => new(ErrorType.Validation, "PROCESS_ALREADY_EXISTS",
+            $"Interview Process already initiated for CandidateId: {candidateId}");
 }
