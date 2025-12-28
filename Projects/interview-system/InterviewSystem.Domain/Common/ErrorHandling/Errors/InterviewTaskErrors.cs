@@ -14,4 +14,6 @@ public static class InterviewTaskErrors
         => new(ErrorType.BusinessRule, "INTERVIEW_DATE_EXISTS", "Interview Date has been set. Please use Reschedule instead");
     public static Error InvalidScheduling()
         => new(ErrorType.Validation, "INTERVIEW_DATE_INVALID", "Cannot set Interview Date on Saturday or Sunday and outside working hours");
+    public static Error CompletedTask()
+        => new(ErrorType.BusinessRule, "TASK_COMPLETED", "Cannot Reschedule for a completed task");
 }

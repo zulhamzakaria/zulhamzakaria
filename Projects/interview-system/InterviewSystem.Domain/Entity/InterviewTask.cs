@@ -46,13 +46,13 @@ public class InterviewTask : EntityBase
 
     public static Result<InterviewTask> Create(Guid interviewRoundId, Guid interviewProcessId, int roundSequence,
         Guid candidateId, string candidateName,
-        Guid assigneeId, string assigneeName )
+        Guid assigneeId, string assigneeName)
     {
         List<Error> errors = new();
 
         if (interviewProcessId == Guid.Empty)
             errors.Add(GenericErrors.Required(nameof(interviewProcessId)));
-         if (interviewRoundId == Guid.Empty)
+        if (interviewRoundId == Guid.Empty)
             errors.Add(GenericErrors.Required(nameof(interviewRoundId)));
         if (candidateId == Guid.Empty)
             errors.Add(GenericErrors.Required(nameof(candidateId)));
@@ -117,10 +117,18 @@ public class InterviewTask : EntityBase
 
     public Result<Unit> Rescheduling(DateTimeOffset interviewDate)
     {
+        var errors = new List<Error>();
+
         var result = ValidateDate(interviewDate);
 
         if (result.IsFailure)
-            return Result<Unit>.Failure(result.Errors);
+            errors.AddRange(result.Errors);
+
+        if (InterviewTaskStatus == InterviewTaskStatus.Completed)
+            errors.Add(InterviewTaskErrors.CompletedTask());
+
+        if(errors.Any())
+            return Result<Unit>.Failure(errors); 
 
         InterviewDate = interviewDate;
 
@@ -133,15 +141,15 @@ public class InterviewTask : EntityBase
 
         if (interviewDate < DateTimeOffset.UtcNow)
             errors.Add(InterviewTaskErrors.BackdatedInterviewDate());
-        if(interviewDate > DateTimeOffset.UtcNow.AddYears(1))
+        if (interviewDate > DateTimeOffset.UtcNow.AddYears(1))
             errors.Add(InterviewTaskErrors.InterviewDateTooFar());
         if (interviewDate.Hour < 9 || interviewDate.Hour > 17)
             errors.Add(InterviewTaskErrors.InvalidScheduling());
-        if (interviewDate.DayOfWeek == DayOfWeek.Saturday 
+        if (interviewDate.DayOfWeek == DayOfWeek.Saturday
             || interviewDate.DayOfWeek == DayOfWeek.Sunday)
             errors.Add(InterviewTaskErrors.InvalidScheduling());
 
-        if(errors.Any())
+        if (errors.Any())
             return Result<DateTimeOffset>.Failure(errors);
 
         return Result<DateTimeOffset>.Success(interviewDate);
