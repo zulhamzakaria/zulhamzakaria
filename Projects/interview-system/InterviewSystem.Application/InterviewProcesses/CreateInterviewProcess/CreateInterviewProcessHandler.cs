@@ -86,8 +86,9 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
         var initialTask = InterviewTask.Create(
             interviewRound.Value!.Id,
             result.Value!.Id,
+            roundSequence: 1,
             request.CandidateId,
-            candidate.Name,
+            candidate.Name, 
             currentInterviewer.Id,
             currentInterviewer.Name);
 
