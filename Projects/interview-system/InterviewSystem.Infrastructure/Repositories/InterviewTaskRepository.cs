@@ -37,4 +37,10 @@ public class InterviewTaskRepository : IInterviewTaskRepository
     {
         return await _context.InterviewTasks.FindAsync(id);
     }
+
+    public async Task<bool> IsAssigneeOwner(Guid taskId, Guid assigneeId)
+    {
+        return await _context.InterviewTasks
+            .AnyAsync(it => it.AssigneeId == assigneeId && it.Id == taskId);
+    }
 }
