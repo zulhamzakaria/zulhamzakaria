@@ -11,10 +11,8 @@ public class InterviewTask : EntityBase
     private const int RejectionReasonMaxLength = 500;
     public Guid Id { get; private set; }
     public Guid InterviewRoundId { get; private set; }
-    //public InterviewRound? InterviewRound { get; private set; }
     public Guid CandidateId { get; private set; }
     public string CandidateName { get; private set; }
-    //public Candidate? Candidate { get; private set; }
     public Guid InterviewProcessId { get; private set; }
     public int RoundSequence { get; private set; }
     public InterviewTaskStatus InterviewTaskStatus { get; private set; }
@@ -31,18 +29,6 @@ public class InterviewTask : EntityBase
     {
         //EF needs this  
     }
-
-    //private InterviewTask(Guid id, Guid interviewRoundId, Guid candidateId,
-    //    DateTimeOffset assignedAt, bool rejected, string reason
-    //    )
-    //{
-    //    Id = id;
-    //    InterviewRoundId = interviewRoundId;
-    //    CandidateId = candidateId;
-    //    AssignedAt = assignedAt;
-    //    Rejected = rejected;
-    //    TaskRejectionReason = reason;
-    //}
 
     public static Result<InterviewTask> Create(Guid interviewRoundId, Guid interviewProcessId, int roundSequence,
         Guid candidateId, string candidateName,
