@@ -127,6 +127,9 @@ public class InterviewTask : EntityBase
         if (InterviewTaskStatus == InterviewTaskStatus.Completed)
             errors.Add(InterviewTaskErrors.CompletedTask());
 
+        if (InterviewDate is null)
+            errors.Add(InterviewTaskErrors.InterviewDateDoesntExist());
+
         if(errors.Any())
             return Result<Unit>.Failure(errors); 
 
