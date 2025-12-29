@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="InterviewTasks\Evaluation\CompleteInterview\" />
     <Folder Include="InterviewTasks\Evaluation\RejectInterview\" />
-    <Folder Include="InterviewTasks\Scheduling\Rescheduling\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

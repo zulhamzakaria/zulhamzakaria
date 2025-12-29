@@ -2,6 +2,7 @@
 using InterviewSystem.Application.InterviewTasks.CreateInterviewTask;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
+using InterviewSystem.Application.InterviewTasks.Scheduling.Rescheduling;
 using InterviewSystem.Application.InterviewTasks.Scheduling.SetInterviewDate;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,14 @@ public class InterviewTasksController : ControllerBase
     [HttpGet("{taskId:guid}/schedule-interview")]
     public async Task<IActionResult> ScheduleInterview([FromRoute] Guid taskId,
         [FromBody] SetInterviewDateCommand command)
+    {
+        var result = await _mediator.Send(command);
+        return result.ToActionResult();
+    }
+
+    [HttpGet("{taskId:guid}/reschedule-interview")]
+    public async Task<IActionResult> RecheduleInterview([FromRoute] Guid taskId,
+        [FromBody] ReschedulingCommand command)
     {
         var result = await _mediator.Send(command);
         return result.ToActionResult();

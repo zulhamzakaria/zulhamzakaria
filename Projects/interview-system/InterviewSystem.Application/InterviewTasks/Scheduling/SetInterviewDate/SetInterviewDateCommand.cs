@@ -6,5 +6,4 @@ namespace InterviewSystem.Application.InterviewTasks.Scheduling.SetInterviewDate
 public sealed record SetInterviewDateCommand(
     Guid AssigneeId,
     Guid TaskId,
-    DateTimeOffset InterviewDate
-    ) : IRequest<Result<DateTimeOffset>>;
+    DateTimeOffset InterviewDate) : IRequest<Result<DateTimeOffset>>;
