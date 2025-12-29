@@ -20,6 +20,8 @@ public static class InterviewTaskErrors
         => new(ErrorType.BusinessRule, "TASK_COMPLETED", "Cannot act on a completed/rejected task");
     public static Error NotAssignedTask()
        => new(ErrorType.BusinessRule, "NOT_ASSIGNED_STATUS", "Can only act on Assigned status");
+    public static Error NotAcceptedTask()
+      => new(ErrorType.BusinessRule, "NOT_ACCEPTED_STATUS", "Can only act on Accepted status");
     public static Error InvalidAction(Guid assigneeId, Guid taskId)
             => new(ErrorType.Validation, "TASK_OWNER_INVALID", $"The Employee:{assigneeId}  cannot act on this Task:{taskId}");
 }

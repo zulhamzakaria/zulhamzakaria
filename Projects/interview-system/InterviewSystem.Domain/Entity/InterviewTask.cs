@@ -72,9 +72,10 @@ public class InterviewTask : EntityBase
     {
         var errors = new List<Error>();
 
-        if (InterviewTaskStatus is InterviewTaskStatus.Completed || 
-            InterviewTaskStatus is InterviewTaskStatus.Rejected)
-            errors.Add(InterviewTaskErrors.CompletedTask());
+        //valid on Accepted task
+        if (InterviewTaskStatus is not InterviewTaskStatus.Accepted)
+            errors.Add(InterviewTaskErrors.NotAcceptedTask());
+
         if (recommendedPass is false && string.IsNullOrWhiteSpace(notes))
             errors.Add(GenericErrors.Required(nameof(notes)));
 
@@ -103,6 +104,10 @@ public class InterviewTask : EntityBase
         if (InterviewDate is not null)
             errors.Add(InterviewTaskErrors.InterviewDateExists());
 
+        //valid on Assigned Task
+        if (InterviewTaskStatus != InterviewTaskStatus.Assigned)
+            errors.Add(InterviewTaskErrors.NotAssignedTask());
+
         if (errors.Any())
             return Result<Unit>.Failure(errors);
 
@@ -121,8 +126,9 @@ public class InterviewTask : EntityBase
         if (result.IsFailure)
             errors.AddRange(result.Errors);
 
-        if (InterviewTaskStatus != InterviewTaskStatus.Assigned)
-            errors.Add(InterviewTaskErrors.NotAssignedTask());
+        //valid on accepted task
+        if (InterviewTaskStatus != InterviewTaskStatus.Accepted)
+            errors.Add(InterviewTaskErrors.NotAcceptedTask());
 
         if (InterviewDate is null)
             errors.Add(InterviewTaskErrors.InterviewDateDoesntExist());
