@@ -1,3 +1,4 @@
+using InterviewSystem.API.BackgroundJobs;
 using InterviewSystem.API.Middlewares;
 using InterviewSystem.Application;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
@@ -40,6 +41,9 @@ builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessReposito
 //mediatr
 var mediatrKey = builder.Configuration["MediatR:LicenseKey"];
 builder.Services.RegisterApplicationServices(mediatrKey!);
+
+//background service
+builder.Services.AddHostedService<InterviewReminder>();
 
 var app = builder.Build();
 
