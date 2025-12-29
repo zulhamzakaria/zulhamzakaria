@@ -68,17 +68,26 @@ public class InterviewTask : EntityBase
         return Result<InterviewTask>.Success(task);
     }
 
-    public void MarkCompleted(bool recommendedPass, string? notes)
+    public Result<Unit> MarkCompleted(bool recommendedPass, string? notes)
     {
-        //TODO: Result<T>
+        var errors = new List<Error>();
+
         if (InterviewTaskStatus is InterviewTaskStatus.Completed)
-            throw new Exception("invalid move");
+            errors.Add(InterviewTaskErrors.CompletedTask());
+        if (recommendedPass is false && string.IsNullOrWhiteSpace(notes))
+            errors.Add(GenericErrors.Required(nameof(notes)));
+
+        if (errors.Any())
+            return Result<Unit>.Failure(errors);
 
         InterviewTaskStatus = InterviewTaskStatus.Completed;
         Evaluation = recommendedPass ? CandidateEvaluation.Pass(notes)
             : CandidateEvaluation.Fail(notes!);
         CompletedAt = DateTimeOffset.UtcNow;
+
         SetUpdated();
+
+        return Result<Unit>.Success(new Unit());
     }
 
     public Result<Unit> Scheduling(DateTimeOffset interviewDate)
@@ -116,8 +125,8 @@ public class InterviewTask : EntityBase
         if (InterviewDate is null)
             errors.Add(InterviewTaskErrors.InterviewDateDoesntExist());
 
-        if(errors.Any())
-            return Result<Unit>.Failure(errors); 
+        if (errors.Any())
+            return Result<Unit>.Failure(errors);
 
         InterviewDate = interviewDate;
 
@@ -143,4 +152,5 @@ public class InterviewTask : EntityBase
 
         return Result<DateTimeOffset>.Success(interviewDate);
     }
+
 }
