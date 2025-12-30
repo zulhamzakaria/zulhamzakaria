@@ -35,17 +35,15 @@ public class InterviewTasksController : ControllerBase
         return result.ToActionResult();
     }
 
-    [HttpGet("{taskId:guid}/schedule-interview")]
-    public async Task<IActionResult> ScheduleInterview([FromRoute] Guid taskId,
-        [FromBody] SetInterviewDateCommand command)
+    [HttpPost("schedule-interview")]
+    public async Task<IActionResult> ScheduleInterview([FromBody] SetInterviewDateCommand command)
     {
         var result = await _mediator.Send(command);
         return result.ToActionResult();
     }
 
-    [HttpGet("{taskId:guid}/reschedule-interview")]
-    public async Task<IActionResult> RecheduleInterview([FromRoute] Guid taskId,
-        [FromBody] ReschedulingCommand command)
+    [HttpPost("reschedule-interview")]
+    public async Task<IActionResult> RecheduleInterview([FromBody] ReschedulingCommand command)
     {
         var result = await _mediator.Send(command);
         return result.ToActionResult();
