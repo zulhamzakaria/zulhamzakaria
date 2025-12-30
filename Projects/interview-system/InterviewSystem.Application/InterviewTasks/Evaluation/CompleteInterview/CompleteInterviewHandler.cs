@@ -58,15 +58,18 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
                 task.InterviewProcessId));
 
 
+        //passed interview, no more next round
         if (nextRoundItem is null)
         {
-            ProcessCompleted(passed: true,
-                canCompleteProcess: currrentRoundItem.CanCompleteProcess,
-                process);
+            process.MarkCompleted();
+            task.MarkCompleted(true, request.Reason);
+
             await _uow.SaveChangesAsync();
+
             return Result<Guid>.Success(request.TaskId);
         }
 
+        //advance to the next round
         var result = await CanAdvance(nextRoundItem, process, task);
 
         if (result.IsFailure)
@@ -109,19 +112,4 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
 
         return Result<Guid>.Success(task.Value.Id);
     }
-
-    private void ProcessCompleted(bool passed, bool canCompleteProcess, InterviewProcess process)
-    {
-        if (passed is false)
-        {
-            process.MarkFailed();
-        }
-        else if (canCompleteProcess is true && passed is true)
-        {
-            process.MarkCompleted();
-        }
-    }
-
-
-
 }
