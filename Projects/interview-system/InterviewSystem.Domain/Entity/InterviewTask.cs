@@ -159,11 +159,11 @@ public class InterviewTask : EntityBase
             errors.Add(InterviewTaskErrors.InterviewDateTooFar());
 
         if (interviewDate.Hour < 9 || interviewDate.Hour > 17)
-            errors.Add(InterviewTaskErrors.InvalidScheduling());
+            errors.Add(InterviewTaskErrors.InvalidSchedulingWorkingHours());
 
         if (interviewDate.DayOfWeek == DayOfWeek.Saturday
             || interviewDate.DayOfWeek == DayOfWeek.Sunday)
-            errors.Add(InterviewTaskErrors.InvalidScheduling());
+            errors.Add(InterviewTaskErrors.InvalidSchedulingWeekend());
 
         if (errors.Any())
             return Result<DateTimeOffset>.Failure(errors);
