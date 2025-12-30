@@ -8,6 +8,7 @@ namespace InterviewSystem.Application.InterviewTasks.Evaluation.CompleteIntervie
 
 public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterviewCommand, Result<Guid>>
 {
+    private readonly IEmployeeRepository _employeeRepository;
     private readonly IInterviewTaskRepository _interviewTaskRepository;
     private readonly IInterviewRoundRepository _interviewRoundRepository;
     private readonly IInterviewProcessRepository _interviewProcessRepository;
@@ -15,8 +16,9 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
 
     public CompleteInterviewHandler(IInterviewTaskRepository interviewTaskRepository,
         IUnitOfWorkRepository uow, IInterviewProcessRepository interviewProcessRepository,
-        IInterviewRoundRepository interviewRoundRepository)
+        IInterviewRoundRepository interviewRoundRepository, IEmployeeRepository employeeRepository)
     {
+        _employeeRepository = employeeRepository;
         _interviewTaskRepository = interviewTaskRepository;
         _interviewRoundRepository = interviewRoundRepository;
         _interviewProcessRepository = interviewProcessRepository;
