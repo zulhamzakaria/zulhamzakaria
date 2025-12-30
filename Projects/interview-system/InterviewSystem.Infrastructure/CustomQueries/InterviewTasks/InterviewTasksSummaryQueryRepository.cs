@@ -23,6 +23,7 @@ public sealed class InterviewTasksSummaryQueryRepository : IInterviewTasksSummar
             join round in _dbContext.Set<InterviewRound>()
             on task.InterviewRoundId equals round.Id
             select new GetInterviewTasksSummaryDTO(
+                task.InterviewProcessId,
                 task.Id,
                 task.CandidateName,
                 round.Department,

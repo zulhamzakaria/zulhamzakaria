@@ -2,6 +2,7 @@
 
 namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 public sealed record GetInterviewTasksSummaryDTO(
+    Guid InterviewProcessId,
     Guid InterviewTaskId,
     string CandidateName,
     EmployeeDepartment EmployeeDepartment,
