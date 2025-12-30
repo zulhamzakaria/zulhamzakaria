@@ -20,23 +20,23 @@ public sealed class InterviewReminder : BackgroundService
         {
             try
             {
-                //var now = DateTimeOffset.UtcNow;
-                //var nextRun = now.Date.AddDays(1);
-                //var delay = nextRun - now;
+                var now = DateTimeOffset.UtcNow;
+                var nextRun = now.Date.AddDays(1);
+                var delay = nextRun - now;
 
-                //await Task.Delay(delay, stoppingToken);
+                await Task.Delay(delay, stoppingToken);
 
-                //int maxRetries = 5;
+                int maxRetries = 5;
 
-                //await RetryAsync(
-                //      async () =>{
-                //          using var scope = _serviceProvider.CreateScope();
-                //          var taskRepo = scope.ServiceProvider.GetRequiredService<IInterviewTaskRepository>();
-                //          await CheckPendingInterviews(taskRepo, stoppingToken);
-                //      },
-                //     maxRetries,
-                //     TimeSpan.FromMinutes(5),
-                //     stoppingToken);
+                await RetryAsync(
+                      async () =>{
+                          using var scope = _serviceProvider.CreateScope();
+                          var taskRepo = scope.ServiceProvider.GetRequiredService<IInterviewTaskRepository>();
+                          await CheckPendingInterviews(taskRepo, stoppingToken);
+                      },
+                     maxRetries,
+                     TimeSpan.FromMinutes(5),
+                     stoppingToken);
             }
             catch (TaskCanceledException ex)
             {
