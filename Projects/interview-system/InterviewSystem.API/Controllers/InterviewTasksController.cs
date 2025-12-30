@@ -1,5 +1,7 @@
 ﻿using InterviewSystem.API.ErrorHandling;
 using InterviewSystem.Application.InterviewTasks.CreateInterviewTask;
+using InterviewSystem.Application.InterviewTasks.Evaluation.CompleteInterview;
+using InterviewSystem.Application.InterviewTasks.Evaluation.RejectInterview;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using InterviewSystem.Application.InterviewTasks.Scheduling.Rescheduling;
@@ -49,11 +51,17 @@ public class InterviewTasksController : ControllerBase
         return result.ToActionResult();
     }
 
-    //[HttpPost]
-    //public async Task<IActionResult> CreateInterviewTask
-    //    ([FromBody] CreateInterviewTaskCommand command)
-    //{
-    //    var result = await _mediator.Send(command);
-    //    return result.ToActionResult();
-    //}
+    [HttpPost("passed-interview")]
+    public async Task<IActionResult> PassInterview([FromBody] CompleteInterviewCommand command)
+    {
+        var result = await _mediator.Send(command);
+        return result.ToActionResult();
+    }
+
+    [HttpPost("failed-interview")]
+    public async Task<IActionResult> FailedInterview([FromBody] RejectInterviewCommand command)
+    {
+        var result  = await _mediator.Send(command);
+        return result.ToActionResult();
+    }
 }
