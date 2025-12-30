@@ -70,14 +70,43 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         }
 
         //advance to the next round
-        var result = await CanAdvance(nextRoundItem, process, task);
+        //var result = await CanAdvance(nextRoundItem, process, task);
 
-        if (result.IsFailure)
-            return Result<Guid>.Failure(result.Errors);
+        //if (result.IsFailure)
+        //    return Result<Guid>.Failure(result.Errors);
+
+        //get next interviewer
+        var eligibleEmployees = await _employeeRepository
+            .GetEmployeesByPositionAsync(nextRoundItem.AllowedPosition,
+            process.Department);
+
+        var nextInterviewer = eligibleEmployees.FirstOrDefault();
+
+        if (nextInterviewer is null)
+            return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
+
+        //update interviewer, roundsequence
+        process.Advance(nextSequence: nextRoundItem.Sequence,
+            nextInterviewer.Id,
+            nextInterviewer.Name);
+
+        //create next task
+        var newTask = InterviewTask.Create(
+            interviewRoundId: task.InterviewRoundId,
+            interviewProcessId: process.Id,
+            roundSequence: nextRoundItem.Sequence,
+            candidateId: task.CandidateId,
+            candidateName: task.CandidateName,
+            assigneeId: nextInterviewer.Id,
+            assigneeName: nextInterviewer.Name ?? string.Empty);
+
+        if (newTask.IsFailure)
+            return Result<Guid>.Failure(newTask.Errors);
+
 
         await _uow.SaveChangesAsync();
 
-        return Result<Guid>.Success(result.Value);
+        return Result<Guid>.Success(newTask.Value.Id);
     }
 
     private async Task<Result<Guid>> CanAdvance(InterviewRoundItem nextRoundItem, InterviewProcess process,
