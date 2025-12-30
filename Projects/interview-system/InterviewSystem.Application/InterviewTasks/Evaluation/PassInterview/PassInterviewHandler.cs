@@ -3,8 +3,6 @@ using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
-using System;
-using System.Diagnostics;
 
 namespace InterviewSystem.Application.InterviewTasks.Evaluation.CompleteInterview;
 
