@@ -64,7 +64,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             process.MarkCompleted();
             task.MarkCompleted(true, request.Reason);
 
-            await _uow.SaveChangesAsync();
+            //await _uow.SaveChangesAsync();
 
             return Result<Guid>.Success(request.TaskId);
         }
@@ -84,23 +84,22 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             nextInterviewer.Id,
             nextInterviewer.Name);
 
-        ////create next task
-        //var newTask = InterviewTask.Create(
-        //    interviewRoundId: task.InterviewRoundId,
-        //    interviewProcessId: process.Id,
-        //    roundSequence: nextRoundItem.Sequence,
-        //    candidateId: task.CandidateId,
-        //    candidateName: task.CandidateName,
-        //    assigneeId: nextInterviewer.Id,
-        //    assigneeName: nextInterviewer.Name ?? string.Empty);
+        //create next task
+        var newTask = InterviewTask.Create(
+            interviewRoundId: task.InterviewRoundId,
+            interviewProcessId: process.Id,
+            roundSequence: nextRoundItem.Sequence,
+            candidateId: task.CandidateId,
+            candidateName: task.CandidateName,
+            assigneeId: nextInterviewer.Id,
+            assigneeName: nextInterviewer.Name ?? string.Empty);
 
-        //if (newTask.IsFailure)
-        //    return Result<Guid>.Failure(newTask.Errors);
-
+        if (newTask.IsFailure)
+            return Result<Guid>.Failure(newTask.Errors);
 
         await _uow.SaveChangesAsync();
 
-        return Result<Guid>.Success(new Guid());
+        return Result<Guid>.Success(newTask.Value.Id);
     }
 
 }
