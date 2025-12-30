@@ -96,7 +96,8 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             return Result<Guid>.Failure(newTask.Errors);
 
         //await _interviewTaskRepository.AddAsync(newTask.Value!);
-
+        var entry = _uow.GetEntityState(process);
+        Console.WriteLine(entry);
 
         await _uow.SaveChangesAsync();
 
