@@ -38,14 +38,16 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
 
         //get next sequence
         var nextRoundItem = await _interviewRoundRepository.GetNextSequence
-            (roundId: task.InterviewRoundId, 
+            (roundId: task.InterviewRoundId,
             currentSequence: task.RoundSequence);
         var currrentRoundItem = await _interviewRoundRepository.GetCurrentSequence
-            (roundId: task.InterviewRoundId, 
+            (roundId: task.InterviewRoundId,
             currentSequence: task.RoundSequence);
 
         if (nextRoundItem is null && currrentRoundItem?.CanCompleteProcess is false)
             return Result<Guid>.Failure(InterviewRoundErrors.InvalidPolicy());
+
+        //get next interviewer
 
         //update process
         var process = await _interviewProcessRepository.GetByIdAsync(task.InterviewProcessId);
@@ -55,12 +57,24 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
 
         if (request.Passed is false)
         {
-            //update InterviewProcessStatus to Reject
+            //update InterviewProcessStatus to Failed
+            process.MarkFailed();
+        }
+        else if (nextRoundItem is null 
+            && currrentRoundItem?.CanCompleteProcess is true 
+            && request.Passed is true)
+        {
+            process.MarkCompleted();
         }
         else
         {
-            //update interviewer
-            //update roundsequence
+
+
+
+            //update interviewer, roundsequence
+            process.Advance(nextSequence: nextRoundItem.Sequence,
+                nextInterviewerId: new Guid(),
+                nextInterviewerName: string.Empty);
         }
 
 

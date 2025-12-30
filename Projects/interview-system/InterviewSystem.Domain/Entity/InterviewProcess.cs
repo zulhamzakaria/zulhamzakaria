@@ -21,17 +21,6 @@ public class InterviewProcess : EntityBase
         //EF Core needs this        
     }
 
-    //private InterviewProcess(Guid candidateId, EmployeeDepartment department, int currentSequence
-    //    , InterviewProcessStatus status, Guid interviewerId, string interviewerName)
-    //{
-    //    CandidateId = candidateId;
-    //    Department = department;
-    //    CurrentSequence = currentSequence;
-    //    InterviewProcessStatus = status;
-    //    CurrentInterviewerId = interviewerId;
-    //    CurrentInterviewerName = interviewerName;
-    //}
-
     public static Result<InterviewProcess> Create(Guid candidateId, 
         string candidateName, EmployeeDepartment employeeDepartment)
     {
@@ -71,7 +60,8 @@ public class InterviewProcess : EntityBase
 
     }
 
-    public Result<Unit> Advance(int nextSequence)
+    public Result<Unit> Advance(int nextSequence, Guid nextInterviewerId,
+        string? nextInterviewerName = "")
     {
         if (InterviewProcessStatus == InterviewProcessStatus.Completed)
             return Result<Unit>.Failure(InterviewProcessErrors.CannotAdvance());
@@ -80,6 +70,8 @@ public class InterviewProcess : EntityBase
             return Result<Unit>.Failure(InterviewProcessErrors.InvalidSequence());
         
         CurrentRoundSequence = nextSequence;
+        CurrentInterviewerId = nextInterviewerId;
+        CurrentInterviewerName = nextInterviewerName;
 
         return Result<Unit>.Success(Unit.Value);
     }
