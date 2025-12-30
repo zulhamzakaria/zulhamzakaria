@@ -78,9 +78,11 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
         //update interviewer, roundsequence
-        process.Advance(nextSequence: nextRoundItem.Sequence,
+        var updatedProcess = process.Advance(nextSequence: nextRoundItem.Sequence,
             nextInterviewer.Id,
             nextInterviewer.Name);
+        if (updatedProcess.IsFailure)
+            return Result<Guid>.Failure(updatedProcess.Errors);
 
         //create next task
         var newTask = InterviewTask.Create(
@@ -96,8 +98,6 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             return Result<Guid>.Failure(newTask.Errors);
 
         //await _interviewTaskRepository.AddAsync(newTask.Value!);
-        var entry = _uow.GetEntityState(process);
-        Console.WriteLine(entry);
 
         await _uow.SaveChangesAsync();
 

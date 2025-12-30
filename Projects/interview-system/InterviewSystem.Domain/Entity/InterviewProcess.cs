@@ -21,7 +21,7 @@ public class InterviewProcess : EntityBase
         //EF Core needs this        
     }
 
-    public static Result<InterviewProcess> Create(Guid candidateId, 
+    public static Result<InterviewProcess> Create(Guid candidateId,
         string candidateName, EmployeeDepartment employeeDepartment)
     {
         List<Error> errors = new();
@@ -65,10 +65,10 @@ public class InterviewProcess : EntityBase
     {
         if (InterviewProcessStatus == InterviewProcessStatus.Completed)
             return Result<Unit>.Failure(InterviewProcessErrors.CannotAdvance());
-        
-        if (CurrentRoundSequence < nextSequence)
+
+        if (nextSequence < CurrentRoundSequence)
             return Result<Unit>.Failure(InterviewProcessErrors.InvalidSequence());
-        
+
         CurrentRoundSequence = nextSequence;
         CurrentInterviewerId = nextInterviewerId;
         CurrentInterviewerName = nextInterviewerName;
