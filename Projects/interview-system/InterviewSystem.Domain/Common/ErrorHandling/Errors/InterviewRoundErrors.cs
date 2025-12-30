@@ -10,4 +10,8 @@ public static class InterviewRoundErrors
     public static Error UndefinedInitiator()
         => new(ErrorType.Validation, "INITIATOR_NOT_DEFINED",
             $"No Initiator has been defined for the Policy");
+
+    public static Error InvalidPolicy()
+        => new(ErrorType.Validation, "POLICY_INVALID",
+            $"The last person for the policy is not marked with CanCompleteProcess = true");
 }

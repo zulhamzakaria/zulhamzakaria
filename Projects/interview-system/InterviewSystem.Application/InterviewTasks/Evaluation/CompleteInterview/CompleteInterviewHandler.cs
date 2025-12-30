@@ -14,7 +14,7 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
     private readonly IUnitOfWorkRepository _uow;
 
     public CompleteInterviewHandler(IInterviewTaskRepository interviewTaskRepository,
-        IUnitOfWorkRepository uow, IInterviewProcessRepository interviewProcessRepository, 
+        IUnitOfWorkRepository uow, IInterviewProcessRepository interviewProcessRepository,
         IInterviewRoundRepository interviewRoundRepository)
     {
         _interviewTaskRepository = interviewTaskRepository;
@@ -37,9 +37,15 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
                 taskId: request.TaskId));
 
         //get next sequence
-        var nextRoundItem = _interviewRoundRepository.GetNextSequence
-            (roundId: task.InterviewRoundId, currentSequence: task.RoundSequence);
-        var currrentRoundItem = 
+        var nextRoundItem = await _interviewRoundRepository.GetNextSequence
+            (roundId: task.InterviewRoundId, 
+            currentSequence: task.RoundSequence);
+        var currrentRoundItem = await _interviewRoundRepository.GetCurrentSequence
+            (roundId: task.InterviewRoundId, 
+            currentSequence: task.RoundSequence);
+
+        if (nextRoundItem is null && currrentRoundItem?.CanCompleteProcess is false)
+            return Result<Guid>.Failure(InterviewRoundErrors.InvalidPolicy());
 
         //update process
         var process = await _interviewProcessRepository.GetByIdAsync(task.InterviewProcessId);
@@ -49,7 +55,7 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
 
         if (request.Passed is false)
         {
-            //update InterviewProcessStatus
+            //update InterviewProcessStatus to Reject
         }
         else
         {
