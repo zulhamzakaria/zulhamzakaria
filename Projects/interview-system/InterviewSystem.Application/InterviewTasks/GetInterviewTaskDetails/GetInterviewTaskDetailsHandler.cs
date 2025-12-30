@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common;
+using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
@@ -36,8 +37,8 @@ public sealed class GetInterviewTaskDetailsHandler :
             task.CandidateId,
             task.CandidateName,
             task.InterviewTaskStatus,
-            task.AssignedAt,
-            task.CompletedAt,
+            task.AssignedAt.ToOffset(Timezones.Singapore),
+            task.CompletedAt?.ToOffset(Timezones.Singapore),
             task.Evaluation,
             task.Rejected,
             task.TaskRejectionReason

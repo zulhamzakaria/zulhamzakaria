@@ -114,7 +114,7 @@ public class InterviewTask : EntityBase
         if (errors.Any())
             return Result<Unit>.Failure(errors);
 
-        InterviewDate = interviewDate;
+        InterviewDate = interviewDate.ToUniversalTime();
         InterviewTaskStatus = InterviewTaskStatus.Accepted;
 
         return Result<Unit>.Success(new Unit());
@@ -139,7 +139,7 @@ public class InterviewTask : EntityBase
         if (errors.Any())
             return Result<Unit>.Failure(errors);
 
-        InterviewDate = interviewDate;
+        InterviewDate = interviewDate.ToUniversalTime();
         InterviewTaskStatus = InterviewTaskStatus.Accepted;
 
         return Result<Unit>.Success(new Unit());

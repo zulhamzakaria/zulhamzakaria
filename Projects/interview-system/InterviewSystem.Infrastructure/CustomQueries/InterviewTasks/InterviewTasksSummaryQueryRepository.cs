@@ -1,4 +1,5 @@
 ﻿using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
+using InterviewSystem.Domain.Common;
 using InterviewSystem.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +28,7 @@ public sealed class InterviewTasksSummaryQueryRepository : IInterviewTasksSummar
                 round.Department,
                 round.AppliedPosition,
                 task.InterviewTaskStatus,
-                task.AssignedAt,
+                task.AssignedAt.ToOffset(Timezones.Singapore),
                 task.Rejected,
                 task.TaskRejectionReason
             )).ToListAsync();
