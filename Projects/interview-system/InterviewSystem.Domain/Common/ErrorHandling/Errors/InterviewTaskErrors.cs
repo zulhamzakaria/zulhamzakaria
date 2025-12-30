@@ -28,4 +28,6 @@ public static class InterviewTaskErrors
             => new(ErrorType.NotFound, "NO_EMPLOYEE_RECORD", "No eligible Employee to act as Interviewer ");
     public static Error NoInterviewDate()
             => new(ErrorType.NotFound, "INTERVIEW_DATE_NOT_SET", "Please schedule the Interview first");
+    public static Error InvalidTimeOffset()
+        => new(ErrorType.Validation, "OFFSET_NOT_SGT", "Time offset must be in SGT (+8:00)");
 }

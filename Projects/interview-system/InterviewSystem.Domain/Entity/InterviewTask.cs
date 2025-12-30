@@ -149,12 +149,18 @@ public class InterviewTask : EntityBase
     {
         var errors = new List<Error>();
 
+        if (interviewDate.Offset != TimeSpan.FromHours(8))
+            errors.Add(InterviewTaskErrors.InvalidTimeOffset());
+
         if (interviewDate < DateTimeOffset.UtcNow)
             errors.Add(InterviewTaskErrors.BackdatedInterviewDate());
+
         if (interviewDate > DateTimeOffset.UtcNow.AddYears(1))
             errors.Add(InterviewTaskErrors.InterviewDateTooFar());
+
         if (interviewDate.Hour < 9 || interviewDate.Hour > 17)
             errors.Add(InterviewTaskErrors.InvalidScheduling());
+
         if (interviewDate.DayOfWeek == DayOfWeek.Saturday
             || interviewDate.DayOfWeek == DayOfWeek.Sunday)
             errors.Add(InterviewTaskErrors.InvalidScheduling());
