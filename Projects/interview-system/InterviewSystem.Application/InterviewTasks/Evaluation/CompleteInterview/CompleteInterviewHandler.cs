@@ -3,6 +3,8 @@ using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
+using System;
+using System.Diagnostics;
 
 namespace InterviewSystem.Application.InterviewTasks.Evaluation.CompleteInterview;
 
@@ -49,41 +51,56 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
         if (nextRoundItem is null && currrentRoundItem?.CanCompleteProcess is false)
             return Result<Guid>.Failure(InterviewRoundErrors.InvalidPolicy());
 
-        //get next interviewer
-
         //update process
         var process = await _interviewProcessRepository.GetByIdAsync(task.InterviewProcessId);
         if (process is null)
             return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(InterviewProcess),
                 task.InterviewProcessId));
 
-        if (request.Passed is false)
+
+        if(nextRoundItem is not null) 
         {
-            //update InterviewProcessStatus to Failed
-            process.MarkFailed();
-        }
-        else if (nextRoundItem is null 
-            && currrentRoundItem?.CanCompleteProcess is true 
-            && request.Passed is true)
-        {
-            process.MarkCompleted();
+            CanAdvance(nextRoundItem: nextRoundItem, process: process);
         }
         else
         {
-
-
-
-            //update interviewer, roundsequence
-            process.Advance(nextSequence: nextRoundItem.Sequence,
-                nextInterviewerId: new Guid(),
-                nextInterviewerName: string.Empty);
+            ProcessCompleted(passed: request.Passed, 
+                canCompleteProcess: currrentRoundItem.CanCompleteProcess, 
+                process: process);
         }
-
-
-        //create new task if needed
 
         await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(request.TaskId);
     }
+
+    private Result<Unit> CanAdvance(InterviewRoundItem nextRoundItem, InterviewProcess process)
+    {
+        //get next interviewer
+        var nextInterviewer = _employeeRepository.GetEmployeesByPositionAsync(nextRoundItem.AllowedPosition);
+        if(nextInterviewer is null)
+            return Result<Unit>.Failure()
+
+        //update interviewer, roundsequence
+        process.Advance(nextSequence: nextRoundItem.Sequence,
+            nextInterviewerId: new Guid(),
+            nextInterviewerName: string.Empty);
+
+        return Result<Unit>.Success(new Unit());
+    }
+
+    private void ProcessCompleted(bool passed, bool canCompleteProcess, InterviewProcess process)
+    {
+        if (passed is false)
+        {
+            process.MarkFailed();
+        }
+        else if (canCompleteProcess is true && passed is true)
+        {
+            process.MarkCompleted();
+        }
+    }
+
+
+
 }
