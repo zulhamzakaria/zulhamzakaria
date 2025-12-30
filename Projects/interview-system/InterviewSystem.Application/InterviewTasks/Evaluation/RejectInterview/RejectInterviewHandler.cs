@@ -3,6 +3,7 @@ using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
+using System.Diagnostics;
 
 namespace InterviewSystem.Application.InterviewTasks.Evaluation.RejectInterview;
 
@@ -28,7 +29,21 @@ public sealed class RejectInterviewHandler : IRequestHandler<RejectInterviewComm
             return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(InterviewTask), request.TaskId));
 
         //task ownership
-        var isOwner = await _interviewTaskRepository.IsAssigneeOwner(request.TaskId);
+        var isOwner = await _interviewTaskRepository.IsAssigneeOwnerAsync(taskId: request.TaskId,
+            assigneeId: request.AssigneeId);
+        if (isOwner is false)
+            return Result<Guid>.Failure(InterviewTaskErrors.InvalidAction(
+                assigneeId: request.AssigneeId,
+                taskId: request.TaskId));
+
+        var process = await _interviewProcessRepository.GetByIdAsync(task.InterviewProcessId);
+        if(process is null)
+            return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(InterviewProcess), task.InterviewProcessId));
+
+        process.MarkFailed();
+        task.MarkCompleted(false, request.Reason);
+
+        await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(request.TaskId);
     }

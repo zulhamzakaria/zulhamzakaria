@@ -33,7 +33,7 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
         if (task is null)
             return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(InterviewTask), request.TaskId));
 
-        var isOwner = await _interviewTaskRepository.IsAssigneeOwner(taskId: request.TaskId,
+        var isOwner = await _interviewTaskRepository.IsAssigneeOwnerAsync(taskId: request.TaskId,
            assigneeId: request.AssigneeId);
         if (isOwner is false)
             return Result<Guid>.Failure(InterviewTaskErrors.InvalidAction(

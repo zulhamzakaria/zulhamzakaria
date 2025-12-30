@@ -6,5 +6,5 @@ namespace InterviewSystem.Application.InterviewTasks.Evaluation.RejectInterview;
 public sealed record RejectInterviewCommand(
     Guid TaskId,
     Guid AssigneeId,
-    string? Reason) : IRequest<Result<Guid>>;
+    string Reason) : IRequest<Result<Guid>>;
 
