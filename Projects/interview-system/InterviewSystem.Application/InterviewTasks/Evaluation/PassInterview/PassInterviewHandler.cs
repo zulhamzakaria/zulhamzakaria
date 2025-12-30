@@ -75,6 +75,8 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         if (result.IsFailure)
             return Result<Guid>.Failure(result.Errors);
 
+        await _uow.SaveChangesAsync();
+
         return Result<Guid>.Success(result.Value);
     }
 
@@ -108,8 +110,6 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
 
         if (task.IsFailure)
             return Result<Guid>.Failure(task.Errors);
-
-        await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(task.Value.Id);
     }
