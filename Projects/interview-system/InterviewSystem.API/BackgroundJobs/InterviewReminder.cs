@@ -20,9 +20,6 @@ public sealed class InterviewReminder : BackgroundService
         {
             try
             {
-                using var scope = _serviceProvider.CreateScope();
-                var taskRepo = scope.ServiceProvider.GetRequiredService<IInterviewTaskRepository>();
-
                 var now = DateTimeOffset.UtcNow;
                 var nextRun = now.Date.AddDays(1);
                 var delay = nextRun - now;
@@ -32,7 +29,11 @@ public sealed class InterviewReminder : BackgroundService
                 int maxRetries = 5;
 
                 await RetryAsync(
-                     async() => await CheckPendingInterviews(taskRepo, stoppingToken),
+                      async () =>{
+                          using var scope = _serviceProvider.CreateScope();
+                          var taskRepo = scope.ServiceProvider.GetRequiredService<IInterviewTaskRepository>();
+                          await CheckPendingInterviews(taskRepo, stoppingToken);
+                      },
                      maxRetries,
                      TimeSpan.FromMinutes(5),
                      stoppingToken);
@@ -49,7 +50,7 @@ public sealed class InterviewReminder : BackgroundService
         }
     }
 
-    private async Task CheckPendingInterviews(IInterviewTaskRepository taskRepo, CancellationToken ct)
+    private async Task CheckPendingInterviews(IInterviewTaskRepository repo, CancellationToken ct)
     {
         throw new NotImplementedException();
 
