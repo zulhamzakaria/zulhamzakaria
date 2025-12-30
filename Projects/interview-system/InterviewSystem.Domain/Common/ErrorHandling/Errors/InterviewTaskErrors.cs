@@ -15,7 +15,7 @@ public static class InterviewTaskErrors
     public static Error InterviewDateDoesntExist()
        => new(ErrorType.BusinessRule, "INTERVIEW_DATE_NOT_SET", "Interview Date has not been set. Please Schedule first");
     public static Error InvalidScheduling()
-        => new(ErrorType.Validation, "INTERVIEW_DATE_INVALID", "Cannot set Interview Date on Saturday or Sunday and outside working hours");
+        => new(ErrorType.Validation, "INTERVIEW_DATE_INVALID", "Cannot set Interview Date on Saturday/Sunday and outside working hours");
     public static Error CompletedTask()
         => new(ErrorType.BusinessRule, "TASK_COMPLETED", "Cannot act on a completed/rejected task");
     public static Error NotAssignedTask()
