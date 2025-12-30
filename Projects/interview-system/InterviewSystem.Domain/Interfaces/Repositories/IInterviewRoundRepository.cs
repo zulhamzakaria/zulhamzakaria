@@ -6,7 +6,7 @@ public interface IInterviewRoundRepository
 {
     Task<IReadOnlyCollection<InterviewRound>> GetAllAsync();
     Task<InterviewRound?> GetByIdAsync(Guid id);
-    Task<InterviewRoundItem?> GetNextSequence(Guid roundId, int currentSequence);
-    Task<InterviewRoundItem?> GetCurrentSequence(Guid roundId, int currentSequence);
+    Task<InterviewRoundItem?> GetNextSequenceAsync(Guid roundId, int currentSequence);
+    Task<InterviewRoundItem?> GetCurrentSequenceAsync(Guid roundId, int currentSequence);
     Task AddAsync(InterviewRound round);
 }

@@ -31,7 +31,7 @@ public class InterviewRoundRepository : IInterviewRoundRepository
             .FirstOrDefaultAsync(ir => ir.Id == id);
     }
 
-    public async Task<InterviewRoundItem?> GetCurrentSequence(Guid roundId, int currentSequence)
+    public async Task<InterviewRoundItem?> GetCurrentSequenceAsync(Guid roundId, int currentSequence)
     {
         return await _context.InterviewRounds
              .Where(ir => ir.Id == roundId)
@@ -40,7 +40,7 @@ public class InterviewRoundRepository : IInterviewRoundRepository
              .FirstOrDefaultAsync();
     }
 
-    public async Task<InterviewRoundItem?> GetNextSequence(Guid roundId, int currentSequence)
+    public async Task<InterviewRoundItem?> GetNextSequenceAsync(Guid roundId, int currentSequence)
     {
         return await _context.InterviewRounds
                     .Where(r => r.Id == roundId)
