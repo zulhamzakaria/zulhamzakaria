@@ -37,6 +37,9 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
                 taskId: request.TaskId));
 
         //get next sequence
+        var nextRoundItem = _interviewRoundRepository.GetNextSequence
+            (roundId: task.InterviewRoundId, currentSequence: task.RoundSequence);
+        var currrentRoundItem = 
 
         //update process
         var process = await _interviewProcessRepository.GetByIdAsync(task.InterviewProcessId);
