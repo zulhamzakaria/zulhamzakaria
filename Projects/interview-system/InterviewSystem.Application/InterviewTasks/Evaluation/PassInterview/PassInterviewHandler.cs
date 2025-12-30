@@ -59,7 +59,14 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         //passed interview, no more next round
         if (nextRoundItem is null)
         {
-            process.MarkCompleted();
+            var endProcess = process.MarkCompleted();
+            if (endProcess.IsFailure)
+                return Result<Guid>.Failure(endProcess.Errors);
+
+            //update current task
+            var lastTask = task.MarkCompleted(true, request.Reason);
+            if (lastTask.IsFailure)
+                return Result<Guid>.Failure(lastTask.Errors);
 
             await _uow.SaveChangesAsync();
 
