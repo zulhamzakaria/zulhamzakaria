@@ -41,10 +41,10 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
                 taskId: request.TaskId));
 
         //get next sequence
-        var nextRoundItem = await _interviewRoundRepository.GetNextSequence
+        var nextRoundItem = await _interviewRoundRepository.GetNextSequenceAsync
             (roundId: task.InterviewRoundId,
             currentSequence: task.RoundSequence);
-        var currrentRoundItem = await _interviewRoundRepository.GetCurrentSequence
+        var currrentRoundItem = await _interviewRoundRepository.GetCurrentSequenceAsync
             (roundId: task.InterviewRoundId,
             currentSequence: task.RoundSequence);
 
