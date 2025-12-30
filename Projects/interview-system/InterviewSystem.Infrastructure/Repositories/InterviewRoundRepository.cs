@@ -34,19 +34,21 @@ public class InterviewRoundRepository : IInterviewRoundRepository
     public async Task<InterviewRoundItem?> GetCurrentSequenceAsync(Guid roundId, int currentSequence)
     {
         return await _context.InterviewRounds
-             .Where(ir => ir.Id == roundId)
-             .SelectMany(ir => ir.Items)
-             .Where(i => i.Sequence == currentSequence)
-             .FirstOrDefaultAsync();
+            .AsNoTracking()
+            .Where(ir => ir.Id == roundId)
+            .SelectMany(ir => ir.Items)
+            .Where(i => i.Sequence == currentSequence)
+            .FirstOrDefaultAsync();
     }
 
     public async Task<InterviewRoundItem?> GetNextSequenceAsync(Guid roundId, int currentSequence)
     {
         return await _context.InterviewRounds
-                    .Where(r => r.Id == roundId)
-                    .SelectMany(r => r.Items)
-                    .Where(i => i.Sequence > currentSequence)
-                    .OrderBy(i => i.Sequence)
-                    .FirstOrDefaultAsync();
+            .AsNoTracking()
+            .Where(r => r.Id == roundId)
+            .SelectMany(r => r.Items)
+            .Where(i => i.Sequence > currentSequence)
+            .OrderBy(i => i.Sequence)
+            .FirstOrDefaultAsync();
     }
 }
