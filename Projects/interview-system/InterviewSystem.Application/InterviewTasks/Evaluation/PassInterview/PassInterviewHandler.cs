@@ -40,15 +40,25 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
                 assigneeId: request.AssigneeId,
                 taskId: request.TaskId));
 
-        //get next sequence
-        var nextRoundItem = await _interviewRoundRepository.GetNextSequenceAsync
-            (roundId: task.InterviewRoundId,
-            currentSequence: task.RoundSequence);
-        var currrentRoundItem = await _interviewRoundRepository.GetCurrentSequenceAsync
-            (roundId: task.InterviewRoundId,
-            currentSequence: task.RoundSequence);
+        ////get next sequence
+        //var nextRoundItem = await _interviewRoundRepository.GetNextSequenceAsync
+        //    (roundId: task.InterviewRoundId,
+        //    currentSequence: task.RoundSequence);
+        //var currrentRoundItem = await _interviewRoundRepository.GetCurrentSequenceAsync
+        //    (roundId: task.InterviewRoundId,
+        //    currentSequence: task.RoundSequence);
 
-        if (nextRoundItem is null && currrentRoundItem?.CanCompleteProcess is false)
+        var nextRoundItem2 = await _interviewRoundRepository.GetByIdAsync(task.InterviewRoundId);
+        var nextSequence = nextRoundItem2.Items
+            .Where(i => i.Sequence > task.RoundSequence)
+            .OrderBy(i => i.Sequence)
+            .FirstOrDefault();
+        var currentSequence = nextRoundItem2.Items
+            .Where(i => i.Sequence == task.RoundSequence)
+            .FirstOrDefault();
+
+
+        if (nextSequence is null && currentSequence?.CanCompleteProcess is false)
             return Result<Guid>.Failure(InterviewRoundErrors.InvalidPolicy());
 
         //update process
@@ -59,7 +69,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
 
 
         //passed interview, no more next round
-        if (nextRoundItem is null)
+        if (nextSequence is null)
         {
             process.MarkCompleted();
             task.MarkCompleted(true, request.Reason);
@@ -71,7 +81,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
 
         //get next interviewer
         var eligibleEmployees = await _employeeRepository
-            .GetEmployeesByPositionAsync(nextRoundItem.AllowedPosition,
+            .GetEmployeesByPositionAsync(nextSequence.AllowedPosition,
             process.Department);
 
         var nextInterviewer = eligibleEmployees.FirstOrDefault();
@@ -80,7 +90,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
         //update interviewer, roundsequence
-        process.Advance(nextSequence: nextRoundItem.Sequence,
+        process.Advance(nextSequence: nextSequence.Sequence,
             nextInterviewer.Id,
             nextInterviewer.Name);
 
@@ -88,7 +98,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         var newTask = InterviewTask.Create(
             interviewRoundId: task.InterviewRoundId,
             interviewProcessId: process.Id,
-            roundSequence: nextRoundItem.Sequence,
+            roundSequence: nextSequence.Sequence,
             candidateId: task.CandidateId,
             candidateName: task.CandidateName,
             assigneeId: nextInterviewer.Id,
