@@ -4,14 +4,14 @@ namespace InterviewSystem.API.BackgroundJobs;
 
 public sealed class InterviewReminder : BackgroundService
 {
-    private readonly IInterviewTaskRepository _interviewTaskRepository;
+    private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<InterviewReminder> _logger;
 
-    public InterviewReminder(IInterviewTaskRepository interviewTaskRepository, 
-        ILogger<InterviewReminder> logger)
+    public InterviewReminder(ILogger<InterviewReminder> logger,
+        IServiceProvider serviceProvider)
     {
-        _interviewTaskRepository = interviewTaskRepository;
         _logger = logger;
+        _serviceProvider = serviceProvider;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -20,6 +20,9 @@ public sealed class InterviewReminder : BackgroundService
         {
             try
             {
+                using var scope = _serviceProvider.CreateScope();
+                var taskRepo = scope.ServiceProvider.GetRequiredService<IInterviewTaskRepository>();
+
                 var now = DateTimeOffset.UtcNow;
                 var nextRun = now.Date.AddDays(1);
                 var delay = nextRun - now;
@@ -29,7 +32,7 @@ public sealed class InterviewReminder : BackgroundService
                 int maxRetries = 5;
 
                 await RetryAsync(
-                     async() => await CheckPendingInterviews(stoppingToken),
+                     async() => await CheckPendingInterviews(taskRepo, stoppingToken),
                      maxRetries,
                      TimeSpan.FromMinutes(5),
                      stoppingToken);
@@ -46,7 +49,7 @@ public sealed class InterviewReminder : BackgroundService
         }
     }
 
-    private async Task CheckPendingInterviews(CancellationToken ct)
+    private async Task CheckPendingInterviews(IInterviewTaskRepository taskRepo, CancellationToken ct)
     {
         throw new NotImplementedException();
 
