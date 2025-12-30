@@ -72,7 +72,8 @@ public sealed class CreateInterviewProcessHandler : IRequestHandler<CreateInterv
             return Result<Guid>.Failure(InterviewRoundErrors.UndefinedInitiator());
 
         var employees = await _employeeRepository.GetEmployeesByPositionAsync
-            (employeePosition.AllowedPositions.FirstOrDefault());
+            (employeePosition.AllowedPositions.FirstOrDefault(),
+            employeePosition.InterviewerDepartment);
 
         if (employees.Any() is false)
             return Result<Guid>.Failure(GenericErrors.NoRecordsFound(nameof(employeePosition)));
