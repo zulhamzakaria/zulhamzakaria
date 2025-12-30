@@ -32,8 +32,8 @@ public sealed class GetInterviewTaskDetailsHandler :
 
     private GetInterviewTaskDetailsDTO MapToDTO(InterviewTask task) =>
         new GetInterviewTaskDetailsDTO(
-            task.Id,
-            task.InterviewProcessId,
+            Id: task.Id,
+            InterviewProcessId: task.InterviewProcessId,
             task.CandidateId,
             task.CandidateName,
             task.InterviewTaskStatus,

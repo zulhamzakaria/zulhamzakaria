@@ -5,7 +5,7 @@ namespace InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
 
 public sealed record GetInterviewTaskDetailsDTO(
     Guid Id,
-    Guid InterviewRoundId,
+    Guid InterviewProcessId,
     Guid CandidateId,
     string CandidateName,
     InterviewTaskStatus InterviewTaskStatus,
