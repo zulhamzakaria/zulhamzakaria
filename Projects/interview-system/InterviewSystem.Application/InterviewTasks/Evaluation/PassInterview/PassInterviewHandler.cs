@@ -83,7 +83,8 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
     {
         //get next interviewer
         var eligibleEmployees = await _employeeRepository
-            .GetEmployeesByPositionAsync(nextRoundItem.AllowedPosition);
+            .GetEmployeesByPositionAsync(nextRoundItem.AllowedPosition,
+            process.Department);
 
         var nextInterviewer = eligibleEmployees.FirstOrDefault();
 
