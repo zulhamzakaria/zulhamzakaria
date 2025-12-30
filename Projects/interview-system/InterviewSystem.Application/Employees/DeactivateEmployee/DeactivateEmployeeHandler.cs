@@ -28,7 +28,7 @@ public sealed class DeactivateEmployeeHandler : IRequestHandler<DeactivateEmploy
             return Result<Unit>.Failure(GenericErrors.NoRecordFound(nameof(Employee), request.employeeId));
 
         //Pending task
-        var tasks = await _interviewTaskRepository.GetAllByEmployeeId(request.employeeId);
+        var tasks = await _interviewTaskRepository.GetAllByEmployeeIdAsync(request.employeeId);
         if (tasks.Any())
             return Result<Unit>.Failure(InterviewTaskErrors.PendingTasks());
 
