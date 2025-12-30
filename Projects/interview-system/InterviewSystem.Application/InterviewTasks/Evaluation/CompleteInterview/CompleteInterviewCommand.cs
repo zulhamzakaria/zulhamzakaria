@@ -6,5 +6,4 @@ namespace InterviewSystem.Application.InterviewTasks.Evaluation.CompleteIntervie
 public sealed record CompleteInterviewCommand(
     Guid TaskId,
     Guid AssigneeId,
-    bool Passed,
     string? Reason) : IRequest<Result<Guid>>;
