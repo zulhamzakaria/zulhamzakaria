@@ -43,7 +43,7 @@ var mediatrKey = builder.Configuration["MediatR:LicenseKey"];
 builder.Services.RegisterApplicationServices(mediatrKey!);
 
 //background service
-builder.Services.AddHostedService<InterviewReminder>();
+//builder.Services.AddHostedService<InterviewReminder>();
 
 var app = builder.Build();
 
