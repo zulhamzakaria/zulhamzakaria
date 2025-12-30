@@ -52,7 +52,7 @@ public class InterviewTasksController : ControllerBase
     }
 
     [HttpPost("passed-interview")]
-    public async Task<IActionResult> PassInterview([FromBody] CompleteInterviewCommand command)
+    public async Task<IActionResult> PassInterview([FromBody] PassInterviewCommand command)
     {
         var result = await _mediator.Send(command);
         return result.ToActionResult();

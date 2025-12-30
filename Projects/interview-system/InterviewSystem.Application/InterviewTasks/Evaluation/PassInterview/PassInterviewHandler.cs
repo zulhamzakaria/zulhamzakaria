@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace InterviewSystem.Application.InterviewTasks.Evaluation.CompleteInterview;
 
-public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterviewCommand, Result<Guid>>
+public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand, Result<Guid>>
 {
     private readonly IEmployeeRepository _employeeRepository;
     private readonly IInterviewTaskRepository _interviewTaskRepository;
@@ -16,7 +16,7 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
     private readonly IInterviewProcessRepository _interviewProcessRepository;
     private readonly IUnitOfWorkRepository _uow;
 
-    public CompleteInterviewHandler(IInterviewTaskRepository interviewTaskRepository,
+    public PassInterviewHandler(IInterviewTaskRepository interviewTaskRepository,
         IUnitOfWorkRepository uow, IInterviewProcessRepository interviewProcessRepository,
         IInterviewRoundRepository interviewRoundRepository, IEmployeeRepository employeeRepository)
     {
@@ -27,7 +27,7 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
         _uow = uow;
     }
 
-    public async Task<Result<Guid>> Handle(CompleteInterviewCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(PassInterviewCommand request, CancellationToken cancellationToken)
     {
         var task = await _interviewTaskRepository.GetByIdAsync(request.TaskId);
         if (task is null)
