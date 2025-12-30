@@ -60,7 +60,6 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         if (nextRoundItem is null)
         {
             process.MarkCompleted();
-            task.MarkCompleted(true, request.Reason);
 
             await _uow.SaveChangesAsync();
 
@@ -84,6 +83,11 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         if (updatedProcess.IsFailure)
             return Result<Guid>.Failure(updatedProcess.Errors);
 
+        //update current task
+        var updatedTask = task.MarkCompleted(true, request.Reason);
+        if (updatedTask.IsFailure)
+            return Result<Guid>.Failure(updatedTask.Errors);
+
         //create next task
         var newTask = InterviewTask.Create(
             interviewRoundId: task.InterviewRoundId,
@@ -97,7 +101,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         if (newTask.IsFailure)
             return Result<Guid>.Failure(newTask.Errors);
 
-        await _interviewTaskRepository.AddAsync(newTask.Value!);
+        //await _interviewTaskRepository.AddAsync(newTask.Value!);
 
         await _uow.SaveChangesAsync();
 
