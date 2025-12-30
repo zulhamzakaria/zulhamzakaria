@@ -30,8 +30,6 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         var task = await _interviewTaskRepository.GetByIdAsync(request.TaskId);
         if (task is null)
             return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(InterviewTask), request.TaskId));
-        if (task.InterviewTaskStatus == Domain.Common.Enums.InterviewTaskStatus.Completed)
-            return Result<Guid>.Failure(InterviewTaskErrors.CompletedTask());
 
         var isOwner = await _interviewTaskRepository.IsAssigneeOwnerAsync(taskId: request.TaskId,
            assigneeId: request.AssigneeId);
