@@ -60,7 +60,7 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
 
         if (nextRoundItem is null)
         {
-            ProcessCompleted(passed: request.Passed,
+            ProcessCompleted(passed: true,
                 canCompleteProcess: currrentRoundItem.CanCompleteProcess,
                 process);
             await _uow.SaveChangesAsync();
