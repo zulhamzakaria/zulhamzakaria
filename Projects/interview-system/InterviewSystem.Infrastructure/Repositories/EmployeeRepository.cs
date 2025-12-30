@@ -29,10 +29,11 @@ public class EmployeeRepository: IEmployeeRepository
     }
 
     public async Task<IReadOnlyCollection<Employee>> GetEmployeesByPositionAsync
-        (EmployeePosition position)
+        (EmployeePosition position, EmployeeDepartment department)
     {
         return await _context.Employees
             .Where(e => e.EmployeePosition == position)
+            .Where(e => e.EmployeeDepartment == department)
             .Where(e => e.EmployeeStatus == EmployeeStatus.Active)
             .ToListAsync();
     }
