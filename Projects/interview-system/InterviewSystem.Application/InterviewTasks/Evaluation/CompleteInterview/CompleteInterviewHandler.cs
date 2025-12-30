@@ -36,6 +36,8 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
                 assigneeId: request.AssigneeId,
                 taskId: request.TaskId));
 
+        //get next sequence
+
         //update process
         var process = await _interviewProcessRepository.GetByIdAsync(task.InterviewProcessId);
         if (process is null)
