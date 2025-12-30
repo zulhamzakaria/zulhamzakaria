@@ -24,7 +24,7 @@ public class InterviewTaskRepository : IInterviewTaskRepository
 
     private static readonly HashSet<InterviewTaskStatus> ActiveStatuses =
         [InterviewTaskStatus.Assigned,InterviewTaskStatus.Accepted];
-    public async Task<IReadOnlyCollection<InterviewTask>> GetAllByEmployeeId(Guid employeeId)
+    public async Task<IReadOnlyCollection<InterviewTask>> GetAllByEmployeeIdAsync(Guid employeeId)
     {
 
         return await _context.InterviewTasks
@@ -38,7 +38,7 @@ public class InterviewTaskRepository : IInterviewTaskRepository
         return await _context.InterviewTasks.FindAsync(id);
     }
 
-    public async Task<bool> IsAssigneeOwner(Guid taskId, Guid assigneeId)
+    public async Task<bool> IsAssigneeOwnerAsync(Guid taskId, Guid assigneeId)
     {
         return await _context.InterviewTasks
             .AnyAsync(it => it.AssigneeId == assigneeId && it.Id == taskId);
