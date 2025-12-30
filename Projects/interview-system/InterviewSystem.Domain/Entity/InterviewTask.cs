@@ -79,6 +79,9 @@ public class InterviewTask : EntityBase
         if (recommendedPass is false && string.IsNullOrWhiteSpace(notes))
             errors.Add(GenericErrors.Required(nameof(notes)));
 
+        if(InterviewDate is null)
+            errors.Add(GenericErrors.re)
+
         if (errors.Any())
             return Result<Unit>.Failure(errors);
 

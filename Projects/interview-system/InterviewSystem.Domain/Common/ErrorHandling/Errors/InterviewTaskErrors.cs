@@ -26,4 +26,6 @@ public static class InterviewTaskErrors
             => new(ErrorType.Validation, "TASK_OWNER_INVALID", $"The Employee:{assigneeId}  cannot act on this Task:{taskId}");
     public static Error NoEligibleInterviewer()
             => new(ErrorType.NotFound, "NO_EMPLOYEE_RECORD", "No eligible Employee to act as Interviewer ");
+    public static Error NoInterviewDate()
+            => new(ErrorType.NotFound, "INTERVIEW_DATE_NOT_SET", "Please schedule the Interview first");
 }
