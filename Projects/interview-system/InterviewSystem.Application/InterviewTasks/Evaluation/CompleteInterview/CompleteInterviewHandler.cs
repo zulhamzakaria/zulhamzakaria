@@ -58,35 +58,56 @@ public sealed class CompleteInterviewHandler : IRequestHandler<CompleteInterview
                 task.InterviewProcessId));
 
 
-        if(nextRoundItem is not null) 
+        if (nextRoundItem is null)
         {
-            CanAdvance(nextRoundItem: nextRoundItem, process: process);
-        }
-        else
-        {
-            ProcessCompleted(passed: request.Passed, 
-                canCompleteProcess: currrentRoundItem.CanCompleteProcess, 
-                process: process);
+            ProcessCompleted(passed: request.Passed,
+                canCompleteProcess: currrentRoundItem.CanCompleteProcess,
+                process);
+            await _uow.SaveChangesAsync();
+            return Result<Guid>.Success(request.TaskId);
         }
 
-        await _uow.SaveChangesAsync();
+        var result = await CanAdvance(nextRoundItem, process, task);
 
-        return Result<Guid>.Success(request.TaskId);
+        if (result.IsFailure)
+            return Result<Guid>.Failure(result.Errors);
+
+        return Result<Guid>.Success(result.Value);
     }
 
-    private Result<Unit> CanAdvance(InterviewRoundItem nextRoundItem, InterviewProcess process)
+    private async Task<Result<Guid>> CanAdvance(InterviewRoundItem nextRoundItem, InterviewProcess process,
+        InterviewTask currentTask)
     {
         //get next interviewer
-        var nextInterviewer = _employeeRepository.GetEmployeesByPositionAsync(nextRoundItem.AllowedPosition);
-        if(nextInterviewer is null)
-            return Result<Unit>.Failure()
+        var eligibleEmployees = await _employeeRepository
+            .GetEmployeesByPositionAsync(nextRoundItem.AllowedPosition);
+
+        var nextInterviewer = eligibleEmployees.FirstOrDefault();
+
+        if (nextInterviewer is null)
+            return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
         //update interviewer, roundsequence
         process.Advance(nextSequence: nextRoundItem.Sequence,
-            nextInterviewerId: new Guid(),
-            nextInterviewerName: string.Empty);
+            nextInterviewer.Id ,
+            nextInterviewer.Name);
 
-        return Result<Unit>.Success(new Unit());
+        //create next task
+        var task = InterviewTask.Create(
+            interviewRoundId: currentTask.InterviewRoundId,
+            interviewProcessId: process.Id,
+            roundSequence: nextRoundItem.Sequence,
+            candidateId: currentTask.CandidateId,
+            candidateName: currentTask.CandidateName,
+            assigneeId: nextInterviewer.Id,
+            assigneeName: nextInterviewer.Name ?? string.Empty);
+
+        if (task.IsFailure)
+            return Result<Guid>.Failure(task.Errors);
+
+        await _uow.SaveChangesAsync();
+
+        return Result<Guid>.Success(task.Value.Id);
     }
 
     private void ProcessCompleted(bool passed, bool canCompleteProcess, InterviewProcess process)

@@ -24,4 +24,6 @@ public static class InterviewTaskErrors
       => new(ErrorType.BusinessRule, "NOT_ACCEPTED_STATUS", "Can only act on Accepted status");
     public static Error InvalidAction(Guid assigneeId, Guid taskId)
             => new(ErrorType.Validation, "TASK_OWNER_INVALID", $"The Employee:{assigneeId}  cannot act on this Task:{taskId}");
+    public static Error NoEligibleInterviewer()
+            => new(ErrorType.NotFound, "NO_EMPLOYEE_RECORD", "No eligible Employee to act as Interviewer ");
 }
