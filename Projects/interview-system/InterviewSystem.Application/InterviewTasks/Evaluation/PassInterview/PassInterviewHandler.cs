@@ -64,7 +64,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             process.MarkCompleted();
             task.MarkCompleted(true, request.Reason);
 
-            //await _uow.SaveChangesAsync();
+            await _uow.SaveChangesAsync();
 
             return Result<Guid>.Success(request.TaskId);
         }
