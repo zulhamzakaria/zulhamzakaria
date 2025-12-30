@@ -30,4 +30,14 @@ public class InterviewRoundRepository : IInterviewRoundRepository
             .Include(ir => ir.Items)
             .FirstOrDefaultAsync(ir => ir.Id == id);
     }
+
+    public async Task<InterviewRoundItem?> GetNextSequence(Guid roundId, int currentSequence)
+    {
+        return await _context.InterviewRounds
+                    .Where(r => r.Id == roundId)
+                    .SelectMany(r => r.Items)
+                    .Where(i => i.Sequence > currentSequence)
+                    .OrderBy(i => i.Sequence)
+                    .FirstOrDefaultAsync();
+    }
 }
