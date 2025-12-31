@@ -43,11 +43,11 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         var nextRoundItem = await _interviewRoundRepository.GetNextSequenceAsync
             (roundId: task.InterviewRoundId,
             currentSequence: task.RoundSequence);
-        var currrentRoundItem = await _interviewRoundRepository.GetCurrentSequenceAsync
+        var currentRoundItem = await _interviewRoundRepository.GetCurrentSequenceAsync
             (roundId: task.InterviewRoundId,
             currentSequence: task.RoundSequence);
 
-        if (nextRoundItem is null && currrentRoundItem?.CanCompleteProcess is false)
+        if (nextRoundItem is null && currentRoundItem?.CanCompleteProcess is false)
             return Result<Guid>.Failure(InterviewRoundErrors.InvalidPolicy());
 
         //update process
@@ -97,8 +97,13 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             return Result<Guid>.Failure(updatedTask.Errors);
 
         var taskToCreate = nextRoundItem.AllowMultiple ?
-            Math.Min(eligibleEmployees.Count(), currrentRoundItem!.MaxInlineTasks) :
+            Math.Min(eligibleEmployees.Count(), currentRoundItem!.MaxInlineTasks) :
             1;
+
+        if (currentRoundItem!.AllowMultiple)
+        {
+            //check both tasks
+        }
 
         foreach(var interview in eligibleEmployees.Take(taskToCreate))
         {
@@ -121,6 +126,11 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(process.Id);
+    }
+
+    private Result<bool> EvaluateProcess(Guid processId, int sequence)
+    {
+        throw new NotImplementedException();
     }
 
 }
