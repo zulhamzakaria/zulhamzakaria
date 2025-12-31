@@ -29,6 +29,8 @@ public sealed class ReschedulingHandler : IRequestHandler<ReschedulingCommand, R
             return Result<DateTimeOffset>
                 .Failure(InterviewTaskErrors.InvalidAction(request.AssigneeId, request.TaskId));
 
+        //cannot schedule at the same time as other Task
+
         var result = task.Rescheduling(request.InterviewDate);
         if (result.IsFailure)
             return Result<DateTimeOffset>.Failure(result.Errors);
