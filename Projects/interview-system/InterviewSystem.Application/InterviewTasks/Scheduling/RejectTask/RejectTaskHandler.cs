@@ -17,6 +17,7 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
     {
         //task not valid
         //assignee task ownership
+        //cannot reject if Task not active
         //cannot reject if theres not enough interviewee
 
         return Result<Guid>.Success(request.TaskId);
