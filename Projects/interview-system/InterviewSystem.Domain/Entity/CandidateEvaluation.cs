@@ -12,7 +12,7 @@ public class CandidateEvaluation
 
     public static CandidateEvaluation Pass(string? note)
     {
-        return new(true, note);
+        return new(true, "note");
     }
     public static CandidateEvaluation Fail(string note)
     {
