@@ -34,10 +34,21 @@ public sealed class ReschedulingHandler : IRequestHandler<ReschedulingCommand, R
         var tasks = (await _interviewTaskRepository.GetAllByEmployeeIdAsync(request.AssigneeId))
             .Where(it => it.InterviewTaskStatus is InterviewTaskStatus.Accepted)
             .ToList();
-
+        
         bool exist = tasks.Any(it => it.InterviewDate == request.InterviewDate);
         if (exist)
             return Result<DateTimeOffset>.Failure(InterviewTaskErrors.TimeSlotTaken());
+
+        var periodStart = request.InterviewDate.AddHours(-1); //10am -> 9am
+        var periodEnd = request.InterviewDate.AddHours(1); //10am -> 11am
+
+        //task.Interview date occupies 9am - 10am space && 10 am - 11am
+        //valid period is 9am (Valid): 10am (Valid): 11am(Valid)
+        var hasConflict = tasks.Any
+            (it => it.InterviewDate >= periodStart && it.InterviewDate < periodEnd);
+        if (hasConflict)
+            return Result<DateTimeOffset>.Failure(InterviewTaskErrors.TimeSlotTaken());
+
 
         var result = task.Rescheduling(request.InterviewDate);
         if (result.IsFailure)
