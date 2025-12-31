@@ -20,13 +20,6 @@ public class InterviewRound : EntityBase
         //EF Core needs this
     }
 
-    //private InterviewRound(Guid id, EmployeeDepartment department, List<InterviewRoundItem> items)
-    //{
-    //    Id = id;
-    //    Department = department;
-    //    _items = items.OrderBy(i => i.Sequence).ToList();
-    //}
-
     public static Result<InterviewRound> Create(EmployeeDepartment employeeDepartment,
         AppliedPosition appliedPosition, IReadOnlyList<InterviewStepPolicy> steps)
     {
@@ -41,10 +34,6 @@ public class InterviewRound : EntityBase
         {
             errors.Add(GenericErrors.InvalidEnumValue(appliedPosition));
         }
-        //if (positions is null || positions.Any() is false)
-        //{
-        //    errors.Add(GenericErrors.Required(nameof(positions)));
-        //}
 
         var round = new InterviewRound()
         {
