@@ -80,8 +80,14 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
         if (eligibleEmployees.Any() is false)
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
+        //TODO:full circle mechanism
+
         //set current Task to Rejected
-       
+        task.RejectTask(request.Reason);
+        //update process to use the remaining Assignee for Interviewer (null for lone Assignee)
+
+        //create new task
+ 
 
         return Result<Guid>.Success(request.TaskId);
     }

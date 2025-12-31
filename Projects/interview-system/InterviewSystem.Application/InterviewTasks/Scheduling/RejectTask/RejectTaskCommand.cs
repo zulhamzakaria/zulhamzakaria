@@ -5,4 +5,5 @@ namespace InterviewSystem.Application.InterviewTasks.Scheduling.RejectTask;
 
 public sealed record RejectTaskCommand(
     Guid TaskId,
-    Guid AssigneeId) : IRequest<Result<Guid>>;
+    Guid AssigneeId,
+    string Reason) : IRequest<Result<Guid>>;

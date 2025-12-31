@@ -2,6 +2,7 @@
 using InterviewSystem.Domain.Common.Enums;
 using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
+using InterviewSystem.Domain.Rules;
 
 namespace InterviewSystem.Domain.Entity;
 
@@ -81,10 +82,6 @@ public class InterviewTask : EntityBase
         if (recommendedPass == false && string.IsNullOrWhiteSpace(notes))
             errors.Add(GenericErrors.Required(nameof(notes)));
 
-        if (string.IsNullOrWhiteSpace(notes) is false && notes.Length > RejectionReasonMaxLength)
-            errors.Add(GenericErrors.InvalidLength(nameof(notes), 
-                RejectionReasonMinLength, RejectionReasonMaxLength));
-
         if (errors.Any())
             return Result<Unit>.Failure(errors);
 
@@ -97,6 +94,30 @@ public class InterviewTask : EntityBase
 
         return Result<Unit>.Success(new Unit());
     }
+
+    public Result<Unit> RejectTask(string rejectionReason)
+    {
+
+        List<Error> errors = new();
+
+        if(InterviewTaskStatusRules.ActiveStatuses.Contains(InterviewTaskStatus) is false)
+            errors.Add(InterviewTaskErrors.NotActiveTask());  
+
+        if(string.IsNullOrWhiteSpace(rejectionReason))
+            errors.Add(GenericErrors.Required(nameof(rejectionReason)));
+
+        if (string.IsNullOrWhiteSpace(rejectionReason) is false 
+            && rejectionReason.Length > RejectionReasonMaxLength)
+            errors.Add(GenericErrors.InvalidLength(nameof(rejectionReason),
+                RejectionReasonMinLength, RejectionReasonMaxLength));
+
+        InterviewTaskStatus = InterviewTaskStatus.Rejected;
+        Rejected = true;
+        TaskRejectionReason = rejectionReason;
+
+        return Result<Unit>.Success(new Unit());
+    }
+
 
     public Result<Unit> Scheduling(DateTimeOffset interviewDate)
     {
