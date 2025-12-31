@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
@@ -30,6 +31,13 @@ public sealed class ReschedulingHandler : IRequestHandler<ReschedulingCommand, R
                 .Failure(InterviewTaskErrors.InvalidAction(request.AssigneeId, request.TaskId));
 
         //cannot schedule at the same time as other Task
+        var tasks = (await _interviewTaskRepository.GetAllByEmployeeIdAsync(request.AssigneeId))
+            .Where(it => it.InterviewTaskStatus is InterviewTaskStatus.Accepted)
+            .ToList();
+
+        bool exist = tasks.Any(it => it.InterviewDate == request.InterviewDate);
+        if (exist)
+            return Result<DateTimeOffset>.Failure(InterviewTaskErrors.TimeSlotTaken());
 
         var result = task.Rescheduling(request.InterviewDate);
         if (result.IsFailure)

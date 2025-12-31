@@ -34,6 +34,10 @@ public static class InterviewTaskErrors
         => new(ErrorType.Validation, "OFFSET_NOT_SGT", "Time offset must be in SGT (+8:00)");
     public static Error NoTaskRegistered(Guid processId, int seq)
         => new(ErrorType.Validation, "TASK_NOT_REGISTERED", $"No Task for ProcessId:{processId} and Round:{seq}");
+    public static Error NoActiveTasks(Guid assigneeId)
+        => new(ErrorType.Validation, "ASSIGNEE_NO_TASKS", $"No active Tasks registered under EmployeeId:{assigneeId}");
+    public static Error TimeSlotTaken()
+        => new(ErrorType.BusinessRule, "TIME_SLOT_TAKEN", "An active Interview Task already occupies the time slot");
     public static Error IncompleteEvaluation(Guid processId, int seq)
         => new(ErrorType.BusinessRule, "EVALUATION_NOT_COMPLETED", 
             $"Please complete all evaluations for ProcessId:{processId} and Round:{seq}");
