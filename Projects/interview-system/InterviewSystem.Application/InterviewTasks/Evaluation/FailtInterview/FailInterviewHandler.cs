@@ -7,13 +7,13 @@ using System.Diagnostics;
 
 namespace InterviewSystem.Application.InterviewTasks.Evaluation.RejectInterview;
 
-public sealed class RejectInterviewHandler : IRequestHandler<RejectInterviewCommand, Result<Guid>>
+public sealed class FailInterviewHandler : IRequestHandler<FailInterviewCommand, Result<Guid>>
 {
     private readonly IUnitOfWorkRepository _uow;
     private readonly IInterviewProcessRepository _interviewProcessRepository;
     private readonly IInterviewTaskRepository _interviewTaskRepository;
 
-    public RejectInterviewHandler(IUnitOfWorkRepository uow, IInterviewTaskRepository interviewTaskRepository,
+    public FailInterviewHandler(IUnitOfWorkRepository uow, IInterviewTaskRepository interviewTaskRepository,
         IInterviewProcessRepository interviewProcessRepository)
     {
         _uow = uow;
@@ -21,7 +21,7 @@ public sealed class RejectInterviewHandler : IRequestHandler<RejectInterviewComm
         _interviewProcessRepository = interviewProcessRepository;
     }
 
-    public async Task<Result<Guid>> Handle(RejectInterviewCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(FailInterviewCommand request, CancellationToken cancellationToken)
     {
         //task existance
         var task = await _interviewTaskRepository.GetByIdAsync(request.TaskId);

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace InterviewSystem.Application.InterviewTasks.Evaluation.RejectInterview;
 
-public sealed record RejectInterviewCommand(
+public sealed record FailInterviewCommand(
     Guid TaskId,
     Guid AssigneeId,
     string Reason) : IRequest<Result<Guid>>;

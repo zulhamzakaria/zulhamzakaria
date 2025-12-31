@@ -32,4 +32,9 @@ public static class InterviewTaskErrors
             => new(ErrorType.NotFound, "INTERVIEW_DATE_NOT_SET", "Please schedule the Interview first");
     public static Error InvalidTimeOffset()
         => new(ErrorType.Validation, "OFFSET_NOT_SGT", "Time offset must be in SGT (+8:00)");
+    public static Error NoTaskRegistered(Guid processId, int seq)
+        => new(ErrorType.Validation, "TASK_NOT_REGISTERED", $"No Task for ProcessId:{processId} and Round:{seq}");
+    public static Error IncompleteEvaluation(Guid processId, int seq)
+        => new(ErrorType.BusinessRule, "EVALUATION_NOT_COMPLETED", 
+            $"Please complete all evaluations for ProcessId:{processId} and Round:{seq}");
 }

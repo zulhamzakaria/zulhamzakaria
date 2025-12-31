@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
@@ -100,10 +101,12 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             Math.Min(eligibleEmployees.Count(), currentRoundItem!.MaxInlineTasks) :
             1;
 
-        if (currentRoundItem!.AllowMultiple)
-        {
-            //check both tasks
-        }
+        var createNewTask = await CreateNewRound(task.InterviewProcessId, currentRoundItem!.Sequence);
+
+        if (createNewTask.IsFailure)
+            return Result<Guid>.Failure(createNewTask.Errors);
+        if (createNewTask.Value == false)
+            return Result<Guid>.Failure(InterviewTaskErrors.IncompleteEvaluation(task.InterviewProcessId));
 
         foreach(var interview in eligibleEmployees.Take(taskToCreate))
         {
@@ -128,9 +131,33 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         return Result<Guid>.Success(process.Id);
     }
 
-    private Result<bool> EvaluateProcess(Guid processId, int sequence)
+    private async Task<Result<bool>> CreateNewRound(Guid processId, int sequence)
     {
-        throw new NotImplementedException();
+        var tasks = await _interviewTaskRepository.GetAllByProcessIdAndSequence(processId, sequence);
+        if(tasks.Any() is false)
+            return Result<bool>.Failure(InterviewTaskErrors.NoTaskRegistered(processId, sequence));
+
+        var completedTask = tasks
+            .Where(t => t.InterviewTaskStatus == InterviewTaskStatus.Completed)
+            .ToList();
+
+        if (completedTask.Any() is false)
+            return Result<bool>.Success(false);
+
+        if(completedTask.Count == tasks.Count)
+        {
+            var process = await _interviewProcessRepository.GetByIdAsync(processId);
+            if (process is null)
+                return Result<bool>.Failure(GenericErrors.NoRecordFound(nameof(InterviewProcess), processId));
+
+            process.MarkCompleted();
+            return Result<bool>.Success(true);
+        }
+            
+        else
+        {
+            return Result<bool>.Success(false);
+        }
     }
 
 }

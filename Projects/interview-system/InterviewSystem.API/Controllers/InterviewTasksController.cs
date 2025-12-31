@@ -59,7 +59,7 @@ public class InterviewTasksController : ControllerBase
     }
 
     [HttpPost("failed-interview")]
-    public async Task<IActionResult> FailedInterview([FromBody] RejectInterviewCommand command)
+    public async Task<IActionResult> FailedInterview([FromBody] FailInterviewCommand command)
     {
         var result  = await _mediator.Send(command);
         return result.ToActionResult();
