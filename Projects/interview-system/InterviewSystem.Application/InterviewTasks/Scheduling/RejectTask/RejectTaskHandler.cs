@@ -80,7 +80,7 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
         if (eligibleEmployees.Any() is false)
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
-        //set current Task to rejected
+        //set current Task to Rejected
        
 
         return Result<Guid>.Success(request.TaskId);
