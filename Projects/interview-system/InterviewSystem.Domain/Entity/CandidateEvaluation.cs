@@ -7,13 +7,11 @@ public class CandidateEvaluation
     public CandidateEvaluation(bool passed, string? note)
     {
         Passed = passed;
-        Note = Note;
+        Note = note;
     }
 
-    public static CandidateEvaluation Pass(string? note)
-    {
-        return new(true, "note");
-    }
+    public static CandidateEvaluation Pass(string? note) =>new (true, note);
+    
     public static CandidateEvaluation Fail(string note)
     {
         if (string.IsNullOrWhiteSpace(note))
