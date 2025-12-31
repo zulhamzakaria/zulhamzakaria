@@ -43,4 +43,13 @@ public class InterviewTaskRepository : IInterviewTaskRepository
         return await _context.InterviewTasks
             .AnyAsync(it => it.AssigneeId == assigneeId && it.Id == taskId);
     }
+
+    public async Task<IReadOnlyCollection<InterviewTask>> GetAllByProcessIdAndSequence
+        (Guid processId, int sequence)
+    {
+        return await _context.InterviewTasks
+            .Where(it=> it.InterviewProcessId == processId)
+            .Where(it => it.RoundSequence == sequence)
+            .ToListAsync();
+    }
 }
