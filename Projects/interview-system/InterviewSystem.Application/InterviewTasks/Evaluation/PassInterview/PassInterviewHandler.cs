@@ -3,6 +3,7 @@ using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
+using System.ComponentModel.DataAnnotations;
 
 namespace InterviewSystem.Application.InterviewTasks.Evaluation.CompleteInterview;
 
@@ -95,24 +96,31 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         if (updatedTask.IsFailure)
             return Result<Guid>.Failure(updatedTask.Errors);
 
-        //create next task
-        var newTask = InterviewTask.Create(
-            interviewRoundId: task.InterviewRoundId,
-            interviewProcessId: process.Id,
-            roundSequence: nextRoundItem.Sequence,
-            candidateId: task.CandidateId,
-            candidateName: task.CandidateName,
-            assigneeId: nextInterviewer.Id,
-            assigneeName: nextInterviewer.Name ?? string.Empty);
+        var taskToCreate = nextRoundItem.AllowMultiple ?
+            Math.Min(eligibleEmployees.Count(), currrentRoundItem!.MaxInlineTasks) :
+            1;
 
-        if (newTask.IsFailure)
-            return Result<Guid>.Failure(newTask.Errors);
+        foreach(var interview in eligibleEmployees.Take(taskToCreate))
+        {
+            //create next task
+            var newTask = InterviewTask.Create(
+                interviewRoundId: task.InterviewRoundId,
+                interviewProcessId: process.Id,
+                roundSequence: nextRoundItem.Sequence,
+                candidateId: task.CandidateId,
+                candidateName: task.CandidateName,
+                assigneeId: interview.Id,
+                assigneeName: interview.Name ?? string.Empty);
 
-        await _interviewTaskRepository.AddAsync(newTask.Value!);
+            if (newTask.IsFailure)
+                return Result<Guid>.Failure(newTask.Errors);
+
+            await _interviewTaskRepository.AddAsync(newTask.Value!);
+        }
 
         await _uow.SaveChangesAsync();
 
-        return Result<Guid>.Success(newTask.Value!.Id);
+        return Result<Guid>.Success(process.Id);
     }
 
 }
