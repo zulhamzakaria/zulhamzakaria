@@ -10,7 +10,10 @@ public class CandidateEvaluation
         Note = Note;
     }
 
-    public static CandidateEvaluation Pass(string? note) => new(true, note);
+    public static CandidateEvaluation Pass(string? note)
+    {
+        return new(true, note);
+    }
     public static CandidateEvaluation Fail(string note)
     {
         if (string.IsNullOrWhiteSpace(note))
