@@ -46,24 +46,42 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
 
         //get currentsequence, get AllowMultiple bool
         var currentRound = await _interviewRoundRepository.GetByIdAsync(task.InterviewRoundId);
-        if(currentRound is null)
+        if (currentRound is null)
             return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(InterviewRound), task.InterviewRoundId));
 
         var currentSequence = await _interviewRoundRepository
             .GetCurrentSequenceAsync(task.InterviewRoundId, task.RoundSequence);
         if (currentSequence is null)
             return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(InterviewRoundItem), task.InterviewRoundId));
-        var eligibleEmployees = (await _employeeRepository
-            .GetEmployeesByPositionAsync(currentSequence.AllowedPosition, currentRound.Department))
-            .Where(e => e.Id != request.AssigneeId)
-            .ToList();
+
+        List<Employee>? eligibleEmployees = new();
+
+        if (currentSequence.AllowMultiple)
+        {
+            var assigneeIds = (await _interviewTaskRepository.GetAllByProcessIdAndSequence
+                 (processId: task.InterviewProcessId, task.RoundSequence))
+                 .Select(it => it.AssigneeId)
+                 .ToHashSet();
+
+            eligibleEmployees = (await _employeeRepository
+                .GetEmployeesByPositionAsync(currentSequence.AllowedPosition, currentRound.Department))
+                .Where(e => assigneeIds.Contains(e.Id) is false)
+                .ToList();
+        }
+        else
+        {
+            eligibleEmployees = (await _employeeRepository
+                  .GetEmployeesByPositionAsync(currentSequence.AllowedPosition, currentRound.Department))
+                  .Where(e => e.Id != request.AssigneeId)
+                  .ToList();
+        }
 
         //no other eligible Assignee, lone
         if (eligibleEmployees.Any() is false)
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
+        //set current Task to rejected
        
-
 
         return Result<Guid>.Success(request.TaskId);
     }
