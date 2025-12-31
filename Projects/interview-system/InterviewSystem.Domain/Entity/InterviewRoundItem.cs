@@ -10,7 +10,8 @@ public class InterviewRoundItem
     public EmployeePosition AllowedPosition { get; private set; }
     public bool IsMandatory { get; private set; } 
     public bool CanCompleteProcess { get; private set; } 
-    public bool AllowMultiple { get; private set; } 
+    public bool AllowMultiple { get; private set; }
+    public int MaxInlineTasks => 2;
 
     private InterviewRoundItem()
     {
