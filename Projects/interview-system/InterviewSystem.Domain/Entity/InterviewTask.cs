@@ -42,10 +42,6 @@ public class InterviewTask : EntityBase
             errors.Add(GenericErrors.Required(nameof(interviewRoundId)));
         if (candidateId == Guid.Empty)
             errors.Add(GenericErrors.Required(nameof(candidateId)));
-        //if(rejected == true && string.IsNullOrWhiteSpace(rejectionReason))
-        //    errors.Add(GenericErrors.Required(nameof(rejectionReason)));
-        //if (string.IsNullOrWhiteSpace(rejectionReason) is false && rejectionReason.Length > RejectionReasonMaxLength)
-        //    errors.Add(GenericErrors.InvalidLength(nameof(rejectionReason), RejectionReasonMinLength, RejectionReasonMaxLength));
 
         if (errors.Any())
             return Result<InterviewTask>.Failure(errors);
@@ -81,6 +77,13 @@ public class InterviewTask : EntityBase
 
         if (InterviewDate is null)
             errors.Add(InterviewTaskErrors.NoInterviewDate());
+
+        if (recommendedPass == false && string.IsNullOrWhiteSpace(notes))
+            errors.Add(GenericErrors.Required(nameof(notes)));
+
+        if (string.IsNullOrWhiteSpace(notes) is false && notes.Length > RejectionReasonMaxLength)
+            errors.Add(GenericErrors.InvalidLength(nameof(notes), 
+                RejectionReasonMinLength, RejectionReasonMaxLength));
 
         if (errors.Any())
             return Result<Unit>.Failure(errors);
