@@ -1,10 +1,8 @@
-﻿using InterviewSystem.Domain.Common.Enums;
-using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
-using System.Diagnostics;
 
 namespace InterviewSystem.Application.InterviewTasks.Scheduling.RejectTask;
 
@@ -72,7 +70,8 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
             .ToList();
 
         //no other eligible Assignee, lone
-        if (eligibleEmployees.Any() is false)
+        if (eligibleEmployees.Any() is false && 
+            task.RejectionOriginatorId is null)
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
         //TODO:full circle mechanism
@@ -97,29 +96,32 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
         process.UpdateCurrentInterviewAfterReject
             (registeredAssignees?.AssigneeId, registeredAssignees?.AssigneeName);
 
-        var eligibleEmployee = eligibleEmployees.FirstOrDefault();
-        //create a new Task. Reject doesnt have to follow Create() rules
-        var newTask = InterviewTask.Create(interviewRoundId: task.InterviewRoundId,
-            interviewProcessId: task.InterviewProcessId,
-            task.RoundSequence,
-            task.CandidateId,
-            task.CandidateName,
-            eligibleEmployee!.Id,
-            eligibleEmployee!.Name!);
+        bool isFullCircle = (eligibleEmployees.Any() is false &&
+                task.RejectionOriginatorId is not null);
 
-        if (newTask.IsFailure)
-            return Result<Guid>.Failure(newTask.Errors);
+        if (isFullCircle is false)
+        {
+            var eligibleEmployee = eligibleEmployees.FirstOrDefault();
+            //create a new Task. Reject doesnt have to follow Create() rules
+            var newTask = InterviewTask.Create(interviewRoundId: task.InterviewRoundId,
+                interviewProcessId: task.InterviewProcessId,
+                task.RoundSequence,
+                task.CandidateId,
+                task.CandidateName,
+                eligibleEmployee!.Id,
+                eligibleEmployee!.Name!);
 
-        await _uow.SaveChangesAsync();
+            if (newTask.IsFailure)
+                return Result<Guid>.Failure(newTask.Errors);
+        }
+        else
+        {
+            task.Reassignment();
+        }
+
+            await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(request.TaskId);
-    }
-
-    private Result<Guid> RejectionsCycle(List<Employee> eligibleEmployees)
-    {
-
-
-        return Result<Guid>.Success(new Guid());
     }
 
 }
