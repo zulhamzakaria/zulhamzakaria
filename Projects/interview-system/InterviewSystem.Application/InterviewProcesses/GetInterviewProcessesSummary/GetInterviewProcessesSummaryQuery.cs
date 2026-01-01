@@ -4,6 +4,8 @@ using MediatR;
 
 namespace InterviewSystem.Application.InterviewProcesses.GetInterviewProcessesSummary;
 
-public sealed record GetInterviewProcessesSummaryQuery(EmployeeDepartment? EmployeeDepartment,
+public sealed record GetInterviewProcessesSummaryQuery(
+    EmployeeDepartment? EmployeeDepartment,
     InterviewProcessStatus? InterviewProcessStatus,
-    Guid? InterviewerId): IRequest<Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>> ;
+    Guid? InterviewerId,
+    Guid? CandidateId): IRequest<Result<IReadOnlyCollection<GetInterviewProcessesSummaryDTO>>> ;

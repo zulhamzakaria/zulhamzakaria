@@ -23,6 +23,7 @@ public sealed class GetInterviewProcessesSummaryHandler :
                 .Where(ip => request.EmployeeDepartment == null || ip.Department == request.EmployeeDepartment)
                 .Where(ip => request.InterviewProcessStatus == null || ip.InterviewProcessStatus == request.InterviewProcessStatus)
                 .Where(ip => request.InterviewerId == null || ip.CurrentInterviewerId == request.InterviewerId)
+                .Where(ip => request.CandidateId == null || ip.CandidateId == request.CandidateId)
                 .Select(MapToDTO)
                 .ToList();
 
