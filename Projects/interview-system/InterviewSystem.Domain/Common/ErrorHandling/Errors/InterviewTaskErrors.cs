@@ -43,4 +43,8 @@ public static class InterviewTaskErrors
     public static Error IncompleteEvaluation(Guid processId, int seq)
         => new(ErrorType.BusinessRule, "EVALUATION_NOT_COMPLETED", 
             $"Please complete all evaluations for ProcessId:{processId} and Round:{seq}");
+    public static Error CannotRejectAnymore()
+        => new(ErrorType.BusinessRule, "REJECTIONS_FULL_CIRCLE", 
+            "Cannot reject Task for a second time");
+    
 }

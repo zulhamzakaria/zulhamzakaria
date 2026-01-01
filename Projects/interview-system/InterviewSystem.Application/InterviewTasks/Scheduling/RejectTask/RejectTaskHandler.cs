@@ -61,31 +61,23 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
 
         List<Employee>? eligibleEmployees = new();
 
-        if (currentSequence.AllowMultiple)
-        {
-            var assigneeIds = (await _interviewTaskRepository.GetAllByProcessIdAndSequence
-                 (processId: task.InterviewProcessId, task.RoundSequence))
-                 .Select(it => it.AssigneeId)
-                 .ToHashSet();
+        var assigneeIds = (await _interviewTaskRepository.GetAllByProcessIdAndSequence
+             (processId: task.InterviewProcessId, task.RoundSequence))
+             .Select(it => it.AssigneeId)
+             .ToHashSet();
 
-            eligibleEmployees = (await _employeeRepository
-                .GetEmployeesByPositionAsync(currentSequence.AllowedPosition, currentRound.Department))
-                .Where(e => assigneeIds.Contains(e.Id) is false)
-                .ToList();
-        }
-        else
-        {
-            eligibleEmployees = (await _employeeRepository
-                  .GetEmployeesByPositionAsync(currentSequence.AllowedPosition, currentRound.Department))
-                  .Where(e => e.Id != request.AssigneeId)
-                  .ToList();
-        }
+        eligibleEmployees = (await _employeeRepository
+            .GetEmployeesByPositionAsync(currentSequence.AllowedPosition, currentRound.Department))
+            .Where(e => assigneeIds.Contains(e.Id) is false)
+            .ToList();
 
         //no other eligible Assignee, lone
         if (eligibleEmployees.Any() is false)
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
         //TODO:full circle mechanism
+        if (task.Rejected)
+            return Result<Guid>.Failure(InterviewTaskErrors.CannotRejectAnymore());
 
         //set current Task to Rejected
         task.RejectTask(request.Reason);
