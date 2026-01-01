@@ -1,9 +1,11 @@
 using InterviewSystem.API.BackgroundJobs;
 using InterviewSystem.API.Middlewares;
 using InterviewSystem.Application;
+using InterviewSystem.Application.Candidates.GetCandidatesSummary;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using InterviewSystem.Infrastructure;
+using InterviewSystem.Infrastructure.CustomQueries.Candidates;
 using InterviewSystem.Infrastructure.CustomQueries.InterviewTasks;
 using InterviewSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -34,9 +36,12 @@ builder.Services.AddScoped<IUnitOfWorkRepository, UnitOfWorkRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 builder.Services.AddScoped<IInterviewTaskRepository, InterviewTaskRepository>();
-builder.Services.AddScoped<IInterviewTasksSummaryQueryRepository, InterviewTasksSummaryQueryRepository>();
 builder.Services.AddScoped<IInterviewRoundRepository, InterviewRoundRepository>();
 builder.Services.AddScoped<IInterviewProcessRepository, InterviewProcessRepository>();
+
+//Query DI Containers
+builder.Services.AddScoped<ICandidatesSummaryQueryRepository, CandidatesSummaryQueryRepository>();
+builder.Services.AddScoped<IInterviewTasksSummaryQueryRepository, InterviewTasksSummaryQueryRepository>();
 
 //mediatr
 var mediatrKey = builder.Configuration["MediatR:LicenseKey"];

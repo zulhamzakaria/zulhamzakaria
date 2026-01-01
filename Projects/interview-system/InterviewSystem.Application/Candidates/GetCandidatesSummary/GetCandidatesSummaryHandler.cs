@@ -8,23 +8,22 @@ namespace InterviewSystem.Application.Candidates.GetCandidatesSummary;
 
 public sealed class GetCandidatesSummaryHandler : IRequestHandler<GetCandidatesSummaryQuery, Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>>
 {
-    private readonly ICandidateRepository _candidateRepository;
+    private readonly ICandidatesSummaryQueryRepository _candidatesSummaryRepository;
     private readonly IInterviewProcessRepository _interviewProcessRepository;
 
-    public GetCandidatesSummaryHandler(ICandidateRepository candidateRepository, 
-        IInterviewProcessRepository interviewProcessRepository)
+    public GetCandidatesSummaryHandler(IInterviewProcessRepository interviewProcessRepository, 
+        ICandidatesSummaryQueryRepository candidatesSummaryRepository)
     {
-        _candidateRepository = candidateRepository;
         _interviewProcessRepository = interviewProcessRepository;
+        _candidatesSummaryRepository = candidatesSummaryRepository;
     }
 
     public async Task<Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>> Handle(GetCandidatesSummaryQuery request, CancellationToken cancellationToken)
     {
-        var candidates = await _candidateRepository.GetAllAsync();
+        var candidates = await _candidatesSummaryRepository.GetSummaryAsync();
 
         var filteredCandidates = candidates
             .Where(c => request.AppliedPosition == null || c.AppliedPosition == request.AppliedPosition)
-            .Select(MapToDTO)
             .ToList();
 
         if (filteredCandidates.Any() is false)
@@ -33,11 +32,4 @@ public sealed class GetCandidatesSummaryHandler : IRequestHandler<GetCandidatesS
         return Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>.Success(filteredCandidates);
     }
 
-    private GetCandidatesSummaryDTO MapToDTO(Candidate candidate, bool submitted) =>
-        new GetCandidatesSummaryDTO(candidate.Id,
-            candidate.Name,
-            candidate.Email,
-            candidate.PhoneNumber,
-            candidate.AppliedPosition,
-            submitted);
 }
