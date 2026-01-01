@@ -16,7 +16,7 @@ internal static class EngineeringInterviewRoundPolicy
                 InterviewerDepartment = EmployeeDepartment.HR,
                 AllowedPositions = new HashSet<EmployeePosition>{EmployeePosition.HiringManager},
                 IsMandatory = true,
-                CanCompleteProcess = true,
+                CanCompleteProcess = false,
                 AllowMultiple = false
             },
             new InterviewStepPolicy
