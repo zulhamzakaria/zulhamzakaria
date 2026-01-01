@@ -174,6 +174,11 @@ public class InterviewTask : EntityBase
         return Result<Unit>.Success(new Unit());
     }
 
+    public void Reassignment()
+    {
+        InterviewTaskStatus = InterviewTaskStatus.Assigned;
+    }
+
     private Result<DateTimeOffset> ValidateDate(DateTimeOffset interviewDate)
     {
         var errors = new List<Error>();

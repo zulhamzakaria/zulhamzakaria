@@ -70,7 +70,7 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
             .ToList();
 
         //no other eligible Assignee, lone
-        if (eligibleEmployees.Any() is false && 
+        if (eligibleEmployees.Any() is false &&
             task.RejectionOriginatorId is null)
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
@@ -119,7 +119,7 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
             task.Reassignment();
         }
 
-            await _uow.SaveChangesAsync();
+        await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(request.TaskId);
     }
