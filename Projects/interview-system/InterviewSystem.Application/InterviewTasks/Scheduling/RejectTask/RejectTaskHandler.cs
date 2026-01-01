@@ -1,4 +1,5 @@
-﻿using InterviewSystem.Domain.Common.ErrorHandling;
+﻿using InterviewSystem.Domain.Common.Enums;
+using InterviewSystem.Domain.Common.ErrorHandling;
 using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
@@ -121,4 +122,12 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
 
         return Result<Guid>.Success(request.TaskId);
     }
+
+    private Result<Guid> RejectionsCycle(List<Employee> eligibleEmployees)
+    {
+
+
+        return Result<Guid>.Success(new Guid());
+    }
+
 }
