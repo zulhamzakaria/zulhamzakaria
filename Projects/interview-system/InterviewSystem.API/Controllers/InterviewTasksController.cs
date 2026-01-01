@@ -4,6 +4,7 @@ using InterviewSystem.Application.InterviewTasks.Evaluation.CompleteInterview;
 using InterviewSystem.Application.InterviewTasks.Evaluation.RejectInterview;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
+using InterviewSystem.Application.InterviewTasks.Scheduling.RejectTask;
 using InterviewSystem.Application.InterviewTasks.Scheduling.Rescheduling;
 using InterviewSystem.Application.InterviewTasks.Scheduling.SetInterviewDate;
 using MediatR;
@@ -62,6 +63,13 @@ public class InterviewTasksController : ControllerBase
     public async Task<IActionResult> FailedInterview([FromBody] FailInterviewCommand command)
     {
         var result  = await _mediator.Send(command);
+        return result.ToActionResult();
+    }
+
+    [HttpPost("reject-task")]
+    public async Task<IActionResult> RejectTask([FromBody] RejectTaskCommand command)
+    {
+        var result = await _mediator.Send(command);
         return result.ToActionResult();
     }
 }
