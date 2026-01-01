@@ -100,7 +100,7 @@ public class InterviewTask : EntityBase
 
         List<Error> errors = new();
 
-        if(InterviewTaskStatusRules.ActiveStatuses.Contains(InterviewTaskStatus) is false)
+        if(InterviewTaskRules.ActiveStatuses.Contains(InterviewTaskStatus) is false)
             errors.Add(InterviewTaskErrors.NotActiveTask());  
 
         if(string.IsNullOrWhiteSpace(rejectionReason))
