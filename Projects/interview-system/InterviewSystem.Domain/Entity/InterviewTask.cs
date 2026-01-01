@@ -25,6 +25,7 @@ public class InterviewTask : EntityBase
     public CandidateEvaluation? Evaluation { get; set; }
     public bool Rejected { get; set; } = false;
     public string? TaskRejectionReason { get; set; }
+    public Guid? RejectionOriginatorId { get; private set; }
 
     private InterviewTask()
     {
@@ -118,7 +119,11 @@ public class InterviewTask : EntityBase
         return Result<Unit>.Success(new Unit());
     }
 
-
+    public void SetRejectionOriginator(Guid assigneeId)
+    {
+        if (RejectionOriginatorId is null)
+            RejectionOriginatorId = assigneeId;
+    }
     public Result<Unit> Scheduling(DateTimeOffset interviewDate)
     {
         var errors = new List<Error>();

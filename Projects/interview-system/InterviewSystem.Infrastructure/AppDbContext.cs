@@ -18,17 +18,28 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        ConfigureInterviewProcess(modelBuilder);
         ConfigureInterviewRound(modelBuilder);
         ConfigureInterviewTask(modelBuilder);
 
         //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
 
+
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
         configurationBuilder.Properties<Enum>()
             .HaveConversion<string>();
         base.ConfigureConventions(configurationBuilder);
+    }
+
+    private void ConfigureInterviewProcess(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<InterviewProcess>(builder =>
+        {
+            builder.Property(p => p.RowVersion)
+            .IsRowVersion();
+        });
     }
 
     private void ConfigureInterviewTask(ModelBuilder modelBuilder)

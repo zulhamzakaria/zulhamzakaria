@@ -15,7 +15,7 @@ public class InterviewProcess : EntityBase
     public InterviewProcessStatus InterviewProcessStatus { get; private set; }
     public Guid? CurrentInterviewerId { get; private set; }
     public string? CurrentInterviewerName { get; private set; } = string.Empty;
-
+    public byte[] RowVersion { get; private set; } = Array.Empty<Byte>();
     private InterviewProcess()
     {
         //EF Core needs this        
