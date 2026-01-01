@@ -6,6 +6,9 @@ public static class InterviewTaskRules
 {
     public static readonly HashSet<InterviewTaskStatus> ActiveStatuses =
       [InterviewTaskStatus.Assigned, InterviewTaskStatus.Accepted];
+
+    public static readonly HashSet<InterviewTaskStatus> IgnoreStatuses =
+        [InterviewTaskStatus.Assigned, InterviewTaskStatus.Accepted, InterviewTaskStatus.Rejected];
 }
 
 
