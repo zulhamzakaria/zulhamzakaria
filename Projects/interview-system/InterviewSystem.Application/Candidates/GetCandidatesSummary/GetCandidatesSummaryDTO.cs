@@ -6,4 +6,5 @@ public sealed record GetCandidatesSummaryDTO(Guid Id,
     string Name,
     string Email,
     string PhoneNumber,
-    AppliedPosition AppliedPosition);
+    AppliedPosition AppliedPosition,
+    bool SubmittedForInterview);

@@ -9,10 +9,13 @@ namespace InterviewSystem.Application.Candidates.GetCandidatesSummary;
 public sealed class GetCandidatesSummaryHandler : IRequestHandler<GetCandidatesSummaryQuery, Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>>
 {
     private readonly ICandidateRepository _candidateRepository;
+    private readonly IInterviewProcessRepository _interviewProcessRepository;
 
-    public GetCandidatesSummaryHandler(ICandidateRepository candidateRepository)
+    public GetCandidatesSummaryHandler(ICandidateRepository candidateRepository, 
+        IInterviewProcessRepository interviewProcessRepository)
     {
         _candidateRepository = candidateRepository;
+        _interviewProcessRepository = interviewProcessRepository;
     }
 
     public async Task<Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>> Handle(GetCandidatesSummaryQuery request, CancellationToken cancellationToken)
@@ -30,10 +33,11 @@ public sealed class GetCandidatesSummaryHandler : IRequestHandler<GetCandidatesS
         return Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>.Success(filteredCandidates);
     }
 
-    private GetCandidatesSummaryDTO MapToDTO(Candidate candidate) =>
+    private GetCandidatesSummaryDTO MapToDTO(Candidate candidate, bool submitted) =>
         new GetCandidatesSummaryDTO(candidate.Id,
             candidate.Name,
             candidate.Email,
             candidate.PhoneNumber,
-            candidate.AppliedPosition);
+            candidate.AppliedPosition,
+            submitted);
 }
