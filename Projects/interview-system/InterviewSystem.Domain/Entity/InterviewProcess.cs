@@ -118,4 +118,12 @@ public class InterviewProcess : EntityBase
 
         return Result<Unit>.Success(Unit.Value);
     }
+
+    public void UpdateCurrentInterviewAfterReject
+        (Guid? interviewerId, string? interviewerName)
+    {
+        CurrentInterviewerId = interviewerId;
+        CurrentInterviewerName = interviewerName;
+    }
+
 }
