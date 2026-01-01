@@ -4,5 +4,6 @@ using MediatR;
 
 namespace InterviewSystem.Application.Candidates.GetCandidatesSummary;
 
-public sealed record GetCandidatesSummaryQuery(AppliedPosition? AppliedPosition) 
-    : IRequest<Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>>;
+public sealed record GetCandidatesSummaryQuery(
+    AppliedPosition? AppliedPosition,
+    bool? SubmittedForInterview) : IRequest<Result<IReadOnlyCollection<GetCandidatesSummaryDTO>>>;

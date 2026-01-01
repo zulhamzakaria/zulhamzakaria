@@ -24,6 +24,7 @@ public sealed class GetCandidatesSummaryHandler : IRequestHandler<GetCandidatesS
 
         var filteredCandidates = candidates
             .Where(c => request.AppliedPosition == null || c.AppliedPosition == request.AppliedPosition)
+            .Where(c => !request.SubmittedForInterview.HasValue)
             .ToList();
 
         if (filteredCandidates.Any() is false)
