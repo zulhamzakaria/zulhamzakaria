@@ -22,6 +22,7 @@ public sealed class GetInterviewTasksSummaryHandler :
              .Where(cq => request.EmployeeDepartment == null || cq.EmployeeDepartment == request.EmployeeDepartment)
              .Where(cq => request.AppliedPosition == null || cq.AppliedPosition == request.AppliedPosition)
              .Where(cq => request.InterviewTaskStatus == null || cq.InterviewTaskStatus == request.InterviewTaskStatus)
+             .Where(cq => request.InterviewProcessId == null || cq.InterviewProcessId == request.InterviewProcessId)
              .ToList();
 
         if (results.Any() is false)

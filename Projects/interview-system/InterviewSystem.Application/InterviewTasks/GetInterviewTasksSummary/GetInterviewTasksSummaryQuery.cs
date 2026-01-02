@@ -7,4 +7,5 @@ namespace InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 public sealed record GetInterviewTasksSummaryQuery(
         EmployeeDepartment? EmployeeDepartment,
         AppliedPosition? AppliedPosition,
-        InterviewTaskStatus? InterviewTaskStatus) : IRequest<Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>>;
+        InterviewTaskStatus? InterviewTaskStatus,
+        Guid? InterviewProcessId) : IRequest<Result<IReadOnlyCollection<GetInterviewTasksSummaryDTO>>>;
