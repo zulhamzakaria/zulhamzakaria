@@ -90,13 +90,11 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         if (updatedProcess.IsFailure)
             return Result<Guid>.Failure(updatedProcess.Errors);
 
-        var createNewTask = await CreateNewRound(task.InterviewProcessId, currentRoundItem!.Sequence);
+        var createNewTask = await CreateTaskForNewRound
+            (task.InterviewProcessId, currentRoundItem!.Sequence);
 
         if (createNewTask.IsFailure)
             return Result<Guid>.Failure(createNewTask.Errors);
-        if (createNewTask.Value == false)
-            return Result<Guid>.Failure(InterviewTaskErrors.IncompleteEvaluation
-                (task.InterviewProcessId, currentRoundItem!.Sequence));
 
         //update current task
         var updatedTask = task.MarkCompleted(true, request.Reason);
@@ -130,13 +128,17 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         return Result<Guid>.Success(process.Id);
     }
 
-    private async Task<Result<bool>> CreateNewRound(Guid processId, int sequence)
+    private async Task<Result<bool>> CreateTaskForNewRound(Guid processId, int sequence)
     {
         var tasks = await _interviewTaskRepository.GetAllByProcessIdAndSequence(processId, sequence);
         if (tasks.Any() is false)
             return Result<bool>.Failure(InterviewTaskErrors.NoTaskRegistered(processId, sequence));
 
-        var completedTask = tasks.All(t => t.InterviewTaskStatus == InterviewTaskStatus.Completed);
+        //Failed Task => Cannot Progress
+        //Accepted(Passing) => Can Progress
+        //Accepted(Passing),Complete => Can Progress
+        //Accepted(Passing),Accepted => Cannot Progress
+        var completedTask = tasks.All(t => t.InterviewTaskStatus == InterviewTaskStatus.Passed);
 
         return Result<bool>.Success(completedTask);
     }

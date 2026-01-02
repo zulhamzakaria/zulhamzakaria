@@ -86,7 +86,10 @@ public class InterviewTask : EntityBase
         if (errors.Any())
             return Result<Unit>.Failure(errors);
 
-        InterviewTaskStatus = InterviewTaskStatus.Completed;
+        InterviewTaskStatus = recommendedPass 
+            ? InterviewTaskStatus.Passed 
+            : InterviewTaskStatus.Rejected;
+
         Evaluation = recommendedPass ? CandidateEvaluation.Pass(notes)
             : CandidateEvaluation.Fail(notes!);
         CompletedAt = DateTimeOffset.UtcNow;

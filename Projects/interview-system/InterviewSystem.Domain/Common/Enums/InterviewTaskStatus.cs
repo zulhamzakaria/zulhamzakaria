@@ -4,6 +4,6 @@ public enum InterviewTaskStatus
 {
     Assigned,
     Accepted,
-    Completed,
+    Passed,
     Rejected
 }
