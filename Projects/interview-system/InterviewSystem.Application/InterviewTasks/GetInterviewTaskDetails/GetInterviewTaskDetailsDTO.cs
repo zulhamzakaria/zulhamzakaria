@@ -8,6 +8,7 @@ public sealed record GetInterviewTaskDetailsDTO(
     Guid InterviewProcessId,
     Guid CandidateId,
     string CandidateName,
+    Guid AssigneeId,
     InterviewTaskStatus InterviewTaskStatus,
     DateTimeOffset AssignedAt,
     DateTimeOffset? CompletedAt,
