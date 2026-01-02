@@ -139,7 +139,6 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
         var completedTask = tasks.All(t => t.InterviewTaskStatus == InterviewTaskStatus.Completed);
 
         return Result<bool>.Success(completedTask);
-
     }
 
 }
