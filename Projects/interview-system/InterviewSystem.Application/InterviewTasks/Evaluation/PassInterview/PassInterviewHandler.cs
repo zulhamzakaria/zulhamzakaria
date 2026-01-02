@@ -136,7 +136,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
 
         //Failed Task => Cannot Progress
         //Accepted(Passing) => Can Progress
-        //Accepted(Passing),Complete => Can Progress
+        //Accepted(Passing),Passed => Can Progress
         //Accepted(Passing),Accepted => Cannot Progress
         var completedTask = tasks.All(t => t.InterviewTaskStatus == InterviewTaskStatus.Passed);
 
