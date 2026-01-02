@@ -119,7 +119,7 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
             task.Reassignment();
         }
 
-        await _uow.SaveChangesAsync();
+        //await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(request.TaskId);
     }
