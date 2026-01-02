@@ -39,6 +39,7 @@ public sealed class GetInterviewTaskDetailsHandler :
             task.AssigneeId,
             task.InterviewTaskStatus,
             task.AssignedAt.ToOffset(Timezones.Singapore),
+            task.InterviewDate?.ToOffset(Timezones.Singapore),
             task.CompletedAt?.ToOffset(Timezones.Singapore),
             task.Evaluation,
             task.Rejected,

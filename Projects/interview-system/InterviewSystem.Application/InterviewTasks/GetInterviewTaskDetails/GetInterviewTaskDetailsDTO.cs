@@ -11,6 +11,7 @@ public sealed record GetInterviewTaskDetailsDTO(
     Guid AssigneeId,
     InterviewTaskStatus InterviewTaskStatus,
     DateTimeOffset AssignedAt,
+    DateTimeOffset? InterviewDate,
     DateTimeOffset? CompletedAt,
     CandidateEvaluation? CandidateEvaluation,
     bool Rejected,
