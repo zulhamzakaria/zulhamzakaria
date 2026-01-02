@@ -116,8 +116,11 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
             if (newTask.IsFailure)
                 return Result<Guid>.Failure(newTask.Errors);
 
+            await _interviewTaskRepository.AddAsync(newTask.Value!);
+
             if(task.RejectionOriginatorId is not null)
-                newTask.Value.SetRejectionOriginator(task.RejectionOriginatorId.Value);
+                newTask.Value!.SetRejectionOriginator
+                    (task.RejectionOriginatorId.Value);
         }
         else
         {
