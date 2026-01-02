@@ -80,6 +80,8 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
 
         //set current Task to Rejected
         task.RejectTask(request.Reason);
+        task.SetRejectionOriginator(task.AssigneeId);
+
         //update process to use the remaining Assignee for Interviewer (null for lone Assignee)
         var process = await _interviewProcessRepository.GetByIdAsync(task.InterviewProcessId);
         if (process is null)
@@ -113,13 +115,16 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
 
             if (newTask.IsFailure)
                 return Result<Guid>.Failure(newTask.Errors);
+
+            if(task.RejectionOriginatorId is not null)
+                newTask.Value.SetRejectionOriginator(task.RejectionOriginatorId.Value);
         }
         else
         {
             task.Reassignment();
         }
 
-        await _uow.SaveChangesAsync();
+        //await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(request.TaskId);
     }
