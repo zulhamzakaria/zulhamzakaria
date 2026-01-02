@@ -123,7 +123,7 @@ public sealed class PassInterviewHandler : IRequestHandler<PassInterviewCommand,
             await _interviewTaskRepository.AddAsync(newTask.Value!);
         }
 
-        //await _uow.SaveChangesAsync();
+        await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(process.Id);
     }
