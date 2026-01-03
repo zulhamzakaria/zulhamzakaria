@@ -9,6 +9,7 @@ public sealed record GetInterviewTasksSummaryDTO(
     AppliedPosition AppliedPosition,
     InterviewTaskStatus InterviewTaskStatus,
     DateTimeOffset AssignedAt,
+    Guid? RejectionOriginatorId,
     bool Rejected,
     string? TaskRejectionReason
     );

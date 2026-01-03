@@ -30,6 +30,7 @@ public sealed class InterviewTasksSummaryQueryRepository : IInterviewTasksSummar
                 round.AppliedPosition,
                 task.InterviewTaskStatus,
                 task.AssignedAt.ToOffset(Timezones.Singapore),
+                task.RejectionOriginatorId,
                 task.Rejected,
                 task.TaskRejectionReason
             )).ToListAsync();
