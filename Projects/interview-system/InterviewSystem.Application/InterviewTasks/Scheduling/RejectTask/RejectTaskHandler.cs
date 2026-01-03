@@ -74,6 +74,7 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
             task.RejectionOriginatorId is null)
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
+        //cannot reject twice
         if (task.Rejected)
             return Result<Guid>.Failure(InterviewTaskErrors.CannotRejectAnymore());
 
@@ -126,7 +127,7 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
             task.Reassignment();
         }
 
-        //await _uow.SaveChangesAsync();
+        await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(request.TaskId);
     }
