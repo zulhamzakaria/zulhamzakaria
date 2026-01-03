@@ -38,6 +38,8 @@ public static class InterviewTaskErrors
         => new(ErrorType.Validation, "TASK_NOT_REGISTERED", $"No Task for ProcessId:{processId} and Round:{seq}");
     public static Error NoActiveTasks(Guid assigneeId)
         => new(ErrorType.Validation, "ASSIGNEE_NO_TASKS", $"No active Tasks registered under EmployeeId:{assigneeId}");
+      public static Error NotActiveTasks()
+        => new(ErrorType.Validation, "TASK_NOT_ACTIVE", $"The Task is not an active Task");
     public static Error TimeSlotTaken()
         => new(ErrorType.BusinessRule, "TIME_SLOT_TAKEN", "An active Interview Task already occupies the time slot");
     public static Error IncompleteEvaluation(Guid processId, int seq)

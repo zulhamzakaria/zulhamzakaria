@@ -41,7 +41,7 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
         var activeTasks = await _interviewTaskRepository.GetAllByEmployeeIdAsync(request.AssigneeId);
         var isActiveTask = activeTasks.Any(t => t.Id == request.TaskId);
         if (isActiveTask is false)
-            return Result<Guid>.Failure(InterviewTaskErrors.NoActiveTasks(request.AssigneeId));
+            return Result<Guid>.Failure(InterviewTaskErrors.NotActiveTasks());
 
         //cannot reject if theres not enough interviewee
         //AllowMultiple => interviewers > RoundItem.MaxInlineTasks
