@@ -74,7 +74,6 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
             task.RejectionOriginatorId is null)
             return Result<Guid>.Failure(InterviewTaskErrors.NoEligibleInterviewer());
 
-        //TODO:full circle mechanism
         if (task.Rejected)
             return Result<Guid>.Failure(InterviewTaskErrors.CannotRejectAnymore());
 
