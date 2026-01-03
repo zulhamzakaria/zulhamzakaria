@@ -124,7 +124,17 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
         }
         else
         {
-            task.Reassignment();
+            if (task.RejectionOriginatorId is not Guid originatorId)
+                return Result<Guid>.Failure(GenericErrors.Required(nameof(task.RejectionOriginatorId)));
+
+            var ressigningTask = await _interviewTaskRepository.GetByIdAsync
+                (originatorId);
+
+            if (ressigningTask is null)
+                return Result<Guid>.Failure(GenericErrors.NoRecordFound
+                    (nameof(InterviewTask), originatorId));
+
+            ressigningTask.Reassignment();
         }
 
         await _uow.SaveChangesAsync();
