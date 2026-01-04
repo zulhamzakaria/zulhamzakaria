@@ -3,9 +3,8 @@ using InterviewSystem.Domain.Common.ErrorHandling.Errors;
 using InterviewSystem.Domain.Entity;
 using InterviewSystem.Domain.Interfaces.Repositories;
 using MediatR;
-using System.Diagnostics;
 
-namespace InterviewSystem.Application.InterviewTasks.Evaluation.RejectInterview;
+namespace InterviewSystem.Application.InterviewTasks.Evaluation.FailInterview;
 
 public sealed class FailInterviewHandler : IRequestHandler<FailInterviewCommand, Result<Guid>>
 {
