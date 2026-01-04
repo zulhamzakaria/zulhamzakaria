@@ -39,8 +39,13 @@ public sealed class FailInterviewHandler : IRequestHandler<FailInterviewCommand,
         if(process is null)
             return Result<Guid>.Failure(GenericErrors.NoRecordFound(nameof(InterviewProcess), task.InterviewProcessId));
 
-        process.MarkFailed();
-        task.MarkCompleted(false, request.Reason);
+        var failedProcess = process.MarkFailed();
+        if (failedProcess.IsFailure)
+            return Result<Guid>.Failure(failedProcess.Errors);
+
+        var failedTask = task.MarkCompleted(false, request.Reason);
+        if (failedTask.IsFailure)
+            return Result<Guid>.Failure(failedTask.Errors);
 
         //await _uow.SaveChangesAsync();
 
