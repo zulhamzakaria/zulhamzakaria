@@ -1,7 +1,6 @@
 ﻿using InterviewSystem.API.ErrorHandling;
-using InterviewSystem.Application.InterviewTasks.CreateInterviewTask;
 using InterviewSystem.Application.InterviewTasks.Evaluation.CompleteInterview;
-using InterviewSystem.Application.InterviewTasks.Evaluation.RejectInterview;
+using InterviewSystem.Application.InterviewTasks.Evaluation.FailInterview;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTaskDetails;
 using InterviewSystem.Application.InterviewTasks.GetInterviewTasksSummary;
 using InterviewSystem.Application.InterviewTasks.Scheduling.RejectTask;
