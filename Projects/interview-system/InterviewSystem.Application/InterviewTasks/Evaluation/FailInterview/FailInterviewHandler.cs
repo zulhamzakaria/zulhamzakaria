@@ -42,7 +42,7 @@ public sealed class FailInterviewHandler : IRequestHandler<FailInterviewCommand,
         process.MarkFailed();
         task.MarkCompleted(false, request.Reason);
 
-        await _uow.SaveChangesAsync();
+        //await _uow.SaveChangesAsync();
 
         return Result<Guid>.Success(request.TaskId);
     }

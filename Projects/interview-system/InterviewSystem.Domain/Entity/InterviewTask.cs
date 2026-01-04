@@ -88,7 +88,7 @@ public class InterviewTask : EntityBase
 
         InterviewTaskStatus = recommendedPass 
             ? InterviewTaskStatus.Passed 
-            : InterviewTaskStatus.Rejected;
+            : InterviewTaskStatus.Failed;
 
         Evaluation = recommendedPass ? CandidateEvaluation.Pass(notes)
             : CandidateEvaluation.Fail(notes!);
