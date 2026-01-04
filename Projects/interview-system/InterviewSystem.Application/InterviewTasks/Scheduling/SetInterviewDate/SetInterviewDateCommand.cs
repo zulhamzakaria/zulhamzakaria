@@ -4,6 +4,6 @@ using MediatR;
 namespace InterviewSystem.Application.InterviewTasks.Scheduling.SetInterviewDate;
 
 public sealed record SetInterviewDateCommand(
-    Guid AssigneeId,
     Guid TaskId,
+    Guid AssigneeId,
     DateTimeOffset InterviewDate) : IRequest<Result<DateTimeOffset>>;
