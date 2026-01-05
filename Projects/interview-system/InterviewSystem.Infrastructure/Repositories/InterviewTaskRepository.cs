@@ -52,4 +52,13 @@ public class InterviewTaskRepository : IInterviewTaskRepository
             .Where(it => it.RoundSequence == sequence)
             .ToListAsync();
     }
+
+    public async Task<Guid> GetByProcessIdAndAssigneeId(Guid processId, Guid assigneeId)
+    {
+       return await _context.InterviewTasks
+            .Where(it => it.InterviewProcessId == processId)
+            .Where(it => it.AssigneeId == assigneeId)
+            .Select(it=> it.Id)
+            .FirstOrDefaultAsync();
+    }
 }
