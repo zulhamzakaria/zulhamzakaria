@@ -135,7 +135,12 @@ public sealed class RejectTaskHandler : IRequestHandler<RejectTaskCommand, Resul
                     (nameof(Employee), originatorId));
 
             //get task by processId + employeeId
+            var reassigningTask = await _interviewTaskRepository.GetByProcessIdAndAssigneeId
+                (processId:task.InterviewProcessId, assigneeId:originatorId);
+            if(reassigningTask is null)
+                return Result<Guid>.Failure(GenericErrors.Required(nameof(reassigningTask)));
 
+            reassigningTask.Reassignment();            
             
         }
 
