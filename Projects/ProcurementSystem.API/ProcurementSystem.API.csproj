@@ -12,6 +12,30 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="IntegrationTests\" />
+    <Folder Include="Modules\Administration\" />
+    <Folder Include="Modules\Procurement\Application\UnitTests\" />
+    <Folder Include="Modules\Procurement\Application\PurchaseOrder\" />
+    <Folder Include="Modules\Procurement\Application\PurchaseRequest\" />
+    <Folder Include="Modules\Procurement\Domain\Aggregates\" />
+    <Folder Include="Modules\Procurement\Domain\Rules\" />
+    <Folder Include="Modules\Procurement\Domain\ValueObjects\" />
+    <Folder Include="Modules\Procurement\Domain\UnitTests\" />
+    <Folder Include="Modules\Procurement\Infrastructure\DbContext\" />
+    <Folder Include="Modules\Procurement\Infrastructure\Repositories\" />
+    <Folder Include="Modules\IdentityAndAccess\" />
+    <Folder Include="Modules\Auditing\" />
+    <Folder Include="Modules\Receiving\Application\GRN\" />
+    <Folder Include="Modules\Receiving\Application\UnitTests\" />
+    <Folder Include="Modules\Receiving\Domain\Aggregates\" />
+    <Folder Include="Modules\Receiving\Domain\ValueObjects\" />
+    <Folder Include="Modules\Receiving\Domain\UnitTests\" />
+    <Folder Include="Modules\Receiving\Domain\Rules\" />
+    <Folder Include="Modules\Receiving\Infrastructure\DbContext\" />
+    <Folder Include="Modules\Receiving\Infrastructure\Repositories\" />
+    <Folder Include="Modules\SupplierManagement\" />
+    <Folder Include="Modules\Procurement\" />
+    <Folder Include="SharedKernel\" />
   </ItemGroup>
 
 </Project>
