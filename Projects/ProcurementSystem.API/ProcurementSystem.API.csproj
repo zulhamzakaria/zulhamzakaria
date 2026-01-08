@@ -13,7 +13,31 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="IntegrationTests\" />
-    <Folder Include="Modules\Administration\" />
+    <Folder Include="Modules\Administration\Application\Employee\" />
+    <Folder Include="Modules\Administration\Application\UnitTests\" />
+    <Folder Include="Modules\Administration\Application\Tenant\" />
+    <Folder Include="Modules\Administration\Domain\Aggregates\" />
+    <Folder Include="Modules\Administration\Domain\ValueObjects\" />
+    <Folder Include="Modules\Administration\Domain\UnitTests\" />
+    <Folder Include="Modules\Administration\Domain\Rules\" />
+    <Folder Include="Modules\Administration\Infrastructure\DbContext\" />
+    <Folder Include="Modules\Administration\Infrastructure\Repositories\" />
+    <Folder Include="Modules\Auditing\Application\AuditRecord\" />
+    <Folder Include="Modules\Auditing\Application\UnitTests\" />
+    <Folder Include="Modules\Auditing\Domain\Aggregates\" />
+    <Folder Include="Modules\Auditing\Domain\UnitTests\" />
+    <Folder Include="Modules\Auditing\Domain\Rules\" />
+    <Folder Include="Modules\Auditing\Domain\ValueObjects\" />
+    <Folder Include="Modules\Auditing\Infrastructure\DbContext\" />
+    <Folder Include="Modules\Auditing\Infrastructure\Repositories\" />
+    <Folder Include="Modules\IdentityAndAccess\Application\UnitTests\" />
+    <Folder Include="Modules\IdentityAndAccess\Application\Role\" />
+    <Folder Include="Modules\IdentityAndAccess\Domain\Aggregates\" />
+    <Folder Include="Modules\IdentityAndAccess\Domain\Rules\" />
+    <Folder Include="Modules\IdentityAndAccess\Domain\ValueObjects\" />
+    <Folder Include="Modules\IdentityAndAccess\Domain\UnitTests\" />
+    <Folder Include="Modules\IdentityAndAccess\Infrastructure\DbContext\" />
+    <Folder Include="Modules\IdentityAndAccess\Infrastructure\Repositories\" />
     <Folder Include="Modules\Procurement\Application\UnitTests\" />
     <Folder Include="Modules\Procurement\Application\PurchaseOrder\" />
     <Folder Include="Modules\Procurement\Application\PurchaseRequest\" />
@@ -23,8 +47,6 @@
     <Folder Include="Modules\Procurement\Domain\UnitTests\" />
     <Folder Include="Modules\Procurement\Infrastructure\DbContext\" />
     <Folder Include="Modules\Procurement\Infrastructure\Repositories\" />
-    <Folder Include="Modules\IdentityAndAccess\" />
-    <Folder Include="Modules\Auditing\" />
     <Folder Include="Modules\Receiving\Application\GRN\" />
     <Folder Include="Modules\Receiving\Application\UnitTests\" />
     <Folder Include="Modules\Receiving\Domain\Aggregates\" />
@@ -33,9 +55,17 @@
     <Folder Include="Modules\Receiving\Domain\Rules\" />
     <Folder Include="Modules\Receiving\Infrastructure\DbContext\" />
     <Folder Include="Modules\Receiving\Infrastructure\Repositories\" />
-    <Folder Include="Modules\SupplierManagement\" />
     <Folder Include="Modules\Procurement\" />
-    <Folder Include="SharedKernel\" />
+    <Folder Include="Modules\SupplierManagement\Application\UnitTests\" />
+    <Folder Include="Modules\SupplierManagement\Application\Supplier\" />
+    <Folder Include="Modules\SupplierManagement\Domain\Aggregates\" />
+    <Folder Include="Modules\SupplierManagement\Domain\ValueObjects\" />
+    <Folder Include="Modules\SupplierManagement\Domain\UnitTests\" />
+    <Folder Include="Modules\SupplierManagement\Domain\Rules\" />
+    <Folder Include="Modules\SupplierManagement\Infrastructure\DbContext\" />
+    <Folder Include="Modules\SupplierManagement\Infrastructure\Repositories\" />
+    <Folder Include="SharedKernel\ErrorHandling\" />
+    <Folder Include="SharedKernel\Services\" />
   </ItemGroup>
 
 </Project>
