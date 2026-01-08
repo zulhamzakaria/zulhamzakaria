@@ -22,6 +22,7 @@
     <Folder Include="Modules\Administration\Domain\Rules\" />
     <Folder Include="Modules\Administration\Infrastructure\DbContext\" />
     <Folder Include="Modules\Administration\Infrastructure\Repositories\" />
+    <Folder Include="Modules\Administration\Controllers\" />
     <Folder Include="Modules\Auditing\Application\AuditRecord\" />
     <Folder Include="Modules\Auditing\Application\UnitTests\" />
     <Folder Include="Modules\Auditing\Domain\Aggregates\" />
@@ -30,6 +31,7 @@
     <Folder Include="Modules\Auditing\Domain\ValueObjects\" />
     <Folder Include="Modules\Auditing\Infrastructure\DbContext\" />
     <Folder Include="Modules\Auditing\Infrastructure\Repositories\" />
+    <Folder Include="Modules\Auditing\Controllers\" />
     <Folder Include="Modules\IdentityAndAccess\Application\UnitTests\" />
     <Folder Include="Modules\IdentityAndAccess\Application\Role\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\Aggregates\" />
@@ -38,6 +40,7 @@
     <Folder Include="Modules\IdentityAndAccess\Domain\UnitTests\" />
     <Folder Include="Modules\IdentityAndAccess\Infrastructure\DbContext\" />
     <Folder Include="Modules\IdentityAndAccess\Infrastructure\Repositories\" />
+    <Folder Include="Modules\IdentityAndAccess\Controllers\" />
     <Folder Include="Modules\Procurement\Application\UnitTests\" />
     <Folder Include="Modules\Procurement\Application\PurchaseOrder\" />
     <Folder Include="Modules\Procurement\Application\PurchaseRequest\" />
@@ -47,6 +50,7 @@
     <Folder Include="Modules\Procurement\Domain\UnitTests\" />
     <Folder Include="Modules\Procurement\Infrastructure\DbContext\" />
     <Folder Include="Modules\Procurement\Infrastructure\Repositories\" />
+    <Folder Include="Modules\Procurement\Controllers\" />
     <Folder Include="Modules\Receiving\Application\GRN\" />
     <Folder Include="Modules\Receiving\Application\UnitTests\" />
     <Folder Include="Modules\Receiving\Domain\Aggregates\" />
@@ -55,7 +59,7 @@
     <Folder Include="Modules\Receiving\Domain\Rules\" />
     <Folder Include="Modules\Receiving\Infrastructure\DbContext\" />
     <Folder Include="Modules\Receiving\Infrastructure\Repositories\" />
-    <Folder Include="Modules\Procurement\" />
+    <Folder Include="Modules\Receiving\Controllers\" />
     <Folder Include="Modules\SupplierManagement\Application\UnitTests\" />
     <Folder Include="Modules\SupplierManagement\Application\Supplier\" />
     <Folder Include="Modules\SupplierManagement\Domain\Aggregates\" />
@@ -64,8 +68,9 @@
     <Folder Include="Modules\SupplierManagement\Domain\Rules\" />
     <Folder Include="Modules\SupplierManagement\Infrastructure\DbContext\" />
     <Folder Include="Modules\SupplierManagement\Infrastructure\Repositories\" />
+    <Folder Include="Modules\SupplierManagement\Controllers\" />
     <Folder Include="SharedKernel\ErrorHandling\" />
-    <Folder Include="SharedKernel\Services\" />
+    <Folder Include="SharedKernel\Services\TenantContext\" />
   </ItemGroup>
 
 </Project>
