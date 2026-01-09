@@ -70,6 +70,7 @@
     <Folder Include="Modules\SupplierManagement\Infrastructure\Repositories\" />
     <Folder Include="Modules\SupplierManagement\Controllers\" />
     <Folder Include="SharedKernel\ErrorHandling\" />
+    <Folder Include="SharedKernel\Logging\" />
     <Folder Include="SharedKernel\Services\TenantContext\" />
   </ItemGroup>
 
