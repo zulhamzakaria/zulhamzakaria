@@ -7,7 +7,7 @@ namespace ProcurementSystem.API.Modules.Procurement.Domain.Aggregates;
 public class PurchaseRequest : BaseEntity
 {
     public Guid TenantId { get; private set; }
-    public string PRNumber { get; private set; }
+    public string PurchaseRequestNumber { get; private set; }
     public Guid RequesterId { get; private set; }
     public string RequesterName { get; private set; }
     public Department Department { get; private set; }
