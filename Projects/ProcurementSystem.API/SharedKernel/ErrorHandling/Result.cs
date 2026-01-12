@@ -17,11 +17,17 @@ public sealed class Result<T>
     public static Result<T> Success(T value) 
         => new Result<T>(true, value, Array.Empty<Error>());
 
+    public static Result<T> Failure(Error error)
+    {
+        if(error is null)
+            throw new ArgumentNullException("There must be at least one error.", nameof(error));
+        return new Result<T>(false, default, [error]);
+    }
+
     public static Result<T> Failure(IReadOnlyList<Error> errors)
     {
-        if(errors.Any() is false)
-            throw new ArgumentNullException("There must be at least one error for a failure result.", nameof(errors));
-
+        if(errors is null || errors.Count == 0)
+            throw new ArgumentNullException("There must be at least one error.", nameof(errors));
         return new Result<T>(false, default, errors.ToList());
     }
 
