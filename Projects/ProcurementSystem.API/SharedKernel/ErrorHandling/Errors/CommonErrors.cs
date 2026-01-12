@@ -7,12 +7,17 @@ public static class CommonErrors
     public static Error NotFound(string entityName, string identifier)
         => new Error(
             errorCode: "COMMON_NOT_FOUND",
-            message: $"{entityName} with identifier '{identifier}' was not found.",
+            message: $"{Helper.Humanize(entityName)} with identifier '{identifier}' was not found.",
             errorType: ErrorType.NotFound);
-    public static Error InvalidInput(string details)
+    public static Error InvalidInput(string fieldName)
         => new Error(
             errorCode: "COMMON_INVALID_INPUT",
-            message: $"Invalid input: {details}",
+            message: $"Invalid input: {Helper.Humanize(fieldName)}",
+            errorType: ErrorType.Validation);
+    public static Error Required(string fieldName)
+        => new Error(
+            errorCode: "COMMON_REQUIRED_FIELD",
+            message: $"{Helper.Humanize(fieldName)} is required.",
             errorType: ErrorType.Validation);
     public static Error UnauthorizedAccess(string action)
             => new Error(
