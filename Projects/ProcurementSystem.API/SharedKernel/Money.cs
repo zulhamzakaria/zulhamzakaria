@@ -54,4 +54,15 @@ public class Money
         return Result<Money>.Success(money);
     }
 
+    public static Money operator *(Money money, decimal factor)
+    {
+        return new Money(money.Amount * factor, money.Currency);
+    }
+
+    public static Money operator +(Money a, Money b)
+    {
+        if (a.Currency != b.Currency)
+            throw new InvalidOperationException("Currency mismatch");
+        return new Money(a.Amount + b.Amount, a.Currency);
+    }
 }

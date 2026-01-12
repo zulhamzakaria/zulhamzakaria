@@ -14,6 +14,11 @@ public static class CommonErrors
             errorCode: "COMMON_INVALID_INPUT",
             message: $"Invalid input: {Helper.Humanize(fieldName)}",
             errorType: ErrorType.Validation);
+       public static Error InvalidLength(string fieldName, int minLength, int maxLength)
+        => new Error(
+            errorCode: "COMMON_INVALID_Length",
+            message: $"{Helper.Humanize(fieldName)} length must be between {minLength} and {maxLength}",
+            errorType: ErrorType.Validation);
     public static Error Required(string fieldName)
         => new Error(
             errorCode: "COMMON_REQUIRED_FIELD",
