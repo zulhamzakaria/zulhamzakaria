@@ -1,4 +1,4 @@
-﻿using ProcurementSystem.API.Modules.Procurement.Domain.ValueObjects;
+﻿using ProcurementSystem.API.Modules.Procurement.Domain.Entities;
 using ProcurementSystem.API.SharedKernel;
 using ProcurementSystem.API.SharedKernel.Enums;
 
@@ -18,5 +18,8 @@ public class PurchaseRequest : BaseEntity
 
     private readonly List<PurchaseRequestItem> _items;
     public IReadOnlyCollection<PurchaseRequestItem> Items => _items;
-    private PurchaseRequest() { }
+    private PurchaseRequest()
+    {
+        //EF Core
+    }
 }
