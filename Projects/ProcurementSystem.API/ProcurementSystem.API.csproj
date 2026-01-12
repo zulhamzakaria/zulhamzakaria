@@ -44,9 +44,8 @@
     <Folder Include="Modules\Procurement\Application\UnitTests\" />
     <Folder Include="Modules\Procurement\Application\PurchaseOrder\" />
     <Folder Include="Modules\Procurement\Application\PurchaseRequest\" />
-    <Folder Include="Modules\Procurement\Domain\Aggregates\" />
+    <Folder Include="Modules\Procurement\Domain\Events\" />
     <Folder Include="Modules\Procurement\Domain\Rules\" />
-    <Folder Include="Modules\Procurement\Domain\ValueObjects\" />
     <Folder Include="Modules\Procurement\Domain\UnitTests\" />
     <Folder Include="Modules\Procurement\Infrastructure\DbContext\" />
     <Folder Include="Modules\Procurement\Infrastructure\Repositories\" />
