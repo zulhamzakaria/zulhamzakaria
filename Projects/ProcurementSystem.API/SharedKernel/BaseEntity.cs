@@ -6,13 +6,16 @@ public abstract class BaseEntity
     public Guid CreatedBy { get; protected set; }
     public DateTimeOffset CreatedAt { get; protected set; } 
     public Guid? UpdatedBy { get; protected set; }
-    public DateTimeOffset? UpdatedAt { get; protected set; } 
+    public DateTimeOffset? UpdatedAt { get; protected set; }
 
-    protected BaseEntity(Guid createdBy)
-    {
-        CreatedBy = createdBy;
-        CreatedAt = DateTimeOffset.UtcNow;
-    }
+    protected BaseEntity()
+        => CreatedAt = DateTimeOffset.UtcNow;
+
+    //protected BaseEntity(Guid createdBy)
+    //{
+    //    CreatedBy = createdBy;
+    //    CreatedAt = DateTimeOffset.UtcNow;
+    //}
 
     public void SetUpdated(Guid updatedBy)
     {
