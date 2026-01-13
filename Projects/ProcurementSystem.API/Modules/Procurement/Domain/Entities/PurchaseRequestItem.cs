@@ -7,8 +7,8 @@ namespace ProcurementSystem.API.Modules.Procurement.Domain.Entities;
 
 public class PurchaseRequestItem : BaseEntity
 {
-    private static readonly int DescriptionMinLength = 5;
-    private static readonly int DescriptionMaxLength = 500;
+    private const int DescriptionMinLength = 5;
+    private const int DescriptionMaxLength = 500;
 
     public Guid PRItemId { get; private set; }
     public string Description { get; private set; }
@@ -22,7 +22,7 @@ public class PurchaseRequestItem : BaseEntity
         //EF Core
     }
 
-    public Result<PurchaseRequestItem> Create(Guid prItemId, string description,
+    public static Result<PurchaseRequestItem> Create(Guid prItemId, string description,
         int quantity, UOM uom, Money estimatedUnitPrice, Guid createdBy)
     {
         List<Error> errors = new();

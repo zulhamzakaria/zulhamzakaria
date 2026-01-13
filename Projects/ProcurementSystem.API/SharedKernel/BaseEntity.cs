@@ -11,12 +11,6 @@ public abstract class BaseEntity
     protected BaseEntity()
         => CreatedAt = DateTimeOffset.UtcNow;
 
-    //protected BaseEntity(Guid createdBy)
-    //{
-    //    CreatedBy = createdBy;
-    //    CreatedAt = DateTimeOffset.UtcNow;
-    //}
-
     public void SetUpdated(Guid updatedBy)
     {
         UpdatedBy = updatedBy;

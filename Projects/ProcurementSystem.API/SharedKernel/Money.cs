@@ -25,35 +25,6 @@ public class Money
         return Result<Money>.Success(money);
     }
 
-    public Result<Money> Add(Money other)
-    {
-        if(Currency != other.Currency)
-            return Result<Money>.Failure(CommonErrors.InvalidInput("Currency mismatch"));
-
-        var money = new Money(Amount + other.Amount, Currency);
-        return Result<Money>.Success(money);
-    }
-
-    public Result<Money> Subtract(Money other)
-    {
-        if(Currency != other.Currency)
-            return Result<Money>.Failure(CommonErrors.InvalidInput("Currency mismatch"));
-        if(Amount - other.Amount < 0)
-            return Result<Money>.Failure(CommonErrors.NegativeAmount());
-
-        var money = new Money(Amount - other.Amount, Currency);
-        return Result<Money>.Success(money);
-    }
-
-    public Result<Money> Multiply(decimal factor)
-    {
-        if(factor < 0)
-            return Result<Money>.Failure(CommonErrors.InvalidInput("Negative multiplication factor"));
-
-        var money = new Money(Amount * factor, Currency);
-        return Result<Money>.Success(money);
-    }
-
     public static Money operator *(Money money, decimal factor)
     {
         return new Money(money.Amount * factor, money.Currency);

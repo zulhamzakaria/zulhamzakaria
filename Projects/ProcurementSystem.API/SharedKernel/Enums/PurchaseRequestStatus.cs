@@ -2,7 +2,9 @@
 
 public enum PurchaseRequestStatus
 {
-    Pending,
+    Draft,
+    PendingPOApproval,
+    PendingFMApproval,
     Approved,
     Rejected,
     Completed,
