@@ -19,6 +19,7 @@ public class PurchaseRequest : BaseEntity
     public string Purpose { get; private set; }
     public DateTimeOffset RequiredDate { get; private set; }
     public PurchaseRequestStatus Status { get; private set; }
+    public byte[] RowVersion { get; private set; }
 
     private readonly List<PurchaseRequestItem> _items;
     public IReadOnlyCollection<PurchaseRequestItem> Items => _items;
