@@ -39,8 +39,10 @@ public class PurchaseRequestItem : BaseEntity
             errors.Add(CommonErrors.Required(nameof(estimatedUnitPrice)));
         if (createdBy == Guid.Empty)
             errors.Add(CommonErrors.Required(nameof(createdBy)));
+        if(Enum.IsDefined(uom) is false)
+            errors.Add(CommonErrors.InvalidInput(nameof(uom)));
 
-        if (errors.Count > 0)
+        if (errors.Any())
             return Result<PurchaseRequestItem>.Failure(errors);
 
         var prItem = new PurchaseRequestItem()
