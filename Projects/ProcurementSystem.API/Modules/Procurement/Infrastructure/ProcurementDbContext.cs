@@ -16,7 +16,7 @@ public class ProcurementDbContext : DbContext
 
         ////for external config file. scans the assembly for all 
         ////IEntityTypeConfiguration implementations i.e IEntityTypeConfiguration<PurchaseRequest>
-        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProcurementDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProcurementDbContext).Assembly);
     }
 
 }
