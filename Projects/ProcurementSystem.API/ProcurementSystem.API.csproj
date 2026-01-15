@@ -57,7 +57,6 @@
     <Folder Include="Modules\Procurement\Domain\Events\" />
     <Folder Include="Modules\Procurement\Domain\Rules\" />
     <Folder Include="Modules\Procurement\Domain\UnitTests\" />
-    <Folder Include="Modules\Procurement\Infrastructure\DbContext\" />
     <Folder Include="Modules\Procurement\Infrastructure\Repositories\" />
     <Folder Include="Modules\Procurement\Controllers\" />
     <Folder Include="Modules\Receiving\Application\GRN\" />
