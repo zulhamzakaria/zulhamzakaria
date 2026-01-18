@@ -21,11 +21,11 @@ internal sealed class ItemConfiguration : IEntityTypeConfiguration<Item>
         {
             m.Property(p => p.Amount)
                 .IsRequired()
-                .HasColumnName("Amount")
+                .HasColumnName("UnitPriceAmount")
                 .HasPrecision(18, 2);
             m.Property(p => p.Currency)
                 .IsRequired()
-                .HasColumnName("Currency")
+                .HasColumnName("UnitPriceCurrency")
                 .HasMaxLength(3);
         });
         builder.Property(i => i.UnitPrice)
