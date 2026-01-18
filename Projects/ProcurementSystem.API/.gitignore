@@ -1,0 +1,48 @@
+# .NET Core gitignore 
+
+# Build Folders
+bin/
+obj/
+out/
+artifacts/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET Core / Node
+wwwroot/node_modules/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variables / secrets
+.env
+*.env
+.env.*
+
+# Keep core VSA slices and domain intact
+!Domain/
+!Features/
+
+# ASP.NET Core configuration (secrets)
+appsettings.Production.json
