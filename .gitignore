@@ -1,5 +1,6 @@
 # Ignore all local appsettings.json files in any project
 **/appsettings.Development.json
+**/appsettings.Production.json
 
 # Ignore VS files
 .vs/
