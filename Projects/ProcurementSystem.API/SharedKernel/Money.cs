@@ -3,7 +3,7 @@ using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
 
 namespace ProcurementSystem.API.SharedKernel;
 
-public class Money
+public sealed class Money
 {
     public decimal Amount { get; }
     public string Currency { get; }
