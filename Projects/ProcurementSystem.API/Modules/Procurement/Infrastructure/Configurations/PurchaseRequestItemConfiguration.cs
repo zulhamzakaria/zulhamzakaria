@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProcurementSystem.API.Modules.Procurement.Domain.Entities;
+using ProcurementSystem.API.SharedKernel;
 
 namespace ProcurementSystem.API.Modules.Procurement.Infrastructure.Configurations;
 
@@ -17,8 +18,19 @@ public class PurchaseRequestItemConfiguration : IEntityTypeConfiguration<Purchas
         builder.Property(pri => pri.UOM)
             .IsRequired()
             .HasConversion<string>();
+        builder.OwnsOne(x => x.EstimatedUnitPrice, m =>
+                {
+                    m.Property(p => p.Amount)
+                        .IsRequired()
+                        .HasColumnName("Amount")
+                        .HasPrecision(18, 2);
+                    m.Property(p => p.Currency)
+                        .IsRequired()
+                        .HasColumnName("Currency")
+                        .HasMaxLength(3);
+                });
         builder.Property(pri => pri.EstimatedUnitPrice)
             .IsRequired()
-            .HasPrecision(18,2);
+            .HasPrecision(18, 2);
     }
 }

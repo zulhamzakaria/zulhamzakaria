@@ -17,6 +17,17 @@ internal sealed class ItemConfiguration : IEntityTypeConfiguration<Item>
         builder.Property(i => i.SKU)
             .IsRequired()
             .HasMaxLength(100);
+        builder.OwnsOne(x => x.UnitPrice, m =>
+        {
+            m.Property(p => p.Amount)
+                .IsRequired()
+                .HasColumnName("Amount")
+                .HasPrecision(18, 2);
+            m.Property(p => p.Currency)
+                .IsRequired()
+                .HasColumnName("Currency")
+                .HasMaxLength(3);
+        });
         builder.Property(i => i.UnitPrice)
             .IsRequired()
             .HasPrecision(18, 2);
