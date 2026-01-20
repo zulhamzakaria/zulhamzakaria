@@ -11,21 +11,24 @@ public sealed class Employee : BaseEntity
     private const int MaxNameLength = 100;
     private const int MinEmailLength = 5;
     private const int MaxEmailLength = 100;
+
+    public Guid TenantId { get; private set; }
     public string EmployeeName { get; private set; } = string.Empty;
     public string EmployeeNumber { get; private set; } = string.Empty;
     public string EmployeeEmail { get; private set; } = string.Empty;
 
-    public Guid UserId { get; private set; }
-    public User? User { get; private set; }
+    public Guid? UserId { get; private set; }
 
     public Employee()
     {
         // EF Core
     }
 
-    public Result<Employee> Create(string employeeName, string employeeNumber, string employeeEmail)
+    public Result<Employee> Create(Guid tenantId, string employeeName, string employeeNumber, string employeeEmail)
     {
         List<Error> errors = new();
+        if(tenantId == Guid.Empty)
+            errors.Add(CommonErrors.InvalidInput(nameof(tenantId)));
         if (string.IsNullOrWhiteSpace(employeeName))
             errors.Add(CommonErrors.Required(nameof(employeeName)));
         else if (employeeName.Length < MinNameLength || employeeName.Length > MaxNameLength)
