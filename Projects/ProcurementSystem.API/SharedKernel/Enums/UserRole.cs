@@ -1,7 +1,8 @@
 ﻿namespace ProcurementSystem.API.SharedKernel.Enums;
 
-public enum EmployeePosition
+public enum UserRole
 {
+    SystemAdministrator,
     Clerk,
     PurchasingOfficer,
     FinanceManager

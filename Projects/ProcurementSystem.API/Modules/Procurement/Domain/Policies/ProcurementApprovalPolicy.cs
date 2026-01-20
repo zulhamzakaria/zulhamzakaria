@@ -3,7 +3,7 @@
 namespace ProcurementSystem.API.Modules.Procurement.Domain.Policies;
 
 internal sealed record ApprovalStepPolicy(
-    EmployeePosition Position,
+    UserRole Position,
     int Sequence,
     bool IsMandatory,
     bool CanCompleteProcess);
@@ -19,12 +19,12 @@ internal static class ProcurementApprovalStepPolicy
         Steps: new List<ApprovalStepPolicy>
         {
             new(
-                Position: EmployeePosition.PurchasingOfficer,
+                Position: UserRole.PurchasingOfficer,
                 Sequence: 1,
                 IsMandatory: true,
                 CanCompleteProcess: false),
             new(
-                Position: EmployeePosition.FinanceManager,
+                Position: UserRole.FinanceManager,
                 Sequence: 2,
                 IsMandatory: true,
                 CanCompleteProcess: true),

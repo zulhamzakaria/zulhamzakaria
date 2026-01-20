@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
@@ -23,10 +24,10 @@
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="IntegrationTests\" />
-    <Folder Include="Modules\Administration\Application\Employee\" />
+    <Folder Include="Modules\Administration\Application\Workflows\" />
     <Folder Include="Modules\Administration\Application\UnitTests\" />
     <Folder Include="Modules\Administration\Application\Tenant\" />
-    <Folder Include="Modules\Administration\Domain\Aggregates\" />
+    <Folder Include="Modules\Administration\Domain\Entities\" />
     <Folder Include="Modules\Administration\Domain\ValueObjects\" />
     <Folder Include="Modules\Administration\Domain\UnitTests\" />
     <Folder Include="Modules\Administration\Domain\Rules\" />
@@ -44,7 +45,6 @@
     <Folder Include="Modules\Auditing\Controllers\" />
     <Folder Include="Modules\IdentityAndAccess\Application\UnitTests\" />
     <Folder Include="Modules\IdentityAndAccess\Application\Role\" />
-    <Folder Include="Modules\IdentityAndAccess\Domain\Aggregates\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\Rules\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\ValueObjects\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\UnitTests\" />
