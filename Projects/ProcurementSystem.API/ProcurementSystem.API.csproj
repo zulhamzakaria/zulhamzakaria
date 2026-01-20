@@ -26,8 +26,6 @@
     <Folder Include="IntegrationTests\" />
     <Folder Include="Modules\Administration\Application\Workflows\" />
     <Folder Include="Modules\Administration\Application\UnitTests\" />
-    <Folder Include="Modules\Administration\Application\Tenant\" />
-    <Folder Include="Modules\Administration\Domain\Entities\" />
     <Folder Include="Modules\Administration\Domain\ValueObjects\" />
     <Folder Include="Modules\Administration\Domain\UnitTests\" />
     <Folder Include="Modules\Administration\Domain\Rules\" />
