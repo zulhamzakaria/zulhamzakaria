@@ -7,6 +7,7 @@ namespace ProcurementSystem.API.Modules.Administration.Domain.Entities;
 
 public sealed class WorkflowStep : BaseEntity
 {
+    public Guid WorkflowInstanceId { get; private set; }
     public UserRole Position { get; private set; }
     public int Sequence { get; private set; }
     public WorkflowStepStatus Status { get; set; }
