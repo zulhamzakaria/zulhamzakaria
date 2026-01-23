@@ -29,7 +29,6 @@
     <Folder Include="Modules\Administration\Domain\ValueObjects\" />
     <Folder Include="Modules\Administration\Domain\UnitTests\" />
     <Folder Include="Modules\Administration\Domain\Rules\" />
-    <Folder Include="Modules\Administration\Infrastructure\DbContext\" />
     <Folder Include="Modules\Administration\Infrastructure\Repositories\" />
     <Folder Include="Modules\Administration\Controllers\" />
     <Folder Include="Modules\Auditing\Application\AuditRecord\" />
