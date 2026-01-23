@@ -45,7 +45,6 @@
     <Folder Include="Modules\IdentityAndAccess\Domain\Rules\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\ValueObjects\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\UnitTests\" />
-    <Folder Include="Modules\IdentityAndAccess\Infrastructure\DbContext\" />
     <Folder Include="Modules\IdentityAndAccess\Infrastructure\Repositories\" />
     <Folder Include="Modules\IdentityAndAccess\Controllers\" />
     <Folder Include="Modules\Procurement\Application\UnitTests\" />

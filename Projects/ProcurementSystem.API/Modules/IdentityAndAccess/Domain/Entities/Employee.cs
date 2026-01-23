@@ -1,5 +1,4 @@
-﻿using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Aggregates;
-using ProcurementSystem.API.SharedKernel;
+﻿using ProcurementSystem.API.SharedKernel;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
 
