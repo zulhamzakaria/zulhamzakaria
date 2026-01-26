@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ProcurementSystem.API.Middleware;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,7 +31,8 @@ var app = builder.Build();
 //}
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
+app.UseMiddleware<TenantResolutionMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
