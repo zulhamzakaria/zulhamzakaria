@@ -39,8 +39,8 @@ public class ProcurementDbContext : DbContext
 
             var parameter = Expression.Parameter(entityType.ClrType, "e");
             var property = Expression.Property(parameter, nameof(ITenantEntity.TenantId));
-            var tenantId = Expression.Property(
-                Expression.Constant(_currentTenant), nameof(ITenantEntity.TenantId));
+            var tenantId = Expression.Property(Expression.Constant(_currentTenant), 
+                nameof(ITenantEntity.TenantId));
 
             var body = Expression.Equal(property, tenantId);
             var lambda = Expression.Lambda(body, parameter);

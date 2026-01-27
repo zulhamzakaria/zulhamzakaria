@@ -1,15 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Aggregates;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Entities;
+using ProcurementSystem.API.SharedKernel.Infrastructure;
+using System.Linq.Expressions;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 
 internal sealed class IADbContext : DbContext
 {
+    private readonly ICurrentTenant _currentTenant;
     public DbSet<Employee> Employees => Set<Employee>();
     public DbSet<Tenant> Tenants => Set<Tenant>();
     public DbSet<User> Users => Set<User>();
-    public IADbContext(DbContextOptions<IADbContext> options) : base(options){}
+    public IADbContext(DbContextOptions<IADbContext> options, ICurrentTenant currentTenant) : base(options)
+    {
+        _currentTenant = currentTenant;
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -17,6 +23,26 @@ internal sealed class IADbContext : DbContext
         ConfigureEmployee(modelBuilder);
         ConfigureUser(modelBuilder);
         ConfigureTenant(modelBuilder);
+        ApplyTenantQueryFilter(modelBuilder);
+    }
+
+    private void ApplyTenantQueryFilter(ModelBuilder modelBuilder)
+    {
+        foreach(var entry in modelBuilder.Model.GetEntityTypes())
+        {
+            if(!typeof(ITenantEntity).IsAssignableFrom(entry.ClrType))
+                continue;
+
+            var parameter = Expression.Parameter(entry.ClrType, "e");
+            var property =  Expression.Property(parameter, nameof(ITenantEntity.TenantId));
+            var tenantId =  Expression.Property(Expression.Constant(_currentTenant), 
+                nameof(ITenantEntity.TenantId));
+
+            var body = Expression.Equal(property, tenantId);
+            var lambda = Expression.Lambda(body, parameter);
+            modelBuilder.Entity(entry.ClrType)
+                .HasQueryFilter(lambda);
+        }
     }
 
     private void ConfigureTenant(ModelBuilder modelBuilder)
@@ -72,5 +98,34 @@ internal sealed class IADbContext : DbContext
                .HasForeignKey(e => e.UserId)
                .OnDelete(DeleteBehavior.SetNull);
        });
+    }
+
+    public override int SaveChanges()
+    {
+        ApplyTenantOnAdd();
+        return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync
+        (CancellationToken cancellationToken = default)
+    {
+        ApplyTenantOnAdd();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+    private void ApplyTenantOnAdd()
+    {
+        if (_currentTenant.TenantId == Guid.Empty)
+            throw new Exception("Tenant not resolved");
+        foreach (var entry in ChangeTracker.Entries<ITenantEntity>())
+        {
+            if (entry.State == EntityState.Added)
+                entry.Entity.TenantId = _currentTenant.TenantId;
+
+            if (entry.State is EntityState.Modified &&
+                entry.Property(nameof(ITenantEntity.TenantId)).IsModified)
+            {
+                throw new Exception("TenantId is not allowed to be modified");
+            }
+        }
     }
 }
