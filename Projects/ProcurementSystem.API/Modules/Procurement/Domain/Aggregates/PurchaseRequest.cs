@@ -11,7 +11,13 @@ public class PurchaseRequest : BaseEntity, ITenantEntity
 {
     private const int MinPurposeLength = 5;
     private const int MaxPurposeLength = 250;
-    public Guid TenantId { get; set; }
+
+    public Guid TenantId { get; private set; }
+    Guid ITenantEntity.TenantId
+    {
+        get => TenantId;
+        set => TenantId = value;
+    }
     public string PurchaseRequestNumber { get; private set; }
     public Guid RequesterId { get; private set; }
     public string RequesterName { get; private set; }
@@ -24,6 +30,7 @@ public class PurchaseRequest : BaseEntity, ITenantEntity
 
     private readonly List<PurchaseRequestItem> _items;
     public IReadOnlyCollection<PurchaseRequestItem> Items => _items;
+
     private PurchaseRequest()
     {
         //EF Core
