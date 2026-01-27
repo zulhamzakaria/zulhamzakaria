@@ -1,10 +1,11 @@
 ﻿using ProcurementSystem.API.SharedKernel;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
+using ProcurementSystem.API.SharedKernel.Infrastructure;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Entities;
 
-public sealed class Employee : BaseEntity
+public sealed class Employee : BaseEntity, ITenantEntity
 {
     private const int MinNameLength = 3;
     private const int MaxNameLength = 100;
@@ -12,6 +13,12 @@ public sealed class Employee : BaseEntity
     private const int MaxEmailLength = 100;
 
     public Guid TenantId { get; private set; }
+
+    Guid ITenantEntity.TenantId
+    {
+        get => TenantId;
+        set => TenantId = value;
+    }
     public string EmployeeName { get; private set; } = string.Empty;
     public string EmployeeNumber { get; private set; } = string.Empty;
     public string EmployeeEmail { get; private set; } = string.Empty;

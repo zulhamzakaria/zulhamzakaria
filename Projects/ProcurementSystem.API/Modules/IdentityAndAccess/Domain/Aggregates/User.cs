@@ -1,13 +1,21 @@
 ﻿using ProcurementSystem.API.SharedKernel;
 using ProcurementSystem.API.SharedKernel.Enums;
+using ProcurementSystem.API.SharedKernel.Infrastructure;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Aggregates;
 
-public sealed class User : BaseEntity
+public sealed class User : BaseEntity, ITenantEntity
 {
     public string Username { get; private set; } = string.Empty;
     private string _passwordHash;
     public UserRole Role { get; private set; }
+    public Guid TenantId { get; private set; }
+    Guid ITenantEntity.TenantId
+    {
+        get => TenantId;
+        set => TenantId = value;
+    }
+
     private User()
     {
         // EF Core
