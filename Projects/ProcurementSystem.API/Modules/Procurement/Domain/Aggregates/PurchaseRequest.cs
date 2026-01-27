@@ -3,14 +3,15 @@ using ProcurementSystem.API.SharedKernel;
 using ProcurementSystem.API.SharedKernel.Enums;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
+using ProcurementSystem.API.SharedKernel.Infrastructure;
 
 namespace ProcurementSystem.API.Modules.Procurement.Domain.Aggregates;
 
-public class PurchaseRequest : BaseEntity
+public class PurchaseRequest : BaseEntity, ITenantEntity
 {
     private const int MinPurposeLength = 5;
     private const int MaxPurposeLength = 250;
-    public Guid TenantId { get; private set; }
+    public Guid TenantId { get; set; }
     public string PurchaseRequestNumber { get; private set; }
     public Guid RequesterId { get; private set; }
     public string RequesterName { get; private set; }
