@@ -70,6 +70,13 @@ public class ProcurementDbContext : DbContext
         {
             if(entry.State == EntityState.Added)
                 entry.Entity.TenantId = _currentTenant.TenantId;
+
+            if(entry.State == EntityState.Modified && 
+               entry.Property(nameof(ITenantEntity.TenantId)).IsModified)
+            {
+                throw new Exception("TenantId is not allowed to be modified");
+            }
+
         }
     }
 }
