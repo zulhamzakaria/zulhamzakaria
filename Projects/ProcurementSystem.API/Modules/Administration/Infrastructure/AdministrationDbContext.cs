@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProcurementSystem.API.Modules.Administration.Domain.Entities;
+using ProcurementSystem.API.Modules.Administration.Infrastructure.Configurations;
 
 namespace ProcurementSystem.API.Modules.Administration.Infrastructure;
 
@@ -14,6 +15,9 @@ public class AdministrationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         ////for external config file. scans the assembly for all
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AdministrationDbContext).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AdministrationDbContext).Assembly);
+        modelBuilder.ApplyConfiguration(new WorkflowHistoryConfiguration());
+        modelBuilder.ApplyConfiguration(new WorkflowInstanceConfiguration());
+        modelBuilder.ApplyConfiguration(new WorkflowStepConfiguration());
     }
 }
