@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProcurementSystem.API.Middleware;
+using ProcurementSystem.API.Modules.Administration.Infrastructure;
+using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
 using ProcurementSystem.API.SharedKernel.Infrastructure;
 
@@ -18,6 +20,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ProcurementDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<IADbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AdministrationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ICurrentTenant, CurrentTenant>(); 
