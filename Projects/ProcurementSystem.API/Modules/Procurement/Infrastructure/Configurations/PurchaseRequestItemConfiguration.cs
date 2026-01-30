@@ -29,8 +29,5 @@ public class PurchaseRequestItemConfiguration : IEntityTypeConfiguration<Purchas
                         .HasColumnName("Currency")
                         .HasMaxLength(3);
                 });
-        builder.Property(pri => pri.EstimatedUnitPrice)
-            .IsRequired()
-            .HasPrecision(18, 2);
     }
 }
