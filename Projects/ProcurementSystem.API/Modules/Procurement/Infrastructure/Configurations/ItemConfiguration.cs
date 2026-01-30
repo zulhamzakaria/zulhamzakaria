@@ -28,8 +28,5 @@ internal sealed class ItemConfiguration : IEntityTypeConfiguration<Item>
                 .HasColumnName("UnitPriceCurrency")
                 .HasMaxLength(3);
         });
-        builder.Property(i => i.UnitPrice)
-            .IsRequired()
-            .HasPrecision(18, 2);
     }
 }
