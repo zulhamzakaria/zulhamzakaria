@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ProcurementSystem.API.Middleware;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
+using ProcurementSystem.API.SharedKernel.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ProcurementDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<ICurrentTenant, CurrentTenant>(); 
 
 
 var app = builder.Build();
