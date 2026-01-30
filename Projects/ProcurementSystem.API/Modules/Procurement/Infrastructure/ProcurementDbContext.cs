@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProcurementSystem.API.Modules.Procurement.Domain.Aggregates;
 using ProcurementSystem.API.Modules.Procurement.Domain.Entities;
+using ProcurementSystem.API.Modules.Procurement.Infrastructure.Configurations;
 using ProcurementSystem.API.SharedKernel.Infrastructure;
 using System.Linq.Expressions;
 
@@ -25,7 +26,11 @@ public class ProcurementDbContext : DbContext
 
         ////for external config file. scans the assembly for all 
         ////IEntityTypeConfiguration implementations i.e IEntityTypeConfiguration<PurchaseRequest>
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProcurementDbContext).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProcurementDbContext).Assembly);
+        modelBuilder.ApplyConfiguration(new PurchaseRequestConfigurations());
+        modelBuilder.ApplyConfiguration(new ItemConfiguration());
+        modelBuilder.ApplyConfiguration(new PurchaseRequestItemConfiguration());
+
 
         ApplyTenantQueryFilter(modelBuilder);
     }
