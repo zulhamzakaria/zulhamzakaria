@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProcurementSystem.API.Modules.Administration.Infrastructure;
@@ -11,9 +12,11 @@ using ProcurementSystem.API.Modules.Administration.Infrastructure;
 namespace ProcurementSystem.API.Migrations.AdministrationDb
 {
     [DbContext(typeof(AdministrationDbContext))]
-    partial class AdministrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260131211144_db-push-procurement")]
+    partial class dbpushprocurement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
