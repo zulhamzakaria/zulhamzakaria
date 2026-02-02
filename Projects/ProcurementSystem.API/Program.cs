@@ -4,6 +4,7 @@ using ProcurementSystem.API.Middleware;
 using ProcurementSystem.API.Modules.Administration.Infrastructure;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
+using ProcurementSystem.API.SharedKernel.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,11 @@ builder.Services.AddDbContext<IADbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<AdministrationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+////required?
+//builder.Services.Configure<JwtOptions>
+//    (builder.Configuration.GetSection(JwtOptions.SectionName));
 
 // Add IServiceCollection extensions
 builder.Services
