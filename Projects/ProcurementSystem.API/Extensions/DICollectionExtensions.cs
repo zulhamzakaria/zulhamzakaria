@@ -9,6 +9,7 @@ public static class DICollectionExtensions
     {
         services.AddScoped<IProcurementUnitOfWork, ProcurementUnitOfWork>();
         services.AddScoped<IPurchaseRequestRepository, PurchaseRequestRepository>();
+        services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
         return services;
     }
 }
