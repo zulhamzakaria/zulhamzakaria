@@ -26,10 +26,15 @@ builder.Services.AddDbContext<IADbContext>(options =>
 builder.Services.AddDbContext<AdministrationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add DI Containers
+// Add IServiceCollection extensions
 builder.Services
     .AddTenantSupport()
-    .AddDIContainers();
+    .AddDIContainers()
+    .AddAuthenticationServices(builder.Configuration);
+
+builder.Services.AddAuthorization();
+
+
 
 var app = builder.Build();
 
