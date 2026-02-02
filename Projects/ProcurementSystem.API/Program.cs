@@ -27,6 +27,7 @@ builder.Services.AddDbContext<AdministrationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add DI Containers
+//builder.Services.AddTenantSupport();
 builder.Services.AddDIContainers();
 
 var app = builder.Build();
@@ -34,8 +35,8 @@ var app = builder.Build();
 //// Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();
