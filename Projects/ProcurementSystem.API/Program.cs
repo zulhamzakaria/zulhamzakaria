@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using ProcurementSystem.API.Extensions;
 using ProcurementSystem.API.Middleware;
 using ProcurementSystem.API.Modules.Administration.Infrastructure;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
-using ProcurementSystem.API.SharedKernel.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +26,8 @@ builder.Services.AddDbContext<IADbContext>(options =>
 builder.Services.AddDbContext<AdministrationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<ICurrentTenant, CurrentTenant>(); 
-
+// Add DI Containers
+builder.Services.AddDIContainers();
 
 var app = builder.Build();
 

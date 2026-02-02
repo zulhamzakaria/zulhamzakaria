@@ -2,8 +2,7 @@
 
 public interface IProcurementUnitOfWork
 {
-    IOrderRepository Orders { get; }
-    IProductRepository Products { get; }
-    ISupplierRepository Suppliers { get; }
+    IPurchaseRequestRepository RequestRepository { get; }
+    IPurchaseOrderRepository OrderRepository { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
