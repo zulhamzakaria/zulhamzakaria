@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProcurementSystem.API.Modules.Administration.Domain.Entities;
 using ProcurementSystem.API.Modules.Administration.Infrastructure.Configurations;
+using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Aggregates;
 
 namespace ProcurementSystem.API.Modules.Administration.Infrastructure;
 
@@ -19,5 +20,6 @@ public class AdministrationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new WorkflowHistoryConfiguration());
         modelBuilder.ApplyConfiguration(new WorkflowInstanceConfiguration());
         modelBuilder.ApplyConfiguration(new WorkflowStepConfiguration());
+
     }
 }

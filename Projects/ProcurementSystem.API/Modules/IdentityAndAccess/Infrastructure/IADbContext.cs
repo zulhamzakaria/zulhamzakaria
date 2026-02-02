@@ -19,30 +19,16 @@ internal sealed class IADbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder); 
+        base.OnModelCreating(modelBuilder);
         ConfigureEmployee(modelBuilder);
         ConfigureUser(modelBuilder);
         ConfigureTenant(modelBuilder);
-        ApplyTenantQueryFilter(modelBuilder);
-    }
 
-    private void ApplyTenantQueryFilter(ModelBuilder modelBuilder)
-    {
-        foreach(var entry in modelBuilder.Model.GetEntityTypes())
-        {
-            if(!typeof(ITenantEntity).IsAssignableFrom(entry.ClrType))
-                continue;
+        modelBuilder.Entity<User>()
+            .HasQueryFilter(pr => pr.TenantId == _currentTenant.TenantId);
+        modelBuilder.Entity<Employee>()
+         .HasQueryFilter(pr => pr.TenantId == _currentTenant.TenantId);
 
-            var parameter = Expression.Parameter(entry.ClrType, "e");
-            var property =  Expression.Property(parameter, nameof(ITenantEntity.TenantId));
-            var tenantId =  Expression.Property(Expression.Constant(_currentTenant), 
-                nameof(ITenantEntity.TenantId));
-
-            var body = Expression.Equal(property, tenantId);
-            var lambda = Expression.Lambda(body, parameter);
-            modelBuilder.Entity(entry.ClrType)
-                .HasQueryFilter(lambda);
-        }
     }
 
     private void ConfigureTenant(ModelBuilder modelBuilder)
@@ -61,43 +47,43 @@ internal sealed class IADbContext : DbContext
 
     private void ConfigureUser(ModelBuilder modelBuilder)
     {
-       modelBuilder.Entity<User>(entity =>
-       {
-           entity.HasKey(u => u.Id);
-           entity.Property(u => u.Username)
-               .IsRequired()
-               .HasMaxLength(100);
-           entity.Property<string>("_passwordHash")
-               .IsRequired()
-               .HasColumnName("PasswordHash");
-           entity.Property(u => u.Role)
-               .IsRequired();
-       });
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(u => u.Id);
+            entity.Property(u => u.Username)
+                .IsRequired()
+                .HasMaxLength(100);
+            entity.Property<string>("_passwordHash")
+                .IsRequired()
+                .HasColumnName("PasswordHash");
+            entity.Property(u => u.Role)
+                .IsRequired();
+        });
     }
 
     private void ConfigureEmployee(ModelBuilder modelBuilder)
     {
-       modelBuilder.Entity<Employee>(entity =>
-       {
-           entity.HasKey(e => e.Id);
-           entity.Property(e => e.EmployeeName)
-               .IsRequired()
-               .HasMaxLength(100);
-           entity.Property(e => e.EmployeeNumber)
-               .IsRequired()
-               .HasMaxLength(50);
-           entity.Property(e => e.EmployeeEmail)
-               .IsRequired()
-               .HasMaxLength(100);
-           entity.HasOne<Tenant>()
-               .WithMany()
-               .HasForeignKey(e => e.TenantId)
-               .OnDelete(DeleteBehavior.Cascade);
-           entity.HasOne<User>()
-               .WithMany()
-               .HasForeignKey(e => e.UserId)
-               .OnDelete(DeleteBehavior.SetNull);
-       });
+        modelBuilder.Entity<Employee>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.EmployeeName)
+                .IsRequired()
+                .HasMaxLength(100);
+            entity.Property(e => e.EmployeeNumber)
+                .IsRequired()
+                .HasMaxLength(50);
+            entity.Property(e => e.EmployeeEmail)
+                .IsRequired()
+                .HasMaxLength(100);
+            entity.HasOne<Tenant>()
+                .WithMany()
+                .HasForeignKey(e => e.TenantId)
+                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne<User>()
+                .WithMany()
+                .HasForeignKey(e => e.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+        });
     }
 
     public override int SaveChanges()

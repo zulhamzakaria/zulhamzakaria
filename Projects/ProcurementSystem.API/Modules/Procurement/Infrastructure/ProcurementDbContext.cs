@@ -31,27 +31,9 @@ public class ProcurementDbContext : DbContext
         modelBuilder.ApplyConfiguration(new ItemConfiguration());
         modelBuilder.ApplyConfiguration(new PurchaseRequestItemConfiguration());
 
+       modelBuilder.Entity<PurchaseRequest>()
+            .HasQueryFilter(pr => pr.TenantId == _currentTenant.TenantId);
 
-        ApplyTenantQueryFilter(modelBuilder);
-    }
-
-    private void ApplyTenantQueryFilter(ModelBuilder modelBuilder)
-    {
-        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
-        {
-            if (!typeof(ITenantEntity).IsAssignableFrom(entityType.ClrType))
-                continue;
-
-            var parameter = Expression.Parameter(entityType.ClrType, "e");
-            var property = Expression.Property(parameter, nameof(ITenantEntity.TenantId));
-            var tenantId = Expression.Property(Expression.Constant(_currentTenant), 
-                nameof(ITenantEntity.TenantId));
-
-            var body = Expression.Equal(property, tenantId);
-            var lambda = Expression.Lambda(body, parameter);
-            modelBuilder.Entity(entityType.ClrType)
-                .HasQueryFilter(lambda);
-        }
     }
 
     public override int SaveChanges()
