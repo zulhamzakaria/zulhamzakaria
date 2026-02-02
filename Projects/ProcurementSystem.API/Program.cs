@@ -27,8 +27,9 @@ builder.Services.AddDbContext<AdministrationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add DI Containers
-builder.Services.AddTenantSupport();
-builder.Services.AddDIContainers();
+builder.Services
+    .AddTenantSupport()
+    .AddDIContainers();
 
 var app = builder.Build();
 
