@@ -52,6 +52,7 @@ app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseMiddleware<TenantResolutionMiddleware>();
 app.UseAuthorization();
