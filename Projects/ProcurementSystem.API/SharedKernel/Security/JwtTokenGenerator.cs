@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using ProcurementSystem.API.Tenancy;
 
 namespace ProcurementSystem.API.SharedKernel.Security;
 
@@ -20,7 +21,7 @@ public sealed class JwtTokenGenerator : IJwtTokenGenerator
         var claims = new[]
         {
             new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
-            new Claim("tenantId", tenantId.ToString()),
+            new Claim(TenantClaim.TenantId, tenantId.ToString()),
             new Claim(ClaimTypes.Role, role)
         };
 
