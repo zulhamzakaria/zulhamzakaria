@@ -11,12 +11,14 @@ public class TenantRepository : ITenantRepository
         _dbContext = dbContext;
     }
     public Task AddTenantAsync(Tenant tenant, CancellationToken cancellationToken = default)
-        => _dbContext.Tenants.AddAsync(tenant, cancellationToken).AsTask();
+        => _dbContext.Tenants
+        .AddAsync(tenant, cancellationToken).AsTask();
 
     public Task<Tenant?> GetTenantByIdAsync(Guid tenantId, CancellationToken cancellationToken = default)
         => _dbContext.Tenants
         .SingleOrDefaultAsync(t => t.Id == tenantId, cancellationToken);
 
     public Task<bool> IsTenantExistsAsync(Guid tenantId, CancellationToken cancellationToken = default)
-        => _dbContext.Tenants.AnyAsync(t => t.Id == tenantId, cancellationToken);
+        => _dbContext.Tenants
+        .AnyAsync(t => t.Id == tenantId, cancellationToken);
 }
