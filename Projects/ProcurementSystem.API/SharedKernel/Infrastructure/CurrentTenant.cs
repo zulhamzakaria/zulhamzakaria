@@ -1,4 +1,6 @@
 ﻿
+using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
+
 namespace ProcurementSystem.API.SharedKernel.Infrastructure;
 
 public sealed class CurrentTenant : ICurrentTenant

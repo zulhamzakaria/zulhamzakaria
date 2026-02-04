@@ -1,4 +1,4 @@
-﻿namespace ProcurementSystem.API.SharedKernel.Infrastructure;
+﻿namespace ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 
 public interface ICurrentTenant
 {

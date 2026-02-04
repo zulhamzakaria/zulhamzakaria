@@ -1,4 +1,5 @@
 ﻿using ProcurementSystem.API.SharedKernel.Infrastructure;
+using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 
 namespace ProcurementSystem.API.Extensions;
 

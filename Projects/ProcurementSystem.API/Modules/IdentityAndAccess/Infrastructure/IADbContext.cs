@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Aggregates;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Entities;
-using ProcurementSystem.API.SharedKernel.Infrastructure;
+using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 using System.Linq.Expressions;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;

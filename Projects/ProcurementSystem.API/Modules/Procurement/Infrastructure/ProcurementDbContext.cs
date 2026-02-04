@@ -2,7 +2,7 @@
 using ProcurementSystem.API.Modules.Procurement.Domain.Aggregates;
 using ProcurementSystem.API.Modules.Procurement.Domain.Entities;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure.Configurations;
-using ProcurementSystem.API.SharedKernel.Infrastructure;
+using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 using System.Linq.Expressions;
 
 namespace ProcurementSystem.API.Modules.Procurement.Infrastructure;

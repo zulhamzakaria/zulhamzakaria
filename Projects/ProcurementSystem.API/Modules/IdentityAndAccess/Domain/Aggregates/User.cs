@@ -1,6 +1,6 @@
 ﻿using ProcurementSystem.API.SharedKernel;
 using ProcurementSystem.API.SharedKernel.Enums;
-using ProcurementSystem.API.SharedKernel.Infrastructure;
+using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Aggregates;
 
