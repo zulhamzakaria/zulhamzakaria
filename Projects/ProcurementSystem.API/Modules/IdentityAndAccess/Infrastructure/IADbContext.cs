@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 
-internal sealed class IADbContext : DbContext
+public class IADbContext : DbContext
 {
     private readonly ICurrentTenant _currentTenant;
     public DbSet<Employee> Employees => Set<Employee>();
