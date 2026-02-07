@@ -10,9 +10,8 @@ public class TenantRepository : ITenantRepository
     {
         _dbContext = dbContext;
     }
-    public Task AddTenantAsync(Tenant tenant, CancellationToken cancellationToken = default)
-        => _dbContext.Tenants
-        .AddAsync(tenant, cancellationToken).AsTask();
+    public void AddTenant(Tenant tenant)
+        => _dbContext.Tenants.Add(tenant);
 
     public Task<Tenant?> GetTenantByIdAsync(Guid tenantId, CancellationToken cancellationToken = default)
         => _dbContext.Tenants
