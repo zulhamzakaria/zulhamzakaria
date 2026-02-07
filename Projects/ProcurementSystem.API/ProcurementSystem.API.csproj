@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="IntegrationTests\" />
     <Folder Include="Modules\Administration\Application\Workflows\" />
     <Folder Include="Modules\Administration\Application\UnitTests\" />
