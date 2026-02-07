@@ -7,7 +7,7 @@ public interface ITenantRepository
     Task<Tenant?> GetTenantByIdAsync
         (Guid tenantId, CancellationToken cancellationToken = default);
     Task<bool> IsTenantExistsAsync
-        (Guid tenantId, CancellationToken cancellationToken = default);
+        (string tenantAlias, CancellationToken cancellationToken = default);
     void AddTenant
         (Tenant tenant);
 }

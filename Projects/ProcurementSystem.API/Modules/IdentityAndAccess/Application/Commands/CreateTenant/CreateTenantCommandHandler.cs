@@ -18,15 +18,15 @@ public sealed class CreateTenantCommandHandler : IRequestHandler<CreateTenantCom
     }
     public async Task<Result<Guid>> Handle(CreateTenantCommand request, CancellationToken cancellationToken = default)
     {
+        var tenantExists = await _tenantRepository.IsTenantExistsAsync(request.TenantAlias, cancellationToken);
 
-
-        var tenant = Tenant.Create(request.TenantAlias, request.TenantName);
-        if (tenant.IsFailure)
+        var newTenant = Tenant.Create(request.TenantAlias, request.TenantName);
+        if (newTenant.IsFailure)
         {
-            return Result<Guid>.Failure(tenant.Errors);
+            return Result<Guid>.Failure(newTenant.Errors);
         }
-        _tenantRepository.AddTenant(tenant.Value!);
+        _tenantRepository.AddTenant(newTenant.Value!);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-        return Result<Guid>.Success(tenant.Value!.Id);
+        return Result<Guid>.Success(newTenant.Value!.Id);
     }
 }
