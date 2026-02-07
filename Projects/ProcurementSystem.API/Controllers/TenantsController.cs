@@ -25,9 +25,8 @@ public class TenantsController : ControllerBase
         var result = await _mediator.Send<CreateTenantCommand, Result<Guid>>
             (command, cancellationToken);
         if (result.IsFailure)
-        {
             return BadRequest(result.Errors);
-        }
+
         return CreatedAtAction(nameof(CreateTenant), new { id = result.Value }, null);
     }
 }
