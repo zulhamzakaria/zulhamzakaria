@@ -34,4 +34,10 @@ public static class CommonErrors
             errorCode: "COMMON_NEGATIVE_AMOUNT",
             message: "Amount cannot be negative.",
             errorType: ErrorType.Validation);
+
+    public static Error DuplicateEntry(string entityName, string identifier)
+        => new Error(
+            errorCode: "COMMON_DUPLICATE_ENTRY",
+            message: $"{Helper.Humanize(entityName)} with identifier '{identifier}' already exists.",
+            errorType: ErrorType.Validation);
 }

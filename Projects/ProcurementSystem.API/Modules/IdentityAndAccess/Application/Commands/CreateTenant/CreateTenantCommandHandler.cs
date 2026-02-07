@@ -2,6 +2,7 @@
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure.Repositories;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
+using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
 using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Commands.CreateTenant;
@@ -19,6 +20,9 @@ public sealed class CreateTenantCommandHandler : IRequestHandler<CreateTenantCom
     public async Task<Result<Guid>> Handle(CreateTenantCommand request, CancellationToken cancellationToken = default)
     {
         var tenantExists = await _tenantRepository.IsTenantExistsAsync(request.TenantAlias, cancellationToken);
+
+        if (tenantExists)
+            return Result<Guid>.Failure(CommonErrors.DuplicateEntry(nameof(Tenant), request.TenantAlias));
 
         var newTenant = Tenant.Create(request.TenantAlias, request.TenantName);
         if (newTenant.IsFailure)
