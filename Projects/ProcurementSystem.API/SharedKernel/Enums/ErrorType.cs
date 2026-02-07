@@ -6,5 +6,6 @@ public enum ErrorType
     BusinessRule,
     NotFound,
     Infrastructure,
-    Unauthorized
+    Unauthorized,
+    Exception
 }
