@@ -5,7 +5,7 @@ using ProcurementSystem.API.SharedKernel.ErrorHandling;
 
 namespace ProcurementSystem.API.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/tenants")]
 [ApiController]
 public class TenantsController : ControllerBase
 {
@@ -27,6 +27,13 @@ public class TenantsController : ControllerBase
         if (result.IsFailure)
             return BadRequest(result.Errors);
 
-        return CreatedAtAction(nameof(CreateTenant), new { id = result.Value }, null);
+        return CreatedAtAction(nameof(GetTenantById), new { id = result.Value }, null);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetTenantById(Guid id)
+    {
+        // Implementation for retrieving tenant by ID would go here
+        return Ok();
     }
 }
