@@ -82,4 +82,3 @@ public sealed record ErrorResponse(
     string TraceId,
     string? Detail = null
 );
-);
