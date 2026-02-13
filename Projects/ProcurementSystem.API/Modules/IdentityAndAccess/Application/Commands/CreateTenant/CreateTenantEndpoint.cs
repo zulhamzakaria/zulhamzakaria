@@ -6,11 +6,11 @@ namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Commands.C
 {
     [Route("api/tenants")]
     [ApiController]
-    public class Endpoint : ControllerBase
+    public class CreateTenantEndpoint : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public Endpoint(IMediator mediator)
+        public CreateTenantEndpoint(IMediator mediator)
         {
             _mediator = mediator;
         }
