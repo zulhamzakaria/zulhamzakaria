@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
+using ProcurementSystem.API.Tenancy;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Commands.CreateTenant;
 
@@ -15,6 +16,7 @@ public class CreateTenantEndpoint : ControllerBase
         _mediator = mediator;
     }
 
+    [IgnoreTenantResolution]
     [HttpPost]
     public async Task<IActionResult> CreateTenant
         ([FromBody] CreateTenantRequest request, CancellationToken ct)

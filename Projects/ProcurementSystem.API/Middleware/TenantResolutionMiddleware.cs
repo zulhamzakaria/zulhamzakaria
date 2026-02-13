@@ -14,6 +14,14 @@ public sealed class TenantResolutionMiddleware
 
     public async Task InvokeAsync(HttpContext context, CurrentTenant currentTenant)
     {
+
+        var endpoint = context.GetEndpoint();
+        if(endpoint?.Metadata.GetMetadata<IgnoreTenantResolutionAttribute>() is not null)
+        {
+            await _request(context);
+            return;
+        };
+
         //var claim = context.User.Claims.FirstOrDefault(c => c.Type == "tenant_id");
         var claim = context.User.Claims.FirstOrDefault(c => c.Type == TenantClaim.TenantId);
         if(claim is null)
