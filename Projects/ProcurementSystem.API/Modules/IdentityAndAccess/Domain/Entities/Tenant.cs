@@ -9,7 +9,7 @@ public sealed class Tenant : BaseEntity
     private const int MinAliasLength = 3;
     private const int MaxAliasLength = 50;
     private const int MinNameLength = 3;
-    private const int MaxNameLength = 50;
+    private const int MaxNameLength = 100;
     public string TenantAlias { get; private set; } = string.Empty;
     public string TenantName { get; private set; } = string.Empty;
     private Tenant()

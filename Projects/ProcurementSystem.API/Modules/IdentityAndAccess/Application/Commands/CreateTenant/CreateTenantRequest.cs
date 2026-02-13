@@ -4,4 +4,4 @@ namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Commands.C
 
 public sealed record CreateTenantRequest(
     [Required, StringLength(50, MinimumLength = 3)] string TenantName,
-    [Required, StringLength(50, MinimumLength = 3)] string TenantAlias);
+    [Required, StringLength(100, MinimumLength = 3)] string TenantAlias);
