@@ -24,15 +24,16 @@ public static class DICollectionExtensions
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddScoped<ITenantRepository, TenantRepository>();
         services.AddScoped<IMediator, Mediator>();
-        
+
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         services.Scan(scan => scan
-        .FromAssembliesOf()
+        .FromAssemblyOf<AssemblyMarker>()
         .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<,>)))
         .AsImplementedInterfaces()
         .WithScopedLifetime());
+
 
         return services;
     }
