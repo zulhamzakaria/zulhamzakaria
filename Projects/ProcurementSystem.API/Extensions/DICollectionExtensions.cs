@@ -1,4 +1,5 @@
-﻿using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
+﻿using FluentValidation;
+using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure.Repositories;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure.Repositories;
@@ -23,8 +24,16 @@ public static class DICollectionExtensions
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddScoped<ITenantRepository, TenantRepository>();
         services.AddScoped<IMediator, Mediator>();
+        
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+        services.Scan(scan => scan
+        .FromAssembliesOf()
+        .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<,>)))
+        .AsImplementedInterfaces()
+        .WithScopedLifetime());
+
         return services;
     }
 }
