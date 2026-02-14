@@ -100,6 +100,15 @@ public class IADbContext : DbContext
     }
     private void ApplyTenantOnAdd()
     {
+
+        var tenantEntries = ChangeTracker
+            .Entries<ITenantEntity>()
+            .Where(e => e.State == EntityState.Added || e.State == EntityState.Modified)
+            .ToList();
+
+        if (tenantEntries.Any() is false)
+            return;
+
         if (_currentTenant.TenantId == Guid.Empty)
             throw new Exception("Tenant not resolved");
         foreach (var entry in ChangeTracker.Entries<ITenantEntity>())
