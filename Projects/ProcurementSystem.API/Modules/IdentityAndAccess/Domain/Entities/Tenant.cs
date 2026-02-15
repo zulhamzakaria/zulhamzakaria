@@ -1,4 +1,5 @@
 ﻿using ProcurementSystem.API.SharedKernel;
+using ProcurementSystem.API.SharedKernel.Enums;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
 
@@ -12,6 +13,7 @@ public sealed class Tenant : BaseEntity
     private const int MaxNameLength = 100;
     public string TenantAlias { get; private set; } = string.Empty;
     public string TenantName { get; private set; } = string.Empty;
+    public TenantStatus TenantStatus { get; private set; } = TenantStatus.Active;
     private Tenant()
     {
         // EF Core
@@ -37,6 +39,21 @@ public sealed class Tenant : BaseEntity
             TenantName = tenantName
         };
         return Result<Tenant>.Success(tenant);
+    }
+
+    public void Activate()
+    {
+        if(TenantStatus == TenantStatus.Active)
+            throw new InvalidOperationException(CommonErrors.InvalidStatusChange(TenantStatus.ToString()).Message);
+        TenantStatus = TenantStatus.Active;
+    }
+    public void Deactivate()
+    {
+        TenantStatus = TenantStatus.Inactive;
+    }
+    public void Suspend()
+    {
+        TenantStatus = TenantStatus.Suspended;
     }
 
 }
