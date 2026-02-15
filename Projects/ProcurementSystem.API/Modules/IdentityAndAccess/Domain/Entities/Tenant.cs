@@ -41,19 +41,26 @@ public sealed class Tenant : BaseEntity
         return Result<Tenant>.Success(tenant);
     }
 
-    public void Activate()
+    public Result Activate()
     {
         if(TenantStatus == TenantStatus.Active)
-            throw new InvalidOperationException(CommonErrors.InvalidStatusChange(TenantStatus.ToString()).Message);
+            return Result.Failure(CommonErrors.InvalidStatusChange(TenantStatus.ToString()));
         TenantStatus = TenantStatus.Active;
+        return Result.Success();
     }
-    public void Deactivate()
+    public Result Deactivate()
     {
+        if (TenantStatus == TenantStatus.Inactive)
+            return Result.Failure(CommonErrors.InvalidStatusChange(TenantStatus.ToString()));
         TenantStatus = TenantStatus.Inactive;
+        return Result.Success();
     }
-    public void Suspend()
+    public Result Suspend()
     {
+        if(TenantStatus == TenantStatus.Suspended)
+            return Result.Failure(CommonErrors.InvalidStatusChange(TenantStatus.ToString()));
         TenantStatus = TenantStatus.Suspended;
+        return Result.Success();
     }
 
 }
