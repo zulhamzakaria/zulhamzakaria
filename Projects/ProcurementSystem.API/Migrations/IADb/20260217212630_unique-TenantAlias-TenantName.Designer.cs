@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
@@ -11,9 +12,11 @@ using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 namespace ProcurementSystem.API.Migrations.IADb
 {
     [DbContext(typeof(IADbContext))]
-    partial class IADbContextModelSnapshot : ModelSnapshot
+    [Migration("20260217212630_unique-TenantAlias-TenantName")]
+    partial class uniqueTenantAliasTenantName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
