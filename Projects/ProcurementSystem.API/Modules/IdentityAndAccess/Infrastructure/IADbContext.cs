@@ -41,6 +41,10 @@ public class IADbContext : DbContext
             entity.Property(t => t.TenantName)
                 .IsRequired()
                 .HasMaxLength(50);
+            entity.HasIndex(t => t.TenantAlias)
+                .IsUnique();
+            entity.HasIndex(t => t.TenantName)
+                .IsUnique();
         });
     }
 
