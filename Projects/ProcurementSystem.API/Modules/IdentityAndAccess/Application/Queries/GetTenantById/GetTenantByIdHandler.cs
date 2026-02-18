@@ -7,7 +7,8 @@ using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.GetTenantById;
 
-public sealed class GetTenantByIdHandler : IRequestHandler<GetTenantByIdQuery, Result<GetTenantByIdDTO>>
+public sealed class GetTenantByIdHandler : 
+    IRequestHandler<GetTenantByIdQuery, Result<GetTenantByIdDTO>>
 {
     private readonly IADbContext _dbContext;
     public GetTenantByIdHandler(IADbContext dbContext)
