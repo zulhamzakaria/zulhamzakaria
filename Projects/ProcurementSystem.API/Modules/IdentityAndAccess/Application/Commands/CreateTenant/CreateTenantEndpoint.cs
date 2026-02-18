@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProcurementSystem.API.Extensions;
+using ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.GetTenantById;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 using ProcurementSystem.API.Tenancy;
@@ -28,7 +29,11 @@ public class CreateTenantEndpoint : ControllerBase
         var result = await _mediator.Send<CreateTenantCommand, Result<Guid>>
             (command, ct);
 
-        return result.ToActionResult();
+        if (result.IsFailure)
+            return result.ToActionResult();
+
+        return CreatedAtAction
+            (nameof(GetTenantByIdEndpoint), new {id = result.Value}, result.Value);
     }
 
 }
