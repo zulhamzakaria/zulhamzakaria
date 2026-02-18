@@ -20,7 +20,7 @@ namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.Ge
             var result = await _mediator
                 .Send<GetTenantByIdQuery, Result<GetTenantByIdDTO>>(query);
             if(result.IsFailure)
-                BadRequest(result.Errors);
+                NotFound(result.Errors);
             return Ok(result.Value);
         }
     }
