@@ -33,7 +33,10 @@ public class CreateTenantEndpoint : ControllerBase
             return result.ToActionResult();
 
         return CreatedAtAction
-            (nameof(GetTenantByIdEndpoint), new {id = result.Value}, result.Value);
+            (actionName: nameof(GetTenantByIdEndpoint.GetTenantById), 
+            controllerName: "GetTenantByIdEndpoint",
+            new {id = result.Value}, 
+            result.Value);
     }
 
 }
