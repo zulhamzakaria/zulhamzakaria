@@ -43,7 +43,12 @@
     <Folder Include="Modules\Auditing\Infrastructure\DbContext\" />
     <Folder Include="Modules\Auditing\Infrastructure\Repositories\" />
     <Folder Include="Modules\Auditing\Controllers\" />
-    <Folder Include="Modules\IdentityAndAccess\Application\Queries\" />
+    <Folder Include="Modules\IdentityAndAccess\Application\Commands\DeactivateTenant\" />
+    <Folder Include="Modules\IdentityAndAccess\Application\Commands\ActivateTenant\" />
+    <Folder Include="Modules\IdentityAndAccess\Application\Commands\SuspendTenant\" />
+    <Folder Include="Modules\IdentityAndAccess\Application\Queries\GetTenants\" />
+    <Folder Include="Modules\IdentityAndAccess\Application\Queries\GetTenantByAlias\" />
+    <Folder Include="Modules\IdentityAndAccess\Application\Queries\SearchTenantByName\" />
     <Folder Include="Modules\IdentityAndAccess\Application\UnitTests\" />
     <Folder Include="Modules\IdentityAndAccess\Application\Role\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\Rules\" />
