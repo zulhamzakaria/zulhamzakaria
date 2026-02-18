@@ -16,8 +16,9 @@ namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.Ge
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<IActionResult> GetTenantById(GetTenantByIdQuery query)
+        public async Task<IActionResult> GetTenantById(Guid id)
         { 
+            var query = new GetTenantByIdQuery(id);
             var result = await _mediator
                 .Send<GetTenantByIdQuery, Result<GetTenantByIdDTO>>(query);
 
