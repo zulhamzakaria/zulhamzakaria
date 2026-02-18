@@ -2,6 +2,7 @@
 using ProcurementSystem.API.Extensions;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
+using ProcurementSystem.API.Tenancy;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.GetTenantById
 {
@@ -15,6 +16,7 @@ namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.Ge
             _mediator = mediator;
         }
 
+        [IgnoreTenantResolution]
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetTenantById(Guid id)
         { 
