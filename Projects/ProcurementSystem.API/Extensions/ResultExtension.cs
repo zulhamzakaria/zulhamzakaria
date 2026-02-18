@@ -28,7 +28,6 @@ public static class ResultExtension
         {
             Title = "Request Failed",
             Status = statusCode,
-            Detail = string.Join("; ", errors.Select(errors => errors.Message))
         };
 
         problems.Extensions["errors"] = errors;
