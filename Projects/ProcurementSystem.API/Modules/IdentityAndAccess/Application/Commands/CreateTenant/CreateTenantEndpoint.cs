@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProcurementSystem.API.Extensions;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 using ProcurementSystem.API.Tenancy;
@@ -22,15 +23,12 @@ public class CreateTenantEndpoint : ControllerBase
         ([FromBody] CreateTenantRequest request, CancellationToken ct)
     {
         var command = new CreateTenantCommand
-            (request.TenantAlias,request.TenantName);
+            (request.TenantAlias, request.TenantName);
 
         var result = await _mediator.Send<CreateTenantCommand, Result<Guid>>
             (command, ct);
 
-        if(result.IsFailure)
-            return BadRequest(result.Errors);
-
-        return Ok(result.Value);
+        return result.ToActionResult();
     }
 
 }

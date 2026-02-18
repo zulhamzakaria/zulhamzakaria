@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProcurementSystem.API.Extensions;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 
@@ -19,9 +20,8 @@ namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.Ge
         { 
             var result = await _mediator
                 .Send<GetTenantByIdQuery, Result<GetTenantByIdDTO>>(query);
-            if(result.IsFailure)
-                NotFound(result.Errors);
-            return Ok(result.Value);
+
+            return result.ToActionResult();
         }
     }
 }
