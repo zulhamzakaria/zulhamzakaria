@@ -1,6 +1,4 @@
-﻿using ProcurementSystem.API.SharedKernel.Enums;
-
-namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.GetTenantById;
+﻿namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.GetTenantById;
 
 public sealed record GetTenantByIdDTO
     (Guid Id, 
