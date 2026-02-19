@@ -17,7 +17,7 @@ public class GetTenantByAliasEndpoint : ControllerBase
     }
 
     [IgnoreTenantResolution]
-    [HttpGet]
+    [HttpGet("{alias}")]
     public async Task<IActionResult> GetTenantByAlias(string alias)
     {
         var query = new GetTenantByAliasQuery(alias);
