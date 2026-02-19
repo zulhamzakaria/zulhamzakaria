@@ -1,11 +1,12 @@
-﻿using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Entities;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.GetTenants;
 
-public sealed class GetTenantsHandler : 
+public sealed class GetTenantsHandler :
     IRequestHandler<GetTenantsQuery, Result<IReadOnlyCollection<GetTenantsDTO>>>
 {
     private readonly IADbContext _dbContext;
@@ -15,14 +16,24 @@ public sealed class GetTenantsHandler :
         _dbContext = dbContext;
     }
 
-    public Task<Result<IReadOnlyCollection<GetTenantsDTO>>> Handle
+    public async Task<Result<IReadOnlyCollection<GetTenantsDTO>>> Handle
         (GetTenantsQuery request, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+
+        IQueryable<Tenant> query = _dbContext.Tenants.AsNoTracking();
+
+        if (request.TenantStatus is not null)
+            query = query.Where(t => t.TenantStatus == request.TenantStatus);
+
+
+        var tenants = await query
+            .Select(t => new GetTenantsDTO(
+                t.Id,
+                t.TenantName,
+                t.TenantAlias))
+            .ToListAsync(cancellationToken);
+
+        return Result<IReadOnlyCollection<GetTenantsDTO>>.Success(tenants);
     }
 
-    private GetTenantsDTO MapToDto(Tenant tenant)
-    {
-
-    }
 }

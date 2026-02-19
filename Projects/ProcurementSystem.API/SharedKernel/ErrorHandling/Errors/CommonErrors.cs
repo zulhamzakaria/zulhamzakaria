@@ -9,6 +9,11 @@ public static class CommonErrors
             errorCode: "COMMON_NOT_FOUND",
             message: $"{Helper.Humanize(entityName)} with identifier '{identifier}' was not found.",
             errorType: ErrorType.NotFound);
+    public static Error NotFound(string entityName)
+        => new Error(
+            errorCode: "COMMON_NOT_FOUND",
+            message: $"No {Helper.Humanize(entityName)}s found. Please add some first",
+            errorType: ErrorType.NotFound);
     public static Error InvalidInput(string fieldName)
         => new Error(
             errorCode: "COMMON_INVALID_INPUT",
