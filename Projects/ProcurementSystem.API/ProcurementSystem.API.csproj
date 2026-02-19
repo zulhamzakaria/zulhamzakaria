@@ -46,7 +46,6 @@
     <Folder Include="Modules\IdentityAndAccess\Application\Commands\DeactivateTenant\" />
     <Folder Include="Modules\IdentityAndAccess\Application\Commands\ActivateTenant\" />
     <Folder Include="Modules\IdentityAndAccess\Application\Commands\SuspendTenant\" />
-    <Folder Include="Modules\IdentityAndAccess\Application\Queries\GetTenantByAlias\" />
     <Folder Include="Modules\IdentityAndAccess\Application\Queries\SearchTenantByName\" />
     <Folder Include="Modules\IdentityAndAccess\Application\UnitTests\" />
     <Folder Include="Modules\IdentityAndAccess\Application\Role\" />

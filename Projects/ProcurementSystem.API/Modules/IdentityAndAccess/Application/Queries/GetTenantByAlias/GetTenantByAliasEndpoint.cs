@@ -4,26 +4,25 @@ using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 using ProcurementSystem.API.Tenancy;
 
-namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.GetTenantById;
+namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Queries.GetTenantByAlias;
 
 [Route("api/system/tenants")]
 [ApiController]
-public class GetTenantByIdEndpoint : ControllerBase
+public class GetTenantByAliasEndpoint : ControllerBase
 {
     private readonly IMediator _mediator;
-    public GetTenantByIdEndpoint(IMediator mediator)
+    public GetTenantByAliasEndpoint(IMediator mediator)
     {
         _mediator = mediator;
     }
 
     [IgnoreTenantResolution]
-    [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetTenantById(Guid id)
-    { 
-        var query = new GetTenantByIdQuery(id);
+    [HttpGet]
+    public async Task<IActionResult> GetTenantByAlias(string alias)
+    {
+        var query = new GetTenantByAliasQuery(alias);
         var result = await _mediator
-            .Send<GetTenantByIdQuery, Result<GetTenantByIdDTO>>(query);
-
+            .Send<GetTenantByAliasQuery, Result<GetTenantByAliasDTO>>(query);
         return result.ToActionResult();
     }
 }

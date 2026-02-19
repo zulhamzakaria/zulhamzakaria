@@ -9,7 +9,7 @@ public static class ResultExtension
     public static IActionResult ToActionResult<T>(this Result<T> result)
     {
         if (result.IsSuccess)
-            return new OkObjectResult(result);
+            return new OkObjectResult(result.Value);
 
         var errorType = result.Errors[0].ErrorType;
         var statusCode = MapStatusCode(errorType);
