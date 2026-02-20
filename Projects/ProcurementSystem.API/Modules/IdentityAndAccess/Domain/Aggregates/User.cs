@@ -1,5 +1,7 @@
 ﻿using ProcurementSystem.API.SharedKernel;
 using ProcurementSystem.API.SharedKernel.Enums;
+using ProcurementSystem.API.SharedKernel.ErrorHandling;
+using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
 using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Aggregates;
@@ -21,15 +23,31 @@ public sealed class User : BaseEntity, ITenantEntity
         // EF Core
     }
 
-    public User(string username, string password)
+    public static Result<User> Create
+        (Guid tenantId, string tenantAlias, string username, string passwordHash, UserRole userRole)
     {
+        List<Error> errors = new();
+        if (tenantId == Guid.Empty)
+            errors.Add(CommonErrors.Required(nameof(tenantId)));
+        if (string.IsNullOrWhiteSpace(tenantAlias))
+            errors.Add(CommonErrors.Required(nameof(tenantAlias)));
         if (string.IsNullOrWhiteSpace(username))
-            throw new ArgumentException("Password cannot be null or empty.", nameof(password));
-        if (string.IsNullOrWhiteSpace(password))
-            throw new ArgumentException("Password cannot be null or empty.", nameof(password));
-        Id = Guid.NewGuid();
-        Username = username;
-        SetPassword(password);
+            errors.Add(CommonErrors.Required(nameof(username)));
+        if (string.IsNullOrWhiteSpace(passwordHash))
+            errors.Add(CommonErrors.Required(nameof(passwordHash)));
+
+        if(errors.Count > 0)
+            return Result<User>.Failure(errors);
+
+        var user = new User()
+        {
+            TenantId = tenantId,
+            Username = username,
+            _passwordHash = passwordHash,
+            Role = userRole
+        };
+
+        return Result<User>.Success(user);
     }
 
     private void SetPassword(string password)
