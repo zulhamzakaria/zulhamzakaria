@@ -48,6 +48,7 @@
     <Folder Include="Modules\IdentityAndAccess\Application\Commands\SuspendTenant\" />
     <Folder Include="Modules\IdentityAndAccess\Application\UnitTests\" />
     <Folder Include="Modules\IdentityAndAccess\Application\Role\" />
+    <Folder Include="Modules\IdentityAndAccess\Contract\Events\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\Rules\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\ValueObjects\" />
     <Folder Include="Modules\IdentityAndAccess\Domain\UnitTests\" />

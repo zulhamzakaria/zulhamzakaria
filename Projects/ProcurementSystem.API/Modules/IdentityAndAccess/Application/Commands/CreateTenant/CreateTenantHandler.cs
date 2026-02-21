@@ -7,11 +7,11 @@ using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Commands.CreateTenant;
 
-public sealed class CreateTenantCommandHandler : IRequestHandler<CreateTenantCommand, Result<Guid>>
+public sealed class CreateTenantHandler : IRequestHandler<CreateTenantCommand, Result<Guid>>
 {
     private readonly ITenantRepository _tenantRepository;
     private readonly IUnitOfWork _unitOfWork;
-    public CreateTenantCommandHandler
+    public CreateTenantHandler
         (ITenantRepository tenantRepository, IUnitOfWork unitOfWork)
     {
         _tenantRepository = tenantRepository;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProcurementSystem.API.Modules.IdentityAndAccess.Contract;
+using ProcurementSystem.API.Modules.IdentityAndAccess.Contract.Interfaces;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.SharedKernel.Enums;
 

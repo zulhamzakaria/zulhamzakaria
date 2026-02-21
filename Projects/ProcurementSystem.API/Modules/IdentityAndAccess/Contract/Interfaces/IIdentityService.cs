@@ -1,4 +1,4 @@
-﻿namespace ProcurementSystem.API.Modules.IdentityAndAccess.Contract;
+﻿namespace ProcurementSystem.API.Modules.IdentityAndAccess.Contract.Interfaces;
 
 public interface IIdentityService
 {
