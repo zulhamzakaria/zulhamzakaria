@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Aggregates;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Entities;
+using ProcurementSystem.API.SharedKernel.Application;
 using ProcurementSystem.API.SharedKernel.Infrastructure.Abstractions;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
@@ -8,12 +9,15 @@ namespace ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 public class IADbContext : DbContext
 {
     private readonly ICurrentTenant _currentTenant;
+    private readonly IEventDispatcher _eventDispatcher;
     public DbSet<Employee> Employees => Set<Employee>();
     public DbSet<Tenant> Tenants => Set<Tenant>();
     public DbSet<User> Users => Set<User>();
-    public IADbContext(DbContextOptions<IADbContext> options, ICurrentTenant currentTenant) : base(options)
+    public IADbContext(DbContextOptions<IADbContext> options, ICurrentTenant currentTenant, 
+        IEventDispatcher eventDispatcher) : base(options)
     {
         _currentTenant = currentTenant;
+        _eventDispatcher = eventDispatcher;
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -95,11 +99,24 @@ public class IADbContext : DbContext
         return base.SaveChanges();
     }
 
-    public override Task<int> SaveChangesAsync
+    public override async Task<int> SaveChangesAsync
         (CancellationToken cancellationToken = default)
     {
         ApplyTenantOnAdd();
-        return base.SaveChangesAsync(cancellationToken);
+
+        var domainEvents = ChangeTracker
+            .Entries<IAggregateRoot>()
+            .SelectMany(e => e.Entity.DomainEvents)
+            .ToList();
+
+        var result = await base.SaveChangesAsync(cancellationToken);
+
+        await _eventDispatcher.DispatchAsync(domainEvents, cancellationToken);
+
+        foreach(var aggregate in ChangeTracker.Entries<IAggregateRoot>())
+            aggregate.Entity.ClearDomainEvents();
+
+        return result;
     }
     private void ApplyTenantOnAdd()
     {

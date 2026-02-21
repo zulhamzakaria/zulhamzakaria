@@ -5,6 +5,7 @@ using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure.Repositories;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure.Repositories;
+using ProcurementSystem.API.SharedKernel.Application;
 using ProcurementSystem.API.SharedKernel.Application.Behaviors;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.Infrastructure;
@@ -27,6 +28,7 @@ public static class DICollectionExtensions
         services.AddScoped<ITenantRepository, TenantRepository>();
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IMediator, Mediator>();
+        services.AddScoped<IEventDispatcher, InMemoryEventDispatcher>();
 
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

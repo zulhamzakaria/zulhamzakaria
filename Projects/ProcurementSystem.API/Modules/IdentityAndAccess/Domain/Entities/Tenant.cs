@@ -1,4 +1,5 @@
-﻿using ProcurementSystem.API.SharedKernel;
+﻿using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Events;
+using ProcurementSystem.API.SharedKernel;
 using ProcurementSystem.API.SharedKernel.Domain;
 using ProcurementSystem.API.SharedKernel.Enums;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
@@ -6,7 +7,7 @@ using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Entities;
 
-public sealed class Tenant : BaseEntity
+public sealed class Tenant : AggregateRoot
 {
     private const int MinAliasLength = 3;
     private const int MaxAliasLength = 50;
@@ -39,6 +40,9 @@ public sealed class Tenant : BaseEntity
             TenantAlias = tenantAlias,
             TenantName = tenantName
         };
+
+        tenant.AddDomainEvent(new TenantCreatedDomainEvent(tenant.Id, tenantAlias));
+
         return Result<Tenant>.Success(tenant);
     }
 
