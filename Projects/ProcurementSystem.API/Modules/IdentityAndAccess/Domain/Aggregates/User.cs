@@ -24,17 +24,15 @@ public sealed class User : BaseEntity, ITenantEntity
     }
 
     public static Result<User> Create
-        (Guid tenantId, string tenantAlias, string username, string passwordHash, UserRole userRole)
+        (Guid tenantId, string username, string password, UserRole userRole)
     {
         List<Error> errors = new();
         if (tenantId == Guid.Empty)
             errors.Add(CommonErrors.Required(nameof(tenantId)));
-        if (string.IsNullOrWhiteSpace(tenantAlias))
-            errors.Add(CommonErrors.Required(nameof(tenantAlias)));
         if (string.IsNullOrWhiteSpace(username))
             errors.Add(CommonErrors.Required(nameof(username)));
-        if (string.IsNullOrWhiteSpace(passwordHash))
-            errors.Add(CommonErrors.Required(nameof(passwordHash)));
+        if (string.IsNullOrWhiteSpace(password))
+            errors.Add(CommonErrors.Required(nameof(password)));
 
         if(errors.Count > 0)
             return Result<User>.Failure(errors);
@@ -43,11 +41,25 @@ public sealed class User : BaseEntity, ITenantEntity
         {
             TenantId = tenantId,
             Username = username,
-            _passwordHash = passwordHash,
             Role = userRole
         };
 
+        user.SetPassword(password);
+
         return Result<User>.Success(user);
+    }
+
+    public static Result<User> CreateSuperAdmin(Guid tenantId)
+    {
+        User superAdmin = new()
+        {
+            TenantId = tenantId,
+            Username = "SuperAdmin",
+            Role = UserRole.SystemAdministrator,
+        };
+        superAdmin.SetPassword("abc123");
+
+        return Result<User>.Success(superAdmin);
     }
 
     private void SetPassword(string password)
