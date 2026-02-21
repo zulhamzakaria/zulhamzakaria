@@ -17,7 +17,7 @@ public class IdentityService : IIdentityService
     public async Task<Guid?> GetActiveTenantIdByAliasAsync(string alias)
         => await _dbContext.Tenants
         .AsNoTracking()
-        .Where(t => t.TenantAlias == alias)
+        .Where(t => EF.Functions.ILike(t.TenantAlias, alias))
         .Where(t => t.TenantStatus == TenantStatus.Active)
         .Select(t => t.Id)
         .FirstOrDefaultAsync();
