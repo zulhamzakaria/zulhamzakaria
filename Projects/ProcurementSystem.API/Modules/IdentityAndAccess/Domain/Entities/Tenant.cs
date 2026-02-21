@@ -1,4 +1,5 @@
 ﻿using ProcurementSystem.API.SharedKernel;
+using ProcurementSystem.API.SharedKernel.Domain;
 using ProcurementSystem.API.SharedKernel.Enums;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
 using ProcurementSystem.API.SharedKernel.ErrorHandling.Errors;

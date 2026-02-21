@@ -1,9 +1,12 @@
-﻿namespace ProcurementSystem.API.SharedKernel.Domain;
+﻿using ProcurementSystem.API.SharedKernel.Application;
 
-public abstract class AggregateRoot
+namespace ProcurementSystem.API.SharedKernel.Domain;
+
+public abstract class AggregateRoot : BaseEntity, IAggregateRoot
 {
     private readonly List<IDomainEvent> _domainEvents = new();
-    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents;
+    public IReadOnlyCollection<IDomainEvent> DomainEvents 
+        => _domainEvents.AsReadOnly();
     protected void AddDomainEvent(IDomainEvent domainEvent)
         => _domainEvents.Add(domainEvent);
     public void ClearDomainEvents() => _domainEvents.Clear();
