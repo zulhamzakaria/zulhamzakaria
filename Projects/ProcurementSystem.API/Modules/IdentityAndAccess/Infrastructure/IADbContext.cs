@@ -13,7 +13,7 @@ public class IADbContext : DbContext
     public DbSet<Employee> Employees => Set<Employee>();
     public DbSet<Tenant> Tenants => Set<Tenant>();
     public DbSet<User> Users => Set<User>();
-    public IADbContext(DbContextOptions<IADbContext> options, ICurrentTenant currentTenant, 
+    public IADbContext(DbContextOptions<IADbContext> options, ICurrentTenant currentTenant,
         IEventDispatcher eventDispatcher) : base(options)
     {
         _currentTenant = currentTenant;
@@ -102,19 +102,19 @@ public class IADbContext : DbContext
     public override async Task<int> SaveChangesAsync
         (CancellationToken cancellationToken = default)
     {
-        ApplyTenantOnAdd();
+        //ApplyTenantOnAdd();
 
         var domainEvents = ChangeTracker
             .Entries<IAggregateRoot>()
             .SelectMany(e => e.Entity.DomainEvents)
             .ToList();
 
+        foreach (var aggregate in ChangeTracker.Entries<IAggregateRoot>())
+            aggregate.Entity.ClearDomainEvents();
+
         var result = await base.SaveChangesAsync(cancellationToken);
 
         await _eventDispatcher.DispatchAsync(domainEvents, cancellationToken);
-
-        foreach(var aggregate in ChangeTracker.Entries<IAggregateRoot>())
-            aggregate.Entity.ClearDomainEvents();
 
         return result;
     }
@@ -128,12 +128,18 @@ public class IADbContext : DbContext
         if (tenantEntries.Any() is false)
             return;
 
-        if (_currentTenant.TenantId == Guid.Empty)
-            throw new Exception("Tenant not resolved");
-        foreach (var entry in ChangeTracker.Entries<ITenantEntity>())
+        foreach (var entry in tenantEntries)
         {
             if (entry.State == EntityState.Added)
-                entry.Entity.TenantId = _currentTenant.TenantId;
+            {
+                if (entry.Entity.TenantId == Guid.Empty)
+                {
+                    if (_currentTenant?.TenantId == null || _currentTenant.TenantId == Guid.Empty)
+                        throw new Exception("Tenant not resolved");
+
+                    entry.Entity.TenantId = _currentTenant.TenantId;
+                }
+            }
 
             if (entry.State is EntityState.Modified &&
                 entry.Property(nameof(ITenantEntity.TenantId)).IsModified)
