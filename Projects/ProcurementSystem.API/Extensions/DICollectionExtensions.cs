@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Application;
+using ProcurementSystem.API.Modules.IdentityAndAccess.Application.EventHandlers;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Contract.Interfaces;
+using ProcurementSystem.API.Modules.IdentityAndAccess.Domain.Events;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure.Repositories;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
@@ -28,7 +30,10 @@ public static class DICollectionExtensions
         services.AddScoped<ITenantRepository, TenantRepository>();
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<IMediator, Mediator>();
+
         services.AddScoped<IEventDispatcher, InMemoryEventDispatcher>();
+        services.AddScoped<IDomainEventHandler<TenantCreatedDomainEvent>, 
+            CreateSuperAdminOnTenantCreatedHandler>();
 
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
