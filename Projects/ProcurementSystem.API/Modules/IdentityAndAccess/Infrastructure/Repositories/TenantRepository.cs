@@ -17,7 +17,11 @@ public class TenantRepository : ITenantRepository
         => _dbContext.Tenants
         .SingleOrDefaultAsync(t => t.Id == tenantId, cancellationToken);
 
-    public Task<bool> IsTenantExistsAsync(string tenantAlias, CancellationToken cancellationToken = default)
+    public Task<bool> IsTenantExistsByAliasAsync(string tenantAlias, CancellationToken cancellationToken = default)
         => _dbContext.Tenants
         .AnyAsync(t => t.TenantAlias == tenantAlias, cancellationToken);
+
+    public Task<bool> IsTenantExistsByNameAsync(string tenantName, CancellationToken cancellationToken = default)
+        => _dbContext.Tenants
+        .AnyAsync(t => t.TenantName == tenantName, cancellationToken);
 }

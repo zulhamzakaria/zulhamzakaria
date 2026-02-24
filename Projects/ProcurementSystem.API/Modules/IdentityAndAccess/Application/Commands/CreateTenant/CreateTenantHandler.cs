@@ -19,11 +19,11 @@ public sealed class CreateTenantHandler : IRequestHandler<CreateTenantCommand, R
     }
     public async Task<Result<Guid>> Handle(CreateTenantCommand request, CancellationToken cancellationToken = default)
     {
-        var tenantExists = await _tenantRepository.IsTenantExistsAsync(request.TenantName, cancellationToken);
+        var tenantExists = await _tenantRepository.IsTenantExistsByNameAsync(request.TenantName, cancellationToken);
         if (tenantExists)
             return Result<Guid>.Failure(CommonErrors.DuplicateEntry(nameof(Tenant), request.TenantName));
 
-        tenantExists = await _tenantRepository.IsTenantExistsAsync(request.TenantAlias, cancellationToken);
+        tenantExists = await _tenantRepository.IsTenantExistsByAliasAsync(request.TenantAlias, cancellationToken);
         if (tenantExists)
             return Result<Guid>.Failure(CommonErrors.DuplicateEntry(nameof(Tenant), request.TenantAlias));
 
