@@ -36,8 +36,8 @@ builder.Services.AddDbContext<AdministrationDbContext>(options =>
 builder.Services
     .AddTenantSupport()
     .AddDIContainers()
-    .AddAuthenticationServices(builder.Configuration)
-    .AddJWTConfiguration(builder.Configuration);
+    .AddAuthenticationServices(builder.Configuration);
+    //.AddJWTConfiguration(builder.Configuration);
 
 builder.Services.AddAuthorization();
 
