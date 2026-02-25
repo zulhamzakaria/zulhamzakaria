@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using ProcurementSystem.API.SharedKernel.Security;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ProcurementSystem.API.Extensions;
@@ -9,20 +11,17 @@ public static class JWTConfigurationExtension
     public static IServiceCollection AddJWTConfiguration(this IServiceCollection services, IConfiguration config)
     {
 
-        //appsettings validations
-        var jwtSection = config.GetSection("Jwt");
-        if (!jwtSection.Exists())
-            throw new Exception("JWT configuration section is missing in appsettings.");
+        services.AddOptions<JwtOptions>()
+            .Bind(config.GetSection(JwtOptions.SectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
-        var issuer = jwtSection["Issuer"];
-        var audience = jwtSection["Audience"];
-        var secretKey = jwtSection["SecretKey"];
+        var jwtOptions = config
+            .GetSection(JwtOptions.SectionName)
+            .Get<JwtOptions>()!;
 
-        if (string.IsNullOrWhiteSpace(issuer) || string.IsNullOrWhiteSpace(audience) || string.IsNullOrWhiteSpace(secretKey))
-            throw new InvalidOperationException("JWT configuration values (Issuer, Audience, SecretKey) must be provided in appsettings.");
-
-        if(secretKey.Length < 32)
-            throw new InvalidOperationException("JWT SecretKey must be at least 32 characters long for security reasons.");
+        Validator.ValidateObject
+            (jwtOptions, new ValidationContext(jwtOptions), validateAllProperties: true);
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -34,10 +33,10 @@ public static class JWTConfigurationExtension
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true,
 
-                    ValidIssuer = issuer,
-                    ValidAudience = audience,
+                    ValidIssuer = jwtOptions.Issuer,
+                    ValidAudience = jwtOptions.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey
-                    (Encoding.UTF8.GetBytes(secretKey)),
+                    (Encoding.UTF8.GetBytes(jwtOptions.SecretKey)),
                     ClockSkew = TimeSpan.FromMinutes(1) 
                 };
             });

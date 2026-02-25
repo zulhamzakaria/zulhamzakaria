@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using ProcurementSystem.API.SharedKernel.Security;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ProcurementSystem.API.Extensions;
@@ -14,11 +15,13 @@ public static class AuthenticationExtensions
             .GetSection(JwtOptions.SectionName)
             .Get<JwtOptions>() ?? new JwtOptions();
 
-        if (jwtOptions is null)
-            throw new InvalidOperationException("JWT options are not configured properly.");
-        if(string.IsNullOrWhiteSpace(jwtOptions.SecretKey))
-            throw new InvalidOperationException("JWT SecretKey has not been configured.");
+        //if (jwtOptions is null)
+        //    throw new InvalidOperationException("JWT options are not configured properly.");
+        //if(string.IsNullOrWhiteSpace(jwtOptions.SecretKey))
+        //    throw new InvalidOperationException("JWT SecretKey has not been configured.");
 
+        Validator.ValidateObject
+            (jwtOptions, new ValidationContext(jwtOptions), validateAllProperties: true);
 
         services.AddAuthentication(options =>
         {
