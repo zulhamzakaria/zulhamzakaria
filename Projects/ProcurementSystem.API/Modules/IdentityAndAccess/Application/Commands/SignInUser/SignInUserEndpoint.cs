@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+using ProcurementSystem.API.Extensions;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
+using ProcurementSystem.API.SharedKernel.ErrorHandling;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Commands.SignInUser;
 
@@ -8,11 +11,24 @@ namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Commands.S
 public class SignInUserEndpoint : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly ILogger<SignInUserEndpoint> _logger;
-    public SignInUserEndpoint
-        (IMediator mediator, ILogger<SignInUserEndpoint> logger)
+    public SignInUserEndpoint(IMediator mediator)
     {
         _mediator = mediator;
-        _logger = logger;
+    }
+
+    [HttpPost("sign-in")]
+    [EnableRateLimiting("SignInUser")]
+    public async Task<IActionResult> SignIn
+        ([FromBody] SignInUserRequest request, CancellationToken ct)
+    {
+        var command = new SignInUserCommand(request.TenantAlias, request.Username, request.Password);
+        var result = await _mediator.Send<SignInUserCommand, Result<string>>(command, ct);
+
+        if(result.IsFailure)
+            return result.ToActionResult();
+
+        return Ok(new SignInUserResponse(result.Value));
     }
 }
+
+public sealed record SignInUserResponse(string Token);
