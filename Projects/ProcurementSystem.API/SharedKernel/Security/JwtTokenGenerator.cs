@@ -36,6 +36,5 @@ public sealed class JwtTokenGenerator : IJwtTokenGenerator
             expires: tokenExpiration,
             signingCredentials: creds);
         return new JwtSecurityTokenHandler().WriteToken(token);
-
     }
 }
