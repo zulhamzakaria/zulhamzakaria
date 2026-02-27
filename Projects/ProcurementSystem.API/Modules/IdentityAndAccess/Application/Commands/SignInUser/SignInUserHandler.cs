@@ -35,7 +35,12 @@ public sealed class SignInUserHandler : IRequestHandler<SignInUserCommand, Resul
             .AsNoTracking()
             .FirstOrDefaultAsync(u => u.TenantId == tenantId && u.Username.ToUpper() == command.Username.ToUpper(), cancellationToken);
 
-        if(user is null)
+        //validate user
+        var query = await _context.Users.AsNoTracking().ToListAsync();
+
+        throw new Exception(query.Count().ToString());
+
+        if (user is null)
             return Result<string>.Failure(CommonErrors.NotFound(nameof(User), $"Username:{command.Username} for {command.TenantAlias}"));
 
         if (!user.VerifyPassword(command.Password))
