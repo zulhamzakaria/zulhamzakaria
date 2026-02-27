@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.RateLimiting;
 using ProcurementSystem.API.Extensions;
 using ProcurementSystem.API.SharedKernel.Application.Messaging;
 using ProcurementSystem.API.SharedKernel.ErrorHandling;
+using ProcurementSystem.API.Tenancy;
 
 namespace ProcurementSystem.API.Modules.IdentityAndAccess.Application.Commands.SignInUser;
 
@@ -18,6 +19,7 @@ public class SignInUserEndpoint : ControllerBase
 
     [HttpPost("sign-in")]
     [EnableRateLimiting("SignInUser")]
+    [IgnoreTenantResolution]
     public async Task<IActionResult> SignIn
         ([FromBody] SignInUserRequest request, CancellationToken ct)
     {
