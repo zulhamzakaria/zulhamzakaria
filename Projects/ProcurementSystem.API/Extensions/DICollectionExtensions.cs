@@ -44,6 +44,10 @@ public static class DICollectionExtensions
         .AsImplementedInterfaces()
         .WithScopedLifetime());
 
+        services.AddOptions<JwtOptions>()
+            .BindConfiguration(JwtOptions.SectionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
         return services;
     }

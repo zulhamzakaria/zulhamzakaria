@@ -4,7 +4,6 @@ using ProcurementSystem.API.Middleware;
 using ProcurementSystem.API.Modules.Administration.Infrastructure;
 using ProcurementSystem.API.Modules.IdentityAndAccess.Infrastructure;
 using ProcurementSystem.API.Modules.Procurement.Infrastructure;
-using ProcurementSystem.API.SharedKernel.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
